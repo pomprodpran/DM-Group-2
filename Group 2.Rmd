@@ -1,0 +1,40 @@
+---
+title: "Group 2"
+author: "Pom"
+date: "2024-02-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment=NA,attr.source='.numberLines')
+
+rm(list=ls())
+library(readr)
+library(RSQLite)
+library(dplyr)
+```
+
+SQL Database Schema Creation
+```{r connect}
+# set up the connection
+my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"ecommerse.db")
+```
+
+CREATE tables 
+````{bash, eval=FALSE}
+# link to SQL file
+sqlite3 ecommerse.db < ecommerse.sql
+
+```
+
+
+Generate Synthetic Data
+
+
+Select Data
+
+```{sql connection=my_db}
+SELECT * 
+FROM customers
+```
+
