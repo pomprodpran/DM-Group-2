@@ -38,7 +38,7 @@ SELECT *
 FROM customers
 ```
 
-```{r}
+```{sql}
 # Create Product table
 CREATE TABLE IF NOT EXISTS products (
   product_id CHAR(10) PRIMARY KEY,
@@ -54,6 +54,32 @@ CREATE TABLE IF NOT EXISTS products (
     REFERENCES sellers ('seller_id'),
   FOREIGN KEY ('category_id') 
     REFERENCES category ('category_id')
+);
+```
+
+```{sql}
+#Create Shipper table
+CREATE TABLE IF NOT EXISTS Shipper (
+  ShipperID CHAR(20) PRIMARY KEY,
+  Shipper_name CHAR(25) NOT NULL,
+  Shipper_phone VARCHAR(25) NOT NULL,
+  OrderID CHAR(20) NOT NULL,
+ FOREIGN KEY ('OrderID')
+	REFERENCES Order ('OrderID')
+);
+
+```
+
+```{sql}
+#Create Ads table
+CREATE TABLE IF NOT EXISTS Ads (
+  AdID CHAR(20) PRIMARY KEY,
+  Content TEXT,
+  AdClicks INT NOT NULL,
+  Budget DECIMAL(10,2),
+  product_id CHAR(10) NOT NULL,
+  FOREIGN KEY ('product_id')
+	REFERENCES Products ('product_id')
 );
 ```
 
