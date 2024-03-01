@@ -83,3 +83,24 @@ CREATE TABLE IF NOT EXISTS Ads (
 );
 ```
 
+```{sql}
+-- Seller Schema
+CREATE TABLE IF NOT EXISTS `seller` (
+  seller_id INT PRIMARY KEY,
+  seller_name VARCHAR(250) NOT NULL,
+  seller_email TEXT,
+  seller_address_state TEXT,
+  seller_address_city TEXT,
+  seller_address_country TEXT,
+  seller_address_postcode TEXT
+);
+```
+
+```{sql}
+-- Category Schema
+CREATE TABLE IF NOT EXISTS `category` (
+  category_id INT PRIMARY KEY,
+  category_name VARCHAR(250) NOT NULL,
+  category_description  
+);
+```
