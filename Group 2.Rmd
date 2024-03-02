@@ -39,6 +39,46 @@ FROM customers
 ```
 
 ```{sql}
+-- Customer Schema
+CREATE TABLE IF NOT EXISTS `customers` (
+  customer_id INT PRIMARY KEY,
+  customer_firstname VARCHAR(250) NOT NULL,
+  customer_lastname VARCHAR(250) NOT NULL,
+  customer_email TEXT,
+  phone_number VARCHAR(20),
+  date_of_birth DATE,
+  billing_address_state TEXT,
+  billing_address_city TEXT,
+  billing_address_country TEXT,
+  billing_address_postcode TEXT,
+  shipping_address_state TEXT,
+  shipping_address_city TEXT,
+  shipping_address_country TEXT,
+  shipping_address_postcode TEXT,
+  payment_method TEXT
+);
+```
+
+```{sql}
+
+-- Order Schema
+CREATE TABLE IF NOT EXISTS `orders` (
+  order_id INT PRIMARY KEY,
+  order_date DATE NOT NULL,
+  quantity INT NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  rating_review INT,
+  FOREIGN KEY ('customer_id')
+    REFERENCES customers ('customer_id'),
+  FOREIGN KEY ('product_id')
+    REFERENCES products ('product_id'),
+  FOREIGN KEY ('shipper_id')
+    REFERENCES shippers ('shipper_id')
+);
+
+```
+
+```{sql}
 # Create Product table
 CREATE TABLE IF NOT EXISTS 'products' (
   'product_id' CHAR(10) PRIMARY KEY,
@@ -46,7 +86,7 @@ CREATE TABLE IF NOT EXISTS 'products' (
   'color' VARCHAR(60) NOT NULL,
   'size' VARCHAR(5) NOT NULL,
   'brand' VARCHAR(250),
-  'price' NUMERIC NOT NUL,
+  'price' NUMERIC NOT NULL,
   'currency' CHAR(3) NOT NULL, 
   FOREIGN KEY ('seller_id') 
     REFERENCES sellers ('seller_id'),
