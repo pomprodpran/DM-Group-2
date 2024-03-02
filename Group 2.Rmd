@@ -40,16 +40,14 @@ FROM customers
 
 ```{sql}
 # Create Product table
-CREATE TABLE IF NOT EXISTS products (
-  product_id CHAR(10) PRIMARY KEY,
-  seller_id CHAR(30) SECONDARY KEY,
-  product_name VARCHAR(60) NOT NULL,
-  product_description TEXT,
-  product_color VARCHAR(60) NOT NULL,
-  product_size VARCHAR(5) NOT NULL,
-  product_brand VARCHAR(250),
-  product_price NUMERIC NOT NUL,
-  currency_code CHAR(3) NOT NULL, 
+CREATE TABLE IF NOT EXISTS 'products' (
+  'product_id' CHAR(10) PRIMARY KEY,
+  'product_name' VARCHAR(60) NOT NULL,
+  'color' VARCHAR(60) NOT NULL,
+  'size' VARCHAR(5) NOT NULL,
+  'brand' VARCHAR(250),
+  'price' NUMERIC NOT NUL,
+  'currency' CHAR(3) NOT NULL, 
   FOREIGN KEY ('seller_id') 
     REFERENCES sellers ('seller_id'),
   FOREIGN KEY ('category_id') 
