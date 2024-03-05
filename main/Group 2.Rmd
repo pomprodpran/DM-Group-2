@@ -22,27 +22,27 @@ library(dplyr)
 # Task 1.2: SQL Database Schema Creation
 ```{r connect}
 # set up the connection
-my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"ecommerse.db")
+my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerse.db")
 ```
 
 ## CREATE tables 
 ````{bash, eval=FALSE}
 # link to SQL file
-sqlite3 ecommerse.db < ecommerse.sql
+sqlite3 "../database/ecommerse.db" < ecommerse.sql
 ```
 
 # Task 2.2: Import Data and validation
 
 ## Validation
 ```{r}
-all_files <- list.files("data_upload/")
+all_files <- list.files("../data_upload/")
 
 ```
 
 ## Load files in an sqlite database
 ```{r}
 for (variable in all_files) {
-  this_filepath <- paste0("data_upload/",variable)
+  this_filepath <- paste0("../data_upload/",variable)
   this_file_contents <- readr::read_csv(this_filepath)
 
   table_name <- gsub(".csv","",variable)
