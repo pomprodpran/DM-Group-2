@@ -1,0 +1,48 @@
+---
+title: "Report Group 2"
+format: pdf
+editor: visual
+---
+
+## Report
+
+### Part 1: Database Design and Implementation
+
+#### Task 1.1: E-R Diagram Design
+
+#### Task 1.2: SQL Database Schema Creation
+
+#### Part 2: Data Generation and Management
+
+#### Task 2.1: Synthetic Data Generation
+
+#### Task 2.2: Data Import and Quality Assurance
+
+### Part 3: Data Pipeline Generation
+
+#### Task 3.1: GitHub Repository and Workflow Setup
+
+#### Task 3.2: GitHub Actions for Continuous Integration
+
+### Part 4: Data Analysis and Reporting with Quarto in R
+
+#### Task 4.1: Advanced Data analysis in R
+
+#### Task 4.2: Comprehensive Reporting with Quarto
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).

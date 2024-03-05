@@ -1,8 +1,13 @@
 ---
-title: "Group 2"
+title: "Report Group 2"
 author: "Pom"
 date: "2024-02-28"
-output: html_document
+output:
+  pdf_document:
+    toc: yes
+    number_sections: yes
+  word_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -14,131 +19,48 @@ library(RSQLite)
 library(dplyr)
 ```
 
-SQL Database Schema Creation
+# Task 1.2: SQL Database Schema Creation
 ```{r connect}
 # set up the connection
 my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"ecommerse.db")
 ```
 
-CREATE tables 
+## CREATE tables 
 ````{bash, eval=FALSE}
 # link to SQL file
 sqlite3 ecommerse.db < ecommerse.sql
+```
+
+# Task 2.2: Import Data and validation
+
+## Validation
+```{r}
+all_files <- list.files("data_upload/")
 
 ```
 
+## Load files in an sqlite database
+```{r}
+for (variable in all_files) {
+  this_filepath <- paste0("data_upload/",variable)
+  this_file_contents <- readr::read_csv(this_filepath)
 
-Generate Synthetic Data
+  table_name <- gsub(".csv","",variable)
+  #Remove prefix and suffix 
+  #table_name <- gsub("olist_","",table_name)
+  #table_name <- gsub("_dataset","",table_name)
+  # table_name <- variable
+  
+  RSQLite::dbWriteTable(my_db,table_name,this_file_contents,overwrite=TRUE)
+}
+
+```
 
 
 Select Data
 
 ```{sql connection=my_db}
 SELECT * 
-FROM customers
+FROM test_customers
 ```
 
-```{sql}
--- Customer Schema
-CREATE TABLE IF NOT EXISTS `customers` (
-  customer_id INT PRIMARY KEY,
-  customer_firstname VARCHAR(250) NOT NULL,
-  customer_lastname VARCHAR(250) NOT NULL,
-  customer_email TEXT,
-  phone_number VARCHAR(20),
-  date_of_birth DATE,
-  billing_address_state TEXT,
-  billing_address_city TEXT,
-  billing_address_country TEXT,
-  billing_address_postcode TEXT,
-  shipping_address_state TEXT,
-  shipping_address_city TEXT,
-  shipping_address_country TEXT,
-  shipping_address_postcode TEXT,
-  payment_method TEXT
-);
-```
-
-```{sql}
-
--- Order Schema
-CREATE TABLE IF NOT EXISTS `orders` (
-  order_id INT PRIMARY KEY,
-  order_date DATE NOT NULL,
-  quantity INT NOT NULL,
-  amount DECIMAL(10,2) NOT NULL,
-  rating_review INT,
-  FOREIGN KEY ('customer_id')
-    REFERENCES customers ('customer_id'),
-  FOREIGN KEY ('product_id')
-    REFERENCES products ('product_id'),
-  FOREIGN KEY ('shipper_id')
-    REFERENCES shippers ('shipper_id')
-);
-
-```
-
-```{sql}
-# Create Product table
-CREATE TABLE IF NOT EXISTS 'products' (
-  'product_id' CHAR(10) PRIMARY KEY,
-  'product_name' VARCHAR(60) NOT NULL,
-  'color' VARCHAR(60) NOT NULL,
-  'size' VARCHAR(5) NOT NULL,
-  'brand' VARCHAR(250),
-  'price' NUMERIC NOT NULL,
-  'currency' CHAR(3) NOT NULL, 
-  FOREIGN KEY ('seller_id') 
-    REFERENCES sellers ('seller_id'),
-  FOREIGN KEY ('category_id') 
-    REFERENCES category ('category_id')
-);
-```
-
-```{sql}
-#Create Shipper table
-CREATE TABLE IF NOT EXISTS Shipper (
-  ShipperID CHAR(20) PRIMARY KEY,
-  Shipper_name CHAR(25) NOT NULL,
-  Shipper_phone VARCHAR(25) NOT NULL,
-  OrderID CHAR(20) NOT NULL,
- FOREIGN KEY ('OrderID')
-	REFERENCES Order ('OrderID')
-);
-
-```
-
-```{sql}
-#Create Ads table
-CREATE TABLE IF NOT EXISTS Ads (
-  AdID CHAR(20) PRIMARY KEY,
-  Content TEXT,
-  AdClicks INT NOT NULL,
-  Budget DECIMAL(10,2),
-  product_id CHAR(10) NOT NULL,
-  FOREIGN KEY ('product_id')
-	REFERENCES Products ('product_id')
-);
-```
-
-```{sql}
--- Seller Schema
-CREATE TABLE IF NOT EXISTS `seller` (
-  seller_id INT PRIMARY KEY,
-  seller_name VARCHAR(250) NOT NULL,
-  seller_email TEXT,
-  seller_address_state TEXT,
-  seller_address_city TEXT,
-  seller_address_country TEXT,
-  seller_address_postcode TEXT
-);
-```
-
-```{sql}
--- Category Schema
-CREATE TABLE IF NOT EXISTS `category` (
-  category_id INT PRIMARY KEY,
-  category_name VARCHAR(250) NOT NULL,
-  category_description  
-);
-```
