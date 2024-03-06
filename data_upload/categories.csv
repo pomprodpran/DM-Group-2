@@ -1,31 +1,51 @@
 category_id,category_name,category_description
-1,Electronics,Vivamus tortor. Duis mattis egestas metus.
-2,Home & Garden,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros."
-3,Fashion,Phasellus id sapien in sapien iaculis congue.
-4,Beauty & Personal Care,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam."
-5,Sports & Outdoors,Donec dapibus.
-6,Toys & Games,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi."
-7,Health & Wellness,Aliquam quis turpis eget elit sodales scelerisque.
-8,Automotive,"Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis."
-9,Office Supplies,"Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh."
-10,Pet Supplies,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.
-11,Books & Magazines,Duis at velit eu est congue elementum.
-12,Jewelry & Accessories,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis."
-13,Baby & Kids,Integer ac leo.
-14,Food & Beverages,Nulla suscipit ligula in lacus.
-15,Home Improvement,Integer ac leo.
-16,Furniture,Proin interdum mauris non ligula pellentesque ultrices.
-17,Travel & Luggage,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula."
-18,Electronics Accessories,Integer ac neque.
-19,Crafts & DIY,Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.
-20,Party Supplies,Morbi non quam nec dui luctus rutrum.
-21,Fitness & Exercise,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue."
-22,Art & Collectibles,Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.
-23,Gifts & Gadgets,Cras pellentesque volutpat dui.
-24,Music & Instruments,Morbi a ipsum. Integer a nibh.
-25,Movies & TV Shows,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus."
-26,Industrial & Scientific,Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.
-27,Gaming,"Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis."
-28,Photography,Donec ut mauris eget massa tempor convallis.
-29,Kitchen & Dining,In hac habitasse platea dictumst.
-30,Tech Accessories,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
+1,Electronics,Products related to electronic devices and accessories.
+2,Clothing,"Clothing items for men, women, and children."
+3,Home & Kitchen,"Items for home decor, kitchen appliances, and organization."
+4,Sports & Outdoors,Equipment and gear for various sports and outdoor activities.
+5,Books,"A wide range of books including fiction, non-fiction, and educational materials."
+6,Beauty & Personal Care,"Cosmetics, skincare, and personal grooming products."
+7,Toys & Games,A diverse collection of toys and games for all ages.
+8,Health & Wellness,"Products related to health, fitness, and overall wellness."
+9,Food & Beverages,A variety of food items and beverages from different cuisines.
+10,Art & Crafts,"Supplies and materials for art, DIY projects, and crafting."
+11,Automotive,"Car accessories, maintenance products, and tools."
+12,Pet Supplies,"Items for pet care, grooming, and entertainment."
+13,Music & Instruments,"Musical instruments, accessories, and music-related merchandise."
+14,Gardening,"Tools, plants, and accessories for gardening and outdoor spaces."
+15,Travel & Luggage,"Travel essentials, luggage, and accessories for travel enthusiasts."
+16,Party Supplies,"Decorations, costumes, and supplies for parties and celebrations."
+17,Jewelry & Accessories,A variety of jewelry pieces and fashion accessories.
+18,Stationery,"Writing instruments, paper products, and office supplies."
+19,Electrical & Lighting,"Electrical components, bulbs, and lighting fixtures."
+20,Furniture,Various types of furniture for home and office spaces.
+21,Movies & Entertainment,"Movies, TV shows, and entertainment merchandise."
+22,Baby & Toddler,"Products for infants, toddlers, and young children."
+23,DIY & Home Improvement,Tools and materials for do-it-yourself projects and home improvement.
+24,Tech Gadgets,Innovative and tech-savvy gadgets and accessories.
+25,Vintage & Antiques,Unique and rare vintage items and antiques.
+26,Educational Toys & Games,Toys and games designed for educational purposes.
+27,Outdoor Recreation,Gear and equipment for outdoor adventures and recreation.
+28,Ethnic & Cultural,Products representing diverse ethnicities and cultures.
+29,Virtual Reality,"VR headsets, games, and virtual reality experiences."
+30,Subscription Boxes,Monthly subscription boxes for various interests and hobbies.
+31,Handmade Products,Artisanal and handcrafted products from skilled craftsmen.
+32,Fitness Accessories,Accessories and equipment for fitness and exercise routines.
+33,Tech Accessories,Accessories for electronic devices and gadgets.
+34,Eco-friendly Products,Environmentally friendly and sustainable products.
+35,Luxury Items,High-end and luxurious products and accessories.
+36,Science & Technology,"Products related to science, technology, and innovation."
+37,Sustainable Living,Products promoting sustainable and eco-conscious lifestyle choices.
+38,Camping & Hiking,Gear and essentials for camping and hiking adventures.
+39,Wellness Retreats,Packages and products for wellness and relaxation retreats.
+40,Fair Trade Products,Ethically sourced and fair trade certified products.
+41,Virtual Events,Virtual event hosting and participation platforms.
+42,DIY Beauty Products,Ingredients and materials for DIY beauty and skincare products.
+43,Local Artisan Crafts,Handmade crafts and artworks from local artisans.
+44,Gourmet Foods,High-quality gourmet food items and delicacies.
+45,Innovative Technology,Cutting-edge and innovative technological products.
+46,Cultural Experiences,Experiential products and activities showcasing diverse cultures.
+47,Mindfulness & Meditation,Products and resources for mindfulness and meditation practices.
+48,International Cuisine,Ingredients and products for cooking international cuisines.
+49,Adventure Travel Gear,Gear and equipment for adventurous and thrill-seeking travelers.
+50,Sustainable Fashion,Eco-friendly and sustainable fashion apparel and accessories.
