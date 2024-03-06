@@ -14,7 +14,7 @@ editor: visual
 
 ![Entity Relationship Sets](Entity Relationship Sets.png)
 
-Assumptions: (TBD)
+Assumptions: (TBD) - Discuss collectively as a group
 
 #### Task 1.2: SQL Database Schema Creation
 
