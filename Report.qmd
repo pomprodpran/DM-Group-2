@@ -10,7 +10,32 @@ editor: visual
 
 #### Task 1.1: E-R Diagram Design
 
+![E-R Diagram](ER_Diagram.jpg){fig-alt="E-R Diagram Design"}
+
+![Entity Relationship Sets](Entity Relationship Sets.png)
+
+Assumptions: (TBD)
+
 #### Task 1.2: SQL Database Schema Creation
+
+-    **Customers** ($\underline{customer\_id}$, date_of_birth, customer_first_name, customer_last_name, phone_number, customer_email, billing_address_street_number, billing_address_street_name, billing_address_street_suffix, billing_address_city, billing_address_state, billing_address_country, billing_address_postcode, current_shipping_address_street_number, current_shipping_address_street_name, current_shipping_address_street_suffix, current_shipping_address_city, current_shipping_address_state, current_shipping_address_country, current_shipping_address_postcode, current_payment_method)
+
+```{=html}
+<!-- -->
+```
+-   **Shippers** ($\underline{shipper\_id}$, shipper_name, shipper_phone)
+
+-   **Products** ($\underline{product\_id}$, $\underline{\underline{seller\_id}}$, $\underline{\underline{category\_id}}$, name, color, size, brand, price, currency)
+
+-   **Order** ($\underline{order\_id}$, $\underline{\underline{customer\_id}}$ , $\underline{\underline{product\_id}}$ , $\underline{\underline{shipper\_id}}$[,]{.underline} order_date, order_time, quantity, discount, rating_review)
+
+-   **Seller** ($\underline{shipper\_id}$, seller_name, seller_email, seller_address_street_number, seller_address_street_name, seller_address_street_suffix, seller_address_city, seller_address_state, seller_address_country, seller_address_postcode)
+
+-   Advertisements ($\underline{ad\_id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
+
+-   Categories ($\underline{category\_id}$[,]{.underline} category_name, category_description
+
+Will add code chunks of table creation here
 
 #### Part 2: Data Generation and Management
 
