@@ -17,12 +17,12 @@ CREATE TABLE IF NOT EXISTS `test_customers` (
   'customer_firstname' VARCHAR(250) NOT NULL,
   'customer_lastname' VARCHAR(250) NOT NULL,
   'customer_email' TEXT
-  --phone_number VARCHAR(20),
-  --date_of_birth DATE,
-  --billing_address_state TEXT,
-  --billing_address_city TEXT,
-  --billing_address_country TEXT,
-  --billing_address_postcode TEXT
+  'phone_number' VARCHAR(20),
+  'date_of_birth' DATE,
+  'billing_address_state' TEXT,
+  'billing_address_city' TEXT,
+  'billing_address_country' TEXT,
+  'billing_address_postcode' TEXT
 );
 
 -- Customer Schema
