@@ -1,31 +1,31 @@
-id,name,description
-1,Electronics,Suspendisse accumsan tortor quis turpis. Sed ante.
-2,Home & Garden,Donec dapibus. Duis at velit eu est congue elementum.
-3,Fashion,"Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue."
-4,Beauty & Personal Care,Duis bibendum.
-5,Sports & Outdoors,Etiam pretium iaculis justo.
-6,Toys & Games,Nulla tellus. In sagittis dui vel nisl.
-7,Health & Wellness,Etiam justo. Etiam pretium iaculis justo.
-8,Automotive,Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.
-9,Office Supplies,"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo."
-10,Pet Supplies,Proin risus. Praesent lectus.
-11,Books & Magazines,Nunc purus.
-12,Jewelry & Accessories,Cras non velit nec nisi vulputate nonummy.
-13,Baby & Kids,Proin eu mi. Nulla ac enim.
-14,Food & Beverages,Morbi non lectus.
-15,Home Improvement,"Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis."
-16,Furniture,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo."
-17,Travel & Luggage,Nulla nisl. Nunc nisl.
-18,Electronics Accessories,Donec posuere metus vitae ipsum.
-19,Crafts & DIY,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa."
-20,Party Supplies,"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
-21,Fitness & Exercise,Pellentesque ultrices mattis odio. Donec vitae nisi.
-22,Art & Collectibles,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-23,Gifts & Gadgets,Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.
-24,Music & Instruments,Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.
-25,Movies & TV Shows,Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.
-26,Industrial & Scientific,Donec semper sapien a libero. Nam dui.
-27,Gaming,Aliquam non mauris.
-28,Photography,Cras in purus eu magna vulputate luctus.
-29,Kitchen & Dining,Vivamus vel nulla eget eros elementum pellentesque.
-30,Tech Accessories,"Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue."
+category_id,category_name,category_description
+1,Electronics,Vivamus tortor. Duis mattis egestas metus.
+2,Home & Garden,"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros."
+3,Fashion,Phasellus id sapien in sapien iaculis congue.
+4,Beauty & Personal Care,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam."
+5,Sports & Outdoors,Donec dapibus.
+6,Toys & Games,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi."
+7,Health & Wellness,Aliquam quis turpis eget elit sodales scelerisque.
+8,Automotive,"Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis."
+9,Office Supplies,"Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh."
+10,Pet Supplies,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.
+11,Books & Magazines,Duis at velit eu est congue elementum.
+12,Jewelry & Accessories,"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis."
+13,Baby & Kids,Integer ac leo.
+14,Food & Beverages,Nulla suscipit ligula in lacus.
+15,Home Improvement,Integer ac leo.
+16,Furniture,Proin interdum mauris non ligula pellentesque ultrices.
+17,Travel & Luggage,"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula."
+18,Electronics Accessories,Integer ac neque.
+19,Crafts & DIY,Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.
+20,Party Supplies,Morbi non quam nec dui luctus rutrum.
+21,Fitness & Exercise,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue."
+22,Art & Collectibles,Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.
+23,Gifts & Gadgets,Cras pellentesque volutpat dui.
+24,Music & Instruments,Morbi a ipsum. Integer a nibh.
+25,Movies & TV Shows,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus."
+26,Industrial & Scientific,Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.
+27,Gaming,"Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis."
+28,Photography,Donec ut mauris eget massa tempor convallis.
+29,Kitchen & Dining,In hac habitasse platea dictumst.
+30,Tech Accessories,"In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
