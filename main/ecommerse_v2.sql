@@ -102,8 +102,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   product_id INT NOT NULL,
   shipper_id INT NOT NULL,
   order_date DATE NOT NULL,
+  order_time TIMESTAMP NOT NULL,
   quantity INT NOT NULL,
-  amount DECIMAL(10,2) NOT NULL,
+  discount DECIMAL(3,2) NOT NULL,
   rating_review INT,
   FOREIGN KEY ('customer_id')
     REFERENCES customers ('customer_id'),
