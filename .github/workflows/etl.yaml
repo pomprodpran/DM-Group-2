@@ -26,3 +26,19 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           Rscript -e 'install.packages(c("ggplot2", "readr", "RSQLite", "dplyr"))'
+      - name: Execute R script
+        run: |
+          Rscript main/Transformation.R
+      - name: Add files
+        run: |
+          git config --global user.email "pomprodpran@hotmail.com"
+          git config --global user.name "pomprodpran"
+          git add --all database/
+      - name: Commit files
+        run: |
+          git commit -m "Updated Database"
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: main
