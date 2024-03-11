@@ -88,15 +88,7 @@ LEFT JOIN orders AS o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.customer_first_name, c.customer_last_name;
 ```
 
-<<<<<<< HEAD
-Close Connection
-```{r disconnect}
-# Disconnect from the database using the connection variable that we setup 
-# before
-RSQLite::dbDisconnect(my_db)
 
-```
-=======
 ```{sql connection=my_db}
 -- Sellers with total revenue 
 SELECT s.seller_id, s.seller_name, SUM(p.price) AS total_revenue
@@ -160,8 +152,10 @@ FROM orders;
 ```
 
 
+Close Connection
+```{r disconnect}
+# Disconnect from the database using the connection variable that we setup 
+# before
+RSQLite::dbDisconnect(my_db)
 
-
-
-
->>>>>>> 67d7d2c814041ecb13141207fc753b11a2bab07a
+```
