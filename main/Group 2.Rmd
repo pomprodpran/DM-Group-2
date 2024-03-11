@@ -64,3 +64,10 @@ SELECT *
 FROM test_customers
 ```
 
+Close Connection
+```{r disconnect}
+# Disconnect from the database using the connection variable that we setup 
+# before
+RSQLite::dbDisconnect(my_db)
+
+```
