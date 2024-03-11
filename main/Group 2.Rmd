@@ -28,7 +28,7 @@ my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerse.db")
 ## CREATE tables 
 ````{bash, eval=FALSE}
 # link to SQL file
-sqlite3 "../database/ecommerse.db" < ecommerse.sql
+sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
 # Task 2.2: Import Data and validation
