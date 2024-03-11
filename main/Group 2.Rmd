@@ -56,11 +56,102 @@ for (variable in all_files) {
 
 ```
 
-
 Select Data
 
 ```{sql connection=my_db}
 SELECT * 
-FROM test_customers
+FROM advertisements
 ```
+
+# Data Analysis using SQL 
+
+```{sql connection=my_db}
+SELECT COUNT(*) AS total_categories
+FROM categories;
+```
+
+```{sql connection=my_db}
+-- Top 5 categories with the most products
+SELECT c.category_name, COUNT(p.product_id) AS num_products
+FROM categories c
+LEFT JOIN products p ON c.category_id = p.category_id
+GROUP BY c.category_id, c.category_name
+ORDER BY num_products DESC
+LIMIT 5;
+```
+
+```{sql connection=my_db}
+-- Total Number of Orders for Each Customer
+SELECT c.customer_id, c.customer_first_name, c.customer_last_name, COUNT(o.order_id) AS total_orders
+FROM customers AS c
+LEFT JOIN orders AS o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_first_name, c.customer_last_name;
+```
+
+```{sql connection=my_db}
+-- Sellers with total revenue 
+SELECT s.seller_id, s.seller_name, SUM(p.price) AS total_revenue
+FROM sellers AS s
+INNER JOIN products AS p ON s.seller_id = p.seller_id
+INNER JOIN orders AS o ON p.product_id = o.product_id
+GROUP BY s.seller_id, s.seller_name;
+```
+
+
+```{sql connection=my_db}
+-- Top 10 best selling products based on quantity sold
+SELECT p.product_id, p.name, p.color, p.size, SUM(o.quantity) AS total_quantity_sold
+FROM products AS p
+INNER JOIN orders AS o ON p.product_id = o.product_id
+GROUP BY p.product_id, p.name, p.color, p.size
+ORDER BY total_quantity_sold DESC
+LIMIT 10;
+
+
+```
+
+```{sql connection=my_db}
+-- Top 10 customers by the total amount spent
+
+SELECT c.customer_id, c.customer_first_name, c.customer_last_name, SUM(p.price) AS total_spent
+FROM customers AS c
+INNER JOIN orders AS o ON c.customer_id = o.customer_id
+INNER JOIN products AS p ON o.product_id = p.product_id
+GROUP BY c.customer_id, c.customer_first_name, c.customer_last_name
+ORDER BY total_spent DESC
+LIMIT 10;
+
+```
+
+```{sql connection=my_db}
+-- Average Order Value for Each Seller
+SELECT s.seller_id, s.seller_name, AVG(p.price * o.quantity) AS average_order_value
+FROM sellers AS s
+INNER JOIN products AS p ON s.seller_id = p.seller_id
+INNER JOIN orders AS o ON p.product_id = o.product_id
+GROUP BY s.seller_id, s.seller_name;
+
+```
+
+```{sql connection=my_db}
+-- Top 10 shippers with highest number of shippings
+SELECT s.shipper_id, s.shipper_name, COUNT(*) AS total_orders_shipped
+FROM shippers AS s
+JOIN orders AS o ON s.shipper_id = o.shipper_id
+GROUP BY s.shipper_id, s.shipper_name
+ORDER BY total_orders_shipped DESC
+LIMIT 10;
+
+```
+
+```{sql connection=my_db}
+-- Average discount percentage applied to orders
+SELECT AVG(discount) AS average_discount
+FROM orders;
+```
+
+
+
+
+
 
