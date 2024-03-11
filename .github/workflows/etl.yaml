@@ -36,7 +36,7 @@ jobs:
           git add --all database/
       - name: Commit files
         run: |
-          git commit -m "Updated Database"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Updated Database"
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
