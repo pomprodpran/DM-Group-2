@@ -1,4 +1,4 @@
-library(RSQLITE)
+#library(RSQLite)
 
 # Rscript R/transformation.R
 # load the data
