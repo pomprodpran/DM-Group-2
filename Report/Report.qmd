@@ -1,0 +1,72 @@
+---
+title: "Report Group 2"
+format: pdf
+editor: visual
+---
+
+## Report
+
+### Part 1: Database Design and Implementation
+
+#### Task 1.1: E-R Diagram Design
+
+![E-R Diagram](ER_Diagram.jpg){fig-alt="E-R Diagram Design"}
+
+![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
+
+Assumptions: (TBD) - Discuss collectively as a group
+
+#### Task 1.2: SQL Database Schema Creation
+
+-   **Customers** ($\underline{customer\_id}$, date_of_birth, customer_first_name, customer_last_name, phone_number, customer_email, billing_address_street_number, billing_address_street_name, billing_address_street_suffix, billing_address_city, billing_address_state, billing_address_country, billing_address_postcode, current_shipping_address_street_number, current_shipping_address_street_name, current_shipping_address_street_suffix, current_shipping_address_city, current_shipping_address_state, current_shipping_address_country, current_shipping_address_postcode, current_payment_method)
+
+<!-- -->
+
+-   **Shippers** ($\underline{shipper\_id}$, shipper_name, shipper_phone)
+
+-   **Products** ($\underline{product\_id}$, $\underline{\underline{seller\_id}}$, $\underline{\underline{category\_id}}$, name, color, size, brand, price, currency)
+
+-   **Order** ($\underline{order\_id}$, $\underline{\underline{customer\_id}}$ , $\underline{\underline{product\_id}}$ , $\underline{\underline{shipper\_id}}$[,]{.underline} order_date, order_time, quantity, discount, rating_review)
+
+-   **Seller** ($\underline{shipper\_id}$, seller_name, seller_email, seller_address_street_number, seller_address_street_name, seller_address_street_suffix, seller_address_city, seller_address_state, seller_address_country, seller_address_postcode)
+
+-   Advertisements ($\underline{ad\_id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
+
+-   Categories ($\underline{category\_id}$[,]{.underline} category_name, category_description
+
+Will add code chunks of table creation here
+
+#### Part 2: Data Generation and Management
+
+#### Task 2.1: Synthetic Data Generation
+
+#### Task 2.2: Data Import and Quality Assurance
+
+### Part 3: Data Pipeline Generation
+
+#### Task 3.1: GitHub Repository and Workflow Setup
+
+#### Task 3.2: GitHub Actions for Continuous Integration
+
+### Part 4: Data Analysis and Reporting with Quarto in R
+
+#### Task 4.1: Advanced Data analysis in R
+
+#### Task 4.2: Comprehensive Reporting with Quarto
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
