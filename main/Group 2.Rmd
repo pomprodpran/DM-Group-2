@@ -32,7 +32,7 @@ sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
 # Task 2.2: Import Data and validation
-
+zx
 ## Validation
 ```{r}
 all_files <- list.files("../data_upload/")
