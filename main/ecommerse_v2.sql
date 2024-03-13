@@ -4,33 +4,19 @@ DROP TABLE IF EXISTS `customers` ;
 DROP TABLE IF EXISTS `products` ;
 DROP TABLE IF EXISTS `shippers` ;
 DROP TABLE IF EXISTS `orders` ;
-DROP TABLE IF EXISTS `ads` ;
+DROP TABLE IF EXISTS `advertisements` ;
 DROP TABLE IF EXISTS `sellers` ;
-DROP TABLE IF EXISTS `category` ;
+DROP TABLE IF EXISTS `categories` ;
 
 
 ------------- CREATE TABLE -------------
 
--- TEST schema ***
-CREATE TABLE IF NOT EXISTS `test_customers` (
-  'customer_id' INT PRIMARY KEY,
-  'customer_firstname' VARCHAR(250) NOT NULL,
-  'customer_lastname' VARCHAR(250) NOT NULL,
-  'customer_email' TEXT
-  'phone_number' VARCHAR(20),
-  'date_of_birth' DATE,
-  'billing_address_state' TEXT,
-  'billing_address_city' TEXT,
-  'billing_address_country' TEXT,
-  'billing_address_postcode' TEXT
-);
-
 -- Customer Schema
 CREATE TABLE IF NOT EXISTS `customers` (
-  'customer_id' INT PRIMARY KEY,
-  'customer_first_name' VARCHAR(250) NOT NULL,
-  'customer_last_name' VARCHAR(250) NOT NULL,
-  'customer_email' TEXT,
+  'id' INT PRIMARY KEY,
+  'first_name' VARCHAR(250) NOT NULL,
+  'last_name' VARCHAR(250) NOT NULL,
+  'email' TEXT NOT NULL,
   'phone_number' VARCHAR(20),
   'date_of_birth' DATE,
   'billing_address_street_number' TEXT,
@@ -47,82 +33,83 @@ CREATE TABLE IF NOT EXISTS `customers` (
   'current_shipping_address_state' TEXT,
   'current_shipping_address_country' TEXT,
   'current_shipping_address_postcode' TEXT,
-  'current_payment_method' VARCHAR(16)
+  'current_payment_method' VARCHAR(250)
 );
 
--- Seller Schema
+-- Sellers Schema
 CREATE TABLE IF NOT EXISTS `sellers` (
-  'seller_id' INT PRIMARY KEY,
-  'seller_name' VARCHAR(250) NOT NULL,
-  'seller_email' TEXT,
-  'seller_address_street_number' TEXT,
-  'seller_address_street_name' TEXT,
-  'seller_address_street_suffix' TEXT,
-  'seller_address_city' TEXT,
-  'seller_address_state' TEXT,
-  'seller_address_country' TEXT,
-  'seller_address_postcode' TEXT
+  'id' INT PRIMARY KEY,
+  'name' VARCHAR(250) NOT NULL,
+  'email' TEXT,
+  'address_street_number' TEXT,
+  'address_street_name' TEXT,
+  'address_street_suffix' TEXT,
+  'address_city' TEXT,
+  'address_state' TEXT,
+  'address_country' TEXT,
+  'address_postcode' TEXT
 );
 
--- Category Schema
+-- Categories Schema
 CREATE TABLE IF NOT EXISTS `categories` (
-  'category_id' INT PRIMARY KEY,
-  'category_name' VARCHAR(250) NOT NULL,
-  'category_description' TEXT
+  'id' INT PRIMARY KEY,
+  'name' VARCHAR(250) NOT NULL,
+  'description' TEXT
 );
 
--- Product Schema
+-- Products Schema
 CREATE TABLE IF NOT EXISTS `products` (
-  'product_id' INT PRIMARY KEY,
+  'id' INT PRIMARY KEY,
   'seller_id' INT NOT NULL,
   'category_id' INT NOT NULL,
   'name' VARCHAR(60) NOT NULL,
   'color' VARCHAR(60) NOT NULL,
-  'size' VARCHAR(5) NOT NULL,
+  'size' VARCHAR(5),
   'brand' VARCHAR(250),
   'price' NUMERIC NOT NULL,
   'currency' CHAR(3) NOT NULL, 
+  'inventory' INT,
   FOREIGN KEY ('seller_id') 
-    REFERENCES sellers ('seller_id'),
+    REFERENCES sellers ('id'),
   FOREIGN KEY ('category_id') 
-    REFERENCES category ('category_id')
+    REFERENCES category ('id')
 );
 
 -- Shipper Schema
 CREATE TABLE IF NOT EXISTS `shippers` (
-  shipper_id INT PRIMARY KEY,
-  shipper_name CHAR(25) NOT NULL,
-  shipper_phone VARCHAR(25) NOT NULL
+  'id' INT PRIMARY KEY,
+  'name' CHAR(25) NOT NULL,
+  'phone_number' VARCHAR(25) NOT NULL
 );
 
 -- Order Schema : create after 3 main tables
 CREATE TABLE IF NOT EXISTS `orders` (
-  order_id INT PRIMARY KEY,
-  customer_id INT NOT NULL,
-  product_id INT NOT NULL,
-  shipper_id INT NOT NULL,
-  order_date DATE NOT NULL,
-  order_time TIMESTAMP NOT NULL,
-  quantity INT NOT NULL,
-  discount DECIMAL(3,2) NOT NULL,
-  rating_review INT,
+  'id' INT PRIMARY KEY,
+  'customer_id' INT NOT NULL,
+  'product_id' INT NOT NULL,
+  'shipper_id' INT NOT NULL,
+  'order_date' DATE NOT NULL,
+  'order_time' TIMESTAMP NOT NULL,
+  'quantity' INT NOT NULL,
+  'discount' DECIMAL(3,2) NOT NULL,
+  'rating_review' INT,
   FOREIGN KEY ('customer_id')
-    REFERENCES customers ('customer_id'),
+    REFERENCES customers ('id'),
   FOREIGN KEY ('product_id')
-    REFERENCES products ('product_id'),
+    REFERENCES products ('id'),
   FOREIGN KEY ('shipper_id')
-    REFERENCES shippers ('shipper_id')
+    REFERENCES shippers ('id')
 );
 
 -- Ads Schema
-CREATE TABLE IF NOT EXISTS `ads` (
-  ad_id INT PRIMARY KEY,
-  product_id INT NOT NULL,
-  content TEXT,
-  ad_clicks INT NOT NULL,
-  budget DECIMAL(10,2),
-  currency CHAR(3),
+CREATE TABLE IF NOT EXISTS `advertisements` (
+  'id' INT PRIMARY KEY,
+  'product_id' INT NOT NULL,
+  'content' TEXT,
+  'ad_clicks' INT,
+  'budget' DECIMAL(10,2),
+  'currency' CHAR(3),
   FOREIGN KEY ('product_id')
-	REFERENCES products ('product_id')
+	REFERENCES products ('id')
 );
 
