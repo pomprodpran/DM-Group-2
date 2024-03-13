@@ -17,6 +17,8 @@ rm(list=ls())
 library(readr)
 library(RSQLite)
 library(dplyr)
+library(ggplot2)
+
 ```
 
 # Task 1.2: SQL Database Schema Creation
@@ -32,7 +34,7 @@ sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
 # Task 2.2: Import Data and validation
-
+zx
 ## Validation
 ```{r}
 all_files <- list.files("../data_upload/")
@@ -56,7 +58,7 @@ Select Data
 
 ```{sql connection=my_db}
 SELECT * 
-FROM advertisements
+FROM customers
 ```
 
 # Data Analysis using SQL 
@@ -154,3 +156,203 @@ Close Connection
 RSQLite::dbDisconnect(my_db)
 
 ```
+
+# Loading Data 
+```{r}
+customers <- read_csv("/cloud/project/data_upload/customers.csv", show_col_types = FALSE)
+orders <- read_csv("/cloud/project/data_upload/orders.csv", show_col_types = FALSE)
+sellers <- read_csv("/cloud/project/data_upload/sellers.csv", show_col_types = FALSE)
+products <- read_csv("/cloud/project/data_upload/products.csv", show_col_types = FALSE)
+categories <- read_csv("/cloud/project/data_upload/categories.csv", show_col_types = FALSE)
+shippers <- read_csv("/cloud/project/data_upload/shippers.csv", show_col_types = FALSE)
+advertisements <- read_csv("/cloud/project/data_upload/advertisements.csv", show_col_types = FALSE)
+```
+
+
+```{r}
+# Top 10 Customers segmented by the Total Amount Spent
+order_details <- orders %>%
+  inner_join(products, by = "product_id") %>%
+  inner_join(customers, by = "customer_id")
+
+# Calculate total amount spent by each customer
+customer_spending <- order_details %>%
+  group_by(customer_id, customer_first_name, customer_last_name) %>%
+  summarise(total_spent = sum(price * quantity), .groups = "drop") %>%
+  arrange(desc(total_spent)) %>%
+  top_n(10, total_spent)
+
+# Plot top 10 customers with respect to amount spent
+ggplot(customer_spending, aes(x = reorder(paste(customer_first_name, customer_last_name), -total_spent), y = total_spent)) +
+  geom_bar(stat = "identity", fill = "salmon") +  # Change fill color to salmon
+  labs(title = "Top 10 Customers by Amount Spent",
+       x = "Customer",
+       y = "Total Amount Spent") +
+  coord_flip() +  # Flip the axis
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black")) 
+```
+
+
+```{r}
+# Top 10 selling products
+product_sales <- order_details %>%
+  group_by(product_id, name) %>%
+  summarise(total_quantity_sold = sum(quantity)) %>%
+  arrange(desc(total_quantity_sold)) %>%
+  top_n(10, total_quantity_sold)
+
+top_10_products <- head(product_sales, 10)
+
+ggplot(top_10_products, aes(x = reorder(name, total_quantity_sold), y = total_quantity_sold)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Top 10 Selling Products",
+       x = "Product",
+       y = "Total Quantity Sold") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
+```{r}
+# Top 10 shippers by the number of orders shipped
+shipper_counts <- orders %>%
+  group_by(shipper_id) %>%
+  summarise(total_orders = n()) %>%
+  arrange(desc(total_orders)) %>%
+  slice(1:10)  
+
+ggplot(shipper_counts, aes(x = reorder(shipper_id, total_orders), y = total_orders)) +
+  geom_bar(stat = "identity", fill = "grey") +
+  labs(title = "Orders by Shipper",
+       x = "Shipper ID",
+       y = "Total Orders") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+
+
+```{r}
+# check the strcture of the dataset
+str(product_data)
+```
+
+```{r}
+summary(product_data)
+```
+
+```{r}
+head(product_data)
+```
+
+```{r}
+# Analysis on product price
+ggplot(product_data, aes(x = price)) +
+  geom_histogram(binwidth = 10, fill = "blue") +
+  labs(title = "Product Price Distribution", x = "Price", y = "Frequency")
+```
+
+
+```{r}
+# Analysis the product brand
+brand_counts <- product_data %>%
+  group_by(brand) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+select_brand <- brand_counts[1:15, ]
+
+ggplot(select_brand, aes(x = reorder(brand, -count), y = count)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  coord_flip() +
+  labs(title = "Product Brand Distribution", x = "Brand", y = "Count")
+```
+
+```{r}
+# create a table to calculate the sales data
+product_sales <- order_data %>%
+  group_by(product_id) %>%
+  summarise(total_quantity = sum(quantity)) %>%
+  inner_join(product_data %>%
+              group_by(product_id) %>%
+              summarise(single_price = price), 
+            by = "product_id")
+
+product_sales$total_revenue <- product_sales$total_quantity * product_sales$single_price
+
+# Sort by sales quantity and revenue, find the product with the highest sales quantity
+best_selling_products_by_quantity <- product_sales %>%
+  arrange(desc(total_quantity)) %>%
+  head(10) 
+
+best_selling_products_by_revenue <- product_sales %>%
+  arrange(desc(total_revenue)) %>%
+  head(10)  
+```
+
+
+```{r}
+# highest sales quantity
+ggplot(best_selling_products_by_quantity, aes(x = reorder(product_id, -total_quantity), y = total_quantity)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Top 10 Best-Selling Products by Quantity", x = "Product ID", y = "Total Quantity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+# highest sales revenue
+ggplot(best_selling_products_by_revenue, aes(x = reorder(product_id, -total_revenue), y = total_revenue)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Top 10 Best-Selling Products by Revenue", x = "Product ID", y = "Total Revenue") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  
+
+# Analysis on how price affect sales quantity
+ggplot(product_sales, aes(x = single_price, y = total_quantity)) +
+  geom_point(color = "blue") +
+  labs(title = "Price vs. Sales Quantity",
+       x = "Price",
+       y = "Total Quantity Sold")
+
+```
+
+
+```{r}
+# merge product_data and ads_data to get each product's ads clicks
+product_ads <- left_join(product_data, advertisement_data, by = "product_id")
+
+# calculate each product's total ads clicks
+ads_clicks_data <- product_ads %>%
+  group_by(product_id, name) %>%
+  summarise(total_clicks = sum(ads_clicks, na.rm = TRUE))
+
+ggplot(ads_clicks_data, aes(x = name, y = total_clicks)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Product vs. Ads Clicks", x = "Product Name", y = "Total Ads Clicks") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  
+```
+
+```{r}
+product_review <- left_join(product_data, order_data, by = "product_id")
+
+# calculate each product's average rating
+product_rating_data <- product_review %>%
+  group_by(product_id, name) %>%
+  summarise(avg_rating = mean(rating_review, na.rm = TRUE))
+
+# plot relationship between product and rating
+ggplot(product_rating_data, aes(x = name, y = avg_rating)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Product vs. Average Rating", x = "Product Name", y = "Average Rating") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+
+
+
+
+
+
+
+
