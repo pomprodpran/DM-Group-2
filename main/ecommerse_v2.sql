@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `shippers` ;
 DROP TABLE IF EXISTS `orders` ;
 DROP TABLE IF EXISTS `ads` ;
 DROP TABLE IF EXISTS `sellers` ;
-DROP TABLE IF EXISTS `category` ;
+DROP TABLE IF EXISTS `categories` ;
 
 
 ------------- CREATE TABLE -------------
@@ -78,10 +78,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   'category_id' INT NOT NULL,
   'name' VARCHAR(60) NOT NULL,
   'color' VARCHAR(60) NOT NULL,
-  'size' VARCHAR(5) NOT NULL,
+  'size' VARCHAR(5),
   'brand' VARCHAR(250),
   'price' NUMERIC NOT NULL,
   'currency' CHAR(3) NOT NULL, 
+  'inventory' INT NOT NULL,
   FOREIGN KEY ('seller_id') 
     REFERENCES sellers ('seller_id'),
   FOREIGN KEY ('category_id') 

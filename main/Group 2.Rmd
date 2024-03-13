@@ -51,7 +51,7 @@ for (variable in all_files) {
   #table_name <- gsub("_dataset","",table_name)
   # table_name <- variable
   
-  RSQLite::dbWriteTable(my_db,table_name,this_file_contents,overwrite=TRUE)
+  RSQLite::dbWriteTable(my_db,table_name,this_file_contents,append=TRUE)
 }
 
 ```
@@ -60,7 +60,7 @@ Select Data
 
 ```{sql connection=my_db}
 SELECT * 
-FROM advertisements
+FROM customers
 ```
 
 # Data Analysis using SQL 
@@ -150,6 +150,7 @@ LIMIT 10;
 SELECT AVG(discount) AS average_discount
 FROM orders;
 ```
+
 
 
 Close Connection
