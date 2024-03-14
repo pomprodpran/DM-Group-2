@@ -1,501 +1,101 @@
 id,product_id,content,ad_clicks,budget,currency
-1,269,"Keep your baby close and secure with our selection of baby carriers, designed for comfort and convenience on outings and adventures.",459750,1725.75,USD
-2,49,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",248295,866.5,USD
-3,421,"Make a statement with our eye-catching bracelets, designed to add sparkle and sophistication to any outfit.",988460,134.17,USD
-4,272,"Get in shape with our versatile dumbbells, perfect for toning and strengthening muscles from the comfort of your home.",762764,8643.13,USD
-5,490,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",353726,7660.23,USD
-6,343,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",895773,6182.15,USD
-7,161,"Make a lasting impression with our signature perfumes, crafted with exquisite blends of fragrances that linger throughout the day.",828633,8341.44,USD
-8,134,"Conquer the trails with our rugged hiking boots, crafted for durability and traction on any terrain.",913353,500.53,USD
-9,126,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",557486,3139.45,USD
-10,354,"Get long, luscious lashes with our volumizing mascaras, designed to lengthen and define your lashes for a dramatic look.",718221,2111.25,USD
-11,352,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",598256,5868.55,USD
-12,168,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",780649,2678.91,USD
-13,252,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",666458,7861.22,USD
-14,26,"Keep your cat's litter box clean and fresh with our selection of high-quality cat litter, designed for maximum odor control and clumping performance.",230235,6487.37,USD
-15,103,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",54130,5589.86,USD
-16,40,"Build upper body strength with our selection of pull-up bars, perfect for chin-ups, pull-ups, and other bodyweight exercises.",898204,7085.93,USD
-17,364,"Explore the great outdoors with our selection of bicycles, featuring rugged designs and smooth rides for every adventure.",689592,242.29,USD
-18,233,"Dive into a captivating story with our selection of novels, ranging from thrilling mysteries to heartwarming romance.",501365,3580.55,USD
-19,218,"Complete your look with our range of stylish rings, available in a variety of metals and gemstones to suit every taste.",924252,9881.51,USD
-20,102,"Make a statement with our elegant dresses, designed to turn heads and accentuate your unique sense of style.",813358,2251.08,USD
-21,75,"Dispose of sensitive documents safely and securely with our selection of paper shredders, designed for reliable performance and peace of mind.",238092,7957.42,USD
-22,347,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",450691,627.6,USD
-23,20,"Feed your baby safely and conveniently with our selection of baby bottles, designed for easy feeding and digestion.",714825,2735.7,USD
-24,42,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",785242,832.87,USD
-25,336,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",902157,5060.85,USD
-26,432,"Monitor your tire pressure with our easy-to-use tire pressure gauge, featuring accurate readings and durable construction for reliable performance.",215778,3706.4,USD
-27,78,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",527994,7582.38,USD
-28,27,"Complete your room makeover with our luxurious rugs, offering softness underfoot and eye-catching patterns.",929517,4997.14,USD
-29,474,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",12136,4041.56,USD
-30,87,"Stay safe on the road with our selection of windshield wipers, designed for maximum visibility and performance in all weather conditions.",450836,7585.16,USD
-31,110,"Make a lasting impression with our signature perfumes, crafted with exquisite blends of fragrances that linger throughout the day.",604396,1898.6,USD
-32,101,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",458634,3307.43,USD
-33,59,"Whip up delicious smoothies and soups with our powerful blenders, featuring intuitive controls and durable construction.",138007,2227.24,USD
-34,277,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",612435,1994.01,USD
-35,259,"Treat your furry friend to delicious and nutritious meals with our premium dog food, made with real ingredients for optimal health and vitality.",265529,6347.61,USD
-36,217,"Keep your car smelling fresh and clean with our selection of car air fresheners, available in a variety of scents and designs to suit your preferences.",157208,2299.3,USD
-37,339,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",354041,1761.64,USD
-38,95,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",926147,9119.79,USD
-39,255,"Complete your look with our range of stylish rings, available in a variety of metals and gemstones to suit every taste.",813715,2779.83,USD
-40,48,"Whip up delicious smoothies and soups with our powerful blenders, featuring intuitive controls and durable construction.",208898,8940.15,USD
-41,306,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",672097,5176.18,USD
-42,266,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",712997,3005.57,USD
-43,202,"Feed your baby safely and conveniently with our selection of baby bottles, designed for easy feeding and digestion.",377472,4648.15,USD
-44,420,"Make a statement with our eye-catching bracelets, designed to add sparkle and sophistication to any outfit.",457112,8536.86,USD
-45,251,"Stay warm and cozy on chilly nights with our selection of sleeping bags, offering comfort and insulation for a restful night's sleep.",763920,6914.07,USD
-46,199,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",848054,794.31,USD
-47,173,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",195898,1195.75,USD
-48,178,"Whip up delicious smoothies and soups with our powerful blenders, featuring intuitive controls and durable construction.",718340,9821.19,USD
-49,470,"Enjoy crispy toast and bagels with our versatile toasters, featuring adjustable settings and extra-wide slots for all your favorite breads.",355017,6424.75,USD
-50,330,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",757596,5546.3,USD
-51,119,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",868766,7903.75,USD
-52,351,"Achieve flawless coverage with our range of foundations, offering buildable coverage and a natural finish for all skin types.",173580,8409.93,USD
-53,203,"Achieve flawless coverage with our range of foundations, offering buildable coverage and a natural finish for all skin types.",816229,7183.06,USD
-54,250,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",182870,8121.52,USD
-55,410,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",155003,1086.1,USD
-56,72,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",843797,9430.36,USD
-57,302,"Complete your room makeover with our luxurious rugs, offering softness underfoot and eye-catching patterns.",949200,3302.92,USD
-58,273,"Find inspiration in every line with our collection of poetry collections, featuring timeless classics and contemporary favorites.",180806,7640.48,USD
-59,257,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",511871,5719.75,USD
-60,82,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",388859,2152.02,USD
-61,291,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",565115,7797.97,USD
-62,104,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",866083,4353.73,USD
-63,387,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",466698,2639.42,USD
-64,389,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",489953,5697.4,USD
-65,219,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",585651,2222.4,USD
-66,146,"Start your day right with our high-quality coffee makers, designed to brew the perfect cup of coffee every time.",521204,1333.94,USD
-67,183,"Fuel your workouts and recovery with our premium protein powders, packed with high-quality protein and essential nutrients for muscle repair and growth.",395876,841.72,USD
-68,435,"Unleash your creativity with our selection of acrylic paints, featuring vibrant colors and smooth consistency for beautiful artworks.",130146,3629.41,USD
-69,377,"Enhance your yoga practice with our supportive yoga blocks, perfect for improving balance, stability, and alignment.",244663,3004.85,USD
-70,290,"Make a statement with our eye-catching bracelets, designed to add sparkle and sophistication to any outfit.",401327,8839.6,USD
-71,439,"Complete your room makeover with our luxurious rugs, offering softness underfoot and eye-catching patterns.",413581,1639.4,USD
-72,344,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",537273,5387.11,USD
-73,107,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",919717,2604.64,USD
-74,401,"Stay connected on-the-go with our selection of car phone mounts, designed to securely hold your smartphone for hands-free use while driving.",313997,236.35,USD
-75,63,"Simplify meal prep with our range of food processors, offering precision slicing, chopping, and shredding for quick and easy cooking.",486726,8747.71,USD
-76,147,"Inspire imaginative play with our collection of dolls, featuring diverse characters and accessories for endless storytelling.",125496,6829.01,USD
-77,407,"Achieve flawless coverage with our range of foundations, offering buildable coverage and a natural finish for all skin types.",456971,6031.61,USD
-78,158,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",640166,9934.06,USD
-79,37,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",99673,558.4,USD
-80,208,"Keep your car smelling fresh and clean with our selection of car air fresheners, available in a variety of scents and designs to suit your preferences.",578903,8356.9,USD
-81,355,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",243268,5064.49,USD
-82,437,"Keep your car smelling fresh and clean with our selection of car air fresheners, available in a variety of scents and designs to suit your preferences.",276704,3549.51,USD
-83,232,"Stay organized and productive with our selection of notebooks, perfect for jotting down ideas, notes, and reminders on-the-go.",775953,447.32,USD
-84,15,"Challenge your mind with our captivating puzzles, available in a variety of themes and difficulty levels for all ages.",777317,478.6,USD
-85,287,"Stay warm and cozy on chilly nights with our selection of sleeping bags, offering comfort and insulation for a restful night's sleep.",953714,6333.09,USD
-86,86,"Make a bold statement with our unique brooches, perfect for adding a touch of personality to any outfit.",332672,2150.62,USD
-87,80,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",457587,8540.57,USD
-88,426,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",573952,3409.97,USD
-89,65,"Plant your favorite flowers and herbs with our selection of plant pots, available in a variety of sizes and styles to suit your gardening needs.",875962,4617.06,USD
-90,411,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",139598,1088.66,USD
-91,143,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",905160,6309.82,USD
-92,486,"Simplify meal prep with our range of food processors, offering precision slicing, chopping, and shredding for quick and easy cooking.",74149,9833.67,USD
-93,271,"Support your health and well-being with our range of vitamins, formulated to support your body's natural functions and promote overall wellness.",240286,7422.66,USD
-94,181,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",832038,6943.89,USD
-95,114,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",424696,8378.06,USD
-96,434,"Keep your baby close and secure with our selection of baby carriers, designed for comfort and convenience on outings and adventures.",880350,1601.21,USD
-97,319,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",495288,5585.34,USD
-98,198,"Stay organized and efficient with our selection of staplers, perfect for securing documents, reports, and presentations with ease.",484844,5857.3,USD
-99,345,"Simplify meal prep with our range of food processors, offering precision slicing, chopping, and shredding for quick and easy cooking.",705153,3653.29,USD
-100,270,"Unlock your full potential with our selection of self-help books, offering practical advice and strategies for personal growth and success.",685069,9117.5,USD
-101,165,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",459169,1385.39,USD
-102,483,"Create a cozy and inviting living space with our selection of stylish sofas, available in a variety of sizes and designs to suit any decor style.",745972,3689.82,USD
-103,466,"Stay organized and efficient with our selection of staplers, perfect for securing documents, reports, and presentations with ease.",142840,4769.52,USD
-104,248,"Find your zen with our high-quality yoga mats, designed to provide comfort and stability during your practice.",710166,1747.53,USD
-105,448,"Indulge your senses with our collection of essential oils, crafted from pure botanical extracts to soothe the mind, body, and soul.",305436,5185.05,USD
-106,397,"Complete your room makeover with our luxurious rugs, offering softness underfoot and eye-catching patterns.",157008,6483.25,USD
-107,81,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",565065,5910.28,USD
-108,109,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",945444,7510.57,USD
-109,223,"Fuel your workouts and recovery with our premium protein powders, packed with high-quality protein and essential nutrients for muscle repair and growth.",162453,4355.34,USD
-110,262,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",886174,8506.71,USD
-111,374,"Stay warm and stylish all season long with our cozy jackets, featuring timeless designs and premium materials.",785622,9952.27,USD
-112,395,"Add a touch of elegance to your look with our stunning necklaces, crafted with precision and attention to detail.",10969,6885.03,USD
-113,498,"Find inspiration in every line with our collection of poetry collections, featuring timeless classics and contemporary favorites.",58962,7035.82,USD
-114,77,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",821755,4791.31,USD
-115,313,"Achieve flawless coverage with our range of foundations, offering buildable coverage and a natural finish for all skin types.",479768,902.56,USD
-116,74,"Unleash your creativity with our selection of acrylic paints, featuring vibrant colors and smooth consistency for beautiful artworks.",890616,4561.19,USD
-117,175,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",600171,2187.71,USD
-118,6,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",822870,6379.29,USD
-119,214,"Complete your look with our range of stylish rings, available in a variety of metals and gemstones to suit every taste.",479042,4692.2,USD
-120,241,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",397180,2050.2,USD
-121,206,"Make a lasting impression with our signature perfumes, crafted with exquisite blends of fragrances that linger throughout the day.",792118,9495.84,USD
-122,429,"Stay organized and productive with our selection of notebooks, perfect for jotting down ideas, notes, and reminders on-the-go.",184057,3883.56,USD
-123,100,"Give your pet a comfortable place to rest with our selection of cozy pet beds, available in a variety of sizes and styles to suit every pet.",624308,3389.01,USD
-124,293,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",129806,4796.05,USD
-125,224,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",355332,3770.48,USD
-126,132,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",853336,3846.51,USD
-127,83,"Discover the lives of fascinating individuals with our wide range of biographies, offering insights into history, culture, and more.",140183,3767.75,USD
-128,460,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",607435,9974.68,USD
-129,85,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",990860,6091.43,USD
-130,34,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",683796,9165.73,USD
-131,462,"Unlock your full potential with our selection of self-help books, offering practical advice and strategies for personal growth and success.",690531,3065.34,USD
-132,499,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",190726,5282.33,USD
-133,90,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",449577,7321.14,USD
-134,376,"Enjoy crispy toast and bagels with our versatile toasters, featuring adjustable settings and extra-wide slots for all your favorite breads.",952105,6893.08,USD
-135,144,"Make a statement with our eye-catching bracelets, designed to add sparkle and sophistication to any outfit.",514821,2411.26,USD
-136,45,"Monitor your tire pressure with our easy-to-use tire pressure gauge, featuring accurate readings and durable construction for reliable performance.",864786,4090.52,USD
-137,414,"Take your dog for a walk in style with our durable and stylish leashes, available in a variety of colors and designs to match your pup's personality.",705486,138.42,USD
-138,138,"Stay connected on-the-go with our selection of car phone mounts, designed to securely hold your smartphone for hands-free use while driving.",218369,4846.66,USD
-139,105,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",238873,9752.3,USD
-140,31,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",752939,9618.31,USD
-141,212,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",807379,8695.75,USD
-142,121,"Improve your balance and stability with our selection of exercise balls, perfect for core strengthening and rehabilitation exercises.",724430,4591.86,USD
-143,148,"Create a cozy and inviting living space with our selection of stylish sofas, available in a variety of sizes and designs to suit any decor style.",264090,1939.23,USD
-144,465,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",21047,4708.06,USD
-145,51,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",441441,7894.95,USD
-146,140,"Keep your desk clutter-free with our selection of desk organizers, designed to keep pens, paper, and other essentials within easy reach.",672699,2663.29,USD
-147,456,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",987447,1005.37,USD
-148,207,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",223708,3284.86,USD
-149,298,"Keep your baby close and secure with our selection of baby carriers, designed for comfort and convenience on outings and adventures.",659857,584.73,USD
-150,383,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",990273,5460.04,USD
-151,443,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",595125,5153.64,USD
-152,471,"Bring a touch of nature indoors with our elegant vases, perfect for showcasing your favorite flowers or greenery.",834078,6992.13,USD
-153,123,"Stay connected on-the-go with our latest smartphone, featuring cutting-edge technology and sleek design.",585139,1093.66,USD
-154,404,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",10857,5946.35,USD
-155,182,"Explore the great outdoors with our selection of bicycles, featuring rugged designs and smooth rides for every adventure.",334637,2263.7,USD
-156,73,"Keep your little one clean and comfortable with our selection of diapers, featuring soft, absorbent materials and secure closures for leak protection.",655285,9996.43,USD
-157,265,"Unleash your creativity with our LEGO sets, offering endless building possibilities for kids and adults alike.",312676,5706.52,USD
-158,360,"Gather around the table for family meals and gatherings with our selection of dining tables, crafted from high-quality materials for lasting durability.",73971,9016.44,USD
-159,391,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",107233,1569.26,USD
-160,348,"Dispose of sensitive documents safely and securely with our selection of paper shredders, designed for reliable performance and peace of mind.",265698,504.56,USD
-161,415,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",217805,9450.07,USD
-162,325,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",843018,1391.22,USD
-163,118,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",936194,6843.46,USD
-164,318,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",102681,4315.73,USD
-165,263,"Build upper body strength with our selection of pull-up bars, perfect for chin-ups, pull-ups, and other bodyweight exercises.",145773,6403.16,USD
-166,372,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",453969,4929.35,USD
-167,220,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",794593,8931.55,USD
-168,236,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",674527,778.19,USD
-169,455,"Indulge your senses with our collection of essential oils, crafted from pure botanical extracts to soothe the mind, body, and soul.",432952,8066.49,USD
-170,312,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",699034,447.34,USD
-171,314,"Relax in comfort and style with our selection of armchairs, featuring plush cushions and supportive designs for hours of lounging.",715318,1375.46,USD
-172,71,"Stay warm and cozy on chilly nights with our selection of sleeping bags, offering comfort and insulation for a restful night's sleep.",370228,2522.36,USD
-173,211,"Get long, luscious lashes with our volumizing mascaras, designed to lengthen and define your lashes for a dramatic look.",530315,1598.8,USD
-174,247,"Gather around the table for family meals and gatherings with our selection of dining tables, crafted from high-quality materials for lasting durability.",25737,4497.21,USD
-175,492,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",424240,9419.27,USD
-176,170,"Keep your little one clean and comfortable with our selection of diapers, featuring soft, absorbent materials and secure closures for leak protection.",624691,736.28,USD
-177,237,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",652881,9801.52,USD
-178,167,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",594910,8278.95,USD
-179,92,"Stay organized and productive with our selection of notebooks, perfect for jotting down ideas, notes, and reminders on-the-go.",510301,8740.85,USD
-180,402,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",803094,6953.5,USD
-181,457,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",720740,7104.17,USD
-182,36,"Make a statement with our elegant dresses, designed to turn heads and accentuate your unique sense of style.",170851,4075.47,USD
-183,350,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",224728,6325.87,USD
-184,213,"Simplify meal prep with our range of food processors, offering precision slicing, chopping, and shredding for quick and easy cooking.",124266,808.05,USD
-185,440,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",687015,2947.43,USD
-186,469,"Dig, scoop, and plant with our selection of garden trowels, designed for easy digging and transplanting in the garden.",731206,726.44,USD
-187,489,"Inspire imaginative play with our collection of dolls, featuring diverse characters and accessories for endless storytelling.",390645,656.38,USD
-188,16,"Unleash your creativity with our LEGO sets, offering endless building possibilities for kids and adults alike.",746001,1571.91,USD
-189,191,"Stay safe on the road with our selection of windshield wipers, designed for maximum visibility and performance in all weather conditions.",252924,5512.64,USD
-190,69,"Cook up a storm in the great outdoors with our portable camping stoves, perfect for preparing delicious meals on-the-go.",224855,9992.68,USD
-191,497,"Support your health and well-being with our range of vitamins, formulated to support your body's natural functions and promote overall wellness.",964157,4268.78,USD
-192,55,"Keep your car smelling fresh and clean with our selection of car air fresheners, available in a variety of scents and designs to suit your preferences.",62368,1474.86,USD
-193,399,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",676576,7010.78,USD
-194,424,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",522104,9588.41,USD
-195,115,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",572936,3968.22,USD
-196,12,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",295347,6328.02,USD
-197,185,"Monitor your tire pressure with our easy-to-use tire pressure gauge, featuring accurate readings and durable construction for reliable performance.",880609,9537.6,USD
-198,177,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",501975,3976.58,USD
-199,394,"Treat your furry friend to delicious and nutritious meals with our premium dog food, made with real ingredients for optimal health and vitality.",375214,811.94,USD
-200,358,"Keep your baby close and secure with our selection of baby carriers, designed for comfort and convenience on outings and adventures.",434031,144.99,USD
-201,33,"Pack all your essentials for your next adventure with our durable and comfortable backpacks, featuring plenty of storage space and ergonomic design.",873615,649.26,USD
-202,282,"Make a statement with our elegant dresses, designed to turn heads and accentuate your unique sense of style.",300213,1846.34,USD
-203,427,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",58867,7628.39,USD
-204,463,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",567557,1710.43,USD
-205,341,"Stay connected on-the-go with our selection of car phone mounts, designed to securely hold your smartphone for hands-free use while driving.",75184,3077.21,USD
-206,337,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",88730,6311.77,USD
-207,425,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",14895,4136.99,USD
-208,98,"Unleash your creativity with our LEGO sets, offering endless building possibilities for kids and adults alike.",387289,8650.58,USD
-209,4,"Whip up delicious smoothies and soups with our powerful blenders, featuring intuitive controls and durable construction.",531503,3191.95,USD
-210,176,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",442873,3452.78,USD
-211,79,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",512970,8847.73,USD
-212,9,"Relieve tension and soreness with our selection of foam rollers, perfect for self-massage and myofascial release.",936965,8920.95,USD
-213,433,"Boost your productivity with our lightweight and powerful laptop, perfect for work or play.",507038,4782.91,USD
-214,62,"Get long, luscious lashes with our volumizing mascaras, designed to lengthen and define your lashes for a dramatic look.",705660,8641.19,USD
-215,180,"Unleash your creativity with our selection of acrylic paints, featuring vibrant colors and smooth consistency for beautiful artworks.",846043,5364.19,USD
-216,442,"Add a touch of elegance to your look with our stunning necklaces, crafted with precision and attention to detail.",744682,5733.82,USD
-217,479,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",488153,8111.66,USD
-218,229,"Take your dog for a walk in style with our durable and stylish leashes, available in a variety of colors and designs to match your pup's personality.",95049,6012.95,USD
-219,275,"Get in shape with our versatile dumbbells, perfect for toning and strengthening muscles from the comfort of your home.",592773,4215.98,USD
-220,384,"Achieve flawless coverage with our range of foundations, offering buildable coverage and a natural finish for all skin types.",986943,954.77,USD
-221,112,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",41379,8679.63,USD
-222,117,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",133775,7399.76,USD
-223,406,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",474874,3815.95,USD
-224,307,"Find your zen with our high-quality yoga mats, designed to provide comfort and stability during your practice.",761821,1195.58,USD
-225,365,"Create a cozy and inviting living space with our selection of stylish sofas, available in a variety of sizes and designs to suit any decor style.",961110,9775.59,USD
-226,385,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",148087,3141.51,USD
-227,446,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",482072,2247.59,USD
-228,299,"Stay warm and stylish all season long with our cozy jackets, featuring timeless designs and premium materials.",382859,2135.72,USD
-229,3,"Dig, scoop, and plant with our selection of garden trowels, designed for easy digging and transplanting in the garden.",951236,3563.36,USD
-230,362,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",437164,7773.49,USD
-231,84,"Inspire imaginative play with our collection of dolls, featuring diverse characters and accessories for endless storytelling.",264811,372.83,USD
-232,230,"Challenge your mind with our captivating puzzles, available in a variety of themes and difficulty levels for all ages.",116640,4434.23,USD
-233,305,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",799617,8723.84,USD
-234,481,"Keep your cat's litter box clean and fresh with our selection of high-quality cat litter, designed for maximum odor control and clumping performance.",459399,7343.14,USD
-235,19,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",673482,2560.97,USD
-236,485,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",209958,7440.41,USD
-237,153,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",972827,5030.37,USD
-238,369,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",713920,8211.6,USD
-239,280,"Enhance your yoga practice with our supportive yoga blocks, perfect for improving balance, stability, and alignment.",593236,4862.08,USD
-240,450,"Feed your baby safely and conveniently with our selection of baby bottles, designed for easy feeding and digestion.",656237,1748.67,USD
-241,215,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",205183,7910.19,USD
-242,484,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",819337,5724.41,USD
-243,500,"Start your day right with our high-quality coffee makers, designed to brew the perfect cup of coffee every time.",957160,1228.29,USD
-244,157,"Whip up delicious smoothies and soups with our powerful blenders, featuring intuitive controls and durable construction.",262099,3576.82,USD
-245,228,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",177978,647.76,USD
-246,304,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",980848,6702.83,USD
-247,200,"Cook up a storm in the great outdoors with our portable camping stoves, perfect for preparing delicious meals on-the-go.",75435,6383.93,USD
-248,192,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",733858,7696.78,USD
-249,122,"Pack all your essentials for your next adventure with our durable and comfortable backpacks, featuring plenty of storage space and ergonomic design.",61373,8132.13,USD
-250,417,"Enhance your yoga practice with our supportive yoga blocks, perfect for improving balance, stability, and alignment.",219243,7927.89,USD
-251,29,"Monitor your tire pressure with our easy-to-use tire pressure gauge, featuring accurate readings and durable construction for reliable performance.",919396,813.29,USD
-252,292,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",717981,715.04,USD
-253,388,"Keep your little one clean and comfortable with our selection of diapers, featuring soft, absorbent materials and secure closures for leak protection.",815477,5634.36,USD
-254,491,"Make a statement with our eye-catching bracelets, designed to add sparkle and sophistication to any outfit.",362860,9817.93,USD
-255,478,"Make a statement with our eye-catching bracelets, designed to add sparkle and sophistication to any outfit.",515228,5912.56,USD
-256,41,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",934205,9565.14,USD
-257,334,"Conquer the trails with our rugged hiking boots, crafted for durability and traction on any terrain.",988504,8828.79,USD
-258,393,"Unleash your creativity with our selection of acrylic paints, featuring vibrant colors and smooth consistency for beautiful artworks.",321998,4388.36,USD
-259,5,"Stay safe on the road with our selection of windshield wipers, designed for maximum visibility and performance in all weather conditions.",721052,7610.07,USD
-260,38,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",301803,1169.06,USD
-261,242,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",698327,9027.69,USD
-262,44,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",482928,6710.36,USD
-263,482,"Stay connected on-the-go with our selection of car phone mounts, designed to securely hold your smartphone for hands-free use while driving.",860361,4629.9,USD
-264,327,"Make a bold statement with our unique brooches, perfect for adding a touch of personality to any outfit.",370490,7183.98,USD
-265,418,"Stay warm and stylish all season long with our cozy jackets, featuring timeless designs and premium materials.",304817,1681.18,USD
-266,294,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",12026,6010.78,USD
-267,258,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",969692,8029.99,USD
-268,419,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",359522,4301.76,USD
-269,301,"Keep your baby close and secure with our selection of baby carriers, designed for comfort and convenience on outings and adventures.",349816,9242.52,USD
-270,235,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",82242,3691.4,USD
-271,303,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",533344,7430.66,USD
-272,332,"Build upper body strength with our selection of pull-up bars, perfect for chin-ups, pull-ups, and other bodyweight exercises.",926226,1004.43,USD
-273,379,"Take your dog for a walk in style with our durable and stylish leashes, available in a variety of colors and designs to match your pup's personality.",293374,2998.98,USD
-274,60,"Keep your desk clutter-free with our selection of desk organizers, designed to keep pens, paper, and other essentials within easy reach.",789715,7656.53,USD
-275,113,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",84767,178.85,USD
-276,10,"Stay organized and efficient with our selection of staplers, perfect for securing documents, reports, and presentations with ease.",569551,6937.26,USD
-277,452,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",521720,4424.81,USD
-278,317,"Explore the great outdoors with our selection of bicycles, featuring rugged designs and smooth rides for every adventure.",793651,2256.76,USD
-279,189,"Find your zen with our high-quality yoga mats, designed to provide comfort and stability during your practice.",477010,3647.32,USD
-280,93,"Unleash your creativity with our selection of acrylic paints, featuring vibrant colors and smooth consistency for beautiful artworks.",603729,870.39,USD
-281,195,"Find your zen with our high-quality yoga mats, designed to provide comfort and stability during your practice.",605002,2176.03,USD
-282,196,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",953389,6763.93,USD
-283,131,"Elevate your home decor with our stunning wall art pieces, designed to inspire and complement any room.",267629,7981.85,USD
-284,380,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",163630,9837.18,USD
-285,296,"Unleash your creativity with our LEGO sets, offering endless building possibilities for kids and adults alike.",291689,2531.4,USD
-286,322,"Treat your furry friend to delicious and nutritious meals with our premium dog food, made with real ingredients for optimal health and vitality.",819232,1756.47,USD
-287,333,"Stay connected on-the-go with our latest smartphone, featuring cutting-edge technology and sleek design.",672605,8200.05,USD
-288,458,"Relieve tension and soreness with our selection of foam rollers, perfect for self-massage and myofascial release.",982963,5812.93,USD
-289,363,"Dive into a captivating story with our selection of novels, ranging from thrilling mysteries to heartwarming romance.",18597,7992.88,USD
-290,24,"Stay safe on the road with our selection of windshield wipers, designed for maximum visibility and performance in all weather conditions.",300924,5020.23,USD
-291,468,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",195521,8856.32,USD
-292,473,"Find your zen with our high-quality yoga mats, designed to provide comfort and stability during your practice.",635833,6393.75,USD
-293,163,"Support your health and well-being with our range of vitamins, formulated to support your body's natural functions and promote overall wellness.",900693,4641.08,USD
-294,396,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",47841,997.62,USD
-295,56,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",935296,2927.95,USD
-296,297,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",60687,9234.75,USD
-297,281,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",433884,9015.02,USD
-298,268,"Dig, scoop, and plant with our selection of garden trowels, designed for easy digging and transplanting in the garden.",779279,3614.06,USD
-299,480,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",989212,4999.97,USD
-300,400,"Fuel your workouts and recovery with our premium protein powders, packed with high-quality protein and essential nutrients for muscle repair and growth.",334520,7546.61,USD
-301,392,"Improve your balance and stability with our selection of exercise balls, perfect for core strengthening and rehabilitation exercises.",662899,6557.43,USD
-302,398,"Give your pet a comfortable place to rest with our selection of cozy pet beds, available in a variety of sizes and styles to suit every pet.",442436,5371.39,USD
-303,334,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",542838,4181.97,USD
-304,18,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",989442,8748.34,USD
-305,202,"Keep your desk clutter-free with our selection of desk organizers, designed to keep pens, paper, and other essentials within easy reach.",585754,6983.23,USD
-306,69,"Find inspiration in every line with our collection of poetry collections, featuring timeless classics and contemporary favorites.",422759,6953.46,USD
-307,182,"Keep your skin hydrated and glowing with our nourishing moisturizers, formulated with skin-loving ingredients for lasting hydration.",106940,3350.79,USD
-308,96,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",620017,4550.25,USD
-309,68,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",908889,4614.91,USD
-310,483,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",936328,8634.33,USD
-311,382,"Fuel your workouts and recovery with our premium protein powders, packed with high-quality protein and essential nutrients for muscle repair and growth.",118938,4810.06,USD
-312,234,"Stay warm and stylish all season long with our cozy jackets, featuring timeless designs and premium materials.",299359,6663.63,USD
-313,212,"Relax in comfort and style with our selection of armchairs, featuring plush cushions and supportive designs for hours of lounging.",244590,108.88,USD
-314,413,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",210925,5321.0,USD
-315,39,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",564865,5274.62,USD
-316,175,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",613168,3213.41,USD
-317,236,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",132312,7928.12,USD
-318,337,"Experience the perfect blend of portability and performance with our versatile tablet, ideal for work, entertainment, and everything in between.",276770,9592.69,USD
-319,4,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",879885,3486.14,USD
-320,448,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",967395,9677.97,USD
-321,127,"Relieve tension and soreness with our selection of foam rollers, perfect for self-massage and myofascial release.",592533,1636.24,USD
-322,254,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",565426,7963.0,USD
-323,268,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",207897,3250.34,USD
-324,364,"Make a statement with our elegant dresses, designed to turn heads and accentuate your unique sense of style.",86720,6112.47,USD
-325,11,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",830637,7786.53,USD
-326,380,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",793743,9649.74,USD
-327,253,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",90789,1396.46,USD
-328,275,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",768838,5405.38,USD
-329,298,"Challenge your mind with our captivating puzzles, available in a variety of themes and difficulty levels for all ages.",276655,6133.43,USD
-330,286,"Explore the great outdoors with our selection of bicycles, featuring rugged designs and smooth rides for every adventure.",896307,7996.3,USD
-331,301,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",397789,7455.07,USD
-332,290,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",149444,9715.3,USD
-333,65,"Stay connected on-the-go with our latest smartphone, featuring cutting-edge technology and sleek design.",507435,2479.12,USD
-334,125,"Get long, luscious lashes with our volumizing mascaras, designed to lengthen and define your lashes for a dramatic look.",787837,1014.89,USD
-335,46,"Elevate your home decor with our stunning wall art pieces, designed to inspire and complement any room.",872777,5713.12,USD
-336,351,"Plant your favorite flowers and herbs with our selection of plant pots, available in a variety of sizes and styles to suit your gardening needs.",950541,8165.96,USD
-337,332,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",66232,887.23,USD
-338,408,"Give your pet a comfortable place to rest with our selection of cozy pet beds, available in a variety of sizes and styles to suit every pet.",130622,2452.79,USD
-339,418,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",967340,8392.01,USD
-340,416,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",59463,1140.81,USD
-341,354,"Wipe away messes with ease using our gentle and effective baby wipes, infused with soothing ingredients to keep your baby's skin clean and healthy.",582060,666.07,USD
-342,392,"Get in shape with our versatile dumbbells, perfect for toning and strengthening muscles from the comfort of your home.",534462,8909.69,USD
-343,185,"Stay connected on-the-go with our latest smartphone, featuring cutting-edge technology and sleek design.",306856,1589.51,USD
-344,455,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",729820,5628.34,USD
-345,95,"Complete your look with our range of stylish rings, available in a variety of metals and gemstones to suit every taste.",491802,5895.66,USD
-346,343,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",435040,4554.84,USD
-347,239,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",116473,5809.05,USD
-348,333,"Stay warm and stylish all season long with our cozy jackets, featuring timeless designs and premium materials.",947321,3785.9,USD
-349,209,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",991541,2705.24,USD
-350,460,"Cook up a storm in the great outdoors with our portable camping stoves, perfect for preparing delicious meals on-the-go.",678391,1900.03,USD
-351,17,"Brighten up your space with our stylish table lamps, crafted with attention to detail and quality materials.",755670,5440.11,USD
-352,208,"Stay warm and cozy on chilly nights with our selection of sleeping bags, offering comfort and insulation for a restful night's sleep.",932116,9533.84,USD
-353,211,"Keep your desk clutter-free with our selection of desk organizers, designed to keep pens, paper, and other essentials within easy reach.",749211,1425.28,USD
-354,131,"Upgrade your wardrobe with our trendy t-shirts, available in a variety of colors and styles to suit every occasion.",352953,9842.07,USD
-355,478,"Boost your productivity with our lightweight and powerful laptop, perfect for work or play.",396740,3466.77,USD
-356,415,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",71937,9402.08,USD
-357,30,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",134672,1542.48,USD
-358,41,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",645251,3178.58,USD
-359,42,"Hit the field with our durable and reliable soccer balls, engineered for optimal performance and durability on any surface.",3305,1988.8,USD
-360,163,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",905726,9019.45,USD
-361,179,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",727450,3133.57,USD
-362,288,"Start your day right with our high-quality coffee makers, designed to brew the perfect cup of coffee every time.",589556,8716.92,USD
-363,498,"Simplify meal prep with our range of food processors, offering precision slicing, chopping, and shredding for quick and easy cooking.",60511,8022.08,USD
-364,170,"Upgrade your wardrobe with our trendy t-shirts, available in a variety of colors and styles to suit every occasion.",771079,1078.47,USD
-365,110,"Enhance your yoga practice with our supportive yoga blocks, perfect for improving balance, stability, and alignment.",814743,8520.26,USD
-366,49,"Inspire imaginative play with our collection of dolls, featuring diverse characters and accessories for endless storytelling.",472269,3822.37,USD
-367,270,"Keep your cat's litter box clean and fresh with our selection of high-quality cat litter, designed for maximum odor control and clumping performance.",204701,4005.21,USD
-368,61,"Keep your desk clutter-free with our selection of desk organizers, designed to keep pens, paper, and other essentials within easy reach.",591830,5870.46,USD
-369,103,"Whip up delicious smoothies and soups with our powerful blenders, featuring intuitive controls and durable construction.",301134,3714.41,USD
-370,222,"Keep your baby close and secure with our selection of baby carriers, designed for comfort and convenience on outings and adventures.",273634,3024.33,USD
-371,474,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",173574,5672.83,USD
-372,29,"Treat your furry friend to delicious and nutritious meals with our premium dog food, made with real ingredients for optimal health and vitality.",443086,7160.16,USD
-373,232,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",809691,429.94,USD
-374,412,"Elevate your ensemble with our selection of earrings, featuring timeless designs and exquisite craftsmanship.",158106,8235.23,USD
-375,77,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",353709,8346.99,USD
-376,319,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",455388,3639.32,USD
-377,153,"Take your dog for a walk in style with our durable and stylish leashes, available in a variety of colors and designs to match your pup's personality.",898166,1339.19,USD
-378,389,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",567095,3554.23,USD
-379,187,"Stay connected on-the-go with our selection of car phone mounts, designed to securely hold your smartphone for hands-free use while driving.",674373,7169.68,USD
-380,341,"Get long, luscious lashes with our volumizing mascaras, designed to lengthen and define your lashes for a dramatic look.",912117,2915.87,USD
-381,499,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",591245,2719.71,USD
-382,426,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",753083,8351.13,USD
-383,289,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",590819,3524.4,USD
-384,38,"Conquer the trails with our rugged hiking boots, crafted for durability and traction on any terrain.",114655,6629.14,USD
-385,160,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",944356,4779.47,USD
-386,156,"Inspire imaginative play with our collection of dolls, featuring diverse characters and accessories for endless storytelling.",38071,6266.21,USD
-387,12,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",293542,3053.26,USD
-388,472,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",525749,1898.58,USD
-389,315,"Enjoy crispy toast and bagels with our versatile toasters, featuring adjustable settings and extra-wide slots for all your favorite breads.",87466,9171.85,USD
-390,358,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",643678,1681.57,USD
-391,142,"Wipe away messes with ease using our gentle and effective baby wipes, infused with soothing ingredients to keep your baby's skin clean and healthy.",648645,2917.96,USD
-392,331,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",313243,6011.02,USD
-393,16,"Make a statement with our elegant dresses, designed to turn heads and accentuate your unique sense of style.",592943,7432.8,USD
-394,158,"Get your heart pumping with our selection of jump ropes, perfect for cardio workouts and interval training.",553660,811.86,USD
-395,215,"Track your fitness goals in style with our smartwatch, packed with advanced features and customizable options.",248840,1555.37,USD
-396,66,"Take your dog for a walk in style with our durable and stylish leashes, available in a variety of colors and designs to match your pup's personality.",715362,5270.63,USD
-397,184,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",67777,2890.92,USD
-398,263,"Enhance your yoga practice with our supportive yoga blocks, perfect for improving balance, stability, and alignment.",718796,237.78,USD
-399,15,"Take your dog for a walk in style with our durable and stylish leashes, available in a variety of colors and designs to match your pup's personality.",751961,5146.68,USD
-400,500,"Start your day right with our high-quality coffee makers, designed to brew the perfect cup of coffee every time.",560531,3548.99,USD
-401,230,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",813988,5614.7,USD
-402,285,"Add a touch of elegance to your look with our stunning necklaces, crafted with precision and attention to detail.",2292,1290.94,USD
-403,178,"Dispose of sensitive documents safely and securely with our selection of paper shredders, designed for reliable performance and peace of mind.",538479,4817.86,USD
-404,152,"Get in shape with our versatile dumbbells, perfect for toning and strengthening muscles from the comfort of your home.",597464,9454.02,USD
-405,107,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",713896,7429.66,USD
-406,227,"Improve your balance and stability with our selection of exercise balls, perfect for core strengthening and rehabilitation exercises.",792919,2453.18,USD
-407,326,"Keep your desk clutter-free with our selection of desk organizers, designed to keep pens, paper, and other essentials within easy reach.",122993,7252.32,USD
-408,245,"Unleash your culinary creativity with our selection of stand mixers, perfect for mixing, kneading, and whipping a variety of ingredients.",684600,1481.05,USD
-409,238,"Conquer the trails with our rugged hiking boots, crafted for durability and traction on any terrain.",820105,6826.11,USD
-410,260,"Dive into a captivating story with our selection of novels, ranging from thrilling mysteries to heartwarming romance.",47388,7976.93,USD
-411,282,"Get in shape with our versatile dumbbells, perfect for toning and strengthening muscles from the comfort of your home.",871758,5053.57,USD
-412,218,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",77142,8231.74,USD
-413,167,"Build upper body strength with our selection of pull-up bars, perfect for chin-ups, pull-ups, and other bodyweight exercises.",893825,2252.78,USD
-414,58,"Discover the lives of fascinating individuals with our wide range of biographies, offering insights into history, culture, and more.",158684,7724.87,USD
-415,257,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",806355,8735.28,USD
-416,313,"Find inspiration in every line with our collection of poetry collections, featuring timeless classics and contemporary favorites.",486048,686.0,USD
-417,113,"Treat your furry friend to delicious and nutritious meals with our premium dog food, made with real ingredients for optimal health and vitality.",515875,717.44,USD
-418,492,"Monitor your tire pressure with our easy-to-use tire pressure gauge, featuring accurate readings and durable construction for reliable performance.",299493,7387.08,USD
-419,203,"Add a touch of elegance to your look with our stunning necklaces, crafted with precision and attention to detail.",23283,4647.4,USD
-420,62,"Feed your baby safely and conveniently with our selection of baby bottles, designed for easy feeding and digestion.",678227,7154.68,USD
-421,23,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",435755,486.46,USD
-422,347,"Trim and prune with precision using our selection of pruning shears, featuring sharp blades and ergonomic handles for effortless cutting.",196724,6217.92,USD
-423,324,"Discover the lives of fascinating individuals with our wide range of biographies, offering insights into history, culture, and more.",728572,3254.62,USD
-424,420,"Dive into a captivating story with our selection of novels, ranging from thrilling mysteries to heartwarming romance.",496157,622.93,USD
-425,136,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",196760,4302.07,USD
-426,44,"Stay connected on-the-go with our selection of car phone mounts, designed to securely hold your smartphone for hands-free use while driving.",273210,9982.57,USD
-427,429,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",769018,4609.89,USD
-428,37,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",268424,7703.54,USD
-429,94,"Make a lasting impression with our signature perfumes, crafted with exquisite blends of fragrances that linger throughout the day.",551574,7970.26,USD
-430,132,"Keep your little one clean and comfortable with our selection of diapers, featuring soft, absorbent materials and secure closures for leak protection.",870714,859.11,USD
-431,56,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",650153,8077.71,USD
-432,330,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",344515,8467.79,USD
-433,72,"Display your favorite books and decor with our selection of bookshelves, designed to showcase your belongings with style and elegance.",341822,8629.75,USD
-434,75,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",971481,9795.81,USD
-435,214,"Write in style with our selection of premium pen sets, featuring smooth ink flow and ergonomic designs for a comfortable writing experience.",34873,5049.75,USD
-436,52,"Dive into a captivating story with our selection of novels, ranging from thrilling mysteries to heartwarming romance.",385763,830.13,USD
-437,134,"Inspire imaginative play with our collection of dolls, featuring diverse characters and accessories for endless storytelling.",34946,8106.39,USD
-438,291,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",182312,709.92,USD
-439,137,"Pack all your essentials for your next adventure with our durable and comfortable backpacks, featuring plenty of storage space and ergonomic design.",742469,4673.04,USD
-440,452,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",655387,3033.28,USD
-441,363,"Treat your furry friend to delicious and nutritious meals with our premium dog food, made with real ingredients for optimal health and vitality.",149445,6915.09,USD
-442,33,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",107892,7156.47,USD
-443,488,"Make a bold statement with our unique brooches, perfect for adding a touch of personality to any outfit.",993354,2756.01,USD
-444,205,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",74105,1910.67,USD
-445,384,"Get long, luscious lashes with our volumizing mascaras, designed to lengthen and define your lashes for a dramatic look.",718343,1104.45,USD
-446,312,"Keep your little one clean and comfortable with our selection of diapers, featuring soft, absorbent materials and secure closures for leak protection.",211377,7247.0,USD
-447,360,"Relax in comfort and style with our selection of armchairs, featuring plush cushions and supportive designs for hours of lounging.",356751,2999.26,USD
-448,24,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",907108,2583.92,USD
-449,87,"Add a touch of comfort and personality to your living space with our decorative throw pillows, available in a variety of colors and patterns.",934445,9223.53,USD
-450,82,"Unleash your creativity with our selection of acrylic paints, featuring vibrant colors and smooth consistency for beautiful artworks.",816837,5579.34,USD
-451,325,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",659645,7527.47,USD
-452,22,"Add a touch of elegance to your look with our stunning necklaces, crafted with precision and attention to detail.",917660,969.56,USD
-453,391,"Step out in style with our collection of fashionable sneakers, engineered for comfort and durability.",551660,3938.72,USD
-454,353,"Start your day right with our high-quality coffee makers, designed to brew the perfect cup of coffee every time.",459819,7824.64,USD
-455,223,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",235938,2522.15,USD
-456,422,"Water your plants with ease using our selection of watering cans, featuring long spouts and comfortable handles for precise watering.",420401,5189.42,USD
-457,258,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",536211,9232.37,USD
-458,381,"Give your pet a comfortable place to rest with our selection of cozy pet beds, available in a variety of sizes and styles to suit every pet.",737485,9874.67,USD
-459,344,"Feed your baby safely and conveniently with our selection of baby bottles, designed for easy feeding and digestion.",971968,1831.56,USD
-460,191,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",851243,5115.18,USD
-461,126,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",688479,2605.95,USD
-462,359,"Elevate your ensemble with our selection of earrings, featuring timeless designs and exquisite craftsmanship.",989712,5071.35,USD
-463,473,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",980672,541.24,USD
-464,80,"Gather the family for game night with our selection of board games, offering hours of entertainment for players of all ages.",617648,7164.47,USD
-465,366,"Make a statement with our elegant dresses, designed to turn heads and accentuate your unique sense of style.",746045,8301.08,USD
-466,105,"Explore new culinary horizons with our collection of cookbooks, packed with delicious recipes and expert tips for every kitchen.",986590,8466.86,USD
-467,229,"Protect your car's paint and finish with our premium car wax, formulated to provide long-lasting protection and shine.",985098,8748.12,USD
-468,114,"Immerse yourself in crystal-clear sound with our premium headphones, designed for ultimate comfort and audio quality.",617767,8916.4,USD
-469,328,"Stay safe on the road with our selection of windshield wipers, designed for maximum visibility and performance in all weather conditions.",757487,804.18,USD
-470,55,"Achieve flawless coverage with our range of foundations, offering buildable coverage and a natural finish for all skin types.",259837,7020.57,USD
-471,300,"Stay warm and cozy on chilly nights with our selection of sleeping bags, offering comfort and insulation for a restful night's sleep.",887067,1617.59,USD
-472,316,"Complete your look with our range of stylish rings, available in a variety of metals and gemstones to suit every taste.",373871,5635.41,USD
-473,317,"Keep your dog entertained and engaged with our selection of chew toys, designed for hours of fun and mental stimulation.",811619,1622.28,USD
-474,436,"Challenge your mind with our captivating puzzles, available in a variety of themes and difficulty levels for all ages.",483668,2599.69,USD
-475,138,"Protect your hands while gardening with our selection of durable and comfortable gardening gloves, designed for maximum dexterity and grip.",652602,6815.4,USD
-476,456,"Stay warm and stylish all season long with our cozy jackets, featuring timeless designs and premium materials.",872007,8902.44,USD
-477,427,"Conquer the trails with our rugged hiking boots, crafted for durability and traction on any terrain.",772009,1815.45,USD
-478,476,"Stay organized and productive with our selection of notebooks, perfect for jotting down ideas, notes, and reminders on-the-go.",650191,933.55,USD
-479,458,"Keep your cat's litter box clean and fresh with our selection of high-quality cat litter, designed for maximum odor control and clumping performance.",12178,5711.41,USD
-480,294,"Start your day right with our high-quality coffee makers, designed to brew the perfect cup of coffee every time.",730900,796.57,USD
-481,172,"Build strength and endurance with our versatile resistance bands, perfect for toning and sculpting muscles from head to toe.",266762,9056.81,USD
-482,407,"Dig, scoop, and plant with our selection of garden trowels, designed for easy digging and transplanting in the garden.",728847,2357.31,USD
-483,244,"Bring your favorite characters to life with our action figures, featuring iconic superheroes, villains, and more.",179096,1781.46,USD
-484,169,"Keep your cat's litter box clean and fresh with our selection of high-quality cat litter, designed for maximum odor control and clumping performance.",575200,7267.91,USD
-485,157,"Fuel your workouts and recovery with our premium protein powders, packed with high-quality protein and essential nutrients for muscle repair and growth.",112421,4302.53,USD
-486,467,"Give your pet a comfortable place to rest with our selection of cozy pet beds, available in a variety of sizes and styles to suit every pet.",383278,9944.86,USD
-487,365,"Plant your favorite flowers and herbs with our selection of plant pots, available in a variety of sizes and styles to suit your gardening needs.",900153,9439.4,USD
-488,32,"Cook up a storm in the great outdoors with our portable camping stoves, perfect for preparing delicious meals on-the-go.",802269,7836.82,USD
-489,194,"Enjoy crispy toast and bagels with our versatile toasters, featuring adjustable settings and extra-wide slots for all your favorite breads.",254925,6329.86,USD
-490,143,"Give your pet a comfortable place to rest with our selection of cozy pet beds, available in a variety of sizes and styles to suit every pet.",257272,3411.58,USD
-491,174,"Stroll in comfort and style with our selection of strollers, featuring ergonomic designs and smooth maneuverability for parents on-the-go.",263824,5087.75,USD
-492,210,"Get a good night's sleep in style with our selection of bed frames, featuring sturdy construction and timeless designs to complement any bedroom decor.",35562,3867.25,USD
-493,195,"Build strength and muscle with our versatile resistance bands, perfect for toning and sculpting the entire body.",35027,5604.46,USD
-494,180,"Dive into a captivating story with our selection of novels, ranging from thrilling mysteries to heartwarming romance.",63796,6260.81,USD
-495,150,"Relieve tension and soreness with our selection of foam rollers, perfect for self-massage and myofascial release.",94858,8467.89,USD
-496,102,"Experience the ultimate outdoor adventure with our spacious tents, designed for easy setup and superior weather protection.",835323,2874.53,USD
-497,481,"Enhance your natural beauty with our wide range of lipsticks, available in a spectrum of shades to suit every skin tone and mood.",558919,4144.87,USD
-498,314,"Stay organized and efficient with our selection of staplers, perfect for securing documents, reports, and presentations with ease.",31002,2251.59,USD
-499,121,"Discover the perfect pair of jeans that combines comfort and style, crafted from high-quality denim for a flattering fit.",522937,9061.9,USD
-500,146,"Serve up some fun with our range of tennis rackets, designed for players of all skill levels to enjoy the game.",84732,5052.19,USD
+1,18,Discover the perfect solution for your needs,832518,1878,USD
+2,156,Quality meets affordability in every product,985157,2666,USD
+3,300,Discover the ultimate in versatility and performance,817091,2894,USD
+4,419,Innovation tailored to fit your lifestyle,924945,3014,USD
+5,238,Quality meets affordability in every product,171824,3844,USD
+6,448,Stay ahead of the curve with our cutting-edge products,450966,2383,USD
+7,37,Satisfaction guaranteed with every purchase,28324,3257,USD
+8,48,Make every moment count with our exceptional offerings,140163,3933,USD
+9,285,Innovation tailored to fit your lifestyle,34308,1266,USD
+10,211,Experience the difference with our unparalleled quality,486856,1249,USD
+11,461,Discover the ultimate in versatility and performance,417449,3697,USD
+12,292,Unveil the potential with our innovative products,348208,2808,USD
+13,298,Explore a world of options with our comprehensive range,914513,1888,USD
+14,468,Step into a world of possibilities with our products,572204,3716,USD
+15,170,Invest in quality that stands the test of time,441995,4835,USD
+16,280,Discover the difference with our premium products,84932,1251,USD
+17,222,Stay ahead of the curve with our cutting-edge products,490517,3949,USD
+18,95,Find what you're looking for in our extensive selection,933895,4390,USD
+19,264,Satisfaction guaranteed with every purchase,705074,4910,USD
+20,39,Invest in quality that stands the test of time,207383,4634,USD
+21,260,Experience peace of mind with our reliable products,974735,3969,USD
+22,166,we have it all,21831,4574,USD
+23,118,Discover the ultimate in versatility and performance,695897,2190,USD
+24,418,Experience the difference with our unparalleled quality,640188,2775,USD
+25,170,Experience convenience like never before,731354,4961,USD
+26,198,Innovation tailored to fit your lifestyle,957174,4182,USD
+27,42,Quality meets affordability in every product,813866,1915,USD
+28,320,From essentials to luxuries,570662,4663,USD
+29,210,Discover the difference with our premium products,733261,4028,USD
+30,185,Unlock new experiences with our diverse range of products,490470,1919,USD
+31,114,Experience peace of mind with our reliable products,227379,1824,USD
+32,76,Discover the perfect match for your lifestyle,700720,1361,USD
+33,170,Find what you're looking for in our extensive selection,447678,3557,USD
+34,36,Unlock new experiences with our diverse range of products,799902,2909,USD
+35,308,Trust in reliability with our trusted brand,995571,1926,USD
+36,334,Satisfaction guaranteed with every purchase,397770,2133,USD
+37,80,Stay ahead of the curve with our cutting-edge products,717747,3838,USD
+38,219,Step into a world of possibilities with our products,196981,1856,USD
+39,83,Experience excellence with our diverse range of offerings,945196,2065,USD
+40,289,Stay ahead of the curve with our cutting-edge products,611342,2838,USD
+41,26,Satisfaction guaranteed with every purchase,437946,3032,USD
+42,244,Unleash possibilities with our versatile products,57359,1110,USD
+43,198,Experience excellence with our diverse range of offerings,80074,2912,USD
+44,362,Enhance your life with our top-notch solutions,190331,2852,USD
+45,154,Invest in quality that stands the test of time,232041,1799,USD
+46,153,Discover the perfect blend of style and functionality,712209,634,USD
+47,481,Experience the difference with our unparalleled quality,499379,519,USD
+48,345,Trust in reliability with our trusted brand,522003,3958,USD
+49,53,Unleash possibilities with our versatile products,446216,1707,USD
+50,238,Unveil the potential with our innovative products,46732,1012,USD
+51,342,From essentials to luxuries,585053,2307,USD
+52,477,Unveil the potential with our innovative products,651651,4607,USD
+53,216,Unveil the potential with our innovative products,330414,3238,USD
+54,155,Unveil the potential with our innovative products,44734,2220,USD
+55,195,Experience excellence with our diverse range of offerings,588879,1584,USD
+56,205,Find your perfect fit with our customizable options,197676,3644,USD
+57,473,Find your perfect fit with our customizable options,42835,2736,USD
+58,373,Unlock new experiences with our diverse range of products,912477,1245,USD
+59,163,Discover the perfect solution for your needs,316522,2807,USD
+60,216,Trust in reliability with our trusted brand,174853,2657,USD
+61,265,Unveil the potential with our innovative products,821888,4689,USD
+62,166,Unleash possibilities with our versatile products,979909,4971,USD
+63,5,Invest in quality that stands the test of time,395671,3825,USD
+64,280,Discover the perfect blend of style and functionality,81285,2991,USD
+65,469,From essentials to luxuries,938836,1872,USD
+66,221,Make every moment count with our exceptional offerings,89217,1875,USD
+67,357,Experience the difference with our unparalleled quality,707043,1171,USD
+68,442,Find your perfect fit with our customizable options,490940,1879,USD
+69,459,Experience the difference with our unparalleled quality,835189,3437,USD
+70,142,Experience convenience like never before,264481,2413,USD
+71,445,Unlock new experiences with our diverse range of products,113762,3145,USD
+72,78,Invest in quality that stands the test of time,691717,4764,USD
+73,321,From essentials to luxuries,81565,1054,USD
+74,294,Find what you're looking for in our extensive selection,853578,2533,USD
+75,458,Make every moment count with our exceptional offerings,493920,697,USD
+76,300,Experience excellence with our diverse range of offerings,354152,651,USD
+77,157,Transform your experience with our high-quality offerings,776192,4851,USD
+78,232,we have it all,604283,2876,USD
+79,134,Step into a world of possibilities with our products,976158,4007,USD
+80,145,Stay ahead of the curve with our cutting-edge products,553987,4000,USD
+81,477,Explore a world of options with our comprehensive range,201918,3777,USD
+82,23,From essentials to luxuries,943479,3680,USD
+83,430,Elevate your standards with our premium selection,208001,564,USD
+84,165,From essentials to luxuries,648065,553,USD
+85,353,we have it all,292703,759,USD
+86,14,Enhance your life with our top-notch solutions,956666,607,USD
+87,430,Experience peace of mind with our reliable products,861035,1748,USD
+88,129,Experience peace of mind with our reliable products,99427,1750,USD
+89,476,From essentials to luxuries,319200,1752,USD
+90,412,Unveil the potential with our innovative products,527353,3220,USD
+91,325,Experience excellence with our diverse range of offerings,870667,4509,USD
+92,37,Explore a world of options with our comprehensive range,200826,4506,USD
+93,187,Discover the ultimate in versatility and performance,482724,1570,USD
+94,210,Make a lasting impression with our standout offerings,115389,1433,USD
+95,451,Make a lasting impression with our standout offerings,522721,1629,USD
+96,154,Experience the difference with our unparalleled quality,357981,1139,USD
+97,393,Discover the perfect solution for your needs,459628,2060,USD
+98,315,Find what you're looking for in our extensive selection,107798,4017,USD
+99,381,Transform your experience with our high-quality offerings,530737,2642,USD
+100,218,Innovation tailored to fit your lifestyle,981508,4514,USD

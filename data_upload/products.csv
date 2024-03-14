@@ -1,501 +1,501 @@
 id,seller_id,category_id,name,color,size,brand,price,currency,inventory
-1,7,1,Nut Bars,Puce,"",Romaguera-Cruickshank,8.31,USD,9169
-2,24,2,Jacket,Red,Small,"Greenholt, Cummerata and Hamill",137.43,USD,893
-3,42,4,Nut Bars,Mauv,"",Dare-Schmitt,12.52,USD,3882
-4,12,10,Wall Art,Green,"","Adams, Heidenreich and Nicolas",356,USD,257
-5,22,8,Earrings,Blue,"","Towne, Kunze and Schiller",103.27,USD,1171
-6,33,5,Tennis Racket,Pink,"",Keebler-Stamm,245.43,USD,7156
-7,26,3,Food Processor,Khaki,"",Von Group,382,USD,4015
-8,28,9,Vegan Food,Puce,"","Aufderhar, Hettinger and Vandervort",22.68,USD,5962
-9,43,7,Nut Bars,Blue,"",Lehner-Schaefer,8.91,USD,6094
-10,27,6,LEGO Set,Pink,"",Beer-Herzog,377.04,USD,7287
-11,39,1,Smartwatch,Fuscia,"",Reichel LLC,435,USD,7074
-12,44,8,Bracelet,Orange,"",Wisoky-Monahan,349.11,USD,5568
-13,15,3,Nut Bars,Orange,"","Rau, McClure and Brown",12.66,USD,9227
-14,40,5,Tennis Racket,Turquoise,"",Johnson-Hermann,108.39,USD,6417
-15,11,10,Wall Art,Red,"",Hagenes-Adams,488,USD,8771
-16,2,8,Ring,Violet,"","Gutmann, Conn and Wisozk",353.86,USD,8157
-17,17,2,Nut Bars,Purple,Free Size,"Bergnaum, Borer and Stracke",16.68,USD,2770
-18,31,10,Wall Art,Violet,"","Marks, Prosacco and Tillman",463,USD,5858
-19,3,7,Novel,Yellow,"",Auer Inc,6.23,USD,6515
-20,21,3,Vegan Food,Mauv,"",Braun-Wolf,33.79,USD,5604
-21,9,1,Laptop,Pink,"",Roob-Smith,2571,USD,4026
-22,27,6,Puzzle,Khaki,"","Ullrich, Fay and Heathcote",46.97,USD,9366
-23,19,5,Tennis Racket,Aquamarine,"","Von, Fadel and Morar",234.09,USD,53
-24,43,4,Moisturizer,Aquamarine,"",Effertz-Schmeler,21.08,USD,2140
-25,45,9,Nut Bars,Orange,"","Roberts, Reichel and Shanahan",14.32,USD,10000
-26,38,8,Vegan Food,Orange,"","Goodwin, Mertz and Denesik",28.3,USD,7644
-27,20,3,Food Processor,Goldenrod,"",Gleason-Bayer,204,USD,486
-28,24,5,Dumbbells,Purple,"",Doyle and Sons,5.48,USD,7637
-29,34,1,Nut Bars,Fuscia,"",Shanahan-Berge,10.85,USD,3834
-30,33,6,Puzzle,Blue,"","Koelpin, Daugherty and Hartmann",57.73,USD,2903
-31,4,8,Vegan Food,Blue,"","Zieme, Littel and Zulauf",49.52,USD,4884
-32,46,2,Dress,Fuscia,Free Size,Ziemann Inc,479.39,USD,9321
-33,13,7,Biography,Mauv,"","Hand, Shanahan and Yost",17.0,USD,3081
-34,30,6,Vegan Food,Yellow,"","Botsford, Gottlieb and Cummerata",48.86,USD,8938
-35,41,10,Table Lamp,Aquamarine,"",Greenholt LLC,74,USD,6566
-36,22,9,Nut Bars,Fuscia,"","Larson, Gislason and Connelly",15.15,USD,9904
-37,7,3,Toaster,Goldenrod,"",Hagenes-Hayes,72,USD,5152
-38,8,5,Bicycle,Maroon,"","Schaefer, Hahn and Lynch",665.67,USD,4174
-39,1,1,Nut Bars,Fuscia,"","Cole, Dach and Labadie",12.73,USD,7437
-40,18,4,Vegan Food,Teal,"",Stiedemann-Rau,47.16,USD,6238
-41,44,5,Tennis Racket,Yellow,"",Lemke Group,364.55,USD,3431
-42,47,4,Moisturizer,Violet,"",Predovic-Wisozk,21.05,USD,9654
-43,16,8,Nut Bars,Maroon,"",Miller-Conn,6.51,USD,101
-44,6,10,Table Lamp,Red,"",Farrell-Schmidt,77,USD,1893
-45,43,3,Toaster,Purple,"","Maggio, Runolfsdottir and Boyer",149,USD,6504
-46,43,7,Novel,Green,"",Moore-Lowe,23.46,USD,2845
-47,18,1,Nut Bars,Puce,"","Wolff, Bartoletti and Osinski",7.12,USD,9219
-48,16,2,Nut Bars,Green,Small,Kutch Group,14.04,USD,4728
-49,4,6,Action Figure,Violet,"","Jast, McDermott and Lynch",41.17,USD,1885
-50,48,4,Vegan Food,Purple,"",Schinner-Douglas,40.49,USD,493
-51,34,3,Toaster,Khaki,"",Cormier and Sons,79,USD,5381
-52,6,8,Bracelet,Red,"","Bernhard, Gislason and Turner",37.74,USD,3748
-53,20,9,Nut Bars,Orange,"",Mraz LLC,6.74,USD,1465
-54,25,5,Yoga Mat,Aquamarine,"","Harris, Wiza and Bernier",23.29,USD,9768
-55,41,10,Throw Pillow,Puce,"",Macejkovic Inc,65,USD,1589
-56,47,1,Vegan Food,Purple,"",Adams-Kihn,45.72,USD,4251
-57,36,4,Vegan Food,Pink,"","Becker, Stracke and Parker",34.03,USD,7644
-58,24,6,Doll,Fuscia,"",Corkery and Sons,30.85,USD,3927
-59,21,7,Biography,Pink,"","Weissnat, White and Wisozk",24.13,USD,1038
-60,17,2,Sneakers,Puce,Large,"Herman, Crooks and Veum",707,USD,4627
-61,35,4,Vegan Food,Mauv,"","Denesik, Huel and Heathcote",7.42,USD,5553
-62,24,7,Nut Bars,Purple,"",Gulgowski Inc,8.5,USD,1129
-63,49,9,Essential Oils,Purple,"",Mills Group,15.66,USD,8644
-64,30,8,Necklace,Aquamarine,"",Ortiz Group,334.34,USD,8338
-65,39,3,Vegan Food,Aquamarine,"","Schuppe, Prohaska and Graham",34.5,USD,8991
-66,13,5,Bicycle,Green,"","Mueller, Jaskolski and Thompson",2367.47,USD,3160
-67,14,1,Nut Bars,Puce,"",Abbott-Weber,5.21,USD,2959
-68,10,2,Dress,Violet,Large,"Collins, Robel and Marks",240.41,USD,9468
-69,46,6,Doll,Yellow,"","Beier, Lynch and Wunsch",29.04,USD,579
-70,34,10,Vase,Orange,"",Walter-Becker,40,USD,6420
-71,41,2,Dress,Orange,Medium,Ullrich-Wolff,279.25,USD,7426
-72,6,9,Protein Powder,Khaki,"",Fahey and Sons,85.88,USD,2315
-73,37,8,Brooch,Violet,"","Wolff, Shields and Heathcote",235.63,USD,8830
-74,12,7,Vegan Food,Goldenrod,"","Larson, Larson and Wisozk",51.74,USD,9782
-75,3,5,Soccer Ball,Orange,"",Bartell LLC,27.33,USD,1530
-76,44,7,Vegan Food,Goldenrod,"",Hoppe LLC,15.87,USD,7133
-77,9,8,Brooch,Orange,"","Schmidt, Greenfelder and Johnson",197.13,USD,8251
-78,3,10,Throw Pillow,Khaki,"",Gerlach LLC,33,USD,5286
-79,39,2,Dress,Green,Large,Rosenbaum-Flatley,255.81,USD,647
-80,26,3,Vegan Food,Goldenrod,"",Hayes Inc,49.56,USD,4191
-81,46,1,Tablet,Purple,"","Volkman, Satterfield and Senger",599,USD,9243
-82,42,5,Vegan Food,Crimson,"",Bergstrom-Dickinson,14.94,USD,4227
-83,2,4,Nut Bars,Violet,"",D'Amore and Sons,14.14,USD,8507
-84,13,9,Vitamins,Khaki,"",Yundt-Waters,21.29,USD,3500
-85,12,6,Vegan Food,Maroon,"",Thiel LLC,17.1,USD,2051
-86,27,5,Yoga Mat,Red,"",Reichert LLC,35.55,USD,6948
-87,40,2,Jacket,Violet,Small,Gleichner-Brown,301.33,USD,5226
-88,18,3,Stand Mixer,Fuscia,"","Klocko, Kunze and Koepp",243,USD,9562
-89,15,9,Vegan Food,Aquamarine,"",Gerlach-Jerde,28.99,USD,3137
-90,37,6,Vase,Red,"",Herman and Sons,38,USD,982
-91,25,10,Vase,Purple,"",Treutel Inc,31,USD,9851
-92,40,3,Coffee Maker,Turquoise,"",Heidenreich-Hegmann,425,USD,4486
-93,31,1,Laptop,Orange,"","Sawayn, Gusikowski and Jaskolski",1646,USD,4446
-94,8,4,Vegan Food,Fuscia,"",Kuphal-Heathcote,5.06,USD,1882
-95,4,7,Vegan Food,Puce,"","Treutel, Beer and Pfeffer",17.63,USD,8311
-96,21,9,Essential Oils,Crimson,"",Ritchie and Sons,18.51,USD,923
-97,42,8,Brooch,Purple,"",Wolff-Kessler,51.73,USD,1702
-98,26,6,Action Figure,Puce,"",Grant-Hermann,48.67,USD,8781
-99,45,2,Nut Bars,Blue,Free Size,Mitchell-Gerlach,15.46,USD,6723
-100,39,5,Dumbbells,Green,"","Towne, Haag and Considine",35.98,USD,241
-101,35,7,Self-help Book,Turquoise,"","Walsh, Upton and Marquardt",19.77,USD,464
-102,9,2,Vegan Food,Pink,Free Size,"Reinger, Schultz and Heaney",7.89,USD,3695
-103,33,1,Laptop,Violet,"","Smitham, Lindgren and Moen",2048,USD,8528
-104,36,6,Vitamins,Red,"",Gerhold LLC,32.61,USD,2973
-105,29,4,Lipstick,Maroon,"","Medhurst, Reichel and Friesen",36.53,USD,8647
-106,5,7,Vegan Food,Orange,"",Abbott-Konopelski,25.23,USD,3607
-107,30,6,Doll,Blue,"",Hudson and Sons,33.17,USD,4387
-108,21,5,Bicycle,Green,"",Predovic Group,3817.94,USD,2115
-109,4,4,Foundation,Green,"",Wiegand-Kemmer,42.89,USD,4348
-110,19,1,Vegan Food,Purple,"",Swaniawski-Halvorson,27.01,USD,6182
-111,28,9,Vitamins,Teal,"",Bruen-Cole,13.01,USD,1065
-112,25,3,Coffee Maker,Goldenrod,"",Kessler-Predovic,102,USD,8876
-113,27,10,Wall Art,Indigo,"",Konopelski-Johnston,476,USD,9739
-114,32,8,Earrings,Turquoise,"",McDermott-Bruen,98.0,USD,416
-115,8,2,Nut Bars,Maroon,Large,Parisian-Bashirian,5.03,USD,3848
-116,10,2,Jacket,Puce,Free Size,"Reynolds, Jenkins and Klocko",240.41,USD,1700
-117,38,3,Nut Bars,Yellow,"",Romaguera and Sons,13.28,USD,6887
-118,1,5,Tennis Racket,Yellow,"","Wilkinson, DuBuque and Nolan",72.71,USD,3189
-119,50,1,Smartwatch,Indigo,"",Yundt and Sons,356,USD,2879
-120,23,9,Nut Bars,Orange,"",Stracke Inc,9.93,USD,618
-121,16,5,Bicycle,Puce,"",Marquardt Group,5482.23,USD,943
-122,43,9,Vitamins,Mauv,"",Wuckert and Sons,17.02,USD,8936
-123,40,3,Stand Mixer,Violet,"",Gerhold Group,367,USD,7445
-124,48,7,Poetry Collection,Maroon,"",Bashirian Inc,24.39,USD,4042
-125,18,6,Doll,Mauv,"","Kulas, Gerhold and Swaniawski",26.32,USD,3644
-126,25,10,Vase,Turquoise,"","Hermiston, Schimmel and Heathcote",26,USD,9041
-127,24,8,Brooch,Maroon,"",Carroll-Wilderman,304.65,USD,8956
-128,8,2,Jacket,Red,Medium,Little LLC,357.32,USD,2515
-129,12,4,Vegan Food,Aquamarine,"",Heidenreich LLC,23.15,USD,1330
-130,35,1,Smartphone,Puce,"","Rogahn, Ruecker and Weissnat",930,USD,4426
-131,44,6,Vegan Food,Turquoise,"",Hane-Koss,31.89,USD,2320
-132,41,5,Tennis Racket,Red,"","Smitham, Schuppe and Will",79.06,USD,5264
-133,22,7,Self-help Book,Puce,"","McKenzie, Trantow and McDermott",24.53,USD,4417
-134,17,3,Food Processor,Teal,"",McLaughlin Group,462,USD,1283
-135,32,9,Vegan Food,Mauv,"",Hayes-Romaguera,5.92,USD,5556
-136,31,8,Nut Bars,Maroon,"","Medhurst, Hansen and Shanahan",10.12,USD,1400
-137,29,3,Nut Bars,Turquoise,"",Cormier and Sons,15.31,USD,3635
-138,49,5,Bicycle,Green,"","Homenick, Marks and Roob",3193.9,USD,4158
-139,16,4,Mascara,Purple,"",Konopelski-O'Reilly,31.39,USD,5052
-140,11,9,Vegan Food,Orange,"","Schamberger, Kertzmann and Monahan",41.52,USD,8462
-141,24,1,Smartphone,Puce,"",Legros-Bruen,1970,USD,5380
-142,43,6,Doll,Violet,"",Lemke Group,27.27,USD,1874
-143,40,7,Nut Bars,Green,"",Kshlerin-Murazik,13.99,USD,7468
-144,42,10,Rug,Indigo,"",Sporer-Luettgen,571,USD,38
-145,2,2,T-shirt,Fuscia,Large,Gleichner-Hermiston,93.32,USD,1828
-146,32,8,Nut Bars,Teal,"",Schamberger-Johnston,11.7,USD,7622
-147,22,3,Blender,Yellow,"",Shanahan Group,161,USD,1558
-148,9,6,Puzzle,Yellow,"","Casper, Schmitt and Herman",25.58,USD,7044
-149,12,10,Wall Art,Violet,"",Hoppe and Sons,414,USD,5421
-150,7,7,Novel,Violet,"",Schneider-Haag,25.06,USD,1569
-151,41,5,Bicycle,Blue,"",Nikolaus-Runolfsson,1158.44,USD,7060
-152,10,1,Tablet,Green,"",McClure LLC,496,USD,4732
-153,26,2,Dress,Khaki,Large,"Frami, Fisher and Dare",205.9,USD,254
-154,34,6,Rug,Fuscia,"",Ullrich and Sons,293,USD,8654
-155,11,7,Self-help Book,Indigo,"",Bogan and Sons,21.63,USD,2574
-156,24,3,Coffee Maker,Red,"",Parker-Dare,680,USD,3185
-157,47,10,Table Lamp,Violet,"",Crooks-West,90,USD,3398
-158,19,9,Protein Powder,Green,"",Kihn-Williamson,24.01,USD,9526
-159,40,4,Mascara,Turquoise,"",Gorczany Inc,39.68,USD,1995
-160,50,8,Necklace,Aquamarine,"",Jacobi-Nicolas,252.84,USD,2814
-161,29,7,Biography,Teal,"",Ziemann-Morar,31.34,USD,3978
-162,43,10,Vase,Aquamarine,"",Rempel LLC,49,USD,3913
-163,16,3,Nut Bars,Yellow,"","Lockman, Spinka and Hackett",9.24,USD,1169
-164,27,2,Nut Bars,Green,Free Size,"Gutmann, Murazik and Walsh",13.87,USD,1418
-165,28,6,Board Game,Orange,"",Schaefer-Kerluke,48.36,USD,7308
-166,20,10,Vegan Food,Aquamarine,"",Hilll-Luettgen,49.28,USD,9530
-167,34,3,Stand Mixer,Violet,"","Dickens, Mayert and Powlowski",231,USD,6432
-168,26,8,Earrings,Red,"",Goldner-Hills,128.2,USD,5464
-169,14,2,Vegan Food,Indigo,Large,Hills LLC,5.26,USD,7120
-170,4,7,Self-help Book,Fuscia,"","Kunze, Langosh and Schroeder",10.72,USD,2581
-171,10,5,Tennis Racket,Puce,"",Barton Inc,231.29,USD,3519
-172,1,6,Table Lamp,Orange,"",Schulist-Lynch,83,USD,1475
-173,3,4,Lipstick,Blue,"","Erdman, Mayert and Howell",79.54,USD,638
-174,42,9,Protein Powder,Yellow,"",Kuphal-Kshlerin,36.92,USD,8147
-175,24,1,Smartphone,Red,"","Turcotte, Dickinson and Swift",1139,USD,4863
-176,44,3,Stand Mixer,Yellow,"",Bahringer-Ortiz,392,USD,5039
-177,35,1,Smartphone,Green,"",Lang and Sons,1222,USD,5478
-178,21,5,Vegan Food,Goldenrod,"",Breitenberg LLC,52.35,USD,6519
-179,37,10,Throw Pillow,Maroon,"","Greenfelder, Windler and Mills",25,USD,1987
-180,18,2,Nut Bars,Green,Large,McLaughlin and Sons,15.14,USD,4145
-181,42,2,Dress,Blue,Medium,Kilback-Wiegand,143.12,USD,8090
-182,38,5,Nut Bars,Fuscia,"",Gibson Inc,5.24,USD,5536
-183,10,4,Perfume,Violet,"",Russel LLC,189.06,USD,9466
-184,9,10,Vase,Teal,"",Lang-Wiegand,30,USD,981
-185,18,1,Headphones,Green,"",Brown-Stamm,491,USD,8523
-186,39,8,Nut Bars,Khaki,"",Hane Inc,17.04,USD,8911
-187,16,9,Essential Oils,Goldenrod,"",Weber Inc,17.72,USD,1657
-188,3,7,Vegan Food,Red,"",Balistreri Inc,15.85,USD,6513
-189,45,3,Vegan Food,Goldenrod,"",Hills-Donnelly,27.44,USD,3687
-190,21,6,Vase,Goldenrod,"",Cremin-Haley,28,USD,1212
-191,50,1,Smartphone,Maroon,"",Cartwright-Langosh,1510,USD,5
-192,34,6,Protein Powder,Khaki,"","Heaney, Sauer and Blanda",86.69,USD,5523
-193,25,2,Nut Bars,Crimson,Small,Haley Group,11.83,USD,4754
-194,15,4,Vegan Food,Violet,"",Larson-Rogahn,42.94,USD,3053
-195,30,3,Vegan Food,Khaki,"",Treutel-Glover,51.16,USD,6117
-196,25,10,Rug,Teal,"","Hackett, Donnelly and Howell",327,USD,1987
-197,21,1,Headphones,Turquoise,"",Weimann Inc,771,USD,92
-198,44,9,Nut Bars,Puce,"",Grant and Sons,18.21,USD,2787
-199,27,3,Nut Bars,Green,"",Weimann and Sons,11.13,USD,6192
-200,23,7,Nut Bars,Violet,"",Greenholt-Graham,12.22,USD,7926
-201,18,5,Dumbbells,Blue,"",Schmidt LLC,20.63,USD,8866
-202,20,4,Vegan Food,Indigo,"",Hudson-Zulauf,53.98,USD,6322
-203,26,8,Ring,Purple,"",Kohler Group,348.32,USD,1311
-204,7,2,Jeans,Fuscia,Small,Treutel Inc,217.33,USD,3735
-205,28,6,Throw Pillow,Fuscia,"","Rutherford, Thompson and Carter",70,USD,4201
-206,14,4,Perfume,Fuscia,"",Farrell Group,167.06,USD,3422
-207,4,9,Nut Bars,Teal,"",Bauch and Sons,15.88,USD,4529
-208,34,2,Vegan Food,Blue,Large,"Vandervort, Rau and Ward",34.87,USD,4632
-209,31,10,Nut Bars,Pink,"","Fay, Green and Brown",15.58,USD,9258
-210,35,8,Bracelet,Crimson,"",Rempel-Homenick,101.38,USD,8627
-211,43,10,Vegan Food,Mauv,"",Cronin and Sons,31.84,USD,1982
-212,50,9,Vitamins,Green,"",Kohler-Kulas,13.23,USD,6922
-213,8,7,Nut Bars,Turquoise,"",McKenzie-Zboncak,14.8,USD,3151
-214,15,5,Bicycle,Crimson,"",Reichert-Koelpin,5227.53,USD,5712
-215,46,6,Action Figure,Orange,"","Terry, Spencer and Gottlieb",52.52,USD,6215
-216,44,8,Necklace,Fuscia,"",Mertz and Sons,128.52,USD,8936
-217,39,3,Vegan Food,Blue,"",Larson-Lebsack,14.23,USD,7824
-218,40,2,T-shirt,Orange,Small,"Lemke, Batz and Hammes",136.33,USD,3002
-219,14,4,Perfume,Fuscia,"","Brakus, Wiza and Lakin",163.49,USD,3746
-220,13,1,Nut Bars,Khaki,"","Huels, Langworth and Lowe",18.77,USD,6204
-221,36,2,Sneakers,Puce,Small,Goldner-Waters,622,USD,6384
-222,18,9,Essential Oils,Green,"","Connelly, Hane and Walter",6.78,USD,613
-223,37,6,Nut Bars,Pink,"",Herzog-Dickinson,5.75,USD,7155
-224,11,1,Laptop,Goldenrod,"",McGlynn-Torp,1116,USD,4008
-225,5,5,Dumbbells,Maroon,"",Schmidt Inc,37.66,USD,1781
-226,36,7,Novel,Crimson,"",Kris-Bashirian,18.43,USD,6294
-227,48,1,Headphones,Fuscia,"",Bogan Inc,587,USD,1765
-228,20,8,Vegan Food,Red,"",Ankunding Inc,14.99,USD,6739
-229,15,2,Vegan Food,Green,Free Size,Ullrich-Carter,11.45,USD,9446
-230,30,6,Nut Bars,Goldenrod,"","Mertz, Halvorson and Spencer",12.89,USD,2625
-231,29,3,Coffee Maker,Red,"","Walsh, Carter and Herzog",728,USD,4392
-232,11,10,Table Lamp,Red,"",Stiedemann-Tillman,51,USD,115
-233,16,9,Essential Oils,Turquoise,"",O'Keefe Inc,9.32,USD,7205
-234,12,5,Vegan Food,Red,"",Waters Inc,58.78,USD,1233
-235,31,4,Moisturizer,Mauv,"",Gleichner-Lynch,46.22,USD,3182
-236,40,6,Doll,Aquamarine,"",Sawayn LLC,12.93,USD,4178
-237,1,8,Brooch,Crimson,"",Collier-Klocko,341.32,USD,4241
-238,5,4,Vegan Food,Yellow,"",Cronin-Hilpert,22.71,USD,1123
-239,19,3,Stand Mixer,Green,"",Cole-Ullrich,453,USD,9563
-240,28,1,Nut Bars,Puce,"",Jaskolski-Hoeger,18.7,USD,8370
-241,26,4,Vegan Food,Crimson,"",Smitham-Krajcik,43.8,USD,3624
-242,47,9,Protein Powder,Indigo,"","Breitenberg, Beier and Greenholt",28.22,USD,1574
-243,10,2,Jacket,Blue,Free Size,"Corkery, Kunde and Boehm",311.25,USD,3950
-244,24,10,Vase,Indigo,"","Greenfelder, Ziemann and Weissnat",19,USD,8681
-245,32,1,Laptop,Blue,"",Hayes-Sporer,3089,USD,1241
-246,38,8,Bracelet,Orange,"",Kohler-Weimann,22.7,USD,2360
-247,45,5,Bicycle,Teal,"",Kassulke-Halvorson,2721.26,USD,2555
-248,12,3,Food Processor,Aquamarine,"",Adams-Borer,477,USD,837
-249,43,6,Puzzle,Mauv,"",Fay Group,32.77,USD,5091
-250,44,7,Nut Bars,Indigo,"",Ullrich Inc,7.33,USD,9444
-251,22,1,Laptop,Mauv,"",Satterfield-Reichert,2953,USD,7201
-252,19,3,Food Processor,Aquamarine,"",Wisozk-Ratke,370,USD,8209
-253,48,4,Perfume,Green,"",Kirlin LLC,234.44,USD,1346
-254,16,6,Action Figure,Mauv,"",Hauck and Sons,47.0,USD,8188
-255,1,8,Earrings,Maroon,"",Kovacek-Kunde,185.69,USD,5199
-256,9,10,Vegan Food,Violet,"",Lynch and Sons,49.25,USD,8613
-257,42,1,Smartphone,Blue,"",Dooley-Schmidt,1615,USD,9199
-258,4,5,Tennis Racket,Fuscia,"",Volkman-Luettgen,313.79,USD,9804
-259,11,4,Vegan Food,Red,"",Jones-Dietrich,37.11,USD,4767
-260,34,8,Bracelet,Pink,"",Satterfield and Sons,164.64,USD,5296
-261,1,6,Essential Oils,Crimson,"",Ankunding-Streich,16.51,USD,8119
-262,41,3,Food Processor,Maroon,"",Stark-VonRueden,498,USD,2675
-263,17,9,Nut Bars,Maroon,"",Smitham Inc,10.08,USD,8789
-264,36,2,Vegan Food,Pink,Free Size,Wyman-Crooks,57.12,USD,1709
-265,25,7,Self-help Book,Red,"","Steuber, Beier and Metz",12.2,USD,7764
-266,6,9,Vitamins,Indigo,"","Hahn, Thiel and Green",26.61,USD,6691
-267,31,5,Tennis Racket,Blue,"",Fahey-Dare,226.83,USD,658
-268,23,4,Vegan Food,Teal,"",Sauer-Kuphal,15.62,USD,5438
-269,26,10,Wall Art,Violet,"",Brown LLC,465,USD,4061
-270,30,7,Cookbook,Pink,"",Tillman-Botsford,31.92,USD,6275
-271,11,3,Blender,Maroon,"",Ernser LLC,167,USD,5034
-272,33,8,Brooch,Turquoise,"",Lubowitz and Sons,304.18,USD,8628
-273,8,4,Mascara,Blue,"",Wolff-Ruecker,20.41,USD,8593
-274,41,5,Dumbbells,Red,"",Nitzsche and Sons,37.67,USD,8071
-275,19,6,Vegan Food,Violet,"",Kuvalis LLC,47.97,USD,2568
-276,14,9,Vegan Food,Green,"",Schumm-Langosh,18.15,USD,562
-277,36,1,Smartwatch,Khaki,"",Koch and Sons,422,USD,7680
-278,48,7,Vegan Food,Mauv,"","Hammes, Friesen and Lubowitz",43.52,USD,342
-279,16,2,Vegan Food,Indigo,Free Size,Schroeder-Stehr,7.74,USD,9089
-280,1,10,Vegan Food,Puce,"","Breitenberg, Wolf and Fritsch",32.66,USD,2620
-281,22,5,Tennis Racket,Turquoise,"",Rutherford-Cormier,156.62,USD,8733
-282,47,3,Vegan Food,Khaki,"",Marvin-Price,49.92,USD,3194
-283,38,2,Dress,Crimson,Medium,Waters and Sons,365.7,USD,4990
-284,28,10,Table Lamp,Aquamarine,"","Walter, Schiller and Schowalter",46,USD,7540
-285,9,8,Earrings,Green,"",Hartmann-O'Connell,330.39,USD,8037
-286,34,5,Soccer Ball,Yellow,"",Thompson LLC,90.48,USD,6872
-287,45,9,Protein Powder,Teal,"","Breitenberg, Lehner and Will",84.42,USD,3878
-288,44,7,Novel,Violet,"","Schuppe, Hand and Aufderhar",17.83,USD,2888
-289,23,2,Jeans,Aquamarine,Large,Pfeffer-Wolf,98.83,USD,1742
-290,14,8,Brooch,Puce,"","Wolff, Bernier and Schroeder",190.29,USD,1298
-291,20,3,Toaster,Orange,"",Gleason Group,199,USD,7036
-292,30,1,Smartwatch,Puce,"",Hackett Group,278,USD,9012
-293,40,10,Vegan Food,Goldenrod,"","Hudson, Rogahn and Wuckert",50.16,USD,5101
-294,17,6,Action Figure,Khaki,"",Witting-Thompson,40.38,USD,1733
-295,11,4,Lipstick,Violet,"",Hilpert-Monahan,12.16,USD,648
-296,6,3,Vegan Food,Red,"",Will-Huel,35.34,USD,4092
-297,47,7,Vegan Food,Goldenrod,"",D'Amore-Labadie,35.93,USD,7129
-298,21,10,Nut Bars,Purple,"",Yost and Sons,9.48,USD,1606
-299,12,9,Essential Oils,Yellow,"","Barton, Streich and Von",12.04,USD,2105
-300,7,5,Vegan Food,Maroon,"",VonRueden Group,44.28,USD,100
-301,33,1,Smartphone,Fuscia,"",Wintheiser-Ziemann,821,USD,8104
-302,32,4,Vegan Food,Pink,"","Dach, Berge and Breitenberg",37.69,USD,6868
-303,24,8,Brooch,Yellow,"",Rosenbaum Inc,346.53,USD,3208
-304,45,9,Vegan Food,Mauv,"",Kemmer-Reichel,17.3,USD,6983
-305,49,2,Sneakers,Green,Free Size,"Jast, Kunze and Wiegand",706,USD,106
-306,6,10,Nut Bars,Khaki,"",Tremblay and Sons,18.37,USD,1498
-307,18,6,Table Lamp,Blue,"","Borer, Padberg and Aufderhar",72,USD,3275
-308,40,3,Food Processor,Turquoise,"","Barrows, Prosacco and Kohler",229,USD,6465
-309,25,7,Poetry Collection,Blue,"",Graham and Sons,20.81,USD,9127
-310,35,5,Soccer Ball,Goldenrod,"","Wilderman, Upton and Hodkiewicz",26.26,USD,2956
-311,41,6,Nut Bars,Violet,"",Schaden Inc,9.45,USD,4752
-312,2,7,Self-help Book,Maroon,"",Reichert Group,7.08,USD,5506
-313,4,10,Rug,Pink,"",Bins LLC,646,USD,7303
-314,5,8,Earrings,Crimson,"",Hermann-Conn,64.47,USD,1971
-315,10,3,Food Processor,Blue,"",Sauer Group,221,USD,3786
-316,8,3,Coffee Maker,Blue,"","Homenick, Waters and Bartell",448,USD,741
-317,42,9,Protein Powder,Goldenrod,"",Feil-Rippin,44.92,USD,6805
-318,17,1,Headphones,Green,"",Fay-Volkman,437,USD,251
-319,36,6,LEGO Set,Blue,"","Rowe, Rowe and Heidenreich",300.46,USD,2672
-320,14,8,Earrings,Teal,"",Collier-Dickinson,350.19,USD,6816
-321,37,5,Yoga Mat,Purple,"",Cremin-Hudson,27.57,USD,7720
-322,31,10,Rug,Goldenrod,"",Ebert-Lakin,157,USD,8094
-323,11,4,Lipstick,Green,"","Kuvalis, Kris and Grant",84.98,USD,2339
-324,23,2,Jeans,Purple,Small,Hane-Kassulke,184.54,USD,2701
-325,2,7,Poetry Collection,Turquoise,"",Torp Group,12.42,USD,1375
-326,50,7,Self-help Book,Red,"",Schamberger-Leuschke,8.35,USD,8404
-327,22,8,Vegan Food,Aquamarine,"","Murray, Nitzsche and Nicolas",33.69,USD,7924
-328,32,10,Rug,Turquoise,"","Rutherford, Feeney and Ritchie",122,USD,8111
-329,7,1,Smartwatch,Mauv,"",Kassulke-Durgan,322,USD,4272
-330,40,9,Essential Oils,Fuscia,"",Haag Group,10.58,USD,9506
-331,42,5,Vegan Food,Crimson,"",Cremin-Kemmer,58.58,USD,9660
-332,44,10,Throw Pillow,Indigo,"",Green-Deckow,19,USD,5720
-333,10,6,Essential Oils,Red,"","Tremblay, Walker and Thiel",16.53,USD,1842
-334,7,9,Protein Powder,Goldenrod,"","Hansen, Von and Medhurst",29.72,USD,6265
-335,31,2,Jeans,Teal,Large,Ferry-Feeney,111.64,USD,9341
-336,3,1,Smartphone,Goldenrod,"","MacGyver, Shanahan and O'Conner",850,USD,264
-337,25,3,Blender,Goldenrod,"","Brown, Mohr and Runolfsson",300,USD,2696
-338,20,8,Vegan Food,Mauv,"",Denesik and Sons,30.08,USD,3234
-339,26,4,Vegan Food,Teal,"",Reynolds-Bernier,5.75,USD,3184
-340,47,7,Self-help Book,Purple,"",Herman-Hammes,25.65,USD,1769
-341,9,5,Yoga Mat,Red,"",Gerlach LLC,24.66,USD,8945
-342,35,8,Ring,Violet,"","Kuvalis, Langworth and Nolan",286.73,USD,3189
-343,37,9,Essential Oils,Yellow,"",Moore-Metz,8.18,USD,8629
-344,23,4,Nut Bars,Maroon,"",Graham and Sons,7.02,USD,5912
-345,8,1,Nut Bars,Crimson,"",Blanda and Sons,7.7,USD,293
-346,15,7,Cookbook,Fuscia,"",Koss-Stamm,20.43,USD,9802
-347,48,4,Vegan Food,Teal,"",Wiza Inc,24.89,USD,3226
-348,26,5,Nut Bars,Puce,"",Steuber Inc,8.15,USD,8328
-349,43,1,Tablet,Crimson,"","Trantow, Wiza and Thiel",513,USD,9986
-350,25,9,Essential Oils,Mauv,"","Luettgen, Jacobi and Gutmann",9.32,USD,7875
-351,49,6,Table Lamp,Indigo,"","Buckridge, Stokes and Fahey",63,USD,2603
-352,32,8,Vegan Food,Puce,"",Zboncak-Schiller,8.08,USD,6023
-353,21,3,Blender,Pink,"",Lehner-Effertz,137,USD,794
-354,42,2,T-shirt,Goldenrod,Large,Dooley Group,26.45,USD,8811
-355,17,10,Vase,Crimson,"",Turner-Nolan,41,USD,1558
-356,20,7,Vegan Food,Green,"","Daniel, Senger and Pollich",50.61,USD,1587
-357,5,2,Jeans,Turquoise,Large,"Cormier, Feest and MacGyver",218.64,USD,4986
-358,27,8,Nut Bars,Purple,"",Ankunding-Tromp,7.3,USD,7584
-359,7,9,Vitamins,Turquoise,"",Schmitt-O'Reilly,9.8,USD,5666
-360,2,6,Wall Art,Blue,"",Graham-Mante,237,USD,3221
-361,48,1,Headphones,Violet,"",Kilback Group,761,USD,5512
-362,25,7,Self-help Book,Turquoise,"",Bogisich LLC,7.42,USD,1866
-363,29,3,Toaster,Blue,"","Kub, Zboncak and Kirlin",124,USD,9861
-364,13,8,Ring,Goldenrod,"","Dooley, Farrell and Hickle",369.25,USD,1302
-365,42,5,Soccer Ball,Mauv,"",Hilpert and Sons,8.99,USD,5109
-366,6,4,Moisturizer,Yellow,"",Runte LLC,62.87,USD,4450
-367,9,6,Vase,Green,"",Legros-McLaughlin,16,USD,5867
-368,30,9,Essential Oils,Khaki,"",Jaskolski-Veum,10.08,USD,2588
-369,32,10,Nut Bars,Fuscia,"","Rosenbaum, Will and Kshlerin",9.28,USD,9201
-370,2,2,Dress,Purple,Large,"Herzog, Wehner and Bergstrom",372.78,USD,9862
-371,33,10,Nut Bars,Fuscia,"","Beier, Kuphal and Williamson",16.66,USD,2228
-372,28,7,Poetry Collection,Indigo,"","Pagac, Murphy and Hettinger",27.83,USD,2201
-373,26,2,T-shirt,Goldenrod,Free Size,"Boyer, Muller and Zulauf",94.79,USD,1737
-374,11,3,Nut Bars,Indigo,"",Heaney Group,9.42,USD,1476
-375,46,6,Rug,Blue,"","Larkin, Wilderman and Ritchie",527,USD,9319
-376,26,8,Earrings,Indigo,"","Wisozk, Mraz and Blanda",319.14,USD,9899
-377,5,4,Vegan Food,Pink,"",Stiedemann LLC,32.1,USD,5726
-378,9,3,Food Processor,Blue,"",Jaskolski-Nolan,257,USD,3279
-379,33,2,Vegan Food,Aquamarine,Large,"Kris, Lueilwitz and Gislason",53.79,USD,5903
-380,48,5,Tennis Racket,Orange,"",Hoeger LLC,276.71,USD,1561
-381,21,1,Tablet,Mauv,"","Renner, Skiles and Parisian",589,USD,7203
-382,12,6,Doll,Crimson,"","Volkman, Cormier and Gutkowski",8.06,USD,9250
-383,8,9,Nut Bars,Purple,"",Kassulke-Steuber,18.63,USD,3644
-384,22,10,Wall Art,Crimson,"","Nicolas, Thiel and Parker",477,USD,1547
-385,50,7,Self-help Book,Turquoise,"",Mraz-Rutherford,38.85,USD,1648
-386,7,7,Poetry Collection,Purple,"",Lockman Group,8.08,USD,3481
-387,42,2,Vegan Food,Goldenrod,Small,Weissnat-Stark,16.59,USD,8997
-388,14,3,Coffee Maker,Indigo,"",Stamm-Stroman,338,USD,3473
-389,46,8,Nut Bars,Puce,"","Balistreri, Little and Ebert",15.93,USD,6720
-390,16,9,Vegan Food,Goldenrod,"",Homenick LLC,45.57,USD,6136
-391,15,7,Novel,Fuscia,"",Russel and Sons,11.12,USD,1136
-392,9,5,Tennis Racket,Puce,"",Stamm Group,34.41,USD,1906
-393,44,3,Food Processor,Khaki,"",Mills Group,266,USD,9022
-394,37,8,Ring,Goldenrod,"",Koepp Inc,335.57,USD,979
-395,49,9,Essential Oils,Teal,"",Rowe-Little,17.07,USD,9055
-396,21,6,Nut Bars,Purple,"","Herzog, Parker and Gleichner",12.11,USD,7011
-397,6,2,Nut Bars,Mauv,Free Size,"Beier, King and Hackett",6.81,USD,6011
-398,25,10,Rug,Maroon,"",Buckridge LLC,253,USD,2047
-399,23,1,Headphones,Indigo,"","Johnston, Jast and Wuckert",181,USD,1216
-400,40,4,Moisturizer,Crimson,"",Blanda-Rolfson,41.87,USD,5308
-401,10,3,Nut Bars,Yellow,"",Miller-Lind,7.02,USD,6788
-402,39,10,Throw Pillow,Turquoise,"","Davis, Mills and Schaefer",75,USD,3256
-403,35,7,Biography,Maroon,"","Brakus, Kub and Simonis",26.11,USD,9097
-404,20,8,Bracelet,Blue,"",Littel LLC,342.16,USD,6779
-405,33,9,Vegan Food,Blue,"",Williamson and Sons,37.05,USD,1390
-406,11,4,Vegan Food,Khaki,"",Tromp Inc,49.77,USD,7920
-407,34,10,Vase,Aquamarine,"",McLaughlin-White,31,USD,8629
-408,38,5,Nut Bars,Purple,"",Schultz-Wisozk,16.79,USD,7000
-409,17,1,Tablet,Violet,"","VonRueden, Hand and Schulist",452,USD,7298
-410,10,8,Ring,Goldenrod,"",Hirthe-West,187.7,USD,9859
-411,31,7,Biography,Yellow,"",White LLC,11.99,USD,1776
-412,18,3,Stand Mixer,Khaki,"",Vandervort Inc,375,USD,6423
-413,40,6,Vitamins,Green,"",Schmitt Group,38.74,USD,9613
-414,21,9,Vegan Food,Yellow,"","Koelpin, Adams and Mitchell",36.22,USD,5501
-415,36,2,Nut Bars,Purple,Small,Pouros-Wuckert,14.51,USD,1321
-416,1,9,Vegan Food,Green,"",Bayer Group,50.33,USD,7826
-417,44,5,Bicycle,Blue,"","Torphy, Roberts and Jacobs",1191.82,USD,7503
-418,32,10,Throw Pillow,Violet,"","Orn, Koelpin and Zemlak",26,USD,1135
-419,29,7,Poetry Collection,Puce,"",Powlowski-Rosenbaum,28.93,USD,5352
-420,28,2,Dress,Indigo,Large,Runte-Lesch,176.22,USD,7296
-421,20,8,Necklace,Crimson,"",Hackett-Gleichner,291.75,USD,9857
-422,44,2,Jeans,Fuscia,Medium,Lakin-Mann,27.17,USD,9841
-423,36,7,Nut Bars,Pink,"","Donnelly, Herzog and Bahringer",9.88,USD,4182
-424,38,6,Vegan Food,Orange,"",Hodkiewicz-Ferry,34.62,USD,1440
-425,42,5,Vegan Food,Puce,"",Gerlach-Donnelly,44.7,USD,692
-426,9,1,Nut Bars,Indigo,"",Marks LLC,5.2,USD,8078
-427,27,4,Mascara,Green,"",Beatty and Sons,30.56,USD,13
-428,16,9,Vitamins,Indigo,"","Hilpert, Ritchie and Fisher",24.93,USD,8425
-429,39,3,Nut Bars,Green,"","Shields, Marvin and Auer",18.27,USD,2168
-430,40,10,Rug,Mauv,"","Bergnaum, Bins and O'Hara",680,USD,2323
-431,10,2,Jacket,Purple,Medium,"Wilkinson, Ernser and Rempel",266.06,USD,3738
-432,24,4,Lipstick,Yellow,"",Mohr-Kohler,25.81,USD,5536
-433,46,8,Brooch,Pink,"",Mueller Inc,89.96,USD,6768
-434,45,3,Stand Mixer,Red,"",Feeney Inc,350,USD,2015
-435,5,5,Soccer Ball,Blue,"","Mante, Will and Flatley",28.57,USD,4799
-436,34,4,Moisturizer,Pink,"","Lueilwitz, Schroeder and Block",79.65,USD,944
-437,3,7,Biography,Indigo,"",Vandervort LLC,34.33,USD,5691
-438,48,5,Bicycle,Maroon,"",Hoeger-Koch,4385.1,USD,5192
-439,31,10,Vase,Turquoise,"",Monahan Group,16,USD,8809
-440,49,8,Necklace,Teal,"","VonRueden, Schimmel and Boehm",92.17,USD,4437
-441,17,2,Jeans,Khaki,Small,Kling-Schumm,153.35,USD,1616
-442,38,3,Nut Bars,Blue,"",Boehm-Walsh,5.78,USD,7465
-443,46,6,Action Figure,Goldenrod,"",Jast-Beahan,52.3,USD,5190
-444,11,9,Vitamins,Green,"","O'Hara, Mayer and Hegmann",8.16,USD,1621
-445,26,1,Smartwatch,Blue,"",Rogahn Inc,221,USD,1513
-446,32,10,Vegan Food,Red,"","Jast, Senger and Heller",58.5,USD,3369
-447,29,3,Stand Mixer,Fuscia,"",Gusikowski and Sons,367,USD,779
-448,33,5,Yoga Mat,Fuscia,"","Beahan, Jaskolski and Beier",34.83,USD,8988
-449,30,6,Table Lamp,Orange,"",Ortiz-Yundt,71,USD,2195
-450,7,7,Cookbook,Maroon,"",Mueller Inc,15.57,USD,3932
-451,40,5,Soccer Ball,Fuscia,"",Abshire Inc,16.26,USD,3175
-452,16,6,Wall Art,Blue,"",Mayer-Prohaska,351,USD,2943
-453,4,3,Stand Mixer,Orange,"","Senger, Morar and Batz",389,USD,5753
-454,44,1,Smartwatch,Orange,"","Keeling, Bergnaum and Roberts",206,USD,6312
-455,27,8,Bracelet,Fuscia,"","Rutherford, MacGyver and Moore",246.47,USD,5605
-456,17,2,Sneakers,Orange,Small,Kozey-Turcotte,743,USD,2681
-457,24,9,Nut Bars,Teal,"",Pfeffer LLC,10.19,USD,4390
-458,42,7,Cookbook,Mauv,"",Grady and Sons,37.04,USD,8110
-459,20,4,Lipstick,Purple,"",Hane LLC,19.55,USD,7616
-460,30,10,Wall Art,Pink,"",Huel Inc,493,USD,1363
-461,35,7,Vegan Food,Red,"","Conroy, Leuschke and Hilll",44.81,USD,583
-462,29,5,Tennis Racket,Yellow,"","Walker, Mraz and Reynolds",135.82,USD,502
-463,43,1,Nut Bars,Maroon,"","Daniel, Towne and Lockman",15.36,USD,4313
-464,9,2,Sneakers,Khaki,Medium,"Mueller, Jacobson and Ebert",288,USD,4053
-465,32,3,Vegan Food,Violet,"","Heathcote, Crooks and Homenick",5.73,USD,4828
-466,16,2,Sneakers,Fuscia,Large,Leffler-Reichel,435,USD,454
-467,7,6,Protein Powder,Indigo,"",Steuber-Hintz,45.52,USD,2008
-468,29,8,Ring,Indigo,"",Rolfson and Sons,147.04,USD,9182
-469,33,3,Blender,Turquoise,"",Bartell Inc,183,USD,9616
-470,18,1,Nut Bars,Blue,"",Stoltenberg-Hirthe,18.97,USD,5181
-471,5,10,Wall Art,Maroon,"","Little, Purdy and Wyman",364,USD,6706
-472,27,4,Lipstick,Orange,"",Hayes-Crist,27.52,USD,9114
-473,3,5,Nut Bars,Violet,"",Swaniawski and Sons,7.87,USD,1156
-474,39,9,Vegan Food,Puce,"",Reichel Inc,30.61,USD,2072
-475,40,7,Vegan Food,Goldenrod,"",Blick Group,42.6,USD,9065
-476,22,9,Nut Bars,Violet,"",Zulauf-Ebert,12.7,USD,7958
-477,25,1,Nut Bars,Puce,"",Conn-Schultz,15.31,USD,2592
-478,11,6,Vase,Purple,"",Lubowitz LLC,29,USD,8762
-479,26,10,Vase,Fuscia,"",Ebert-Abshire,18,USD,5525
-480,42,3,Nut Bars,Purple,"",Torp and Sons,6.78,USD,7394
-481,6,7,Biography,Yellow,"",Skiles-Mayert,23.28,USD,6158
-482,43,2,Jacket,Red,Medium,"Kuhic, VonRueden and McCullough",412.37,USD,6135
-483,4,4,Foundation,Green,"",Upton-Jacobi,47.44,USD,1856
-484,9,5,Yoga Mat,Orange,"",Vandervort-Klocko,13.82,USD,8834
-485,13,8,Vegan Food,Pink,"",Klocko Group,5.19,USD,126
-486,14,5,Soccer Ball,Red,"",Oberbrunner-Howe,91.51,USD,9250
-487,10,8,Bracelet,Green,"","Frami, Leffler and Schowalter",182.15,USD,4792
-488,47,4,Mascara,Puce,"",Schaden-Moen,52.1,USD,6832
-489,45,6,Doll,Indigo,"",Langosh Inc,5.64,USD,3997
-490,50,10,Throw Pillow,Violet,"","Halvorson, Macejkovic and Adams",54,USD,9719
-491,20,2,Jeans,Puce,Free Size,Mosciski Inc,177.27,USD,4988
-492,1,9,Essential Oils,Yellow,"",Jakubowski Inc,12.31,USD,4520
-493,37,3,Coffee Maker,Indigo,"",Skiles Group,607,USD,1868
-494,2,7,Poetry Collection,Pink,"",Medhurst Inc,30.59,USD,9479
-495,36,1,Laptop,Teal,"","Friesen, Fahey and Abshire",3401,USD,6611
-496,19,9,Protein Powder,Khaki,"","Wilderman, Johns and Windler",92.68,USD,8288
-497,30,5,Dumbbells,Indigo,"","Pfannerstill, Dach and Welch",7.07,USD,4309
-498,35,3,Nut Bars,Orange,"","Kuhlman, Ernser and Reinger",5.3,USD,8431
-499,17,8,Vegan Food,Goldenrod,"","Senger, Gottlieb and Heller",40.6,USD,8069
-500,48,10,Vegan Food,Indigo,"","Hettinger, McClure and Lang",21.68,USD,3699
+1,22,9,Vitamins,Blue,"",Herzog-Schinner,29.71,USD,2204
+2,23,10,Vase,Teal,"","Gleason, Ziemann and Will",15,USD,1129
+3,28,6,Action Figure,Yellow,"",Stamm and Sons,28.29,USD,9283
+4,40,7,Self-help Book,Goldenrod,"",Roob-Treutel,6.82,USD,4661
+5,46,4,Foundation,Blue,"",Klein-Pacocha,8.71,USD,5140
+6,2,2,Jacket,Teal,Small,"Conroy, Hagenes and Beier",336.13,USD,8226
+7,41,1,Smartphone,Puce,"","Beahan, Kuhn and Carter",1974,USD,8021
+8,34,3,Coffee Maker,Green,"",Hammes and Sons,506,USD,5330
+9,49,5,Bicycle,Red,"",McDermott Inc,5859.32,USD,596
+10,48,8,Necklace,Green,"","Turner, Schowalter and Champlin",196.87,USD,4193
+11,3,2,Dress,Turquoise,Medium,"Hackett, Rutherford and Nikolaus",140.34,USD,4289
+12,33,4,Perfume,Turquoise,"",Johns-Jacobs,113.17,USD,1902
+13,12,10,Vase,Pink,"",Marquardt-Kihn,32,USD,9938
+14,6,8,Bracelet,Mauv,"",Buckridge-Rowe,214.91,USD,5911
+15,13,5,Dumbbells,Indigo,"",McCullough-Douglas,6.96,USD,7916
+16,19,6,Board Game,Fuscia,"","Roberts, Heathcote and Denesik",40.39,USD,8633
+17,29,4,Foundation,Yellow,"",Douglas Group,6.36,USD,2786
+18,16,2,Dress,Fuscia,Small,"Swift, Roberts and Schulist",158.86,USD,3531
+19,13,7,Poetry Collection,Blue,"",Williamson and Sons,13.16,USD,847
+20,1,3,Stand Mixer,Orange,"","Conroy, Upton and Kuhic",367,USD,9866
+21,26,10,Table Lamp,Indigo,"","Schuster, Maggio and McCullough",56,USD,391
+22,23,8,Brooch,Purple,"",Paucek Group,237.39,USD,7755
+23,2,9,Vegan Food,Red,"",Lockman-Nolan,9.97,USD,8746
+24,35,5,Tennis Racket,Indigo,"",Durgan Inc,328.59,USD,54
+25,49,1,Headphones,Turquoise,"",Hoeger and Sons,253,USD,1312
+26,42,1,Smartphone,Fuscia,"",Koelpin LLC,1783,USD,9566
+27,24,7,Self-help Book,Khaki,"",Wisozk Group,7.81,USD,8746
+28,43,3,Blender,Teal,"",Emard-Harvey,235,USD,972
+29,50,2,Dress,Aquamarine,Large,Smith-Ledner,280.05,USD,4242
+30,27,5,Bicycle,Goldenrod,"",Green-Denesik,5362.67,USD,2847
+31,13,7,Poetry Collection,Red,"",Feeney-Fahey,38.62,USD,4490
+32,30,10,Rug,Mauv,"","Simonis, Schaefer and Rosenbaum",605,USD,1929
+33,2,3,Toaster,Puce,"",Green-Rogahn,83,USD,5758
+34,42,5,Dumbbells,Aquamarine,"",McDermott-Bode,34.15,USD,9123
+35,41,2,Jacket,Orange,Small,Morar-Runte,121.05,USD,6209
+36,22,1,Smartphone,Teal,"",West Inc,1373,USD,4320
+37,9,8,Bracelet,Orange,"","Heller, Lindgren and Dooley",227.33,USD,5234
+38,27,6,Action Figure,Crimson,"",Heathcote Group,20.51,USD,9284
+39,46,4,Moisturizer,Mauv,"",Stehr-Feeney,30.71,USD,2244
+40,24,9,Essential Oils,Green,"",Blanda LLC,15.16,USD,9309
+41,1,9,Vegan Food,Teal,"",Tillman and Sons,42.36,USD,3368
+42,36,5,Yoga Mat,Pink,"","Witting, Reilly and Kuhlman",24.97,USD,455
+43,7,1,Smartphone,Maroon,"",Ankunding-Price,1624,USD,6340
+44,37,6,Doll,Violet,"","Schumm, Welch and Hagenes",34.8,USD,9641
+45,12,4,Moisturizer,Orange,"",Powlowski Inc,86.9,USD,2040
+46,6,8,Necklace,Teal,"","Towne, Will and Olson",237.78,USD,1792
+47,14,1,Smartwatch,Turquoise,"",Ankunding Group,379,USD,4344
+48,10,2,Jacket,Goldenrod,Small,Zulauf-Runolfsdottir,349.11,USD,5863
+49,35,10,Table Lamp,Teal,"","Kris, Leuschke and Prosacco",46,USD,4833
+50,20,4,Moisturizer,Mauv,"",Nolan-Bayer,7.46,USD,1836
+51,4,6,Action Figure,Puce,"",Hills-Mayert,50.03,USD,3587
+52,5,9,Vegan Food,Puce,"","Bradtke, Pfeffer and Franecki",57.36,USD,9597
+53,23,3,Toaster,Blue,"","Cole, Labadie and Friesen",191,USD,4701
+54,50,7,Self-help Book,Yellow,"",Will LLC,5.46,USD,8107
+55,9,5,Bicycle,Pink,"",Robel Inc,1346.1,USD,5475
+56,46,5,Yoga Mat,Khaki,"",Klocko Inc,6.14,USD,4586
+57,11,8,Earrings,Yellow,"","Ankunding, Gleason and Rempel",303.61,USD,1298
+58,43,9,Nut Bars,Violet,"","Koelpin, Kuhn and Strosin",18.64,USD,7800
+59,45,6,Action Figure,Crimson,"",Abshire Group,30.06,USD,2190
+60,37,4,Lipstick,Orange,"",Watsica Inc,93.57,USD,3580
+61,2,3,Food Processor,Pink,"",Heller-Turner,252,USD,4762
+62,7,9,Vegan Food,Purple,"",Douglas-Schmidt,21.14,USD,5586
+63,24,6,Action Figure,Goldenrod,"","Ryan, Jakubowski and Blanda",36.27,USD,671
+64,39,7,Biography,Yellow,"",Sipes LLC,20.83,USD,6823
+65,31,8,Ring,Mauv,"",Cole LLC,361.99,USD,3295
+66,47,1,Tablet,Yellow,"",Beatty-Kautzer,541,USD,9064
+67,38,2,T-shirt,Green,Medium,Prohaska Inc,126.33,USD,6436
+68,9,10,Throw Pillow,Goldenrod,"",Goldner-Cole,68,USD,5914
+69,46,5,Tennis Racket,Blue,"","Buckridge, Bernhard and Lockman",236.5,USD,7480
+70,37,4,Moisturizer,Purple,"",Buckridge Inc,86.75,USD,428
+71,32,10,Throw Pillow,Violet,"","Cartwright, Leffler and Hegmann",66,USD,6878
+72,20,9,Protein Powder,Violet,"",Hahn-Gerhold,49.99,USD,5860
+73,16,6,Doll,Turquoise,"",Pollich LLC,18.29,USD,4242
+74,10,8,Brooch,Aquamarine,"",Kutch-Kozey,378.76,USD,1816
+75,48,7,Poetry Collection,Puce,"",Kuhlman-Barrows,7.14,USD,1846
+76,50,9,Vegan Food,Pink,"","Mante, Stiedemann and Tremblay",57.85,USD,3093
+77,11,4,Mascara,Puce,"",Buckridge-Price,40.94,USD,3776
+78,14,3,Toaster,Turquoise,"",Rempel-Heathcote,147,USD,4117
+79,38,5,Bicycle,Crimson,"",Mitchell-Thiel,5407.81,USD,135
+80,2,2,Jeans,Aquamarine,Medium,Grady-Cole,87.21,USD,3009
+81,26,7,Biography,Mauv,"",Gislason-Olson,21.23,USD,7967
+82,13,6,Board Game,Turquoise,"","Rogahn, McKenzie and Grimes",22.71,USD,8938
+83,25,10,Table Lamp,Crimson,"","Ortiz, Hegmann and Prohaska",65,USD,3394
+84,7,1,Tablet,Violet,"","Toy, Mayert and Ziemann",680,USD,4026
+85,45,8,Bracelet,Indigo,"","Frami, West and Turner",178.14,USD,5811
+86,46,10,Table Lamp,Maroon,"",Leannon Inc,23,USD,6225
+87,16,2,Jumper,Purple,Small,"Skiles, Goyette and Marks",11.89,USD,8772
+88,29,7,Novel,Purple,"","Kutch, Sawayn and Stanton",14.88,USD,4976
+89,20,9,Essential Oils,Puce,"","Leannon, Schulist and Padberg",17.11,USD,3726
+90,24,4,Moisturizer,Maroon,"",Feest-Marquardt,20.35,USD,7580
+91,34,3,Coffee Maker,Maroon,"","Conn, Jones and Fritsch",548,USD,6713
+92,37,7,Poetry Collection,Fuscia,"","Donnelly, Heller and Langosh",28.7,USD,8523
+93,32,10,Table Lamp,Teal,"",Jacobson-Swift,45,USD,7971
+94,48,6,LEGO Set,Puce,"",Weissnat-Pfeffer,233.31,USD,6899
+95,17,4,Mascara,Khaki,"",Rippin-Turner,35.55,USD,3378
+96,9,2,Dress,Teal,Small,Anderson LLC,55.68,USD,5871
+97,47,5,Bicycle,Indigo,"","Grimes, Langworth and Kemmer",4107.31,USD,2469
+98,30,1,Headphones,Indigo,"",Bins-Rice,494,USD,9420
+99,42,9,Essential Oils,Teal,"",Russel and Sons,12.13,USD,9461
+100,44,8,Ring,Indigo,"",Casper LLC,147.18,USD,3727
+101,31,6,Puzzle,Teal,"","Fay, Schoen and Jones",58.91,USD,8106
+102,20,10,Table Lamp,Pink,"","Bergnaum, Barrows and Abernathy",54,USD,7960
+103,12,8,Necklace,Aquamarine,"",Balistreri-Corwin,157.19,USD,5587
+104,43,2,Jeans,Crimson,Medium,"Douglas, Abbott and Boyle",176.23,USD,3877
+105,19,7,Novel,Goldenrod,"","Mraz, Berge and Leuschke",30.04,USD,8928
+106,6,8,Earrings,Teal,"",Glover-DuBuque,60.19,USD,3346
+107,29,9,Vegan Food,Fuscia,"","Brown, Labadie and Lindgren",40.88,USD,7852
+108,34,10,Table Lamp,Puce,"",Heathcote-Schuppe,66,USD,571
+109,49,1,Headphones,Aquamarine,"",Flatley-Barton,634,USD,9342
+110,27,6,Puzzle,Yellow,"",Ullrich Inc,53.42,USD,7483
+111,16,5,Yoga Mat,Crimson,"",McGlynn Inc,23.64,USD,9789
+112,25,2,Jeans,Orange,Large,Yundt Group,173.33,USD,4070
+113,48,3,Food Processor,Goldenrod,"",Lang and Sons,369,USD,287
+114,12,7,Cookbook,Orange,"","Williamson, Koelpin and Anderson",28.89,USD,5127
+115,39,4,Moisturizer,Teal,"",Cole-Johnson,92.2,USD,907
+116,30,6,Puzzle,Puce,"","Waters, Stanton and Jacobi",19.89,USD,641
+117,7,1,Headphones,Indigo,"",Sporer-Daniel,731,USD,2221
+118,9,4,Perfume,Teal,"",Hilpert and Sons,362.67,USD,250
+119,3,5,Bicycle,Blue,"",Barrows LLC,3534.92,USD,1022
+120,10,9,Protein Powder,Blue,"",Adams LLC,80.68,USD,3404
+121,13,6,Puzzle,Pink,"",Mayer-Daniel,39.7,USD,9169
+122,26,1,Laptop,Puce,"",Murphy Group,2383,USD,9621
+123,38,2,Jacket,Khaki,Medium,Bauch-Klocko,366.08,USD,8121
+124,31,4,Foundation,Indigo,"",Greenfelder and Sons,78.69,USD,2764
+125,16,8,Bracelet,Yellow,"",Lesch and Sons,247.55,USD,9949
+126,14,9,Vitamins,Fuscia,"","Sipes, Willms and Zemlak",7.31,USD,721
+127,40,3,Stand Mixer,Violet,"","Haley, Hauck and Rogahn",281,USD,2355
+128,19,5,Bicycle,Green,"",Conroy-Witting,3628.24,USD,5249
+129,15,10,Throw Pillow,Green,"",Larson Inc,36,USD,7534
+130,9,7,Self-help Book,Maroon,"","Sawayn, Baumbach and Gulgowski",6.83,USD,5561
+131,45,5,Tennis Racket,Khaki,"",Weissnat Group,100.88,USD,9489
+132,46,7,Self-help Book,Turquoise,"",Ratke LLC,23.9,USD,5672
+133,29,9,Essential Oils,Fuscia,"",Bauch LLC,15.81,USD,5860
+134,18,1,Smartphone,Puce,"",Crooks Inc,1485,USD,5881
+135,12,8,Ring,Crimson,"","Becker, Hirthe and Breitenberg",296.17,USD,9924
+136,44,2,T-shirt,Turquoise,Small,Pfannerstill LLC,153.58,USD,9306
+137,2,10,Wall Art,Indigo,"","Moore, Gutkowski and Brown",285,USD,3163
+138,43,1,Smartphone,Teal,"",Macejkovic Group,996,USD,5848
+139,7,6,Doll,Mauv,"",Koelpin-Fahey,12.18,USD,9852
+140,5,5,Bicycle,Aquamarine,"",Smitham-Bednar,2477.34,USD,6478
+141,6,8,Brooch,Pink,"",Grant Group,201.17,USD,7279
+142,27,4,Perfume,Fuscia,"",Gusikowski-Stamm,276.06,USD,7059
+143,36,9,Protein Powder,Aquamarine,"",Moore-Flatley,74.29,USD,4180
+144,39,7,Biography,Yellow,"","Hackett, Sanford and Parker",18.84,USD,7038
+145,35,3,Stand Mixer,Khaki,"","Halvorson, Collier and Turcotte",386,USD,1562
+146,20,4,Lipstick,Fuscia,"",Kling and Sons,18.24,USD,4635
+147,18,3,Coffee Maker,Fuscia,"",Lesch-Dicki,538,USD,8157
+148,21,8,Ring,Indigo,"","Haag, Hand and Hauck",172.64,USD,6146
+149,4,10,Rug,Purple,"",Kohler and Sons,501,USD,5177
+150,26,6,Action Figure,Aquamarine,"","Kessler, Pfeffer and Wehner",35.54,USD,4912
+151,2,6,Doll,Khaki,"",Borer-Skiles,38.42,USD,1015
+152,24,8,Brooch,Khaki,"",Jerde-Bechtelar,250.23,USD,539
+153,19,4,Lipstick,Blue,"",Lehner Inc,54.97,USD,7375
+154,13,9,Nut Bars,Purple,"",Kuhic-Bahringer,7.86,USD,3947
+155,14,3,Blender,Indigo,"",Kreiger-Maggio,362,USD,2681
+156,15,5,Tennis Racket,Violet,"","Dare, Hane and Kerluke",10.56,USD,5145
+157,29,10,Table Lamp,Green,"","Fisher, Green and Jakubowski",83,USD,1350
+158,50,2,Dress,Pink,Large,Ondricka Inc,196.11,USD,3656
+159,6,7,Self-help Book,Orange,"",Zemlak-Casper,24.59,USD,3131
+160,30,1,Headphones,Crimson,"",Becker-Reichel,514,USD,1124
+161,12,7,Biography,Indigo,"",Kihn Group,35.27,USD,9940
+162,39,9,Vegan Food,Pink,"",Streich and Sons,44.47,USD,4798
+163,26,2,Jacket,Mauv,Large,"Langworth, Kiehn and Mosciski",392.76,USD,6535
+164,31,5,Soccer Ball,Puce,"",Schowalter-Murazik,12.25,USD,4434
+165,20,8,Earrings,Turquoise,"",Ruecker-Nienow,28.55,USD,3671
+166,1,6,Doll,Khaki,"","Johnson, Mayert and Sanford",6.76,USD,4114
+167,18,4,Moisturizer,Aquamarine,"",Berge Group,97.6,USD,6723
+168,19,8,Earrings,Green,"",Raynor-Stehr,200.57,USD,6003
+169,28,3,Stand Mixer,Violet,"","Lueilwitz, Greenfelder and Douglas",497,USD,8119
+170,48,2,Jumper,Violet,Medium,"Keebler, Hyatt and Hills",12.14,USD,1173
+171,46,5,Dumbbells,Red,"",Vandervort and Sons,12.42,USD,4791
+172,30,9,Vegan Food,Crimson,"",Dare-Howell,13.45,USD,6427
+173,24,1,Smartphone,Aquamarine,"",Murray-Dach,1341,USD,1456
+174,12,7,Biography,Green,"",Baumbach-Stoltenberg,34.97,USD,8565
+175,35,10,Rug,Pink,"",Green-Spinka,690,USD,8880
+176,13,10,Vase,Teal,"","Lindgren, Nader and Stokes",34,USD,3073
+177,6,6,Action Figure,Red,"",Waelchi Inc,51.6,USD,8823
+178,25,7,Cookbook,Pink,"","Aufderhar, Cronin and Keebler",13.84,USD,6939
+179,40,1,Headphones,Crimson,"",Adams Group,362,USD,6547
+180,11,4,Lipstick,Turquoise,"",Aufderhar and Sons,48.24,USD,6816
+181,35,6,Board Game,Yellow,"",Quigley and Sons,34.5,USD,8648
+182,25,5,Tennis Racket,Maroon,"",Halvorson and Sons,118.55,USD,7237
+183,48,3,Toaster,Yellow,"",Erdman Inc,25,USD,5282
+184,8,4,Mascara,Red,"",Price LLC,10.66,USD,9929
+185,40,10,Vase,Indigo,"","Hettinger, Collins and Hauck",37,USD,3862
+186,20,1,Headphones,Purple,"","Koch, Hartmann and Tillman",334,USD,7734
+187,28,9,Vitamins,Fuscia,"","Muller, Nienow and Windler",34.05,USD,3312
+188,33,8,Ring,Violet,"","Runte, Jenkins and Herman",195.8,USD,8411
+189,6,2,T-shirt,Goldenrod,Large,Frami LLC,188.71,USD,8415
+190,27,7,Cookbook,Goldenrod,"",Emmerich-Lubowitz,6.55,USD,4800
+191,5,2,Jumper,Purple,Small,Wuckert-Wehner,32.53,USD,1555
+192,4,4,Mascara,Puce,"",McLaughlin Inc,51.05,USD,912
+193,39,10,Rug,Goldenrod,"",Davis-Botsford,759,USD,9482
+194,15,7,Biography,Fuscia,"",Hauck-Collins,34.54,USD,1856
+195,34,9,Nut Bars,Goldenrod,"",Rohan Inc,8.59,USD,3120
+196,19,4,Lipstick,Fuscia,"","Kuhlman, Kautzer and Reinger",85.45,USD,526
+197,32,1,Smartphone,Blue,"",Langworth-Lynch,1447,USD,6003
+198,28,10,Table Lamp,Violet,"",Turcotte LLC,74,USD,3832
+199,50,9,Vitamins,Pink,"","Jacobi, Murray and Ortiz",9.23,USD,4488
+200,12,2,Jumper,Fuscia,Medium,Schumm-Feeney,25.91,USD,8052
+201,43,3,Blender,Goldenrod,"","Swift, Cassin and Ledner",333,USD,2957
+202,40,6,Action Figure,Turquoise,"",Luettgen-Graham,21.78,USD,6026
+203,45,5,Soccer Ball,Maroon,"",Kutch-Tromp,21.58,USD,1563
+204,9,7,Poetry Collection,Khaki,"",Swift-Wuckert,25.91,USD,8613
+205,13,8,Bracelet,Puce,"",Green and Sons,191.08,USD,2481
+206,25,1,Smartwatch,Yellow,"","Carroll, Huel and Sporer",279,USD,2307
+207,42,7,Novel,Maroon,"","Dicki, Skiles and Kertzmann",12.38,USD,8839
+208,15,8,Brooch,Aquamarine,"",Brown and Sons,256.57,USD,1494
+209,17,5,Soccer Ball,Red,"",Bradtke and Sons,94.2,USD,488
+210,23,6,Puzzle,Khaki,"","Durgan, Schinner and Bernier",35.18,USD,9402
+211,3,6,Board Game,Indigo,"",Schimmel Inc,21.89,USD,1194
+212,16,3,Food Processor,Blue,"","Stehr, Hyatt and Stiedemann",329,USD,4533
+213,8,9,Vitamins,Turquoise,"","Sporer, Goyette and Hirthe",24.6,USD,4318
+214,36,4,Foundation,Fuscia,"",Rippin LLC,34.93,USD,9450
+215,33,1,Headphones,Puce,"",Mohr LLC,397,USD,6147
+216,35,8,Brooch,Purple,"",Luettgen Group,117.07,USD,3102
+217,37,10,Table Lamp,Puce,"",Schamberger Group,49,USD,9455
+218,32,2,T-shirt,Blue,Large,Halvorson and Sons,125.66,USD,7912
+219,9,7,Self-help Book,Turquoise,"","Cole, Weimann and Gleason",35.61,USD,6933
+220,15,5,Bicycle,Green,"",Johns LLC,1744.76,USD,4253
+221,11,9,Protein Powder,Puce,"",Keebler-Okuneva,54.73,USD,6566
+222,24,1,Smartwatch,Yellow,"",McCullough and Sons,296,USD,5447
+223,6,3,Stand Mixer,Indigo,"",Jenkins LLC,417,USD,5879
+224,1,8,Earrings,Turquoise,"",Gleason-Bergstrom,295.9,USD,2163
+225,26,6,Puzzle,Indigo,"",Dare LLC,28.21,USD,3979
+226,36,2,T-shirt,Khaki,Medium,Trantow Inc,98.32,USD,9854
+227,39,5,Bicycle,Puce,"",Ortiz Group,4543.61,USD,3410
+228,19,3,Food Processor,Orange,"",Quigley LLC,428,USD,6357
+229,12,9,Essential Oils,Blue,"","Lueilwitz, Klein and Greenholt",15.68,USD,7186
+230,15,7,Poetry Collection,Turquoise,"","McClure, Effertz and Murphy",32.95,USD,980
+231,32,10,Throw Pillow,Yellow,"","Wehner, Cummings and Schroeder",39,USD,7005
+232,16,8,Necklace,Maroon,"","Flatley, West and Waelchi",62.82,USD,7860
+233,23,4,Foundation,Red,"","Halvorson, Fisher and Erdman",16.78,USD,3880
+234,18,1,Smartphone,Puce,"","Mann, Gottlieb and Larkin",1754,USD,3924
+235,9,6,Action Figure,Pink,"","Lesch, Stehr and Runolfsson",55.77,USD,8518
+236,17,8,Brooch,Pink,"",Turner Group,190.28,USD,2555
+237,2,1,Smartwatch,Orange,"",Ratke-Wiegand,386,USD,2299
+238,48,5,Tennis Racket,Indigo,"",Jacobs Inc,165.17,USD,5645
+239,31,2,T-shirt,Pink,Large,O'Conner-Sipes,21.24,USD,6037
+240,25,4,Mascara,Pink,"",Cronin-Erdman,41.58,USD,2461
+241,14,5,Soccer Ball,Violet,"","Hermiston, Hartmann and Johnson",45.46,USD,8235
+242,25,6,Action Figure,Red,"",Pfannerstill LLC,25.73,USD,6351
+243,42,3,Food Processor,Turquoise,"",Upton LLC,224,USD,4863
+244,3,2,Dress,Maroon,Large,Legros Group,282.6,USD,3455
+245,32,1,Smartphone,Goldenrod,"",Haley-Emmerich,1211,USD,7327
+246,18,8,Bracelet,Violet,"","Windler, Pollich and Okuneva",215.35,USD,9161
+247,43,9,Vegan Food,Puce,"","Windler, Witting and O'Hara",38.44,USD,5823
+248,45,10,Rug,Pink,"","Mitchell, Schiller and Boyer",423,USD,3556
+249,39,4,Foundation,Turquoise,"",Okuneva and Sons,45.15,USD,3528
+250,21,7,Cookbook,Mauv,"",Spencer Inc,6.01,USD,188
+251,28,4,Lipstick,Puce,"",Wyman and Sons,73.53,USD,7368
+252,15,6,Action Figure,Crimson,"",Konopelski Inc,42.78,USD,750
+253,23,10,Vase,Goldenrod,"",Steuber-Hackett,44,USD,2252
+254,29,8,Bracelet,Crimson,"",Willms and Sons,81.78,USD,4638
+255,13,2,Jacket,Yellow,Large,Rohan-Schulist,106.67,USD,5521
+256,17,9,Essential Oils,Crimson,"",Wiegand-Fahey,16.73,USD,1669
+257,47,7,Novel,Puce,"",McClure Inc,31.64,USD,506
+258,16,1,Laptop,Turquoise,"","Sporer, Grant and Walsh",2371,USD,8728
+259,45,6,Doll,Puce,"",Aufderhar-McLaughlin,6.36,USD,6986
+260,38,8,Bracelet,Crimson,"","Bogisich, Swift and Rath",163.98,USD,5036
+261,18,4,Mascara,Blue,"",Cronin Group,54.39,USD,7188
+262,2,5,Tennis Racket,Pink,"",Powlowski-Schumm,363.34,USD,2274
+263,43,3,Food Processor,Yellow,"",Miller and Sons,252,USD,7717
+264,25,10,Rug,Maroon,"",Simonis-Denesik,438,USD,1121
+265,9,2,Jacket,Teal,Medium,"Donnelly, Rolfson and Langosh",141.63,USD,732
+266,26,1,Headphones,Green,"","Rutherford, Okuneva and Mohr",630,USD,7461
+267,35,7,Cookbook,Maroon,"",Mayer-Goodwin,11.19,USD,895
+268,39,9,Vegan Food,Blue,"","Kutch, Gottlieb and Von",5.43,USD,6460
+269,3,3,Blender,Indigo,"","Crist, Frami and Beier",66,USD,3366
+270,41,5,Tennis Racket,Blue,"","Halvorson, Stiedemann and Vandervort",244.37,USD,5222
+271,27,9,Essential Oils,Yellow,"",Predovic-Crona,14.51,USD,4366
+272,25,4,Perfume,Aquamarine,"",Barrows-Dickens,303.96,USD,7928
+273,37,3,Stand Mixer,Fuscia,"",Satterfield and Sons,299,USD,6944
+274,21,6,Action Figure,Crimson,"",Waelchi-Schaden,53.63,USD,7594
+275,1,7,Cookbook,Turquoise,"",Fahey and Sons,38.42,USD,6945
+276,20,10,Wall Art,Green,"",Witting LLC,292,USD,8268
+277,42,8,Bracelet,Violet,"","Schmeler, Walter and Gibson",138.39,USD,5426
+278,4,5,Soccer Ball,Mauv,"","Kohler, Wunsch and Nienow",71.67,USD,7307
+279,30,2,Jeans,Yellow,Medium,"Hettinger, Morar and Kilback",115.65,USD,4541
+280,29,1,Smartphone,Aquamarine,"","Breitenberg, Leuschke and Pouros",890,USD,9318
+281,32,3,Coffee Maker,Goldenrod,"",Hudson-Robel,239,USD,8993
+282,38,5,Dumbbells,Puce,"",Friesen LLC,13.74,USD,6438
+283,39,8,Bracelet,Teal,"",Thiel Group,127.46,USD,9397
+284,14,1,Laptop,Red,"",Quitzon LLC,1737,USD,4033
+285,46,10,Rug,Fuscia,"","Pfeffer, Reichert and Daniel",584,USD,8471
+286,19,9,Vegan Food,Red,"",Lebsack-O'Kon,50.74,USD,8849
+287,50,1,Smartphone,Puce,"","Strosin, Bauch and Romaguera",1231,USD,117
+288,11,4,Foundation,Crimson,"","Welch, Schumm and Lockman",82.52,USD,8422
+289,10,8,Brooch,Puce,"","Yost, Goldner and Friesen",32.4,USD,7753
+290,30,5,Bicycle,Purple,"",Quitzon and Sons,2512.73,USD,7181
+291,14,3,Stand Mixer,Aquamarine,"",Bednar-Dickens,428,USD,6429
+292,36,10,Table Lamp,Maroon,"","Fisher, Harris and Luettgen",90,USD,6286
+293,1,6,Action Figure,Goldenrod,"","Buckridge, Pouros and Legros",55.62,USD,8078
+294,4,7,Novel,Blue,"","Kessler, Kling and Fadel",15.95,USD,3195
+295,22,2,Jumper,Aquamarine,Medium,Hahn-Stanton,9.58,USD,3997
+296,47,1,Laptop,Blue,"",Bahringer-Mohr,2456,USD,6385
+297,42,4,Moisturizer,Fuscia,"","Streich, Schuster and Erdman",72.46,USD,2768
+298,32,7,Self-help Book,Maroon,"","Considine, Spinka and Wolff",5.66,USD,9793
+299,37,2,Jeans,Blue,Medium,Lakin-Schowalter,135.1,USD,3461
+300,28,3,Stand Mixer,Yellow,"",Feest-Abshire,255,USD,5618
+301,14,6,LEGO Set,Aquamarine,"",Schamberger-Corkery,294.95,USD,8643
+302,19,3,Blender,Turquoise,"",Swaniawski-Beer,397,USD,1597
+303,21,1,Smartphone,Purple,"","MacGyver, Trantow and Huel",1827,USD,3259
+304,41,2,Jumper,Mauv,Large,"Carter, Fahey and Bahringer",39.64,USD,6782
+305,25,10,Throw Pillow,Goldenrod,"","Jast, Monahan and Rodriguez",38,USD,9646
+306,43,5,Bicycle,Purple,"",Jones-Parker,1859.02,USD,3495
+307,26,9,Essential Oils,Mauv,"",Pollich-Larson,13.36,USD,7601
+308,20,8,Bracelet,Blue,"",Ferry Group,150.14,USD,6145
+309,17,7,Cookbook,Blue,"",Fritsch-Greenfelder,36.43,USD,7365
+310,11,4,Perfume,Teal,"","Wiza, Toy and Stroman",268.07,USD,1974
+311,46,5,Tennis Racket,Maroon,"","Schmeler, Botsford and Walker",350.36,USD,3119
+312,18,7,Novel,Khaki,"","Turcotte, Okuneva and Lubowitz",17.4,USD,4144
+313,24,3,Coffee Maker,Blue,"",Monahan-Gutkowski,305,USD,1044
+314,37,4,Foundation,Puce,"","Hamill, Purdy and Little",48.09,USD,3179
+315,36,2,Jumper,Green,Small,Marks and Sons,59.66,USD,3712
+316,39,9,Protein Powder,Crimson,"",Cassin LLC,60.74,USD,8366
+317,26,8,Earrings,Khaki,"",Champlin-Lang,227.73,USD,9808
+318,17,10,Vase,Red,"",Nitzsche and Sons,44,USD,8552
+319,31,7,Biography,Blue,"",McGlynn-Walsh,9.53,USD,6019
+320,48,6,Board Game,Red,"",Stark and Sons,25.61,USD,1727
+321,45,2,Jacket,Orange,Medium,"Wuckert, Witting and Wyman",261.77,USD,9294
+322,13,1,Smartwatch,Mauv,"",Kuvalis-Maggio,474,USD,380
+323,20,4,Lipstick,Indigo,"","Johnston, Braun and Mosciski",79.43,USD,149
+324,24,3,Toaster,Puce,"",Stroman-Lowe,64,USD,2994
+325,30,5,Tennis Racket,Goldenrod,"",Medhurst and Sons,130.83,USD,1210
+326,23,1,Headphones,Yellow,"","Feest, Hodkiewicz and Moen",682,USD,6094
+327,46,2,Dress,Yellow,Medium,Crist-Nitzsche,65.01,USD,7017
+328,15,6,Puzzle,Red,"",Kuhic Group,46.55,USD,4663
+329,10,5,Yoga Mat,Mauv,"",Russel and Sons,6.09,USD,3059
+330,8,8,Brooch,Indigo,"",Schumm-Funk,20.78,USD,5706
+331,22,1,Laptop,Goldenrod,"",Monahan-Nitzsche,3214,USD,4326
+332,40,7,Poetry Collection,Maroon,"",Wilkinson Inc,18.56,USD,3707
+333,31,6,Action Figure,Maroon,"",Greenfelder and Sons,19.87,USD,3737
+334,30,2,Jumper,Red,Small,Goyette-Kshlerin,42.12,USD,5626
+335,48,5,Dumbbells,Yellow,"",Boyer Inc,26.63,USD,5886
+336,32,4,Foundation,Indigo,"",Borer Inc,74.84,USD,4539
+337,15,3,Food Processor,Khaki,"","Abbott, Waelchi and O'Keefe",247,USD,9929
+338,16,9,Vitamins,Blue,"",Ritchie-Daniel,5.74,USD,1944
+339,11,8,Brooch,Violet,"",Dach LLC,274.26,USD,3050
+340,8,10,Vase,Yellow,"",Kuhlman Inc,9,USD,5904
+341,27,1,Smartphone,Goldenrod,"",Pacocha-Kovacek,1908,USD,6773
+342,39,5,Bicycle,Purple,"",Swaniawski LLC,3693.37,USD,8961
+343,46,3,Coffee Maker,Goldenrod,"",Purdy-Boyle,740,USD,4486
+344,28,10,Table Lamp,Indigo,"",Johns-Gulgowski,36,USD,2136
+345,37,6,Puzzle,Indigo,"",Beer LLC,42.8,USD,4435
+346,4,2,Jeans,Yellow,Large,"Marks, Ullrich and Corwin",52.62,USD,5873
+347,5,6,Doll,Mauv,"",Schmeler Group,33.27,USD,110
+348,30,7,Biography,Pink,"",Gerhold-Turner,37.13,USD,4296
+349,15,4,Moisturizer,Blue,"",Fay and Sons,78.8,USD,7930
+350,44,10,Wall Art,Turquoise,"",Renner LLC,336,USD,8321
+351,10,8,Earrings,Aquamarine,"",Collier-Breitenberg,106.54,USD,9347
+352,43,9,Protein Powder,Puce,"",Pacocha-Bernier,86.7,USD,8751
+353,49,3,Food Processor,Red,"","Dibbert, Kunde and Hyatt",256,USD,3700
+354,34,5,Soccer Ball,Goldenrod,"",Marquardt Inc,37.33,USD,1121
+355,31,1,Smartphone,Turquoise,"",Kovacek Inc,981,USD,5342
+356,38,4,Perfume,Red,"",Macejkovic Inc,88.97,USD,8083
+357,25,7,Self-help Book,Orange,"","Pfannerstill, Kutch and Murphy",15.32,USD,8160
+358,47,8,Brooch,Violet,"",Doyle-Cronin,107.28,USD,8684
+359,24,10,Wall Art,Purple,"","Wuckert, Marvin and Streich",217,USD,8823
+360,36,2,Jacket,Fuscia,Medium,"Farrell, Reichel and Hahn",385.05,USD,930
+361,45,4,Lipstick,Crimson,"","Gutmann, Reichert and Kuhn",31.08,USD,8238
+362,46,10,Wall Art,Green,"","Friesen, Abshire and Little",366,USD,9739
+363,16,3,Coffee Maker,Blue,"",Hoppe Group,518,USD,4542
+364,20,1,Laptop,Blue,"","Trantow, Murazik and Stoltenberg",3772,USD,7980
+365,41,5,Soccer Ball,Mauv,"","Brakus, Nienow and Pacocha",68.49,USD,8195
+366,15,2,Dress,Goldenrod,Medium,O'Connell-Botsford,210.89,USD,2949
+367,43,6,Puzzle,Orange,"",Bednar-Aufderhar,26.92,USD,9823
+368,38,9,Essential Oils,Yellow,"",Hahn Group,8.87,USD,1729
+369,3,8,Bracelet,Turquoise,"",Walter-Ritchie,314.58,USD,4568
+370,50,7,Novel,Yellow,"",Tillman-Greenholt,17.29,USD,5105
+371,36,8,Brooch,Goldenrod,"",Hahn-Sauer,48.53,USD,1000
+372,25,4,Lipstick,Violet,"",Beatty Group,85.02,USD,975
+373,31,7,Biography,Khaki,"",Weber Inc,24.77,USD,7360
+374,22,2,Jumper,Yellow,Medium,"Heathcote, Hegmann and Harber",65.13,USD,6554
+375,8,9,Essential Oils,Goldenrod,"",Schinner Group,10.37,USD,8622
+376,46,3,Toaster,Purple,"","Becker, Keeling and Jacobson",147,USD,9820
+377,24,1,Laptop,Yellow,"",Homenick Inc,3179,USD,8615
+378,14,4,Lipstick,Yellow,"",Rolfson Group,62.17,USD,1088
+379,41,9,Vegan Food,Mauv,"",Schowalter LLC,24.48,USD,9540
+380,5,2,Jeans,Aquamarine,Small,"Quitzon, McKenzie and Harvey",150.62,USD,7371
+381,35,5,Yoga Mat,Purple,"",West LLC,36.92,USD,3755
+382,25,7,Biography,Turquoise,"",Schneider Inc,5.1,USD,4369
+383,19,6,Puzzle,Mauv,"",Mayer-Brakus,47.82,USD,2921
+384,12,10,Throw Pillow,Mauv,"",Howell LLC,64,USD,8726
+385,37,8,Brooch,Red,"",Torphy and Sons,192.44,USD,3559
+386,8,1,Tablet,Khaki,"",Towne-Hodkiewicz,410,USD,6441
+387,42,2,Jeans,Red,Medium,Jacobs LLC,35.25,USD,7913
+388,20,8,Necklace,Khaki,"","Gleason, Schimmel and Harris",97.67,USD,8972
+389,15,10,Rug,Mauv,"",Lindgren-Harvey,328,USD,8444
+390,3,4,Lipstick,Fuscia,"",Walter LLC,68.92,USD,8871
+391,3,2,Dress,Fuscia,Small,"Marks, Ryan and Goodwin",153.29,USD,1595
+392,6,10,Vase,Khaki,"",Sawayn-Hessel,26,USD,1701
+393,16,4,Perfume,Green,"","Hagenes, Feest and Oberbrunner",110.71,USD,6177
+394,25,8,Earrings,Khaki,"",Medhurst-Wilderman,285.88,USD,291
+395,30,5,Dumbbells,Pink,"",Kutch Inc,18.87,USD,6351
+396,46,7,Novel,Indigo,"",Kuhlman Inc,31.22,USD,9190
+397,43,1,Smartwatch,Goldenrod,"","Leffler, Harber and Kautzer",453,USD,2893
+398,13,6,LEGO Set,Maroon,"",Orn Inc,265.6,USD,3956
+399,24,9,Protein Powder,Violet,"",Schiller-Osinski,30.61,USD,8665
+400,5,3,Blender,Puce,"",Kuhn LLC,83,USD,4051
+401,10,10,Rug,Puce,"",Prosacco and Sons,673,USD,9341
+402,26,3,Food Processor,Green,"",Romaguera-Koelpin,214,USD,5650
+403,11,4,Moisturizer,Mauv,"",Schowalter Group,91.74,USD,4813
+404,44,9,Protein Powder,Khaki,"","Kertzmann, McClure and Walker",98.8,USD,105
+405,31,2,Jeans,Fuscia,Small,"Moore, O'Connell and McDermott",96.33,USD,6633
+406,24,6,LEGO Set,Fuscia,"","Casper, King and Mosciski",243.25,USD,9007
+407,6,4,Mascara,Maroon,"",Legros-Witting,8.62,USD,9992
+408,50,8,Bracelet,Purple,"",Feeney-Fahey,202.42,USD,6499
+409,19,1,Tablet,Teal,"",Schinner-Pollich,664,USD,99
+410,26,7,Cookbook,Orange,"","Koepp, King and Kozey",29.53,USD,4626
+411,44,3,Food Processor,Goldenrod,"",Hegmann Inc,295,USD,2196
+412,5,10,Table Lamp,Red,"",Ondricka-Grady,31,USD,3235
+413,43,2,Jeans,Puce,Large,"Wiza, Shanahan and Funk",132.63,USD,4768
+414,20,9,Nut Bars,Puce,"",Barrows LLC,8.67,USD,7728
+415,34,5,Soccer Ball,Green,"",VonRueden-Fay,44.53,USD,7790
+416,9,7,Poetry Collection,Teal,"","Torp, Douglas and Will",18.62,USD,2424
+417,31,6,Puzzle,Red,"",Wyman-Yundt,49.65,USD,7548
+418,25,5,Soccer Ball,Red,"","Hermann, Jakubowski and Hermiston",34.44,USD,875
+419,2,1,Headphones,Yellow,"",Ruecker-Volkman,207,USD,7628
+420,17,4,Moisturizer,Red,"","Smitham, Gleason and Ondricka",37.7,USD,902
+421,45,8,Ring,Purple,"",Koepp-Pfeffer,271.29,USD,5676
+422,22,3,Blender,Red,"",Rippin Inc,269,USD,9951
+423,23,4,Mascara,Pink,"",Considine-Zemlak,50.28,USD,1979
+424,15,6,LEGO Set,Indigo,"","Wisozk, Pagac and Bednar",50.01,USD,4808
+425,8,7,Poetry Collection,Crimson,"",Willms-Wuckert,18.75,USD,1087
+426,46,9,Vitamins,Fuscia,"",Cruickshank-Kuhlman,23.56,USD,209
+427,34,1,Laptop,Turquoise,"",Rodriguez Group,1117,USD,8385
+428,38,2,Jacket,Maroon,Small,"Rowe, Bergnaum and Watsica",161.8,USD,5117
+429,25,5,Bicycle,Pink,"","Wintheiser, Fritsch and Tremblay",3651.97,USD,219
+430,47,10,Table Lamp,Puce,"","Bogan, MacGyver and Von",57,USD,6526
+431,49,2,Jumper,Yellow,Small,Murphy LLC,48.71,USD,5589
+432,32,1,Laptop,Indigo,"",Gerlach Inc,1679,USD,789
+433,6,10,Throw Pillow,Blue,"",Wiza Group,24,USD,2042
+434,13,9,Protein Powder,Orange,"",Pollich Group,71.25,USD,7884
+435,35,6,Board Game,Khaki,"",Lebsack-Bruen,53.72,USD,9061
+436,42,3,Coffee Maker,Purple,"",Welch LLC,595,USD,4419
+437,15,4,Perfume,Turquoise,"",Nader-King,69.73,USD,8873
+438,35,9,Essential Oils,Turquoise,"",Bechtelar Inc,6.87,USD,1002
+439,33,1,Smartphone,Turquoise,"","Gutkowski, Schulist and Lesch",1310,USD,2050
+440,30,5,Yoga Mat,Green,"","Schaden, McGlynn and Marquardt",29.38,USD,4263
+441,34,7,Novel,Orange,"","Haag, Yundt and Baumbach",26.7,USD,1078
+442,11,10,Vase,Pink,"","Borer, Tremblay and Murphy",34,USD,7492
+443,5,2,Dress,Aquamarine,Small,"Koepp, Larson and Tremblay",52.5,USD,9023
+444,39,8,Necklace,Teal,"",Borer Group,21.88,USD,2882
+445,38,6,Board Game,Teal,"",O'Kon-Wisoky,47.08,USD,6263
+446,27,10,Vase,Aquamarine,"",Hagenes Inc,11,USD,858
+447,36,5,Bicycle,Violet,"",Blanda and Sons,3418.75,USD,7422
+448,16,1,Tablet,Green,"",Schumm-Bahringer,497,USD,7235
+449,23,9,Nut Bars,Khaki,"",Botsford LLC,12.2,USD,510
+450,6,3,Blender,Mauv,"","Terry, Wunsch and Jones",129,USD,7618
+451,32,4,Lipstick,Violet,"",Casper LLC,47.92,USD,7413
+452,50,5,Bicycle,Purple,"","Wilkinson, Smith and Mitchell",5751.15,USD,4142
+453,13,7,Novel,Yellow,"","Wyman, Nicolas and Kunde",11.22,USD,9758
+454,33,8,Necklace,Pink,"",Zulauf-Lockman,356.72,USD,8098
+455,11,9,Vitamins,Teal,"",Hauck-Mertz,23.41,USD,2206
+456,6,1,Headphones,Turquoise,"",Heathcote-Auer,504,USD,5800
+457,1,10,Wall Art,Pink,"",Wisozk-Reynolds,317,USD,103
+458,22,2,Jumper,Mauv,Medium,Hessel Inc,21.92,USD,9453
+459,35,3,Toaster,Puce,"",Hegmann Inc,156,USD,3560
+460,9,6,Action Figure,Pink,"","MacGyver, Barton and Parker",33.84,USD,3578
+461,18,5,Tennis Racket,Mauv,"",Collier-Schmitt,86.79,USD,4085
+462,43,3,Stand Mixer,Teal,"",Stark Inc,284,USD,4727
+463,25,6,Doll,Aquamarine,"","Hagenes, Kozey and Kohler",20.92,USD,2368
+464,41,4,Perfume,Indigo,"","Rath, Torp and Sauer",151.37,USD,7569
+465,29,1,Smartwatch,Puce,"",Mann Inc,462,USD,9767
+466,39,10,Throw Pillow,Yellow,"","Hintz, Thompson and Waters",27,USD,607
+467,18,6,LEGO Set,Yellow,"","Ortiz, Jakubowski and Nicolas",241.56,USD,7941
+468,38,7,Self-help Book,Purple,"",Mitchell-Erdman,15.25,USD,8845
+469,35,9,Vitamins,Teal,"","Roberts, Hodkiewicz and Schultz",19.82,USD,5008
+470,10,3,Blender,Purple,"","Corkery, Hegmann and Nader",217,USD,9519
+471,3,1,Tablet,Goldenrod,"","Hermiston, Wolff and Parker",738,USD,9342
+472,8,8,Earrings,Purple,"",Schoen-Bergnaum,86.77,USD,5256
+473,14,5,Soccer Ball,Khaki,"","Deckow, Brown and Ankunding",25.75,USD,8329
+474,19,4,Lipstick,Khaki,"",Corwin-Lockman,13.55,USD,5018
+475,16,2,Dress,Teal,Small,"Orn, Keeling and Jacobson",157.6,USD,2814
+476,5,2,Jacket,Teal,Large,"Kreiger, Raynor and Mosciski",234.87,USD,3647
+477,44,4,Lipstick,Maroon,"",Kuphal-Romaguera,81.04,USD,9536
+478,48,5,Yoga Mat,Crimson,"",Schuppe-Koelpin,23.82,USD,1229
+479,12,7,Self-help Book,Orange,"","Larkin, Beier and Bins",20.98,USD,2508
+480,32,9,Protein Powder,Goldenrod,"",McLaughlin Group,84.66,USD,5729
+481,13,6,LEGO Set,Goldenrod,"",Grady Group,241.46,USD,8744
+482,37,1,Smartphone,Purple,"","Mayert, Wolff and Strosin",1479,USD,3051
+483,45,10,Vase,Fuscia,"",Emard-Aufderhar,20,USD,5124
+484,49,3,Toaster,Fuscia,"","Brekke, Hahn and Rau",116,USD,8215
+485,4,8,Earrings,Pink,"","Rolfson, Rogahn and McGlynn",216.09,USD,8702
+486,43,9,Nut Bars,Puce,"",Corwin and Sons,8.07,USD,3330
+487,36,10,Wall Art,Turquoise,"",Rohan-Littel,237,USD,3026
+488,46,6,LEGO Set,Blue,"",Hudson-Parker,162.32,USD,4875
+489,15,8,Earrings,Khaki,"",Gislason Group,369.82,USD,8970
+490,26,7,Biography,Khaki,"",Cole Group,16.28,USD,9481
+491,11,3,Stand Mixer,Yellow,"",Doyle-Kihn,371,USD,462
+492,29,2,Dress,Maroon,Large,Rohan-Rippin,130.12,USD,9637
+493,24,4,Foundation,Goldenrod,"",Wintheiser-Kreiger,33.29,USD,7739
+494,31,1,Laptop,Blue,"",Lang-Predovic,1459,USD,7018
+495,27,5,Soccer Ball,Teal,"",Murazik Inc,86.53,USD,5994
+496,28,10,Table Lamp,Yellow,"",Johnson-Shields,71,USD,9299
+497,6,6,Action Figure,Orange,"",Schumm LLC,27.73,USD,7602
+498,7,3,Food Processor,Puce,"",Pfannerstill Inc,314,USD,5981
+499,50,8,Bracelet,Red,"",Morissette Inc,313.47,USD,899
+500,42,4,Foundation,Puce,"",Bayer-Dare,25.64,USD,7470
