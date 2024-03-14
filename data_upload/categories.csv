@@ -1,51 +1,31 @@
-category_id,category_name,category_description
-1,Electronics,Products related to electronic devices and accessories.
-2,Clothing,"Clothing items for men, women, and children."
-3,Home & Kitchen,"Items for home decor, kitchen appliances, and organization."
-4,Sports & Outdoors,Equipment and gear for various sports and outdoor activities.
-5,Books,"A wide range of books including fiction, non-fiction, and educational materials."
-6,Beauty & Personal Care,"Cosmetics, skincare, and personal grooming products."
-7,Toys & Games,A diverse collection of toys and games for all ages.
-8,Health & Wellness,"Products related to health, fitness, and overall wellness."
-9,Food & Beverages,A variety of food items and beverages from different cuisines.
-10,Art & Crafts,"Supplies and materials for art, DIY projects, and crafting."
-11,Automotive,"Car accessories, maintenance products, and tools."
-12,Pet Supplies,"Items for pet care, grooming, and entertainment."
-13,Music & Instruments,"Musical instruments, accessories, and music-related merchandise."
-14,Gardening,"Tools, plants, and accessories for gardening and outdoor spaces."
-15,Travel & Luggage,"Travel essentials, luggage, and accessories for travel enthusiasts."
-16,Party Supplies,"Decorations, costumes, and supplies for parties and celebrations."
-17,Jewelry & Accessories,A variety of jewelry pieces and fashion accessories.
-18,Stationery,"Writing instruments, paper products, and office supplies."
-19,Electrical & Lighting,"Electrical components, bulbs, and lighting fixtures."
-20,Furniture,Various types of furniture for home and office spaces.
-21,Movies & Entertainment,"Movies, TV shows, and entertainment merchandise."
-22,Baby & Toddler,"Products for infants, toddlers, and young children."
-23,DIY & Home Improvement,Tools and materials for do-it-yourself projects and home improvement.
-24,Tech Gadgets,Innovative and tech-savvy gadgets and accessories.
-25,Vintage & Antiques,Unique and rare vintage items and antiques.
-26,Educational Toys & Games,Toys and games designed for educational purposes.
-27,Outdoor Recreation,Gear and equipment for outdoor adventures and recreation.
-28,Ethnic & Cultural,Products representing diverse ethnicities and cultures.
-29,Virtual Reality,"VR headsets, games, and virtual reality experiences."
-30,Subscription Boxes,Monthly subscription boxes for various interests and hobbies.
-31,Handmade Products,Artisanal and handcrafted products from skilled craftsmen.
-32,Fitness Accessories,Accessories and equipment for fitness and exercise routines.
-33,Tech Accessories,Accessories for electronic devices and gadgets.
-34,Eco-friendly Products,Environmentally friendly and sustainable products.
-35,Luxury Items,High-end and luxurious products and accessories.
-36,Science & Technology,"Products related to science, technology, and innovation."
-37,Sustainable Living,Products promoting sustainable and eco-conscious lifestyle choices.
-38,Camping & Hiking,Gear and essentials for camping and hiking adventures.
-39,Wellness Retreats,Packages and products for wellness and relaxation retreats.
-40,Fair Trade Products,Ethically sourced and fair trade certified products.
-41,Virtual Events,Virtual event hosting and participation platforms.
-42,DIY Beauty Products,Ingredients and materials for DIY beauty and skincare products.
-43,Local Artisan Crafts,Handmade crafts and artworks from local artisans.
-44,Gourmet Foods,High-quality gourmet food items and delicacies.
-45,Innovative Technology,Cutting-edge and innovative technological products.
-46,Cultural Experiences,Experiential products and activities showcasing diverse cultures.
-47,Mindfulness & Meditation,Products and resources for mindfulness and meditation practices.
-48,International Cuisine,Ingredients and products for cooking international cuisines.
-49,Adventure Travel Gear,Gear and equipment for adventurous and thrill-seeking travelers.
-50,Sustainable Fashion,Eco-friendly and sustainable fashion apparel and accessories.
+id,name,description
+1,Electronics,Cutting-edge gadgets and devices for all your tech needs
+2,Clothing,Fashionable attire and accessories to elevate your style
+3,Home Decor,Chic and trendy furnishings to enhance your living space
+4,Beauty,High-quality skincare and cosmetics for a radiant look
+5,Sports Equipment,Premium gear and equipment to fuel your active lifestyle
+6,Toys,Fun and engaging playthings to spark imagination and creativity
+7,Books,Diverse collection of literature and knowledge for every reader
+8,Jewelry,Elegant and timeless pieces to add sparkle to any outfit
+9,Kitchen Appliances,Innovative tools and appliances to simplify meal prep
+10,Outdoor Gear,Durable and reliable equipment for outdoor adventures
+11,Pet Supplies,Nourishing food and playful toys for your beloved pets
+12,Health & Wellness,Wellness products and supplements to support a healthy lifestyle
+13,Baby Products,Safe and comfortable essentials for your little ones
+14,Furniture,Stylish and functional furniture pieces for every room
+15,Office Supplies,Organizational tools and supplies to boost productivity
+16,Automotive,Reliable parts and accessories to keep your vehicle running smoothly
+17,Fitness Equipment,Quality equipment to help you stay fit and active
+18,Gardening Supplies,Tools and supplies to cultivate a beautiful garden
+19,Craft Supplies,Inspiring materials for creative DIY projects
+20,Party Supplies,Vibrant decorations and accessories for memorable celebrations
+21,Travel Accessories,Practical and stylish accessories for your travel needs
+22,Art Supplies,High-quality materials for artists and creatives
+23,Tech Gadgets,Innovative gadgets and accessories for tech enthusiasts
+24,Food & Beverages,Delicious treats and beverages to satisfy your cravings
+25,Stationery,Stylish stationery items for all your writing needs
+26,Musical Instruments,Instruments and accessories for aspiring musicians
+27,DIY Tools,Essential tools for DIY projects and home improvement
+28,Gaming Accessories,Accessories to enhance your gaming experience
+29,Collectibles,Unique and rare items for collectors
+30,Vintage Items,Classic and timeless pieces with a touch of nostalgia
