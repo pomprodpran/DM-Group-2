@@ -18,7 +18,6 @@ library(readr)
 library(RSQLite)
 library(dplyr)
 library(ggplot2)
-
 ```
 
 # Task 1.2: SQL Database Schema Creation
@@ -34,7 +33,6 @@ sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
 # Task 2.2: Import Data and validation
-zx
 ## Validation
 ```{r}
 all_files <- list.files("../data_upload/")
@@ -148,14 +146,6 @@ SELECT AVG(discount) AS average_discount
 FROM orders;
 ```
 
-
-Close Connection
-```{r disconnect}
-# Disconnect from the database using the connection variable that we setup 
-# before
-RSQLite::dbDisconnect(my_db)
-
-```
 
 # Loading Data 
 ```{r}
@@ -349,8 +339,13 @@ ggplot(product_rating_data, aes(x = name, y = avg_rating)) +
 ```
 
 
+Close Connection
+```{r disconnect}
+# Disconnect from the database using the connection variable that we setup 
+# before
+RSQLite::dbDisconnect(my_db)
 
-
+```
 
 
 
