@@ -1,0 +1,110 @@
+---
+title: "DM_q2.2"
+output: html_document
+date: "2024-03-14"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+
+library(ggplot2)
+
+library(tidyverse)
+
+library(lubridate)
+library(dplyr)
+
+
+```
+
+
+# Task 2.2: Import Data and validation
+
+## Import Data
+```{r}
+advertisements <- read.csv("advertisements.csv")
+catergories <- read.csv("categories.csv")
+customers <- read.csv("customers.csv")
+orders <- read.csv("orders.csv")
+products <- read.csv("products.csv")
+sellers <- read.csv("sellers.csv")
+shippers <- read.csv("categories.csv")
+
+```
+
+
+## Validation: email addresses, phone numbers, dates, prices, currency codes
+
+```{r}
+# Function to validate email addresses
+
+validate_emails <- function(emails) {
+  pattern <- "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+  grepl(pattern, emails)
+}
+
+# Function to validate phone numbers
+validate_phones <- function(phones) {
+  # This is a simple example and might not cover all international formats
+  pattern <- "^\\+?[1-9][0-9]{7,14}$"
+  grepl(pattern, phones)
+}
+
+# Function to validate dates
+validate_dates <- function(dates) {
+  date_format <- "%Y-%m-%d"
+  dates_parsed <- parse_date_time(dates, orders = date_format)
+  !is.na(dates_parsed)
+}
+
+# Function to validate prices
+validate_prices <- function(prices) {
+  prices >= 0
+}
+
+# Function to validate currency codes
+validate_currencies <- function(currencies) {
+  pattern <- "^[A-Z]{3}$"
+  grepl(pattern, currencies)
+}
+
+```
+
+
+## Applying the Validation Functions
+
+```{r}
+
+# For customer, sellers, shippers emails: 
+customers$valid_email <- validate_emails(customers$email)
+sellers$valid_email <- validate_emails(sellers$email)
+
+# For customer, sellers, shippers phones:
+customers$valid_phone <- validate_phones(customers$phone_number)
+
+# For order_dates: 
+orders$valid_date <- validate_dates(orders$order_date)
+
+
+# For products (price and currency) : 
+products$valid_price <- validate_prices(products$price)
+products$valid_currency <- validate_currencies(products$currency)
+
+
+# You can then filter out or flag invalid records
+customers_invalid <- customers[!customers$valid_email, ]
+
+sellers_invalid <- sellers[!sellers$valid_email, ]
+
+# shippers_invalid <- shippers[!shippers$valid_phone, ]
+
+products_invalid <- products[!products$valid_price | !products$valid_currency, ]
+
+
+```
+
+
+
+
+
