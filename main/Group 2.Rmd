@@ -32,10 +32,10 @@ my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerse.db")
 sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
-# Task 2.2: Import Data and validation
-## Validation
+# Initial load
 ```{r}
-all_files <- list.files("../data_upload/")
+# Get only Initial file
+all_files <- setdiff(list.files("../data_upload/"), list.files("../data_upload/", pattern = "_"))
 
 ```
 
