@@ -6,9 +6,9 @@ library(lubridate)
 # Incremental Load
 print("Loading CSV file")
 
-# Get only NEW file that has been loaded into the folder (and run historical back 2 days)
 # File format for automation: <table name>_YYYY-MM-DDTHHMMSS.csv
 current_date <- Sys.Date()
+# Get only Incremental file
 all_files <- list.files("./data_upload", full.names = FALSE, pattern = "_")
 for (variable in all_files) {
   file_name <- unlist(strsplit(gsub(".csv","",variable), "_")) # split file name using _ separator
@@ -18,21 +18,25 @@ for (variable in all_files) {
   time_str <- date_time_parts[2]  # Time string
   date_value <- lubridate::ymd(date_str) # Parsing date strings into datetime objects using lubridate
   
+  # Get only NEW file that has been loaded into the folder (and run historical back 2 days)
   if (date_value>= current_date-1 && date_value<= current_date ) {
     print(paste("Reading file:",variable))
     this_filepath <- paste0("./data_upload/",variable)
     this_file_contents <- readr::read_csv(this_filepath)
-    # Add Validation !!
+    
     print(paste("Writing table to database:", table_name))
-    
     my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"./database/ecommerse.db")
-    
     # Get the primary key column names from the database
-    query <- paste("SELECT name FROM pragma_table_info(", "'", table_name, "'", ") WHERE pk = 1;")
-    primary_key_columns <- dbGetQuery(my_db, "SELECT name FROM pragma_table_info('customers') where pk =1;")
+    query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
+    primary_key_columns <- dbGetQuery(my_db, query)
+    
+    
+    # Perform Validation
+    source("./main/Validation.R")
     
     # Validation and Writing on each row to DB
     for (i in 1:nrow(this_file_contents)) {
+      
       row <- this_file_contents[i, ]
       
       # Extract primary key values from the row
