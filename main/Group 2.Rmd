@@ -32,7 +32,8 @@ my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerse.db")
 sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
-# Initial load
+# For Initial load
+# Validation
 ```{r}
 # Get only Initial file
 all_files <- setdiff(list.files("../data_upload/"), list.files("../data_upload/", pattern = "_"))
