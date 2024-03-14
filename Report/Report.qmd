@@ -13,29 +13,46 @@ author: "Group 2"
 
 #### Task 1.1: E-R Diagram Design
 
-![E-R Diagram](ER_Diagram.jpg){fig-alt="E-R Diagram Design"}
+![ER Diagram](ER Diagram.jpg)
 
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
 
-Assumptions: (TBD) - Discuss collectively as a group
+Explanation
+
+1.  Customers Table: Contains information about customers such as their ID, date of birth, name, contact details, billing address, and current shipping address. The customer ID serves as the primary key.
+2.  Shippers Table: Stores details of shipping companies or entities responsible for delivering orders. It includes a shipper ID as the primary key along with the shipper's name and contact information.
+3.  Products Table: Holds information about various products available for sale. Each product has a unique product ID and is associated with a seller and a category. Additional details like name, colour, size, brand, price, and currency are included.
+4.  Orders Table: Represents individual orders placed by customers. Each order has a unique order ID and contains information about the customer who placed the order, the products included, the shipper responsible for delivery, order date and time, quantity, discount applied, and any ratings or reviews given.
+5.  Seller Table: Contains details about sellers who provide products for sale. Each seller is identified by a unique shipper ID and includes information such as the seller's name, email, and address.
+6.  Advertisements Table: Stores information about advertisements created for products. Each advertisement has a unique ad ID and includes details like the associated product, content of the ad, number of ad clicks, budget allocated, and currency.
+7.  Categories Table: Represents different product categories. Each category is assigned a unique category ID and includes the category name and description.
+
+The primary keys are underlined. Double underlining represents foreign keys. Relationships between tables are represented by lines connecting corresponding attributes, indicating the associations between entities. For example, orders are associated with customers, products, and shippers. Similarly, products are associated with sellers and categories.
+
+Assumptions:
+
+-   Unique Customer ID: This assumption suggests that each customer in the system is uniquely identified by a customer ID. It implies that no two customers can have the same ID, allowing for precise identification and tracking of individual customers within the database.
+-   Unique Shipper ID: Similar to the customer ID assumption, each shipper (or shipping company) in the system is assigned a unique shipper ID.
+-   Unique Product ID: Each product available for sale is assigned a distinct product ID. This ensures that products can be uniquely identified and referenced throughout the system.
+-   Unique Seller ID: Sellers, identified by their sheller ID, are assumed to be distinct entities within the system.
+-   Unique Advertisement ID: Advertisements created for products are assigned unique ad IDs.
+-   Unique Category ID: Different product categories are assigned unique category IDs.
+-   Customer-Order Relationship: It is assumed that a single customer can place multiple orders. This assumption reflects the common scenario in retail where customers make multiple purchases over time.
+-   Order-Product Relationship: Each order can contain multiple products. This assumption acknowledges that customers may purchase more than one item in a single order, necessitating a many-to-many relationship between orders and products.
+-   Order-Shipper Relationship: A single order can be associated with one shipper. This assumption implies that each order is assigned to a specific shipping entity responsible for delivering the order to the customer.
+-   Product-Category Relationship: Each product belongs to one category. This assumption reflects the idea that products are classified into distinct categories.
+-   Seller-Product Relationship: Sellers can sell multiple products. This assumption acknowledges that sellers may offer a variety of products for sale within the system.
+-   Product-Advertisement Relationship: Each product can be part of multiple advertisements.
 
 #### Task 1.2: SQL Database Schema Creation
 
--   **Customers** ($\underline{customer\_id}$, date_of_birth, customer_first_name, customer_last_name, phone_number, customer_email, billing_address_street_number, billing_address_street_name, billing_address_street_suffix, billing_address_city, billing_address_state, billing_address_country, billing_address_postcode, current_shipping_address_street_number, current_shipping_address_street_name, current_shipping_address_street_suffix, current_shipping_address_city, current_shipping_address_state, current_shipping_address_country, current_shipping_address_postcode, current_payment_method)
-
-<!-- -->
-
--   **Shippers** ($\underline{shipper\_id}$, shipper_name, shipper_phone)
-
--   **Products** ($\underline{product\_id}$, $\underline{\underline{seller\_id}}$, $\underline{\underline{category\_id}}$, name, color, size, brand, price, currency)
-
--   **Order** ($\underline{order\_id}$, $\underline{\underline{customer\_id}}$ , $\underline{\underline{product\_id}}$ , $\underline{\underline{shipper\_id}}$[,]{.underline} order_date, order_time, quantity, discount, rating_review)
-
--   **Seller** ($\underline{shipper\_id}$, seller_name, seller_email, seller_address_street_number, seller_address_street_name, seller_address_street_suffix, seller_address_city, seller_address_state, seller_address_country, seller_address_postcode)
-
--   Advertisements ($\underline{ad\_id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
-
--   Categories ($\underline{category\_id}$[,]{.underline} category_name, category_description
+-   **Customers** ($\underline{id}$, date_of_birth, first_name, last_name, phone_number, email, billing_address_street_number, billing_address_street_name, billing_address_street_suffix, billing_address_city, billing_address_state, billing_address_country, billing_address_postcode, current_shipping_address_street_number, current_shipping_address_street_name, current_shipping_address_street_suffix, current_shipping_address_city, current_shipping_address_state, current_shipping_address_country, current_shipping_address_postcode, current_payment_method)
+-   **Shippers** ($\underline{id}$, name, phone_number)
+-   **Products** ($\underline{id}$, $\underline{\underline{seller\_id}}$, $\underline{\underline{category\_id}}$, name, color, size, brand, price, currency, inventory)
+-   **Order** ($\underline{id}$, $\underline{\underline{customer\_id}}$ , $\underline{\underline{product\_id}}$ , $\underline{\underline{shipper\_id}}$[,]{.underline} order_date, order_time, quantity, discount, rating_review)
+-   **Seller** ($\underline{id}$, name, email, address_street_number, address_street_name, address_street_suffix, address_city, address_state, address_country, address_postcode)
+-   **Advertisements** ($\underline{id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
+-   **Categories** ($\underline{id}$[,]{.underline} name, description)
 
 Will add code chunks of table creation here
 
