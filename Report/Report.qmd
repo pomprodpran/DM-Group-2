@@ -1,10 +1,13 @@
 ---
-title: "Report Group 2"
+title: "Data Management Group Assignment (IB9HP0)"
 format: pdf
 editor: visual
+author: "Group 2"
 ---
 
-## Report
+### Introduction
+
+### Overview
 
 ### Part 1: Database Design and Implementation
 
