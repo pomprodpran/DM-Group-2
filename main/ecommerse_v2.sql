@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   FOREIGN KEY ('seller_id') 
     REFERENCES sellers ('id'),
   FOREIGN KEY ('category_id') 
-    REFERENCES category ('id')
+    REFERENCES categories ('id')
 );
 
 -- Shipper Schema

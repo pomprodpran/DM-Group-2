@@ -32,33 +32,39 @@ for (variable in all_files) {
     primary_key_columns <- dbGetQuery(my_db, query)
     
     # Get Foreign Key
-    
+    query <- paste("PRAGMA foreign_key_list('",table_name,"');",sep="")
+    foreign_key_columns <- dbGetQuery(my_db, query)
     
     # Perform Validation
     source("./main/Validation.R")
     
     # Validation and Writing on each row to DB
-    for (i in 1:nrow(this_file_contents)) {
-      
-      row <- this_file_contents[i, ]
-      
-      # Extract primary key values from the row
-      primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
-      
-      # Find if the primary key exists
-      query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
-      existing_row <- dbGetQuery(my_db, query)
-      
-      if (nrow(existing_row) == 0) {
-        # Row is unique, append to the table
-        print(paste("Append:",primary_key_values))
-        dbWriteTable(my_db, table_name, row, append = TRUE)
-      } else {
-        # Row already exists, update the existing row
-        print(paste("Update:",primary_key_values))
-        update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
-        dbExecute(my_db, update_query)
+    if (nrow(this_file_contents)>0 ){
+      for (i in 1:nrow(this_file_contents)) {
+        
+        row <- this_file_contents[i, ]
+        
+        # Extract primary key values from the row
+        primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
+        
+        # Find if the primary key exists
+        query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
+        existing_row <- dbGetQuery(my_db, query)
+        
+        if (nrow(existing_row) == 0) {
+          # Row is unique, append to the table
+          print(paste("Append:",primary_key_values))
+          dbWriteTable(my_db, table_name, row, append = TRUE)
+        } else {
+          # Row already exists, update the existing row
+          print(paste("Update:",primary_key_values))
+          update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
+          dbExecute(my_db, update_query)
+        }
       }
+    }
+    else {
+      print("Nothing to update in database since all rows are not pass the validations")
     }
   }
 }
