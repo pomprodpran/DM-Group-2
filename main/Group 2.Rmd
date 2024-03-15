@@ -53,55 +53,58 @@ for (variable in all_files) {
 
 ```
 
-Select Data
+# Data Analysis using SQL 
 
 ```{sql connection=my_db}
 SELECT * 
 FROM customers
+LIMIT 10;
+```
+```{sql connection=my_db}
+-- Products
+SELECT * 
+FROM products
+LIMIT 10;
 ```
 
-# Data Analysis using SQL 
 
 ```{sql connection=my_db}
+-- Number of Categories
 SELECT COUNT(*) AS total_categories
 FROM categories;
 ```
 
 ```{sql connection=my_db}
--- Top 5 categories with the most products
-SELECT p.category_id, COUNT(p.id) AS num_products
-FROM products p
-GROUP BY category_id
-ORDER BY num_products DESC
-LIMIT 5;
-```
+-- Maximum Number of Orders placed by any customer
+SELECT MAX(total_orders) AS max_orders
+FROM (SELECT COUNT(id) AS total_orders
+      FROM orders
+      GROUP BY customer_id) AS order_counts;
 
-```{sql connection=my_db}
--- Total Number of Orders for Each Customer
-SELECT c.id, c.customer_first_name, c.customer_last_name, COUNT(o.order_id) AS total_orders
-FROM customers AS c
-LEFT JOIN orders AS o ON c.customer_id = o.customer_id
-GROUP BY c.customer_id, c.customer_first_name, c.customer_last_name;
 ```
 
 
 ```{sql connection=my_db}
--- Sellers with total revenue 
-SELECT s.seller_id, s.seller_name, SUM(p.price) AS total_revenue
+-- Top 5 sellers by the revenue generated
+SELECT s.name AS seller_name, SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_revenue
 FROM sellers AS s
-INNER JOIN products AS p ON s.seller_id = p.seller_id
-INNER JOIN orders AS o ON p.product_id = o.product_id
-GROUP BY s.seller_id, s.seller_name;
+INNER JOIN products AS p ON s.id = p.seller_id
+INNER JOIN orders AS o ON p.id = o.product_id
+GROUP BY s.name
+ORDER BY total_revenue DESC
+LIMIT 5;
+
+
 ```
 
 
 ```{sql connection=my_db}
--- Top 10 best selling products based on quantity sold
-SELECT p.product_id, p.name, p.color, p.size, SUM(o.quantity) AS total_quantity_sold
+-- Top 10 best-selling products by the quantity sold 
+SELECT p.name AS product_name, SUM(o.quantity) AS total_sold
 FROM products AS p
-INNER JOIN orders AS o ON p.product_id = o.product_id
-GROUP BY p.product_id, p.name, p.color, p.size
-ORDER BY total_quantity_sold DESC
+INNER JOIN orders AS o ON p.id = o.product_id
+GROUP BY p.name
+ORDER BY total_sold DESC
 LIMIT 10;
 
 
@@ -109,34 +112,26 @@ LIMIT 10;
 
 ```{sql connection=my_db}
 -- Top 10 customers by the total amount spent
-
-SELECT c.customer_id, c.customer_first_name, c.customer_last_name, SUM(p.price) AS total_spent
+SELECT c.id AS customer_id, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, 
+       SUM(p.price * o.quantity * (1 - o.discount)) AS total_spent
 FROM customers AS c
-INNER JOIN orders AS o ON c.customer_id = o.customer_id
-INNER JOIN products AS p ON o.product_id = p.product_id
-GROUP BY c.customer_id, c.customer_first_name, c.customer_last_name
+INNER JOIN orders AS o ON c.id = o.customer_id
+INNER JOIN products AS p ON o.product_id = p.id
+GROUP BY c.id, customer_name
 ORDER BY total_spent DESC
 LIMIT 10;
 
-```
-
-```{sql connection=my_db}
--- Average Order Value for Each Seller
-SELECT s.seller_id, s.seller_name, AVG(p.price * o.quantity) AS average_order_value
-FROM sellers AS s
-INNER JOIN products AS p ON s.seller_id = p.seller_id
-INNER JOIN orders AS o ON p.product_id = o.product_id
-GROUP BY s.seller_id, s.seller_name;
 
 ```
+
 
 ```{sql connection=my_db}
 -- Top 10 shippers with highest number of shippings
-SELECT s.shipper_id, s.shipper_name, COUNT(*) AS total_orders_shipped
+SELECT s.name AS shipper_name, COUNT(*) AS total_shippings
 FROM shippers AS s
-JOIN orders AS o ON s.shipper_id = o.shipper_id
-GROUP BY s.shipper_id, s.shipper_name
-ORDER BY total_orders_shipped DESC
+JOIN orders AS o ON s.id = o.shipper_id
+GROUP BY s.name
+ORDER BY total_shippings DESC
 LIMIT 10;
 
 ```
@@ -148,33 +143,83 @@ FROM orders;
 ```
 
 
-# Loading Data 
 ```{r}
-customers <- read_csv("/cloud/project/data_upload/customers.csv", show_col_types = FALSE)
-orders <- read_csv("/cloud/project/data_upload/orders.csv", show_col_types = FALSE)
-sellers <- read_csv("/cloud/project/data_upload/sellers.csv", show_col_types = FALSE)
-products <- read_csv("/cloud/project/data_upload/products.csv", show_col_types = FALSE)
-categories <- read_csv("/cloud/project/data_upload/categories.csv", show_col_types = FALSE)
-shippers <- read_csv("/cloud/project/data_upload/shippers.csv", show_col_types = FALSE)
-advertisements <- read_csv("/cloud/project/data_upload/advertisements.csv", show_col_types = FALSE)
+## Categories with number of products in each category
+
+category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.id) AS num_products
+                              FROM products AS p
+                              INNER JOIN categories AS c ON p.category_id = c.id
+                              GROUP BY p.category_id, c.name
+                              ORDER BY num_products DESC
+                              LIMIT 10")
+
+ggplot(category_products, aes(x = reorder(category_name, -num_products), y = num_products)) +
+  geom_bar(stat = "identity", fill = "maroon", color = "black") +
+  labs(title = "Number of Products in Each Category",
+       x = "Category Name",
+       y = "Number of Products") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        axis.title.y = element_text(size = 12),
+        axis.title.x = element_text(size = 12),
+        plot.title = element_text(size = 14, hjust = 0.5),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
+  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black")  # Add labels for each bar
+
+```
+# Reading data from database after validation
+
+```{r}
+
+# Define SQL queries for each table
+sql_queries <- list(
+  orders = "SELECT * FROM orders",
+  customers = "SELECT * FROM customers",
+  categories = "SELECT * FROM categories",
+  advertisements = "SELECT * FROM advertisements",
+  shippers = "SELECT * FROM shippers",
+  products = "SELECT * FROM products",
+  sellers = "SELECT * FROM sellers"
+)
+
+
+# Read data from each table using SQL queries
+
+orders <- dbGetQuery(my_db, 
+                     sql_queries$orders)
+customers <- dbGetQuery(my_db, 
+                        sql_queries$customers)
+categories <- dbGetQuery(my_db, 
+                         sql_queries$categories)
+advertisements <- dbGetQuery(my_db, 
+                             sql_queries$advertisements)
+shippers <- dbGetQuery(my_db, 
+                       sql_queries$shippers)
+products <- dbGetQuery(my_db, 
+                       sql_queries$products)
+sellers <- dbGetQuery(my_db, 
+                      sql_queries$sellers)
+
 ```
 
+# Using dplyr, tidyr and ggplot to visualise the data
 
 ```{r}
 # Top 10 Customers segmented by the Total Amount Spent
 order_details <- orders %>%
-  inner_join(products, by = "product_id") %>%
-  inner_join(customers, by = "customer_id")
+  inner_join(products, by = "id") %>%
+  inner_join(customers, by = "id")
 
 # Calculate total amount spent by each customer
 customer_spending <- order_details %>%
-  group_by(customer_id, customer_first_name, customer_last_name) %>%
-  summarise(total_spent = sum(price * quantity), .groups = "drop") %>%
+  group_by(customer_id, first_name, last_name) %>%
+  summarise(total_spent = sum(price * quantity * (1 - (discount / 100))), .groups = "drop") %>%
   arrange(desc(total_spent)) %>%
   top_n(10, total_spent)
 
 # Plot top 10 customers with respect to amount spent
-ggplot(customer_spending, aes(x = reorder(paste(customer_first_name, customer_last_name), -total_spent), y = total_spent)) +
+ggplot(customer_spending, aes(x = reorder(paste(first_name, last_name), -total_spent), y = total_spent)) +
   geom_bar(stat = "identity", fill = "salmon") +  # Change fill color to salmon
   labs(title = "Top 10 Customers by Amount Spent",
        x = "Customer",
