@@ -33,25 +33,34 @@ sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```
 
 # For Initial load
-# Validation
+## Validation and Load files in an sqlite database
 ```{r}
 # Get only Initial file
 all_files <- setdiff(list.files("../data_upload/"), list.files("../data_upload/", pattern = "_"))
 
-```
-
-## Load files in an sqlite database
-```{r}
 for (variable in all_files) {
   this_filepath <- paste0("../data_upload/",variable)
   this_file_contents <- readr::read_csv(this_filepath)
 
   table_name <- gsub(".csv","",variable)
+  # Get the primary key column names from the database
+  query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
+  primary_key_columns <- dbGetQuery(my_db, query)
+  
+  # Perform Validation
+  #source("Validation.R")
   
   RSQLite::dbWriteTable(my_db,table_name,this_file_contents,append=TRUE)
 }
 
 ```
+
+```{sql connection=my_db}
+
+select *
+from customers;
+```
+
 
 # Data Analysis using SQL 
 

@@ -26,9 +26,12 @@ for (variable in all_files) {
     
     print(paste("Writing table to database:", table_name))
     my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"./database/ecommerse.db")
+    
     # Get the primary key column names from the database
     query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
     primary_key_columns <- dbGetQuery(my_db, query)
+    
+    # Get Foreign Key
     
     
     # Perform Validation

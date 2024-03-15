@@ -1,6 +1,6 @@
 print("Performing Validation")
 
-# 1. Check duplicate primary key within CSV file
+# ------ 1. Check duplicate primary key within CSV file ------
 print(paste0("Checking duplicate primary for: ",variable))
 
 number_of_rows <- nrow(this_file_contents)
@@ -15,31 +15,13 @@ for (i in primary_key_columns) {
 }
 
 
-# 2. Check data quality and integrity
+# ------ 2. Check data quality and integrity ------
 print(paste0("Checking integrity for: ",variable))
 
 # Function to validate email addresses
-# check email format
-email_format <- function(emails) {
+validate_emails <- function(emails) {
   pattern <- "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
   grepl(pattern, emails)
-}
-# error handling
-validate_emails <- function(this_file_contents) {
-  tmp_table <- this_file_contents
-  tmp_table$valid_email <- email_format(this_file_contents$email)
-  for (i in 1:nrow(tmp_table)){
-    tmp_row <- tmp_table[i,]
-    if (!tmp_row$valid_email) {
-      warning("Email Format of ID: ",tmp_row$id," is incorrect. Please check." )
-    }
-  }
-  if (all(tmp_table$valid_email) == TRUE){
-    print("Email Format: Passed!")
-  }
-  tmp_table <- tmp_table[tmp_table$valid_email,] # remove row
-  tmp_table <- tmp_table[, !names(tmp_table) %in% "valid_email"] # remove check column
-  return(tmp_table)
 }
 
 # Function to validate phone numbers
@@ -67,22 +49,60 @@ validate_currencies <- function(currencies) {
   grepl(pattern, currencies)
 }
 
+# Function error handling
+validation <- function(this_file_contents,type,column) {
+  tmp_table <- this_file_contents
+  print(tmp_table)
+  if (type == 'Email') {
+    tmp_table$valid_format <- validate_emails(column)
+  } else if (type == 'Phone_numbers') {
+    tmp_table$valid_format <- validate_phones(column)
+  } else if (type == 'Dates') {
+    tmp_table$valid_format <- validate_dates(column)
+  } else if (type == 'Prices' || type == 'Budget') {
+    tmp_table$valid_format <- validate_prices(column)
+  } else if (type == 'Currencies') {
+    tmp_table$valid_format <- validate_currencies(column)
+  }
+  print(tmp_table)
+  for (i in 1:nrow(tmp_table)){
+    tmp_row <- tmp_table[i,]
+    if (!tmp_row$valid_format) {
+      warning(type," Format of ID: ",tmp_row$id," is incorrect. Please check." )
+    }
+  }
+  if (all(tmp_table$valid_format) == TRUE){
+    print(paste(type," Format: Passed!"))
+  }
+  tmp_table <- tmp_table[tmp_table$valid_format,] # remove row
+  tmp_table <- tmp_table[, !names(tmp_table) %in% "valid_format"] # remove check column
+  return(tmp_table)
+}
+
 
 # Perform integrity check
 if (table_name == 'customers' && nrow(this_file_contents) >0) {
-  this_file_contents <- validate_emails(this_file_contents)
+  this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
   
 } else if (table_name == 'orders' && nrow(this_file_contents) >0) {
-  
+  this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
 } else if (table_name == 'products' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Prices',this_file_contents$price)
+  this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
   
 } else if (table_name == 'categories' && nrow(this_file_contents) >0) {
   
 } else if (table_name == 'sellers' && nrow(this_file_contents) >0) {
-  this_file_contents <- validate_emails(this_file_contents)
+  this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
   
 } else if (table_name == 'shippers' && nrow(this_file_contents) >0) {
-  
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
 } else if (table_name == 'advertisements' && nrow(this_file_contents) >0) {
-  
+  this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
+  this_file_contents <- validation(this_file_contents,'Budget',this_file_contents$budget)
 }
+
+
+# ------ 3. Check Foreign key ------
+
