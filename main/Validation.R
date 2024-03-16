@@ -52,7 +52,6 @@ validate_currencies <- function(currencies) {
 # Function error handling
 validation <- function(this_file_contents,type,column) {
   tmp_table <- this_file_contents
-  print(tmp_table)
   if (type == 'Email') {
     tmp_table$valid_format <- validate_emails(column)
   } else if (type == 'Phone_numbers') {
@@ -68,7 +67,7 @@ validation <- function(this_file_contents,type,column) {
   for (i in 1:nrow(tmp_table)){
     tmp_row <- tmp_table[i,]
     if (!tmp_row$valid_format) {
-      warning(type," Format of ID: ",tmp_row$id," is incorrect. Please check." )
+      warning(type," Format of ID: ",tmp_row$id, " in ", variable," is incorrect. Please check." )
     }
   }
   if (all(tmp_table$valid_format) == TRUE){
@@ -83,10 +82,10 @@ validation <- function(this_file_contents,type,column) {
 # Perform integrity check
 if (table_name == 'customers' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
-  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
+  #this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
   
 } else if (table_name == 'orders' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
+  #this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
 } else if (table_name == 'products' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Prices',this_file_contents$price)
   this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
@@ -97,7 +96,7 @@ if (table_name == 'customers' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
   
 } else if (table_name == 'shippers' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
+  #this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
 } else if (table_name == 'advertisements' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
   this_file_contents <- validation(this_file_contents,'Budget',this_file_contents$budget)
@@ -105,4 +104,36 @@ if (table_name == 'customers' && nrow(this_file_contents) >0) {
 
 
 # ------ 3. Check Foreign key ------
+if(nrow(this_file_contents) >0) {
+  foreign_table <- foreign_key_columns[,'table']
+  tmp_table <- this_file_contents
+  for (i in foreign_table) {
+    foreign_key_ori_column <- foreign_key_columns[foreign_key_columns[,'table'] == i,'from']
+    foreign_key_dest_column <- foreign_key_columns[foreign_key_columns[,'table'] == i,'to']
+    print(paste("Checking Foreign key in table",i, "column:",foreign_key_ori_column))
+    for (j in 1:nrow(this_file_contents)) {
+      foreign_key_value <- this_file_contents[j,foreign_key_ori_column]
+      query <- paste("SELECT", foreign_key_dest_column," FROM",i," WHERE", foreign_key_dest_column,"=", foreign_key_value, ";")
+      result <- dbGetQuery(my_db, query)
+      col <- paste("check_",i,sep="")
+      if (length(result) == 0) {
+        warning("Foreign key is missing in row ID =  ", this_file_contents[j,primary_key_columns[1,]], " Please check.")
+        tmp_table[[col]] <- FALSE
+      } else {
+        print(paste("ID =", this_file_contents[j,primary_key_columns[1,]], "Passed"))
+        tmp_table[[col]] <- TRUE
+      }
+    }
+  }
+  rows_to_remove <- apply(tmp_table[, grepl("^check", names(tmp_table))], 1, function(row) any(!row))
+  tmp_table <- tmp_table[, !grepl("^check", names(tmp_table))] # remove column
+  tmp_table <- tmp_table[!rows_to_remove, ] # remove failed row
+  this_file_contents <- tmp_table
+} else{
+  print("No validation check in this table since there's no foreign key")
+}
+
+print("Validation Completed")
+
+
 

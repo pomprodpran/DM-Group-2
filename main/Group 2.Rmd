@@ -18,6 +18,9 @@ library(readr)
 library(RSQLite)
 library(dplyr)
 library(ggplot2)
+library(lubridate)
+library(treemapify)
+
 ```
 
 # Task 1.2: SQL Database Schema Creation
@@ -47,136 +50,18 @@ for (variable in all_files) {
   query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
   primary_key_columns <- dbGetQuery(my_db, query)
   
+  # Get Foreign Key
+  query <- paste("PRAGMA foreign_key_list('",table_name,"');",sep="")
+  foreign_key_columns <- dbGetQuery(my_db, query)
+  
   # Perform Validation
-  #source("Validation.R")
+  source("Validation.R")
   
   RSQLite::dbWriteTable(my_db,table_name,this_file_contents,append=TRUE)
 }
 
 ```
 
-```{sql connection=my_db}
-
-select *
-from customers;
-```
-
-
-# Data Analysis using SQL 
-
-```{sql connection=my_db}
-SELECT * 
-FROM customers
-LIMIT 10;
-```
-```{sql connection=my_db}
--- Products
-SELECT * 
-FROM products
-LIMIT 10;
-```
-
-
-```{sql connection=my_db}
--- Number of Categories
-SELECT COUNT(*) AS total_categories
-FROM categories;
-```
-
-```{sql connection=my_db}
--- Maximum Number of Orders placed by any customer
-SELECT MAX(total_orders) AS max_orders
-FROM (SELECT COUNT(id) AS total_orders
-      FROM orders
-      GROUP BY customer_id) AS order_counts;
-
-```
-
-
-```{sql connection=my_db}
--- Top 5 sellers by the revenue generated
-SELECT s.name AS seller_name, SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_revenue
-FROM sellers AS s
-INNER JOIN products AS p ON s.id = p.seller_id
-INNER JOIN orders AS o ON p.id = o.product_id
-GROUP BY s.name
-ORDER BY total_revenue DESC
-LIMIT 5;
-
-
-```
-
-
-```{sql connection=my_db}
--- Top 10 best-selling products by the quantity sold 
-SELECT p.name AS product_name, SUM(o.quantity) AS total_sold
-FROM products AS p
-INNER JOIN orders AS o ON p.id = o.product_id
-GROUP BY p.name
-ORDER BY total_sold DESC
-LIMIT 10;
-
-
-```
-
-```{sql connection=my_db}
--- Top 10 customers by the total amount spent
-SELECT c.id AS customer_id, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, 
-       SUM(p.price * o.quantity * (1 - o.discount)) AS total_spent
-FROM customers AS c
-INNER JOIN orders AS o ON c.id = o.customer_id
-INNER JOIN products AS p ON o.product_id = p.id
-GROUP BY c.id, customer_name
-ORDER BY total_spent DESC
-LIMIT 10;
-
-
-```
-
-
-```{sql connection=my_db}
--- Top 10 shippers with highest number of shippings
-SELECT s.name AS shipper_name, COUNT(*) AS total_shippings
-FROM shippers AS s
-JOIN orders AS o ON s.id = o.shipper_id
-GROUP BY s.name
-ORDER BY total_shippings DESC
-LIMIT 10;
-
-```
-
-```{sql connection=my_db}
--- Average discount percentage applied to orders
-SELECT AVG(discount) AS average_discount
-FROM orders;
-```
-
-
-```{r}
-## Categories with number of products in each category
-
-category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.id) AS num_products
-                              FROM products AS p
-                              INNER JOIN categories AS c ON p.category_id = c.id
-                              GROUP BY p.category_id, c.name
-                              ORDER BY num_products DESC
-                              LIMIT 10")
-
-ggplot(category_products, aes(x = reorder(category_name, -num_products), y = num_products)) +
-  geom_bar(stat = "identity", fill = "maroon", color = "black") +
-  labs(title = "Number of Products in Each Category",
-       x = "Category Name",
-       y = "Number of Products") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
-        axis.title.y = element_text(size = 12),
-        axis.title.x = element_text(size = 12),
-        plot.title = element_text(size = 14, hjust = 0.5),
-        panel.border = element_rect(color = "black", fill = NA, size = 1),
-        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
-  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black")  # Add labels for each bar
-
-```
 # Reading data from database after validation
 
 ```{r}
@@ -209,75 +94,332 @@ products <- dbGetQuery(my_db,
                        sql_queries$products)
 sellers <- dbGetQuery(my_db, 
                       sql_queries$sellers)
-
 ```
 
-# Using dplyr, tidyr and ggplot to visualise the data
+# Data Analysis 
+
+```{sql connection=my_db}
+-- Average discount percentage applied to orders
+SELECT AVG(discount) AS average_discount
+FROM orders;
+```
+
+```{sql connection=my_db}
+-- Number of Categories
+SELECT COUNT(*) AS total_categories
+FROM categories;
+```
+
+# Query 1:  Number of Products in Each Category
 
 ```{r}
-# Top 10 Customers segmented by the Total Amount Spent
-order_details <- orders %>%
-  inner_join(products, by = "id") %>%
-  inner_join(customers, by = "id")
+## Categories with number of products in each category
 
-# Calculate total amount spent by each customer
-customer_spending <- order_details %>%
-  group_by(customer_id, first_name, last_name) %>%
-  summarise(total_spent = sum(price * quantity * (1 - (discount / 100))), .groups = "drop") %>%
-  arrange(desc(total_spent)) %>%
-  top_n(10, total_spent)
+category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.id) AS num_products
+                              FROM products AS p
+                              INNER JOIN categories AS c ON p.category_id = c.id
+                              GROUP BY p.category_id, c.name
+                              ORDER BY num_products DESC
+                              LIMIT 10")
 
-# Plot top 10 customers with respect to amount spent
-ggplot(customer_spending, aes(x = reorder(paste(first_name, last_name), -total_spent), y = total_spent)) +
-  geom_bar(stat = "identity", fill = "salmon") +  # Change fill color to salmon
-  labs(title = "Top 10 Customers by Amount Spent",
-       x = "Customer",
-       y = "Total Amount Spent") +
-  coord_flip() +  # Flip the axis
+category_products %>%
+ggplot(aes(x = reorder(category_name, -num_products), y = num_products)) +
+  geom_bar(stat = "identity", fill = "maroon", color = "black") +
+  labs(title = "Number of Products in Each Category",
+       x = "Category Name",
+       y = "Number of Products") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black")) 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        axis.title.y = element_text(size = 12),
+        axis.title.x = element_text(size = 12),
+        plot.title = element_text(size = 14, hjust = 0.5),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
+  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black")  # Add labels for each bar
+
 ```
 
+# Query 2: Monthly Sales Analysis
 
 ```{r}
-# Top 10 selling products
-product_sales <- order_details %>%
-  group_by(product_id, name) %>%
-  summarise(total_quantity_sold = sum(quantity)) %>%
-  arrange(desc(total_quantity_sold)) %>%
-  top_n(10, total_quantity_sold)
 
-top_10_products <- head(product_sales, 10)
+daily_sales <- dbGetQuery(my_db, "
+  SELECT order_date,
+  price * quantity * (1 - (discount / 100)) AS revenue
+  FROM orders
+  JOIN products ON orders.product_id = products.id
+")
 
-ggplot(top_10_products, aes(x = reorder(name, total_quantity_sold), y = total_quantity_sold)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
+# Convert order_date to date format
+daily_sales$order_date <- as.Date(daily_sales$order_date, format = "%d/%m/%Y")
+
+# Aggregate by month
+monthly_sales <- daily_sales %>%
+  mutate(year_month = floor_date(order_date, "month")) %>%
+  group_by(year_month) %>%
+  summarise(revenue = sum(revenue))
+
+# Plot monthly sales trend with advanced visualization
+ggplot(monthly_sales, aes(x = year_month, y = revenue)) +
+  geom_line(color = "blue", size = 1.5) +
+  geom_point(color = "red", size = 3) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
+  labs(title = "Monthly Sales Trend", x = "Date", y = "Revenue") +
+  theme_bw() + 
+  theme(plot.title = element_text(size = 20, face = "bold"),
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 12),
+        legend.position = "none",
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) + # Rotate x-axis labels vertically
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "$"))
+
+
+```
+
+# Query 3: Top 10 Selling Products by Quantity Sold
+
+```{r}
+top_products <- dbGetQuery(my_db,
+  "SELECT p.name AS product_name, SUM(o.quantity) AS total_sold
+  FROM products AS p
+  INNER JOIN orders AS o ON p.id = o.product_id
+  GROUP BY p.name
+  ORDER BY total_sold DESC
+  LIMIT 10")
+
+
+top_products %>%
+  ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, fill = product_name)) +
+  geom_bar(stat = "identity", color = "black") +
+  scale_fill_brewer(palette = "Paired") +  # Using a built-in palette
   labs(title = "Top 10 Selling Products",
        x = "Product",
        y = "Total Quantity Sold") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+        axis.text.y = element_text(size = 12, color = "black"),
+        axis.title = element_text(size = 16, color = "black", face = "bold"),
+        plot.title = element_text(size = 20, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_y_continuous(labels = scales::comma_format()) +
+  coord_flip() +  # Flip the coordinates to make horizontal bars
+  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold")
 
 ```
 
+
+# Query 4: Top 10 Sellers by the Total Revenue
 
 ```{r}
-# Top 10 shippers by the number of orders shipped
-shipper_counts <- orders %>%
-  group_by(shipper_id) %>%
-  summarise(total_orders = n()) %>%
-  arrange(desc(total_orders)) %>%
-  slice(1:10)  
 
-ggplot(shipper_counts, aes(x = reorder(shipper_id, total_orders), y = total_orders)) +
-  geom_bar(stat = "identity", fill = "grey") +
-  labs(title = "Orders by Shipper",
-       x = "Shipper ID",
-       y = "Total Orders") +
+top_sellers <- dbGetQuery(my_db,
+                "SELECT s.name AS seller_name, SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_revenue
+                FROM sellers AS s
+                INNER JOIN products AS p ON s.id = p.seller_id
+                INNER JOIN orders AS o ON p.id = o.product_id
+                GROUP BY s.name
+                ORDER BY total_revenue DESC
+                LIMIT 10")
+
+top_sellers %>%
+ggplot(aes(x = total_revenue, y = reorder(seller_name, total_revenue), fill = seller_name)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Sellers by Total Revenue",
+       subtitle = "Total Revenue for the Top 10 Sellers",
+       x = "Total Revenue",
+       y = "Seller") +
+  scale_fill_brewer(palette = "Paired") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 20, face = "bold"),
+        plot.subtitle = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        axis.text.y = element_text(size = 12),
+        axis.text.x = element_text(size = 10, angle = 45, hjust = 1, vjust = 1),  # Adjust angle and justification
+        panel.grid = element_blank()) +
+  geom_text(aes(label = scales::dollar(total_revenue)), 
+            position = position_stack(vjust = 1.2), 
+            hjust = 0.6, color = "black", size = 4) +
+  coord_flip()
+
+```
+
+
+# Query 5: Top 10 Customers by the Amount Spent
+
+```{r}
+top_customers <- dbGetQuery(my_db,
+  "SELECT c.id AS customer_id, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, 
+       SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_spent
+        FROM customers AS c
+        INNER JOIN orders AS o ON c.id = o.customer_id
+        INNER JOIN products AS p ON o.product_id = p.id
+        GROUP BY c.id, customer_name
+        ORDER BY total_spent DESC
+        LIMIT 10"
+)
+
+# Prepare data for stacked bar chart
+
+stacked_bar_data <- top_customers %>%
+arrange(desc(total_spent)) %>%
+ggplot(aes(x = reorder(customer_name, -total_spent), y = total_spent, fill = customer_name)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top Customers' Share of Total Spent",
+       x = "Customer",
+       y = "Total Spent") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  geom_text(aes(label = total_spent), size = 4, color = "black") +
+  coord_flip()
+
+stacked_bar_data
+```
+
+# Query 6: Top Rating Products (Need to re-check)
+
+```{r}
+
+top_rating_products <- dbGetQuery(my_db, "
+  SELECT p.id AS product_id, p.name AS product_name, p.brand, AVG(o.rating_review) AS avg_rating
+  FROM products AS p
+  JOIN orders AS o ON p.id = o.product_id
+  WHERE o.rating_review IS NOT NULL
+  GROUP BY p.id, p.name, p.brand
+  ORDER BY avg_rating DESC
+  LIMIT 10;
+")
+
+# Create the visualization
+top_rating_products %>%
+ggplot(aes(x = product_name, y = avg_rating, fill = brand)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Rated Products",
+       x = "Product",
+       y = "Average Rating",
+       fill = "Brand") +
+  facet_wrap(~ brand, scales = "free") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  geom_text(aes(label = round(avg_rating, 2)), vjust = -0.5, size = 3, color = "black") +
+  coord_flip()
+
+```
+
+## Query 7: Sales by Categories
+
+```{r}
+sales_by_category <- dbGetQuery(my_db, "
+  SELECT c.name AS category_name, SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_sales
+  FROM categories AS c
+  LEFT JOIN products AS p ON c.id = p.category_id
+  LEFT JOIN orders AS o ON p.id = o.product_id
+  GROUP BY c.name
+")
+
+sales_by_category %>%
+ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
+  geom_treemap() +
+  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE) +
+  scale_fill_viridis_d() +  # You can use any other color palette as per your preference
+  labs(title = "Sales by Categories (Tree Map)",
+       fill = "Category",
+       caption = "Sales values are in USD") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.title = element_text(size = 14, face = "bold"),
+        plot.caption = element_text(size = 10, color = "gray"))
+
+```
+
+# Query 8: Sales vs Ad Clicks Analysis
+
+```{r}
+# Query to retrieve total sales and ad clicks for each day
+
+sales_ad_clicks_data <- dbGetQuery(my_db, "
+  SELECT order_date,
+  IFNULL(SUM(p.price * o.quantity * (1 - (o.discount / 100))), 0) AS total_sales,
+  IFNULL(SUM(a.ad_clicks), 0) AS total_ad_clicks
+  FROM orders AS o
+  LEFT JOIN advertisements AS a ON o.product_id = a.product_id
+  LEFT JOIN products AS p ON o.product_id = p.id
+  GROUP BY order_date
+")
+
+# Convert order_date to Date format
+sales_ad_clicks_data$order_date <- as.Date(sales_ad_clicks_data$order_date)
+
+# Aggregate data by month
+sales_ad_clicks_monthly <- sales_ad_clicks_data %>%
+  mutate(order_month = floor_date(order_date, "month")) %>%
+  group_by(order_month) %>%
+  summarise(total_sales = sum(total_sales),
+            total_ad_clicks = sum(total_ad_clicks))
+            
+# Apply log transformation to sales and ad clicks
+sales_ad_clicks_monthly <- sales_ad_clicks_monthly %>%
+  mutate(log_total_sales = log(total_sales + 1),  # Add 1 to avoid log(0)
+         log_total_ad_clicks = log(total_ad_clicks + 1))  # Add 1 to avoid log(0)
+            
+sales_ad_clicks_monthly %>%
+ggplot( aes(x = order_month)) +
+  geom_line(aes(y = log_total_sales, color = "Total Sales"), size = 1.5) +
+  geom_line(aes(y = log_total_ad_clicks, color = "Total Ad Clicks"), linetype = "dashed", size = 1.5) +
+  scale_color_manual(values = c("Total Sales" = "#E41A1C", "Total Ad Clicks" = "#377EB8")) +  # Unique colors
+  labs(title = "Trend of Sales and Ad Clicks Over Time",
+       x = "Month",
+       y = "Log Count") +
+  theme_bw() +
+  theme(legend.position = "top") +
+  scale_x_date(date_labels = "%b %Y", date_breaks = "1 month") +
+  ylim(0, max(c(max(sales_ad_clicks_monthly$log_total_sales), max(sales_ad_clicks_monthly$log_total_ad_clicks))))
 
 
 ```
+
+
+# Query 9: Top 5 Sellers Time Series Analysis
+
+```{r}
+xyz <- dbGetQuery(my_db, "SELECT order_date, seller_id,
+  price * quantity * (1 - (discount / 100)) AS revenue
+  FROM orders
+  JOIN products ON orders.product_id = products.id"
+)
+
+# Convert order_date to Date format
+xyz$order_date <- as.Date(xyz$order_date)
+
+# Aggregate by month
+xyz <- xyz %>%
+  mutate(year_month = floor_date(order_date, "month")) %>%
+  group_by(seller_id, year_month) %>%
+  filter(seller_id %in% top_5_sellers$id)
+
+ggplot(xyz, aes(x = factor(format(year_month, "%b %Y"), 
+                                      levels = unique(format(year_month, "%b %Y"))), 
+                          y = revenue, 
+                          size = revenue)) +  # Set constant size for bubbles
+  geom_point(aes(fill = seller_id), shape = 21, color = "black", alpha = 0.7) +  # Use fill aesthetic for seller names
+  scale_size_continuous(range = c(5, 20)) +
+  labs(title = "Top 5 Sellers Sales Over Time",
+       x = "Order Month",
+       y = "Total Sales",
+       size = NULL,  # Remove legend for size aesthetic
+       fill = "Seller Name") +  # Set legend title
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, margin = margin(t = 5, r = 5, b = 5, l = 5)),
+        axis.title.x = element_blank(),
+        plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Center and style title
+        axis.text = element_text(size = 10),  # Adjust text size
+        axis.title = element_text(size = 12, face = "bold"))  # Adjust title size and style
+
+```
+
 
 
 
