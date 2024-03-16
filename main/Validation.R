@@ -116,11 +116,10 @@ if(nrow(this_file_contents) >0) {
       query <- paste("SELECT", foreign_key_dest_column," FROM",i," WHERE", foreign_key_dest_column,"=", foreign_key_value, ";")
       result <- dbGetQuery(my_db, query)
       col <- paste("check_",i,sep="")
-      if (length(result) == 0) {
+      if (nrow(result) == 0) {
         warning("Foreign key is missing in row ID =  ", this_file_contents[j,primary_key_columns[1,]], " Please check.")
         tmp_table[[col]] <- FALSE
       } else {
-        print(paste("ID =", this_file_contents[j,primary_key_columns[1,]], "Passed"))
         tmp_table[[col]] <- TRUE
       }
     }

@@ -40,6 +40,9 @@ sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
 ```{r}
 # Get only Initial file
 all_files <- setdiff(list.files("../data_upload/"), list.files("../data_upload/", pattern = "_"))
+# Order the files to load to database, to avoid error from foreign key
+custom_order <- list("customers.csv","sellers.csv","categories.csv","products.csv","shippers.csv","orders.csv","advertisements.csv")
+all_files <- all_files[order(match(all_files, custom_order))]
 
 for (variable in all_files) {
   this_filepath <- paste0("../data_upload/",variable)
