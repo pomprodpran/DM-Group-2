@@ -224,6 +224,14 @@ The data generation is a part of the dynamic process from data generation to dat
 
 #### Task 2.2: Data Import and Quality Assurance
 
+Now, we perform the data validation for all the entities in the database. First, we check whether any of the primary keys present in the csv files have duplicates or not. If the number of unique values for a specific primary key column is equal to the total number of rows in the file, then there would be no duplicate primary key values. If there are duplicate entries, then an error message would pop up and the process will stop.
+
+**Phone Numbers:** Phone numbers are validated using numeric values. The first digit for all phone numbers starts with \"1\", followed by 10 numeric values. However, we do not cover the international format and only consider phone numbers from the USA. This is checked in both \"customers\" and \"shippers\" entities.
+
+**Date:** The order date, present in the \"order\" entity, is validated using the YYYY-MM-DD format. The parser interprets the characters in the date according to this format and checks if they follow it. If the dates are valid, the system would indicate **\'TRUE\'**. If the dates are invalid, the system would indicate **\'FALSE\'**, which would indicate a warning message, mentioning that the user must re-enter the date.  
+
+**Currency Code:** For the currency code, we assume that only USD is used. By standardising on a single currency code, the database is less complex and more consistent. This would also make sure the fluctuations in currency would not affect the change in prices.
+
 ### Part 3: Data Pipeline Generation
 
 #### Task 3.1: GitHub Repository and Workflow Setup
