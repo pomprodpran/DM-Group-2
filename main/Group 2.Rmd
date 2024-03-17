@@ -32,7 +32,7 @@ my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerse.db")
 ## CREATE tables 
 ````{bash, eval=FALSE}
 # link to SQL file
-sqlite3 "../database/ecommerse.db" < "../main/ecommerse_v2.sql"
+sqlite3 "../database/ecommerse.db" < "../main/ecommerse.sql"
 ```
 
 # For Initial load
@@ -192,7 +192,7 @@ daily_sales <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-daily_sales$order_date <- as.Date(daily_sales$order_date, format = "%d/%m/%Y")
+daily_sales$order_date <- as.Date(daily_sales$order_date, format = "%Y-%m-%d")
 
 # Aggregate by month
 monthly_sales <- daily_sales %>%
@@ -324,29 +324,37 @@ stacked_bar_data
 ```{r}
 
 top_rating_products <- dbGetQuery(my_db, "
-  SELECT p.id AS product_id, p.name AS product_name, p.brand, AVG(o.rating_review) AS avg_rating
-  FROM products AS p
-  JOIN orders AS o ON p.id = o.product_id
-  WHERE o.rating_review IS NOT NULL
-  GROUP BY p.id, p.name, p.brand
-  ORDER BY avg_rating DESC
-  LIMIT 10;
-")
+SELECT categories.name AS category, AVG(orders.rating_review) AS avg_rating, SUM(orders.quantity) AS total_sales
+FROM products
+INNER JOIN orders ON products.id = orders.product_id
+INNER JOIN categories ON products.category_id = categories.id
+WHERE orders.rating_review IS NOT NULL
+GROUP BY categories.name"
+)
 
 # Create the visualization
-top_rating_products %>%
-ggplot(aes(x = product_name, y = avg_rating, fill = brand)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Top 10 Rated Products",
-       x = "Product",
+ggplot(top_rating_products, aes(x = total_sales, y = avg_rating, size = total_sales, fill = category)) +
+  geom_point(shape = 21, color = "black", alpha = 0.6) + # Adding transparency for better visibility
+  scale_size_continuous(range = c(5, 20)) + # Adjusting size range for better differentiation
+  labs(title = "Product Ratings vs Total Sales by Category",
+       x = "Total Sales",
        y = "Average Rating",
-       fill = "Brand") +
-  facet_wrap(~ brand, scales = "free") +
+       size = "Total Sales",
+       fill = "Category") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "bottom") +
-  geom_text(aes(label = round(avg_rating, 2)), vjust = -0.5, size = 3, color = "black") +
-  coord_flip()
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), # Adjusting title size and alignment
+    axis.title = element_text(size = 12), # Adjusting axis label size
+    axis.text = element_text(size = 10), # Adjusting axis text size
+    legend.title = element_text(size = 12), # Adjusting legend title size
+    legend.text = element_text(size = 10), # Adjusting legend text size
+    legend.position = "bottom", # Positioning the legend at the bottom
+    legend.box = "horizontal" # Setting legend layout to horizontal
+  ) +
+  geom_text(aes(label = category), vjust = -1, hjust = 0, size = 3) + # Adding category labels
+  annotate("text", x = 500, y = 4.5, label = "Bubble size represents total sales", 
+           size = 3, color = "black", fontface = "italic", hjust = 0) # Adding annotation for bubble size explanation
+
 
 ```
 
@@ -362,9 +370,9 @@ sales_by_category <- dbGetQuery(my_db, "
 ")
 
 sales_by_category %>%
-ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
+  ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
   geom_treemap() +
-  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE) +
+  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + # Change text color to light grey
   scale_fill_viridis_d() +  # You can use any other color palette as per your preference
   labs(title = "Sales by Categories (Tree Map)",
        fill = "Category",
@@ -373,7 +381,6 @@ ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_nam
   theme(legend.position = "none",
         plot.title = element_text(size = 14, face = "bold"),
         plot.caption = element_text(size = 10, color = "gray"))
-
 ```
 
 # Query 8: Sales vs Ad Clicks Analysis
@@ -432,14 +439,28 @@ xyz <- dbGetQuery(my_db, "SELECT order_date, seller_id,
   JOIN products ON orders.product_id = products.id"
 )
 
+top_5_sellers <- dbGetQuery(my_db,
+                              "SELECT s.id AS seller_id,
+                              s.name AS seller_name,
+                              SUM(o.quantity) AS total_quantity_sold
+                              FROM sellers AS s
+                              INNER JOIN products AS p ON s.id = p.seller_id
+                              INNER JOIN orders AS o ON p.id = o.product_id
+                              GROUP BY s.id, s.name
+                              ORDER BY total_quantity_sold DESC
+                              LIMIT 5"
+)
+
+
 # Convert order_date to Date format
-xyz$order_date <- as.Date(xyz$order_date)
+xyz$order_date <- as.Date(xyz$order_date, format = "%Y-%m-%d" )
+
 
 # Aggregate by month
 xyz <- xyz %>%
   mutate(year_month = floor_date(order_date, "month")) %>%
   group_by(seller_id, year_month) %>%
-  filter(seller_id %in% top_5_sellers$id)
+  filter(seller_id %in% top_5_sellers$seller_id)
 
 ggplot(xyz, aes(x = factor(format(year_month, "%b %Y"), 
                                       levels = unique(format(year_month, "%b %Y"))), 
@@ -460,9 +481,43 @@ ggplot(xyz, aes(x = factor(format(year_month, "%b %Y"),
         axis.title = element_text(size = 12, face = "bold"))  # Adjust title size and style
 
 ```
+# Query 10: Average Ratings of Products in each Category 
 
 
+```{r}
 
+rating_category <- dbGetQuery(my_db,
+                              "SELECT categories.name AS category, AVG(orders.rating_review) AS avg_rating
+                              FROM products
+                              INNER JOIN orders ON products.id = orders.product_id
+                              INNER JOIN categories ON products.category_id = categories.id
+                              WHERE orders.rating_review IS NOT NULL
+                              GROUP BY categories.name"
+)
+
+# Create a bar chart for analyzing average ratings by category
+ggplot(rating_category, aes(x = category, y = avg_rating, fill = category)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average Ratings of Products by Category",
+       x = "Category",
+       y = "Average Rating") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 10, color = "#333333"), # Adjust text size and color
+    axis.text.y = element_text(size = 10, color = "#333333"), # Adjust text size and color
+    axis.title = element_text(size = 12, color = "#333333"), # Adjust axis title size and color
+    plot.title = element_text(hjust = 0.5, size = 16, color = "#333333", face = "bold"), # Adjust title size and color, make it bold
+    panel.background = element_rect(fill = "#f2f2f2"), # Change background color
+    panel.grid.major = element_blank(), # Remove major gridlines
+    panel.grid.minor = element_blank(), # Remove minor gridlines
+    legend.position = "none" # Remove legend
+  ) +
+  geom_text(aes(label = round(avg_rating, 2)), vjust = -0.5, size = 3, fontface = "bold", color = "black") + # Add data labels with bold font and black color
+  scale_fill_brewer(palette = "Set3") + # Apply a qualitative color palette
+  coord_flip() # Flip the coordinates for better readability
+
+
+```
 
 ```{r}
 # check the strcture of the dataset

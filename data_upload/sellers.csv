@@ -2,13 +2,13 @@ id,name,email,address_street_number,address_street_name,address_street_suffix,ad
 1,Windler LLC,ptrevett0@xing.com,24,Main,Park,Tacoma,Washington,United States,98481
 2,"Frami, Bauch and Blanda",ameron1@wikipedia.org,5657,Shasta,Place,El Paso,Texas,United States,79905
 3,Herman and Sons,rturton2@amazon.co.uk,5,Springs,Court,Chicago,Illinois,United States,60691
-4,"Wyman, O'Hara and Yundt",abroy3@oaic.gov.au,527,Shasta,Court,Tulsa,Oklahoma,United States,74108
+4,"Wyman, OHara and Yundt",abroy3@oaic.gov.au,527,Shasta,Court,Tulsa,Oklahoma,United States,74108
 5,"Hills, Brakus and Graham",ckliement4@sakura.ne.jp,1602,Service,Point,Houston,Texas,United States,77218
 6,Trantow-Frami,hallmark5@netvibes.com,3,Namekagon,Court,Richmond,Virginia,United States,23220
 7,Bartoletti and Sons,clegerwood6@vimeo.com,42808,Colorado,Drive,New York City,New York,United States,10045
 8,Schultz-Bechtelar,cruggles7@aboutads.info,431,Meadow Valley,Circle,Littleton,Colorado,United States,80126
 9,Farrell Inc,hnarup8@issuu.com,3939,Fremont,Road,Pittsburgh,Pennsylvania,United States,15250
-10,Dach-Zieme,fharnes9@loc.gov,52,Anthes,Parkway,Portsmouth,New Hampshire,United States,00214
+10,Dach-Zieme,fharnes9@loc.gov,52,Anthes,Parkway,Portsmouth,New Hampshire,United States,214
 11,Huels and Sons,alicquorisha@shop-pro.jp,9,Sachtjen,Center,Minneapolis,Minnesota,United States,55487
 12,"Predovic, Morar and Jacobson",csemensb@php.net,14452,Barby,Drive,Brooklyn,New York,United States,11254
 13,Purdy LLC,jbethamc@hp.com,120,Prentice,Road,Asheville,North Carolina,United States,28815
@@ -20,17 +20,17 @@ id,name,email,address_street_number,address_street_name,address_street_suffix,ad
 19,Bechtelar and Sons,crubinowiczi@xing.com,8880,Sutteridge,Road,Las Vegas,Nevada,United States,89105
 20,Heaney-Oberbrunner,ygennrichj@icq.com,78501,Pankratz,Pass,Chula Vista,California,United States,91913
 21,"Jakubowski, Sporer and Monahan",mhateleyk@feedburner.com,19,Grayhawk,Way,Bronx,New York,United States,10469
-22,Marvin LLC,gjuanicol@msn.com,089,Pleasure,Drive,Greensboro,North Carolina,United States,27415
+22,Marvin LLC,gjuanicol@msn.com,89,Pleasure,Drive,Greensboro,North Carolina,United States,27415
 23,"Frami, Bashirian and Bins",bbiddissm@foxnews.com,428,Manitowish,Park,Pinellas Park,Florida,United States,34665
 24,Collins and Sons,dsheen@tmall.com,9242,Ramsey,Trail,Dallas,Texas,United States,75236
 25,Hilll-Hettinger,hfurlongeo@army.mil,50125,Luster,Avenue,Fort Wayne,Indiana,United States,46867
-26,"Ankunding, Bins and Torphy",bfraczakp@usda.gov,09104,Tony,Center,Rochester,New York,United States,14619
+26,"Ankunding, Bins and Torphy",bfraczakp@usda.gov,9104,Tony,Center,Rochester,New York,United States,14619
 27,Bogisich-Davis,mevelynq@cisco.com,5,Hansons,Parkway,Midland,Texas,United States,79710
 28,Hegmann-Ernser,jheppnerr@trellian.com,202,Anderson,Avenue,Birmingham,Alabama,United States,35225
 29,"Schroeder, Walter and Jerde",dgoudys@craigslist.org,60,Kings,Court,El Paso,Texas,United States,79928
 30,Lakin-Bosco,tmerigeaut@google.ru,1946,Fulton,Parkway,Flint,Michigan,United States,48505
 31,"Runolfsson, Heidenreich and Fahey",saggeu@ucla.edu,26,Morrow,Circle,Huntsville,Alabama,United States,35895
-32,"Jones, Veum and O'Kon",bstuehmeyerv@over-blog.com,50,Harbort,Park,Sacramento,California,United States,94207
+32,"Jones, Veum and OKon",bstuehmeyerv@over-blog.com,50,Harbort,Park,Sacramento,California,United States,94207
 33,Lindgren-Sanford,vkearsw@wsj.com,3239,Northport,Road,Santa Ana,California,United States,92705
 34,Schuster-Fritsch,igoterx@bbc.co.uk,369,Claremont,Lane,Prescott,Arizona,United States,86305
 35,Nolan and Sons,astickleyy@is.gd,2,Carpenter,Plaza,Washington,District of Columbia,United States,20057
@@ -39,7 +39,7 @@ id,name,email,address_street_number,address_street_name,address_street_suffix,ad
 38,Erdman Inc,ecowe11@ebay.com,52,Dottie,Court,Washington,District of Columbia,United States,20226
 39,"Mertz, Mueller and Goldner",vcrotty12@unesco.org,8895,4th,Way,Springfield,Illinois,United States,62764
 40,Schuster-Bartell,sbernardot13@google.nl,40691,Carioca,Hill,Lima,Ohio,United States,45807
-41,Ullrich-Lockman,gheaney14@a8.net,05,Amoth,Parkway,Dallas,Texas,United States,75216
+41,Ullrich-Lockman,gheaney14@a8.net,5,Amoth,Parkway,Dallas,Texas,United States,75216
 42,Luettgen-Braun,cdudny15@dot.gov,481,Superior,Hill,Troy,Michigan,United States,48098
 43,Friesen Inc,mmarde16@mediafire.com,957,Ilene,Park,Inglewood,California,United States,90305
 44,Hackett LLC,gfidilis17@cornell.edu,73957,Elka,Street,Buffalo,New York,United States,14263
@@ -48,4 +48,4 @@ id,name,email,address_street_number,address_street_name,address_street_suffix,ad
 47,"Kozey, Boyer and Wisoky",gjiricka1a@creativecommons.org,96,Dryden,Lane,Fort Smith,Arkansas,United States,72916
 48,Brekke-Pouros,cbier1b@cmu.edu,18,Coolidge,Trail,Saint Augustine,Florida,United States,32092
 49,Hodkiewicz Inc,lcrain1c@theglobeandmail.com,48,Sundown,Crossing,Columbia,South Carolina,United States,29203
-50,O'Conner and Sons,bchalk1d@google.pl,5170,Nancy,Avenue,Youngstown,Ohio,United States,44555
+50,OConner and Sons,bchalk1d@google.pl,5170,Nancy,Avenue,Youngstown,Ohio,United States,44555
