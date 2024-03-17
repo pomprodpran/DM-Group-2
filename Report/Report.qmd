@@ -15,6 +15,15 @@ author: "Group 2"
 
 ![ER Diagram](ER%20Diagram.jpg)
 
+Assumptions & Justification:
+
+-   Products are classified into categories (unique by category ID). Each product belongs to only one category whilst one category can include multiple products, forming the 1:M relationship between Categories and Products entity.
+-   Identical items sold by different sellers (unique by seller ID) are considered different products and have unique product ID in the database. Thus, one product can have only one seller but one seller may distribute multiple products, forming the 1:M relationship between Sellers and Products entity. This conceptual design is important to track inventory for each product sold by each seller.
+-   Advertisements (unique by ID) are specific for each product but one product can have multiple advertisements, forming the 1:M relationship between Products and Advertisements entity
+-   Customers are unique by ID and **email address**. For simplification, we assume only current shipping address and current payment method are captured in the database. Address and customer name are composite attributes which are flatten in the logical and physical schema.
+-   Multiple customers can order multiple products that will be delivered to them by a selection of shippers (e.g., depending on the warehouse location), forming the ternary M:N relationship among the three entities. Each time a customer commits an order, a unique order ID will be generated. Each order will have quantity, date and time.
+-   A customer can only leave a review on a product if he has ordered it. Thus rating_reviews must be specific to an order, forming an attribute of the Orders relationship.
+
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
 
 #### Task 1.2: SQL Database Schema Creation
@@ -28,15 +37,6 @@ author: "Group 2"
 -   **Categories** ($\underline{id}$[,]{.underline} name, description)
 
 The primary keys are underlined. Double underlining represents foreign keys. Relationships between tables are represented by lines connecting corresponding attributes, indicating the associations between entities.
-
-Assumptions & Justification:
-
--   Products are classified into categories (unique by category ID). Each product belongs to only one category whilst one category can include multiple products, forming the 1:M relationship between Categories and Products entity.
--   Identical items sold by different sellers (unique by seller ID) are considered different products and have unique product ID in the database. Thus, one product can have only one seller but one seller may distribute multiple products, forming the 1:M relationship between Sellers and Products entity. This conceptual design is important to track inventory for each product sold by each seller.
--   Advertisements (unique by ID) are specific for each product but one product can have multiple advertisements, forming the 1:M relationship between Products and Advertisements entity
--   Customers are unique by ID and **email address**. For simplification, we assume only current shipping address and current payment method are captured in the database. Address and customer name are composite attributes which are flatten in the logical and physical schema.
--   Multiple customers can order multiple products that will be delivered to them by a selection of shippers (e.g., depending on the warehouse location), forming the ternary M:N relationship among the three entities. Each time a customer commits an order, a unique order ID will be generated. Each order will have quantity, date and time.
--   A customer can only leave a review on a product if he has ordered it. Thus rating_reviews must be specific to an order, forming an attribute of the Orders relationship.
 
 Will add code chunks of table creation here
 
