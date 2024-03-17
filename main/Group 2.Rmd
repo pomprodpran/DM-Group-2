@@ -26,13 +26,13 @@ library(treemapify)
 # Task 1.2: SQL Database Schema Creation
 ```{r connect}
 # set up the connection
-my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerse.db")
+my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerce.db")
 ```
 
 ## CREATE tables 
 ````{bash, eval=FALSE}
 # link to SQL file
-sqlite3 "../database/ecommerse.db" < "../main/ecommerse.sql"
+sqlite3 "../database/ecommerce.db" < "../main/ecommerce.sql"
 ```
 
 # For Initial load
@@ -99,8 +99,8 @@ for (variable in all_files) {
 ```
 
 ```{sql connection=my_db}
-select date(order_date) as new
-from orders
+select *
+from customers
 ```
 
 # Reading data from database after validation
