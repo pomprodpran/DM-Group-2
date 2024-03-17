@@ -9,6 +9,8 @@ author: "Group 2"
 
 ### Overview
 
+![](flowchart.png)
+
 ### Part 1: Database Design and Implementation
 
 #### Task 1.1: E-R Diagram Design
