@@ -71,4 +71,11 @@ for (variable in all_files) {
 }
 print("Done!")
 
-RSQLite::dbDisconnect(my_db)
+# Check if the connection object exists and is valid
+if (exists("my_db") && RSQLite::dbIsValid(my_db)) {
+  # Disconnect from the database
+  RSQLite::dbDisconnect(my_db)
+} else {
+  # Print a message or handle the case where the connection object is not found or invalid
+  print("Connection object not found or is invalid.")
+}
