@@ -20,7 +20,6 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(treemapify)
-
 ```
 
 # Task 1.2: SQL Database Schema Creation
@@ -575,8 +574,11 @@ rating_category <- dbGetQuery(my_db,
                               INNER JOIN orders ON products.id = orders.product_id
                               INNER JOIN categories ON products.category_id = categories.id
                               WHERE orders.rating_review IS NOT NULL
-                              GROUP BY categories.name"
+                              GROUP BY categories.name
+                              ORDER BY avg_rating DESC"
 )
+
+rating_category$category <- factor(rating_category$category, levels = rating_category$category[order(rating_category$avg_rating, decreasing = FALSE)])
 
 # Create a bar chart for analyzing average ratings by category
 ggplot(rating_category, aes(x = category, y = avg_rating, fill = category)) +
@@ -609,6 +611,7 @@ ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
               this_filename_time,".png"))
 
 ```
+
 
 ```{r}
 # check the strcture of the dataset
