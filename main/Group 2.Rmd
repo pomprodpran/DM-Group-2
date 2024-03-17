@@ -49,6 +49,7 @@ for (variable in all_files) {
   this_file_contents <- readr::read_csv(this_filepath)
 
   table_name <- gsub(".csv","",variable)
+  
   # Get the primary key column names from the database
   query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
   primary_key_columns <- dbGetQuery(my_db, query)
@@ -60,9 +61,46 @@ for (variable in all_files) {
   # Perform Validation
   source("Validation.R")
   
-  RSQLite::dbWriteTable(my_db,table_name,this_file_contents,append=TRUE)
+  # convert column date format
+  if (table_name == 'orders') {
+    this_file_contents['order_date'] <- lapply(this_file_contents['order_date'], as.character)
+  }
+  
+  if (nrow(this_file_contents)>0 ){
+      for (i in 1:nrow(this_file_contents)) {
+        row <- this_file_contents[i, ]
+        
+        # Extract primary key values from the row
+        primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
+        
+        # Find if the primary key exists
+        query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
+        existing_row <- dbGetQuery(my_db, query)
+        
+        if (nrow(existing_row) == 0) {
+          # Row is unique, append to the table
+          #print(paste("Append:",primary_key_values))
+          dbWriteTable(my_db, table_name, row, append = TRUE)
+        } else {
+          # Row already exists, update the existing row
+          #print(paste("Update:",primary_key_values))
+          update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
+          dbExecute(my_db, update_query)
+        }
+      }
+    }
+    else {
+      print("Nothing to update in database since all rows are not pass the validations")
+    }
+  
+  #RSQLite::dbWriteTable(my_db,table_name,this_file_contents,append=TRUE)
 }
 
+```
+
+```{sql connection=my_db}
+select date(order_date) as new
+from orders
 ```
 
 # Reading data from database after validation

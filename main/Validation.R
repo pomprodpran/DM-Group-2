@@ -27,8 +27,10 @@ validate_emails <- function(emails) {
 # Function to validate phone numbers
 validate_phones <- function(phones) {
   # This is a simple example and might not cover all international formats
-  pattern <- "^\\+?[1-9][0-9]{7,14}$"
+  pattern <- "^\\+[1-9] [1-9]{3} [1-9]{3} [1-9]{4}$"
   grepl(pattern, phones)
+  print(phones)
+  print(paste('test',grepl(pattern, phones)))
 }
 
 # Function to validate dates
@@ -63,7 +65,7 @@ validation <- function(this_file_contents,type,column) {
   } else if (type == 'Currencies') {
     tmp_table$valid_format <- validate_currencies(column)
   }
-  print(tmp_table)
+  print(tmp_table$valid_format)
   for (i in 1:nrow(tmp_table)){
     tmp_row <- tmp_table[i,]
     if (!tmp_row$valid_format) {
@@ -83,9 +85,9 @@ validation <- function(this_file_contents,type,column) {
 if (table_name == 'customers' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
   #this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
-  
+
 } else if (table_name == 'orders' && nrow(this_file_contents) >0) {
-  #this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
+  this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
 } else if (table_name == 'products' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Prices',this_file_contents$price)
   this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
