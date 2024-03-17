@@ -227,6 +227,10 @@ The data generation is a part of the dynamic process from data generation to dat
 
 #### Task 3.1: GitHub Repository and Workflow Setup
 
+For setting up the GitHub repository and workflow, we first create a new repository for our project on GitHub, and then clone it to our local machine using Git. This enables collaboration within our group, allowing everyone to work together and make changes to the project through GitHub. After cloning the repository locally, we add our database file, e-commerce data file, report file, as well as scripts for data validation, transformation, data analysis, and data visualization to the repository. 
+
+Within the 'database' file, an e-commerce database is created, and in the 'data upload' file, we upload all the generated data, including tables: advertisements, categories, customers, products, sellers, shippers. Within the ‘main’ file, we have data analysis visualizations file, and transformation, validation scripts.
+
 #### Task 3.2: GitHub Actions for Continuous Integration
 
 ### Part 4: Data Analysis and Reporting with Quarto in R
