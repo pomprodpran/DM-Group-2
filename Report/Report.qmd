@@ -80,7 +80,7 @@ my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerce.db")
 
 ```{bash schema, eval=FALSE}
 # 2. link to SQL file to write the schema
-sqlite3 "../database/ecommerse.db" < "../main/ecommerce.sql"
+sqlite3 "../database/ecommerce.db" < "../main/ecommerce.sql"
 ```
 
 The code in **ecommerse.sql** file are shown below:
