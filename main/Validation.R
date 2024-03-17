@@ -10,7 +10,7 @@ for (i in primary_key_columns) {
     print(paste("Primary key =",i,": Passed"))
   }
   else {
-    stop(paste("Found duplcate record in ", variable,": STOP process!"))
+    stop(paste("Found duplicate record in ", variable,": STOP process!"))
   }
 }
 
