@@ -15,9 +15,9 @@ id,product_id,content,ad_clicks,budget,currency
 14,29,Find your perfect fit with our customizable options,927357,517,USD
 15,90,Unlock new experiences with our diverse range of products,610156,1210,USD
 16,157,Make a lasting impression with our standout offerings,10687,1020,USD
-17,234,Find what you're looking for in our extensive selection,507901,3584,USD
+17,234,Find what you are looking for in our extensive selection,507901,3584,USD
 18,388,Unveil the potential with our innovative products,194445,4396,USD
-19,452,Find what you're looking for in our extensive selection,111782,3426,USD
+19,452,Find what you are looking for in our extensive selection,111782,3426,USD
 20,200,Transform your experience with our high-quality offerings,255157,3011,USD
 21,306,Unlock new experiences with our diverse range of products,236016,1416,USD
 22,275,Experience peace of mind with our reliable products,990278,3825,USD
@@ -37,7 +37,7 @@ id,product_id,content,ad_clicks,budget,currency
 36,41,Elevate your standards with our premium selection,802588,3274,USD
 37,279,Experience the difference with our unparalleled quality,635883,4588,USD
 38,34,Innovation tailored to fit your lifestyle,813582,4026,USD
-39,474,Find what you're looking for in our extensive selection,18411,2704,USD
+39,474,Find what you are looking for in our extensive selection,18411,2704,USD
 40,394,Innovation tailored to fit your lifestyle,700677,1384,USD
 41,432,Discover the ultimate in versatility and performance,179197,1302,USD
 42,243,Elevate your standards with our premium selection,158310,2828,USD
@@ -81,7 +81,7 @@ id,product_id,content,ad_clicks,budget,currency
 80,296,Invest in quality that stands the test of time,322500,1532,USD
 81,283,Discover the perfect solution for your needs,572376,1100,USD
 82,176,Unleash possibilities with our versatile products,136743,4975,USD
-83,157,Find what you're looking for in our extensive selection,756906,4786,USD
+83,157,Find what you are looking for in our extensive selection,756906,4786,USD
 84,151,Transform your experience with our high-quality offerings,501712,655,USD
 85,380,Quality meets affordability in every product,429042,1158,USD
 86,79,Experience peace of mind with our reliable products,61254,820,USD
@@ -111,7 +111,7 @@ id,product_id,content,ad_clicks,budget,currency
 110,21,Unveil the potential with our innovative products,553648,2042,USD
 111,393,Discover the perfect solution for your needs,696512,1796,USD
 112,303,Transform your experience with our high-quality offerings,717227,4428,USD
-113,402,Find what you're looking for in our extensive selection,209323,3777,USD
+113,402,Find what you are looking for in our extensive selection,209323,3777,USD
 114,248,Discover the perfect match for your lifestyle,900029,878,USD
 115,427,Enhance your life with our top-notch solutions,470201,2989,USD
 116,156,Explore a world of options with our comprehensive range,310157,1326,USD
@@ -216,7 +216,7 @@ id,product_id,content,ad_clicks,budget,currency
 215,265,Discover the difference with our premium products,883986,633,USD
 216,90,Transform your experience with our high-quality offerings,16811,1196,USD
 217,222,Unveil the potential with our innovative products,963498,918,USD
-218,133,Find what you're looking for in our extensive selection,795515,2939,USD
+218,133,Find what you are looking for in our extensive selection,795515,2939,USD
 219,338,Step into a world of possibilities with our products,195414,3327,USD
 220,436,Unleash possibilities with our versatile products,75565,3437,USD
 221,84,Transform your experience with our high-quality offerings,272659,3280,USD
@@ -224,12 +224,12 @@ id,product_id,content,ad_clicks,budget,currency
 223,390,Transform your experience with our high-quality offerings,67254,4646,USD
 224,478,Explore a world of options with our comprehensive range,923121,1161,USD
 225,490,Make a lasting impression with our standout offerings,546007,3050,USD
-226,236,Find what you're looking for in our extensive selection,361830,4032,USD
+226,236,Find what you are looking for in our extensive selection,361830,4032,USD
 227,477,Elevate your everyday with our exceptional products,536795,2027,USD
-228,83,Find what you're looking for in our extensive selection,537619,4247,USD
+228,83,Find what you are looking for in our extensive selection,537619,4247,USD
 229,128,Make every moment count with our exceptional offerings,59509,4148,USD
 230,59,Discover the perfect match for your lifestyle,907749,3615,USD
-231,265,Find what you're looking for in our extensive selection,318816,4498,USD
+231,265,Find what you are looking for in our extensive selection,318816,4498,USD
 232,206,Transform your experience with our high-quality offerings,355621,2188,USD
 233,375,Make a lasting impression with our standout offerings,822622,1265,USD
 234,393,Step into a world of possibilities with our products,544614,1037,USD
@@ -257,23 +257,23 @@ id,product_id,content,ad_clicks,budget,currency
 256,402,Explore endless options to suit your preferences,274332,4012,USD
 257,322,Experience excellence with our diverse range of offerings,427426,3021,USD
 258,284,Elevate your everyday with our exceptional products,225670,4295,USD
-259,42,Find what you're looking for in our extensive selection,935983,1745,USD
+259,42,Find what you are looking for in our extensive selection,935983,1745,USD
 260,326,Experience peace of mind with our reliable products,315373,3799,USD
 261,221,Trust in reliability with our trusted brand,848043,4525,USD
 262,132,Experience peace of mind with our reliable products,202505,3159,USD
 263,4,Step into a world of possibilities with our products,225892,2889,USD
 264,221,Discover the perfect blend of style and functionality,195135,2679,USD
-265,368,Find what you're looking for in our extensive selection,224046,1839,USD
+265,368,Find what you are looking for in our extensive selection,224046,1839,USD
 266,135,Discover the ultimate in versatility and performance,291983,4330,USD
 267,298,Elevate your everyday with our exceptional products,816978,3015,USD
-268,178,Find what you're looking for in our extensive selection,913244,1349,USD
+268,178,Find what you are looking for in our extensive selection,913244,1349,USD
 269,100,we have it all,394215,944,USD
 270,340,Experience the difference with our unparalleled quality,160077,1400,USD
 271,338,Elevate your standards with our premium selection,670638,2044,USD
 272,108,From essentials to luxuries,833487,586,USD
 273,119,Enhance your life with our top-notch solutions,352530,3321,USD
 274,105,Explore endless options to suit your preferences,20109,3827,USD
-275,37,Find what you're looking for in our extensive selection,152890,718,USD
+275,37,Find what you are looking for in our extensive selection,152890,718,USD
 276,165,Discover the perfect blend of style and functionality,750359,3801,USD
 277,131,Quality meets affordability in every product,888865,653,USD
 278,254,Discover the perfect match for your lifestyle,69524,3157,USD
@@ -286,7 +286,7 @@ id,product_id,content,ad_clicks,budget,currency
 285,152,Innovation tailored to fit your lifestyle,341438,4636,USD
 286,472,Find your perfect fit with our customizable options,970592,2240,USD
 287,406,Step into a world of possibilities with our products,507582,2683,USD
-288,459,Find what you're looking for in our extensive selection,349556,1690,USD
+288,459,Find what you are looking for in our extensive selection,349556,1690,USD
 289,53,Make a lasting impression with our standout offerings,194153,3793,USD
 290,385,Discover the ultimate in versatility and performance,576043,2708,USD
 291,121,Discover the perfect blend of style and functionality,706809,1525,USD
@@ -308,7 +308,7 @@ id,product_id,content,ad_clicks,budget,currency
 307,299,Discover the ultimate in versatility and performance,740757,1434,USD
 308,385,Discover the perfect solution for your needs,426895,3158,USD
 309,411,Unleash possibilities with our versatile products,116225,1109,USD
-310,185,Find what you're looking for in our extensive selection,427947,4305,USD
+310,185,Find what you are looking for in our extensive selection,427947,4305,USD
 311,118,Discover the perfect blend of style and functionality,501668,708,USD
 312,275,Find your perfect fit with our customizable options,448367,724,USD
 313,361,Explore a world of options with our comprehensive range,908823,1520,USD
@@ -334,7 +334,7 @@ id,product_id,content,ad_clicks,budget,currency
 333,496,Invest in quality that stands the test of time,944616,2524,USD
 334,314,Experience peace of mind with our reliable products,646796,924,USD
 335,64,Make a lasting impression with our standout offerings,498646,3683,USD
-336,215,Find what you're looking for in our extensive selection,388540,3995,USD
+336,215,Find what you are looking for in our extensive selection,388540,3995,USD
 337,96,From essentials to luxuries,582467,3658,USD
 338,348,Stay ahead of the curve with our cutting-edge products,85911,546,USD
 339,2,Experience the difference with our unparalleled quality,880925,1607,USD
@@ -375,14 +375,14 @@ id,product_id,content,ad_clicks,budget,currency
 374,239,Discover the difference with our premium products,533614,2723,USD
 375,356,Discover the perfect solution for your needs,126802,2577,USD
 376,416,we have it all,296635,3537,USD
-377,413,Find what you're looking for in our extensive selection,998046,3160,USD
+377,413,Find what you are looking for in our extensive selection,998046,3160,USD
 378,206,Satisfaction guaranteed with every purchase,683044,4193,USD
 379,46,Innovation tailored to fit your lifestyle,374788,2271,USD
 380,490,Experience the difference with our unparalleled quality,832765,2887,USD
 381,212,From essentials to luxuries,246684,1013,USD
 382,445,Explore a world of options with our comprehensive range,386397,999,USD
 383,388,Experience convenience like never before,948660,2410,USD
-384,331,Find what you're looking for in our extensive selection,224793,1614,USD
+384,331,Find what you are looking for in our extensive selection,224793,1614,USD
 385,263,Experience excellence with our diverse range of offerings,488694,3526,USD
 386,172,Quality meets affordability in every product,963162,2766,USD
 387,84,From essentials to luxuries,439005,4462,USD
@@ -419,16 +419,16 @@ id,product_id,content,ad_clicks,budget,currency
 418,93,Stay ahead of the curve with our cutting-edge products,559769,893,USD
 419,390,Transform your experience with our high-quality offerings,448717,4169,USD
 420,415,Discover the difference with our premium products,439080,2673,USD
-421,480,Find what you're looking for in our extensive selection,894864,4606,USD
+421,480,Find what you are looking for in our extensive selection,894864,4606,USD
 422,241,Make every moment count with our exceptional offerings,734320,3199,USD
 423,412,Invest in quality that stands the test of time,744873,1769,USD
 424,101,Experience convenience like never before,812489,4402,USD
-425,34,Find what you're looking for in our extensive selection,205330,2192,USD
+425,34,Find what you are looking for in our extensive selection,205330,2192,USD
 426,189,Discover the ultimate in versatility and performance,892745,2923,USD
 427,360,Unveil the potential with our innovative products,606870,1938,USD
 428,175,Trust in reliability with our trusted brand,882038,2902,USD
 429,357,Make a lasting impression with our standout offerings,399245,4491,USD
-430,318,Find what you're looking for in our extensive selection,701605,930,USD
+430,318,Find what you are looking for in our extensive selection,701605,930,USD
 431,391,we have it all,56590,2670,USD
 432,159,Find your perfect fit with our customizable options,406334,847,USD
 433,442,Find your perfect fit with our customizable options,16142,4361,USD
@@ -441,7 +441,7 @@ id,product_id,content,ad_clicks,budget,currency
 440,291,Unveil the potential with our innovative products,757194,4516,USD
 441,319,Unlock new experiences with our diverse range of products,770923,2758,USD
 442,401,Invest in quality that stands the test of time,861913,3056,USD
-443,134,Find what you're looking for in our extensive selection,476983,2960,USD
+443,134,Find what you are looking for in our extensive selection,476983,2960,USD
 444,460,Elevate your standards with our premium selection,678744,3997,USD
 445,461,Discover the difference with our premium products,114941,787,USD
 446,294,Experience peace of mind with our reliable products,128475,511,USD
@@ -480,12 +480,12 @@ id,product_id,content,ad_clicks,budget,currency
 479,91,we have it all,256074,3798,USD
 480,66,Invest in quality that stands the test of time,388255,3170,USD
 481,325,Step into a world of possibilities with our products,440392,1700,USD
-482,49,Find what you're looking for in our extensive selection,326192,3690,USD
+482,49,Find what you are looking for in our extensive selection,326192,3690,USD
 483,415,From essentials to luxuries,693934,4861,USD
 484,216,Elevate your standards with our premium selection,167627,1106,USD
 485,125,Make every moment count with our exceptional offerings,894705,4783,USD
 486,215,we have it all,788243,3650,USD
-487,219,Find what you're looking for in our extensive selection,991985,4086,USD
+487,219,Find what you are looking for in our extensive selection,991985,4086,USD
 488,168,Innovation tailored to fit your lifestyle,403665,1600,USD
 489,403,From essentials to luxuries,791870,4746,USD
 490,286,Explore a world of options with our comprehensive range,864523,712,USD
@@ -531,8 +531,8 @@ id,product_id,content,ad_clicks,budget,currency
 530,403,Innovation tailored to fit your lifestyle,184479,1246,USD
 531,184,Unveil the potential with our innovative products,687834,4465,USD
 532,46,Elevate your everyday with our exceptional products,878762,992,USD
-533,421,Find what you're looking for in our extensive selection,346417,2702,USD
-534,256,Find what you're looking for in our extensive selection,995487,4699,USD
+533,421,Find what you are looking for in our extensive selection,346417,2702,USD
+534,256,Find what you are looking for in our extensive selection,995487,4699,USD
 535,357,Quality meets affordability in every product,113924,1373,USD
 536,359,Find your perfect fit with our customizable options,394915,3226,USD
 537,150,Step into a world of possibilities with our products,587302,3352,USD
@@ -562,7 +562,7 @@ id,product_id,content,ad_clicks,budget,currency
 561,8,Unveil the potential with our innovative products,97010,1045,USD
 562,291,Innovation tailored to fit your lifestyle,763550,3786,USD
 563,34,Transform your experience with our high-quality offerings,94047,4003,USD
-564,433,Find what you're looking for in our extensive selection,952341,2430,USD
+564,433,Find what you are looking for in our extensive selection,952341,2430,USD
 565,210,we have it all,234741,2324,USD
 566,327,Unleash possibilities with our versatile products,834777,3558,USD
 567,117,Experience excellence with our diverse range of offerings,575701,599,USD
@@ -632,9 +632,9 @@ id,product_id,content,ad_clicks,budget,currency
 631,337,Explore a world of options with our comprehensive range,245777,4777,USD
 632,432,Discover the ultimate in versatility and performance,47878,1194,USD
 633,70,Find your perfect fit with our customizable options,454626,2993,USD
-634,466,Find what you're looking for in our extensive selection,201053,2285,USD
+634,466,Find what you are looking for in our extensive selection,201053,2285,USD
 635,340,Unleash possibilities with our versatile products,215706,1227,USD
-636,17,Find what you're looking for in our extensive selection,220665,2519,USD
+636,17,Find what you are looking for in our extensive selection,220665,2519,USD
 637,109,Quality meets affordability in every product,546548,1149,USD
 638,128,Satisfaction guaranteed with every purchase,188744,1107,USD
 639,55,Satisfaction guaranteed with every purchase,779279,2513,USD
@@ -651,14 +651,14 @@ id,product_id,content,ad_clicks,budget,currency
 650,317,Unlock new experiences with our diverse range of products,496252,1505,USD
 651,37,Experience the difference with our unparalleled quality,995487,1247,USD
 652,94,Explore endless options to suit your preferences,955360,3243,USD
-653,348,Find what you're looking for in our extensive selection,863441,1596,USD
+653,348,Find what you are looking for in our extensive selection,863441,1596,USD
 654,436,Elevate your everyday with our exceptional products,411225,1337,USD
 655,262,Enhance your life with our top-notch solutions,18674,1287,USD
 656,117,Experience convenience like never before,471311,3278,USD
 657,499,Experience excellence with our diverse range of offerings,670051,2857,USD
 658,78,Trust in reliability with our trusted brand,821236,2537,USD
 659,57,Trust in reliability with our trusted brand,119048,4970,USD
-660,255,Find what you're looking for in our extensive selection,323273,2614,USD
+660,255,Find what you are looking for in our extensive selection,323273,2614,USD
 661,435,Experience peace of mind with our reliable products,402549,2579,USD
 662,365,Elevate your standards with our premium selection,128759,4328,USD
 663,265,Explore a world of options with our comprehensive range,507771,2251,USD
@@ -695,7 +695,7 @@ id,product_id,content,ad_clicks,budget,currency
 694,440,Unveil the potential with our innovative products,984259,3896,USD
 695,122,Unlock new experiences with our diverse range of products,820795,1703,USD
 696,399,Make every moment count with our exceptional offerings,563342,1198,USD
-697,255,Find what you're looking for in our extensive selection,468825,2340,USD
+697,255,Find what you are looking for in our extensive selection,468825,2340,USD
 698,390,Experience peace of mind with our reliable products,405603,4001,USD
 699,75,Innovation tailored to fit your lifestyle,24857,1992,USD
 700,472,Step into a world of possibilities with our products,196987,3946,USD
@@ -707,7 +707,7 @@ id,product_id,content,ad_clicks,budget,currency
 706,196,we have it all,145186,2860,USD
 707,49,Experience convenience like never before,706391,2904,USD
 708,230,Make every moment count with our exceptional offerings,607841,969,USD
-709,161,Find what you're looking for in our extensive selection,436579,1625,USD
+709,161,Find what you are looking for in our extensive selection,436579,1625,USD
 710,423,Discover the perfect blend of style and functionality,23647,2850,USD
 711,36,Stay ahead of the curve with our cutting-edge products,13207,4026,USD
 712,455,Discover the perfect blend of style and functionality,966830,2061,USD
@@ -761,7 +761,7 @@ id,product_id,content,ad_clicks,budget,currency
 760,83,Discover the perfect solution for your needs,771248,508,USD
 761,259,Discover the ultimate in versatility and performance,295627,4303,USD
 762,139,Elevate your standards with our premium selection,562663,2787,USD
-763,412,Find what you're looking for in our extensive selection,988442,1194,USD
+763,412,Find what you are looking for in our extensive selection,988442,1194,USD
 764,112,Stay ahead of the curve with our cutting-edge products,734282,1910,USD
 765,294,Find your perfect fit with our customizable options,118640,1994,USD
 766,117,Innovation tailored to fit your lifestyle,363219,3464,USD
@@ -772,7 +772,7 @@ id,product_id,content,ad_clicks,budget,currency
 771,355,Unveil the potential with our innovative products,102727,3252,USD
 772,186,Experience excellence with our diverse range of offerings,410436,4663,USD
 773,251,Discover the perfect blend of style and functionality,121436,4767,USD
-774,166,Find what you're looking for in our extensive selection,848761,856,USD
+774,166,Find what you are looking for in our extensive selection,848761,856,USD
 775,454,Invest in quality that stands the test of time,830882,1214,USD
 776,213,Discover the perfect match for your lifestyle,771014,1952,USD
 777,488,Experience the difference with our unparalleled quality,256815,3052,USD
@@ -836,7 +836,7 @@ id,product_id,content,ad_clicks,budget,currency
 835,81,Unveil the potential with our innovative products,814849,4122,USD
 836,288,Experience excellence with our diverse range of offerings,784338,3440,USD
 837,13,Unlock new experiences with our diverse range of products,608394,3693,USD
-838,133,Find what you're looking for in our extensive selection,831645,2812,USD
+838,133,Find what you are looking for in our extensive selection,831645,2812,USD
 839,297,Transform your experience with our high-quality offerings,507550,1614,USD
 840,113,Innovation tailored to fit your lifestyle,463660,732,USD
 841,450,Find your perfect fit with our customizable options,592111,3979,USD
@@ -868,12 +868,12 @@ id,product_id,content,ad_clicks,budget,currency
 867,199,Discover the ultimate in versatility and performance,687073,3388,USD
 868,313,Trust in reliability with our trusted brand,144065,2261,USD
 869,183,Enhance your life with our top-notch solutions,238924,3078,USD
-870,221,Find what you're looking for in our extensive selection,122703,875,USD
+870,221,Find what you are looking for in our extensive selection,122703,875,USD
 871,1,Quality meets affordability in every product,844900,4924,USD
 872,83,Discover the perfect blend of style and functionality,334620,2518,USD
 873,106,Elevate your everyday with our exceptional products,494484,2241,USD
 874,288,Trust in reliability with our trusted brand,568942,3200,USD
-875,410,Find what you're looking for in our extensive selection,727154,3155,USD
+875,410,Find what you are looking for in our extensive selection,727154,3155,USD
 876,282,Satisfaction guaranteed with every purchase,143145,2642,USD
 877,145,Quality meets affordability in every product,594107,2326,USD
 878,124,Quality meets affordability in every product,786010,4568,USD
@@ -885,17 +885,17 @@ id,product_id,content,ad_clicks,budget,currency
 884,474,Experience excellence with our diverse range of offerings,725397,2839,USD
 885,133,Elevate your standards with our premium selection,710745,2513,USD
 886,216,Elevate your standards with our premium selection,431174,4919,USD
-887,333,Find what you're looking for in our extensive selection,504340,4209,USD
+887,333,Find what you are looking for in our extensive selection,504340,4209,USD
 888,65,Invest in quality that stands the test of time,61386,1290,USD
 889,83,Transform your experience with our high-quality offerings,475552,4959,USD
 890,34,Experience convenience like never before,361337,961,USD
-891,346,Find what you're looking for in our extensive selection,874302,2853,USD
+891,346,Find what you are looking for in our extensive selection,874302,2853,USD
 892,69,Make a lasting impression with our standout offerings,372229,2311,USD
 893,313,Stay ahead of the curve with our cutting-edge products,268349,1285,USD
 894,123,Make a lasting impression with our standout offerings,876452,1741,USD
 895,491,Explore endless options to suit your preferences,876568,4544,USD
 896,307,Discover the perfect match for your lifestyle,144497,3249,USD
-897,494,Find what you're looking for in our extensive selection,857953,3293,USD
+897,494,Find what you are looking for in our extensive selection,857953,3293,USD
 898,51,Experience peace of mind with our reliable products,734987,4718,USD
 899,341,Elevate your everyday with our exceptional products,59130,3322,USD
 900,253,Experience peace of mind with our reliable products,419540,1113,USD
@@ -908,7 +908,7 @@ id,product_id,content,ad_clicks,budget,currency
 907,461,Stay ahead of the curve with our cutting-edge products,827988,3767,USD
 908,405,Discover the perfect match for your lifestyle,862909,669,USD
 909,222,Discover the ultimate in versatility and performance,776005,4338,USD
-910,339,Find what you're looking for in our extensive selection,170684,3210,USD
+910,339,Find what you are looking for in our extensive selection,170684,3210,USD
 911,93,Innovation tailored to fit your lifestyle,154572,2262,USD
 912,11,Experience excellence with our diverse range of offerings,104449,2896,USD
 913,160,Innovation tailored to fit your lifestyle,573860,4339,USD
@@ -940,7 +940,7 @@ id,product_id,content,ad_clicks,budget,currency
 939,361,Invest in quality that stands the test of time,32511,4583,USD
 940,63,Experience excellence with our diverse range of offerings,724386,4384,USD
 941,71,Make every moment count with our exceptional offerings,695998,1652,USD
-942,85,Find what you're looking for in our extensive selection,435364,3649,USD
+942,85,Find what you are looking for in our extensive selection,435364,3649,USD
 943,410,Experience excellence with our diverse range of offerings,683746,1879,USD
 944,52,Trust in reliability with our trusted brand,906496,4618,USD
 945,260,Trust in reliability with our trusted brand,182491,1857,USD
@@ -952,11 +952,11 @@ id,product_id,content,ad_clicks,budget,currency
 951,227,Experience the difference with our unparalleled quality,86568,4885,USD
 952,75,Experience excellence with our diverse range of offerings,711381,2905,USD
 953,31,Make every moment count with our exceptional offerings,129678,1358,USD
-954,27,Find what you're looking for in our extensive selection,941071,575,USD
+954,27,Find what you are looking for in our extensive selection,941071,575,USD
 955,322,Trust in reliability with our trusted brand,430725,3886,USD
 956,175,Explore a world of options with our comprehensive range,448146,3341,USD
 957,442,Innovation tailored to fit your lifestyle,753332,2497,USD
-958,354,Find what you're looking for in our extensive selection,208269,3548,USD
+958,354,Find what you are looking for in our extensive selection,208269,3548,USD
 959,379,Unveil the potential with our innovative products,371664,2832,USD
 960,257,Step into a world of possibilities with our products,854275,2593,USD
 961,218,Experience peace of mind with our reliable products,179295,3075,USD
@@ -982,7 +982,7 @@ id,product_id,content,ad_clicks,budget,currency
 981,70,Quality meets affordability in every product,598007,2260,USD
 982,239,From essentials to luxuries,120509,2516,USD
 983,427,Step into a world of possibilities with our products,189544,2335,USD
-984,315,Find what you're looking for in our extensive selection,750737,3792,USD
+984,315,Find what you are looking for in our extensive selection,750737,3792,USD
 985,90,Unveil the potential with our innovative products,924779,1462,USD
 986,294,we have it all,775295,2070,USD
 987,446,Experience the difference with our unparalleled quality,75678,2513,USD
