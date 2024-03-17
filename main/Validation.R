@@ -45,7 +45,7 @@ validate_prices <- function(prices) {
 
 # Function to validate currency codes
 validate_currencies <- function(currencies) {
-  pattern <- "^[A-Z]{3}$"
+  pattern <- "^USD$"
   grepl(pattern, currencies)
 }
 
@@ -53,8 +53,6 @@ validate_currencies <- function(currencies) {
 validate_payment_method <- function(payment_method){
   valid_method <- c("Apple Pay", "Google Pay", "Credit Card", "Cash", "Debit Card", "Bank Transfer", "Cheque")
   payment_method %in% valid_method
-  #grepl(valid_method, payment_method)
-  #print(grepl(valid_method, payment_method))
 }
 
 # Function to validate ad clicks
@@ -70,7 +68,7 @@ validate_discount <- function(discount) {
 # Function to validate rating_review
 validate_rating_review <- function(rating_review) {
   valid_rating <- c(1, 2, 3, 4, 5)
-  is.na(rating_review) | grepl(valid_rating, rating_review)
+  is.na(rating_review) | rating_review %in% valid_rating
 }
 
 # Function error handling
