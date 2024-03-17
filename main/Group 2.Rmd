@@ -296,22 +296,21 @@ top_sellers %>%
   geom_bar(stat = "identity") +
   labs(title = "Top 10 Sellers by Total Revenue",
        subtitle = "Total Revenue for the Top 10 Sellers",
-       x = "Total Revenue",
-       y = "Seller",
-       fill = "Seller Name") +  # Change legend title
+       x = "Total Revenue (in USD)",
+       y = "Sellers", 
+       fill = "Seller Name") +  
   scale_fill_brewer(palette = "Paired") +
   theme_bw() +
   theme(plot.title = element_text(size = 20, face = "bold"),
         plot.subtitle = element_text(size = 14),
         axis.title = element_text(size = 14),
         axis.text.y = element_text(size = 12),
-        axis.text.x = element_text(size = 10, angle = 45, hjust = 1, vjust = 1),  # Adjust angle and justification
+        axis.text.x = element_text(size = 10, angle = 45, hjust = 1, vjust = 1),  
         panel.grid = element_blank()) +
-  geom_text(aes(label = scales::dollar(total_revenue)), 
-            position = position_stack(vjust = 1.2), 
-            hjust = 0.6, color = "black", size = 3) +  # Decrease label size
+  geom_text(aes(label = total_revenue), # Remove scales::dollar()
+            position = position_stack(vjust = 1.1), 
+            hjust = 0.6, color = "black", size = 3) +  
   coord_flip()
-
 
 # Saving the image for the plot
 this_filename_date <- as.character(Sys.Date())
@@ -331,7 +330,7 @@ ggsave(paste0("Visualisations/Top_10_Sellers_by_total_revenue",
 ```{r}
 top_customers <- dbGetQuery(my_db,
   "SELECT c.id AS customer_id, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, 
-       SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_spent
+       ROUND(SUM(p.price * o.quantity * (1 - (o.discount / 100)))) AS total_spent
         FROM customers AS c
         INNER JOIN orders AS o ON c.id = o.customer_id
         INNER JOIN products AS p ON o.product_id = p.id
@@ -344,12 +343,12 @@ top_customers <- dbGetQuery(my_db,
 
 top_customers %>%
 arrange(desc(total_spent)) %>%
-ggplot(aes(x = reorder(customer_name, -total_spent), y = total_spent, fill = customer_name)) +
+ggplot(aes(x = reorder(customer_name, total_spent), y = total_spent, fill = customer_name)) +
   geom_bar(stat = "identity") +
   labs(title = "Top Customers' Share of Total Spent",
        x = "Customer",
        y = "Total Spent") +
-  theme_minimal() +
+  theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
@@ -404,6 +403,14 @@ ggplot(top_rating_products, aes(x = total_sales, y = avg_rating, size = total_sa
   annotate("text", x = 500, y = 4.5, label = "Bubble size represents total sales", 
            size = 3, color = "black", fontface = "italic", hjust = 0) # Adding annotation for bubble size explanation
 
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/Product_ratings_vs_total_sales_by_category",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
 
 ```
 
@@ -430,6 +437,14 @@ sales_by_category %>%
   theme(legend.position = "none",
         plot.title = element_text(size = 14, face = "bold"),
         plot.caption = element_text(size = 10, color = "gray"))
+
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/Treemap_for_sales_by_categories",
+              this_filename_date,"_",
+              this_filename_time,".png"))
 ```
 
 # Query 8: Sales vs Ad Clicks Analysis
@@ -474,6 +489,15 @@ ggplot( aes(x = order_month)) +
   theme(legend.position = "top") +
   scale_x_date(date_labels = "%b %Y", date_breaks = "1 month") +
   ylim(0, max(c(max(sales_ad_clicks_monthly$log_total_sales), max(sales_ad_clicks_monthly$log_total_ad_clicks))))
+
+
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/sales_vs_ad_clicks_analysis",
+              this_filename_date,"_",
+              this_filename_time,".png"))
 
 
 ```
@@ -529,9 +553,19 @@ ggplot(xyz, aes(x = factor(format(year_month, "%b %Y"),
         axis.text = element_text(size = 10),  # Adjust text size
         axis.title = element_text(size = 12, face = "bold"))  # Adjust title size and style
 
-```
-# Query 10: Average Ratings of Products in each Category 
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
 
+ggsave(paste0("Visualisations/Top_5_sellers_time_series",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
+```
+
+
+# Query 10: Average Ratings of Products in each Category 
 
 ```{r}
 
@@ -565,6 +599,14 @@ ggplot(rating_category, aes(x = category, y = avg_rating, fill = category)) +
   scale_fill_brewer(palette = "Set3") + # Apply a qualitative color palette
   coord_flip() # Flip the coordinates for better readability
 
+
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
+              this_filename_date,"_",
+              this_filename_time,".png"))
 
 ```
 
