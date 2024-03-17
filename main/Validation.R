@@ -99,10 +99,12 @@ validation <- function(this_file_contents,type,column) {
   else if (type == 'rating_review') {
     tmp_table$valid_format <- validate_rating_review(column)
   }
-  for (i in 1:nrow(tmp_table)){
-    tmp_row <- tmp_table[i,]
-    if (!tmp_row$valid_format) {
-      warning(type," Format of ID: ",tmp_row$id, " in ", variable," is incorrect. Please check." )
+  if (nrow(tmp_table) >0) {
+    for (i in 1:nrow(tmp_table)){
+      tmp_row <- tmp_table[i,]
+      if (!tmp_row$valid_format) {
+        warning(type," Format of ID: ",tmp_row$id, " in ", variable," is incorrect. Please check." )
+      }
     }
   }
   if (all(tmp_table$valid_format) == TRUE){
