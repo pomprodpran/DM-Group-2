@@ -40,7 +40,7 @@ validate_dates <- function(dates) {
 
 # Function to validate prices
 validate_prices <- function(prices) {
-  prices >= 0
+  prices > 0
 }
 
 # Function to validate currency codes
