@@ -1,7 +1,7 @@
 print("Performing Validation")
 
 # ------ 1. Check duplicate primary key within CSV file ------
-print(paste0("Checking duplicate primary for: ",variable))
+print(paste0("Checking duplicate primary key for: ",variable))
 
 number_of_rows <- nrow(this_file_contents)
 
