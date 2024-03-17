@@ -650,6 +650,15 @@ ggplot(data = conversion_rate, aes(x = product_id, y = conversion_rate)) +
         panel.background = element_rect(fill = "white"),
         legend.position = "none")
 
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
 
 ```
 
