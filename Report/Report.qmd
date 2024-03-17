@@ -96,6 +96,7 @@ DROP TABLE IF EXISTS `categories` ;
 ```
 
 The table creation sequence starts with tables that do not have foreign keys.
+
 ```{sql connection=my_db, eval=FALSE}
 
 ------------- CREATE TABLE -------------
@@ -227,11 +228,23 @@ The data generation is a part of the dynamic process from data generation to dat
 
 #### Task 3.1: GitHub Repository and Workflow Setup
 
-For setting up the GitHub repository and workflow, we first create a new repository for our project on GitHub, and then clone it to our local machine using Git. This enables collaboration within our group, allowing everyone to work together and make changes to the project through GitHub. After cloning the repository locally, we add our database file, e-commerce data file, report file, as well as scripts for data validation, transformation, data analysis, and data visualization to the repository. 
+For setting up the GitHub repository and workflow, we first create a new repository for our project on GitHub, and then clone it to our local machine using Git. This enables collaboration within our group, allowing everyone to work together and make changes to the project through GitHub. After cloning the repository locally, we add our database file, e-commerce data file, report file, as well as scripts for data validation, transformation, data analysis, and data visualization to the repository.
 
 Within the 'database' file, an e-commerce database is created, and in the 'data upload' file, we upload all the generated data, including tables: advertisements, categories, customers, products, sellers, shippers. Within the ‘main’ file, we have data analysis visualizations file, and transformation, validation scripts.
 
 #### Task 3.2: GitHub Actions for Continuous Integration
+
+In order to set up the workflow, we use the “actions” part to create a new workflow file, then define the workflow “etl.yaml”.
+
+For the workflow, we specify the actions as follows: 1. Specify that the workflow should run every 3 hours (pending) when changes are pushed to the main branch. 2. Define and build the job (sequence of tasks) to be executed. 3. Check out the code repository into the GitHub Actions runner. 4. Set up the R environment and cache R packages. 5. Install all the packages that we will use. 6. Execute the data transformation script from the main directory, checking for data quality and integrity of the new data that we update. (After data transformation and validation, it will trigger the running of the data analysis script, and the new analysis charts will be saved by month in the folder.) 7. Configure the git user email and name, adding all files in the database directory to the git staging area. 8. Finally, commit and push the changes to the main branch.
+
+When performing incremental loading, the new loaded CSV file format for automation needs to be '<table name>_YYYY-MM-DDTHHMMSS.csv' to read in the data.
+
+Only the newly added files within the past two days will be processed, and we will obtain the primary key to check for duplicate primary keys first. Then, we will validate the quality and integrity of the new data, such as validating email and phone number formats. If errors occur, the uploaded error data will be removed while providing warnings for each invalid entry.
+
+For data integrity checks, we execute different types of data integrity checks based on different tables. Each check calls the previously defined validation function to ensure the correct format of the data. Next, we check foreign key constraints to see if the foreign key is defined in the database.
+
+After data validation, we use the primary key to check if the row is unique. If it is, the row will be appended to the table. If the row already exists, we will update the existing row.
 
 ### Part 4: Data Analysis and Reporting with Quarto in R
 
