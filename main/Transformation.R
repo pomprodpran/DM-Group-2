@@ -8,6 +8,7 @@ print("Loading CSV file")
 
 # File format for automation: <table name>_YYYY-MM-DDTHHMMSS.csv
 current_date <- Sys.Date()
+print(paste("current date:", current_date))
 # Get only Incremental file
 all_files <- list.files("./data_upload", full.names = FALSE, pattern = "_")
 for (variable in all_files) {
