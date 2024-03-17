@@ -323,7 +323,6 @@ ggsave(paste0("Visualisations/Top_10_Sellers_by_total_revenue",
 
 ```
 
-
 # Query 5: Top 10 Customers by the Amount Spent
 
 ```{r}
@@ -611,6 +610,58 @@ ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
               this_filename_time,".png"))
 
 ```
+
+
+# Query 11: Conversion Rate of Top 10 Products
+
+```{r}
+conversion_rate <- dbGetQuery(my_db,
+"SELECT 
+  o.product_id AS product_id,
+  p.name AS product_name,
+  SUM(o.quantity) AS total_quantity,
+  SUM(a.ad_clicks) AS total_ad_clicks,
+  SUM(o.quantity) / NULLIF(SUM(a.ad_clicks / 100000), 0) AS conversion_rate
+FROM orders o
+LEFT JOIN advertisements a ON o.product_id = a.product_id
+LEFT JOIN products p ON o.product_id = p.id
+GROUP BY o.product_id, p.name
+ORDER BY conversion_rate DESC
+LIMIT 10;"
+)
+
+# Converting the id column to factors 
+conversion_rate$product_id <- factor(conversion_rate$product_id, levels = conversion_rate$product_id[order(-conversion_rate$conversion_rate)])
+
+# Create a bar plot
+ggplot(data = conversion_rate, aes(x = product_id, y = conversion_rate)) +
+  geom_bar(stat = "identity", fill = "#5DA5DA", width = 0.6) +
+  geom_text(aes(label = sprintf("%.2f", conversion_rate)), vjust = -0.5, size = 3, color = "black") +
+  labs(x = "Product ID", y = "Conversion Rate", title = "Top 10 Products by Conversion Rate") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1, size = 10, color = "#333333"), 
+        axis.title = element_text(size = 12, face = "bold", color = "#333333"), 
+        plot.title = element_text(size = 14, face = "bold", color = "#333333"),
+        axis.text.y = element_text(size = 10, color = "#333333"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        legend.position = "none")
+
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
+
+```
+
 
 
 ```{r}
