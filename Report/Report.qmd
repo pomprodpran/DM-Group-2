@@ -7,6 +7,10 @@ author: "Group 2"
 
 ### Introduction
 
+This report simulates the end-to-end data management for an e-commerce platform in US from database design, workflow management to data analysis that provides insights into the platform’s key performance metrics.
+
+[**any key highlight from the analysis**]{.underline}
+
 ### Overview
 
 ![](flowchart.png)
@@ -17,16 +21,18 @@ author: "Group 2"
 
 ![ER Diagram](ER%20Diagram.jpg)
 
-Assumptions & Justification:
-
--   Products are classified into categories (unique by category ID). Each product belongs to only one category whilst one category can include multiple products, forming the 1:M relationship between Categories and Products entity.
--   Identical items sold by different sellers (unique by seller ID) are considered different products and have unique product ID in the database. Thus, one product can have only one seller but one seller may distribute multiple products, forming the 1:M relationship between Sellers and Products entity. This conceptual design is important to track inventory for each product sold by each seller.
--   Advertisements (unique by ID) are specific for each product but one product can have multiple advertisements, forming the 1:M relationship between Products and Advertisements entity
--   Customers are unique by ID and **email address**. For simplification, we assume only current shipping address and current payment method are captured in the database. Address and customer name are composite attributes which are flatten in the logical and physical schema.
--   Multiple customers can order multiple products that will be delivered to them by a selection of shippers (e.g., depending on the warehouse location), forming the ternary M:N relationship among the three entities. Each time a customer commits an order, a unique order ID will be generated. Each order will have quantity, date and time.
--   A customer can only leave a review on a product if he has ordered it. Thus rating_reviews must be specific to an order, forming an attribute of the Orders relationship.
-
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
+
+Our database conceptual design is based on the following assumptions & justification:
+
+-   Customers are unique and identified by their ID. Each customer must have their first name, last name and email address whereas can opt to provide phone number or date of birth. For simplification we assume no multivalued attributes; thus, only one billing address, current shipping address and current payment method are captured in the database.
+-   Products are organised into unique categories, which are identified by category ID. Each product belongs to only one category whilst one category can include multiple products, forming the 1:N relationship between Categories and Products entity.
+-   Identical items sold by different sellers are considered different products and have unique product ID. Thus, one product can have only one seller but one seller may distribute multiple products, forming the 1:N relationship between Sellers and Products entity. This conceptual design is important to track price and inventory for each product sold by each seller. Additionally, each product can also have name, color, size and brand.
+-   Sellers are unique and identified by their ID. We capture sellers' email, name and address.
+-   Advertisements (unique and identified by ID) are specific for each product but one product can have multiple advertisements, forming the 1:N relationship between Products and Advertisements entity. Each advertisement must specify budget and captures content and the number of ad clicks.
+-   Multiple customers can order multiple products that will be delivered to them by a selection of shippers (e.g., depending on the warehouse location), forming the ternary M:N relationship among the three entities. Each time a customer commits an order of a specific product which will be delivered by an assigned shipper, a unique order ID will be generated.
+-   Each order captures quantity, date and time, and discount rate applicable specifically to the order. A customer can only leave a review on a product if he/she has ordered it. Thus, rating_reviews must be specific to an order, forming an attribute of the Orders relationship.
+-   None of derived attributes are included to ensure physical schema comprise of only atomic values thus in normalized form.
 
 #### Task 1.2: SQL Database Schema Creation
 
@@ -38,19 +44,27 @@ Assumptions & Justification:
 -   **Advertisements** ($\underline{id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
 -   **Categories** ($\underline{id}$[,]{.underline} name, description)
 
-The primary keys are underlined. Double underlining represents foreign keys. Relationships between tables are represented by lines connecting corresponding attributes, indicating the associations between entities.
+Our logical design of the database is converted from the conceptual ER diagram on the following principles:
 
-Will add code chunks of table creation here
+-   Primary keys are underlined whereas foreign keys ar double underlined.
+
+-   The primary key of the weak side become the foreign key on the strong side of the cardinality.
+
+-   Composite attributes (customer name, customer and seller address, product price and advertisement budget ) are registered in individual fields using outer layer of the attriubte to ensure that physical database only capture atomic value.
+
+-   Each entity is converted into one table. Except for the Orders relationship, all other cardinality relationship are 1:N thus not converted into table.
+
+-   The ternary M:N relationship among Customers, Products and Ships is converted into the Orders table
+
+[**Will add code chunks of table creation here**]{.underline}
 
 #### Part 2: Data Generation and Management
 
 #### Task 2.1: Synthetic Data Generation
 
-Entire synthetic data is generated using Mockaroo with the schema and csv files can be publicly accessed via the following links:
+The entire synthetic data is generated using Mockaroo using advanced field settings or Mockaroo specified coding language.
 
--   **xxxxx**
-
-Foreign key can be set by selecting field type as ‘Dataset Column’ then connecting to the other dataset where the foreign key comes from.
+Foreign key is imported from other datasets by using field type as ‘Dataset Column’ then connecting to the other datasets where the foreign key comes from.
 
 Field type as ‘Formula’ or ‘Custom List’ with dynamic distribution are utilised to set specific rules and conditions for the synthetic data generation as realistic as possible, for example:
 
@@ -58,7 +72,9 @@ Field type as ‘Formula’ or ‘Custom List’ with dynamic distribution are u
 
 -   Product size and price ranges are conditional to product name
 
--   Advertisement contents are conditional product name
+-   Advertisement contents are conditional to product name
+
+The data generation is a part of the dynamic process from data generation to data validation then data analysis. Data generation is revised whenever challenges incur during validation and analysis to ensure that the synthetic data simulates the real-world as much as possible.
 
 #### Task 2.2: Data Import and Quality Assurance
 
