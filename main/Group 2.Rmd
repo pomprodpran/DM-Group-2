@@ -178,6 +178,16 @@ ggplot(aes(x = reorder(category_name, -num_products), y = num_products)) +
         plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
   geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black")  # Add labels for each bar
 
+
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/number_of_products_in_each_category",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
 ```
 
 # Query 2: Monthly Sales Analysis
@@ -215,6 +225,15 @@ ggplot(monthly_sales, aes(x = year_month, y = revenue)) +
   scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::dollar_format(prefix = "$"))
 
+# Saving the image file for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/monthly_sales_analysis",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
 
 ```
 
@@ -247,6 +266,15 @@ top_products %>%
   coord_flip() +  # Flip the coordinates to make horizontal bars
   geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold")
 
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/Top 10 Selling Products by Quantity Sold",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
 ```
 
 
@@ -255,7 +283,7 @@ top_products %>%
 ```{r}
 
 top_sellers <- dbGetQuery(my_db,
-                "SELECT s.name AS seller_name, SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_revenue
+                "SELECT s.name AS seller_name, ROUND(SUM(p.price * o.quantity * (1 - (o.discount / 100)))) AS total_revenue
                 FROM sellers AS s
                 INNER JOIN products AS p ON s.id = p.seller_id
                 INNER JOIN orders AS o ON p.id = o.product_id
@@ -264,12 +292,13 @@ top_sellers <- dbGetQuery(my_db,
                 LIMIT 10")
 
 top_sellers %>%
-ggplot(aes(x = total_revenue, y = reorder(seller_name, total_revenue), fill = seller_name)) +
+  ggplot(aes(x = total_revenue, y = reorder(seller_name, total_revenue), fill = seller_name)) +
   geom_bar(stat = "identity") +
   labs(title = "Top 10 Sellers by Total Revenue",
        subtitle = "Total Revenue for the Top 10 Sellers",
        x = "Total Revenue",
-       y = "Seller") +
+       y = "Seller",
+       fill = "Seller Name") +  # Change legend title
   scale_fill_brewer(palette = "Paired") +
   theme_bw() +
   theme(plot.title = element_text(size = 20, face = "bold"),
@@ -280,8 +309,19 @@ ggplot(aes(x = total_revenue, y = reorder(seller_name, total_revenue), fill = se
         panel.grid = element_blank()) +
   geom_text(aes(label = scales::dollar(total_revenue)), 
             position = position_stack(vjust = 1.2), 
-            hjust = 0.6, color = "black", size = 4) +
+            hjust = 0.6, color = "black", size = 3) +  # Decrease label size
   coord_flip()
+
+
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/Top_10_Sellers_by_total_revenue",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
 
 ```
 
@@ -302,7 +342,7 @@ top_customers <- dbGetQuery(my_db,
 
 # Prepare data for stacked bar chart
 
-stacked_bar_data <- top_customers %>%
+top_customers %>%
 arrange(desc(total_spent)) %>%
 ggplot(aes(x = reorder(customer_name, -total_spent), y = total_spent, fill = customer_name)) +
   geom_bar(stat = "identity") +
@@ -316,7 +356,16 @@ ggplot(aes(x = reorder(customer_name, -total_spent), y = total_spent, fill = cus
   geom_text(aes(label = total_spent), size = 4, color = "black") +
   coord_flip()
 
-stacked_bar_data
+# Saving the image for the plot
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+ggsave(paste0("Visualisations/Top_10_customers_by_amount_spent",
+              this_filename_date,"_",
+              this_filename_time,".png"))
+
+
+
 ```
 
 # Query 6: Top Rating Products (Need to re-check)
