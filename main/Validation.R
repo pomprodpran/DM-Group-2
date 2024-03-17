@@ -10,7 +10,7 @@ for (i in primary_key_columns) {
     print(paste("Primary key =",i,": Passed"))
   }
   else {
-    stop(paste("Found duplcate record in ", variable,": STOP process!"))
+    stop(paste("Found duplicate record in ", variable,": STOP process!"))
   }
 }
 
@@ -40,7 +40,7 @@ validate_dates <- function(dates) {
 
 # Function to validate prices
 validate_prices <- function(prices) {
-  prices >= 0
+  prices > 0
 }
 
 # Function to validate currency codes

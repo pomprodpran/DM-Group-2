@@ -26,7 +26,7 @@ for (variable in all_files) {
     this_file_contents <- readr::read_csv(this_filepath)
     
     print(paste("Writing table to database:", table_name))
-    my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"./database/ecommerse.db")
+    my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"./database/ecommerce.db")
     
     # Get the primary key column names from the database
     query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
