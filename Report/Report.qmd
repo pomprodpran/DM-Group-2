@@ -19,6 +19,8 @@ This report simulates the end-to-end data management for an e-commerce platform 
 
 #### Task 1.1: E-R Diagram Design
 
+**Conceptual Design**
+
 ![ER Diagram](ER%20Diagram.jpg)
 
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
@@ -34,7 +36,7 @@ Our database conceptual design is based on the following assumptions & justifica
 -   Each order captures quantity, date and time, and discount rate applicable specifically to the order. A customer can only leave a review on a product if he/she has ordered it. Thus, rating_reviews must be specific to an order, forming an attribute of the Orders relationship.
 -   None of derived attributes are included to ensure physical schema comprise of only atomic values thus in normalized form.
 
-#### Task 1.2: SQL Database Schema Creation
+**Logical Design**
 
 -   **Customers** ($\underline{id}$, date_of_birth, first_name, last_name, phone_number, email, billing_address_street_number, billing_address_street_name, billing_address_street_suffix, billing_address_city, billing_address_state, billing_address_country, billing_address_postcode, current_shipping_address_street_number, current_shipping_address_street_name, current_shipping_address_street_suffix, current_shipping_address_city, current_shipping_address_state, current_shipping_address_country, current_shipping_address_postcode, current_payment_method)
 -   **Shippers** ($\underline{id}$, name, phone_number)
@@ -54,9 +56,19 @@ Our logical design of the database is converted from the conceptual ER diagram o
 
 -   Each entity is converted into one table. Except for the Orders relationship, all other cardinality relationship are 1:N thus not converted into table.
 
--   The ternary M:N relationship among Customers, Products and Shippers is converted into the Orders table
+-   The ternary M:N relationship among Customers, Products and Shippers is converted into the Orders table. Primary key (ID) of Customers, Entities and Shippers entity, together with order date and time forming a composite key for the Orders relationship table. Each record of the Orders relationship is also unique by an order ID.
 
-[**Schema Creation are performed as below code:**]{.underline}
+#### Task 1.2: SQL Database Schema Creation
+
+The physical schema is in First Normal Form (1NF) as:
+
+-   Each column of a table is a unique variable and contains only atomic values (due to no composite or multivalued attribute in the logical schema).
+
+-   Each row of a table is a unique record and identified by value in its ID attribute.
+
+-   The order of rows and columns is not significant.
+
+The physical schema is in Second Normal Form (2NF) and Third Normal Form (3NF) as each table are in 1NF and there are no undesirable functional dependency among the tables i.e., there is no non-prime attribute is directly or transitively partially dependent on a candidate key.
 
 ```{r setup, include=FALSE}
 
@@ -226,9 +238,9 @@ The data generation is a part of the dynamic process from data generation to dat
 
 Now, we perform the data validation for all the entities in the database. First, we check whether any of the primary keys present in the csv files have duplicates or not. If the number of unique values for a specific primary key column is equal to the total number of rows in the file, then there would be no duplicate primary key values. If there are duplicate entries, then an error message would pop up and the process will stop.
 
-**Phone Numbers:** Phone numbers are validated using numeric values. The first digit for all phone numbers starts with \"1\", followed by 10 numeric values. However, we do not cover the international format and only consider phone numbers from the USA. This is checked in both \"customers\" and \"shippers\" entities.
+**Phone Numbers:** Phone numbers are validated using numeric values. The first digit for all phone numbers starts with "1", followed by 10 numeric values. However, we do not cover the international format and only consider phone numbers from the USA. This is checked in both "customers" and "shippers" entities.
 
-**Date:** The order date, present in the \"order\" entity, is validated using the YYYY-MM-DD format. The parser interprets the characters in the date according to this format and checks if they follow it. If the dates are valid, the system would indicate **\'TRUE\'**. If the dates are invalid, the system would indicate **\'FALSE\'**, which would indicate a warning message, mentioning that the user must re-enter the date.  
+**Date:** The order date, present in the "order" entity, is validated using the YYYY-MM-DD format. The parser interprets the characters in the date according to this format and checks if they follow it. If the dates are valid, the system would indicate **'TRUE'**. If the dates are invalid, the system would indicate **'FALSE'**, which would indicate a warning message, mentioning that the user must re-enter the date.  
 
 **Currency Code:** For the currency code, we assume that only USD is used. By standardising on a single currency code, the database is less complex and more consistent. This would also make sure the fluctuations in currency would not affect the change in prices.
 
