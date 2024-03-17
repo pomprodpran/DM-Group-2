@@ -15,6 +15,14 @@ This report simulates the end-to-end data management for an e-commerce platform 
 
 ![](flowchart.png)
 
+This is the entire process of our end-to-end data management project, simulating a real-world e-commerce environment.
+
+It begins with the database design phase, which includes conceptual design, logical design, and physical design. During conceptual design, we translate our understanding of the e-commerce database into an E-R. In the logical design phase, we define the structure of the database. For the physical design phase, we create the physical schema.
+
+After designing the database, we perform the initial load of generated synthetic data and import it into the database tables, while also conducting validation check. Subsequently, we execute queries to retrieve, manipulate, and manage the data stored in the database. Finally, we conduct data analysis on our e-commerce data.
+
+In the incremental load process, new synthetic data is generated and subjected to validation checks. If valid, the corresponding database tables and analysis graphs are updated accordingly.
+
 ### Part 1: Database Design and Implementation
 
 #### Task 1.1: E-R Diagram Design
