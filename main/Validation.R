@@ -49,6 +49,30 @@ validate_currencies <- function(currencies) {
   grepl(pattern, currencies)
 }
 
+# Function to validate payment method
+validate_payment_method <- function(payment_method){
+  valid_method <- c("Apple Pay", "Google Pay", "Credit Card", "Cash", "Debit Card", "Bank Transfer", "Cheque")
+  payment_method %in% valid_method
+  #grepl(valid_method, payment_method)
+  #print(grepl(valid_method, payment_method))
+}
+
+# Function to validate ad clicks
+validate_ad_clicks <- function(ad_clicks) {
+  ad_clicks >= 0
+}
+
+# Function to validate discount
+validate_discount <- function(discount) {
+  (discount >= 0 & discount <= 100)
+}
+
+# Function to validate rating_review
+validate_rating_review <- function(rating_review) {
+  valid_rating <- c(1, 2, 3, 4, 5)
+  is.na(rating_review) | grepl(valid_rating, rating_review)
+}
+
 # Function error handling
 validation <- function(this_file_contents,type,column) {
   tmp_table <- this_file_contents
@@ -58,10 +82,22 @@ validation <- function(this_file_contents,type,column) {
     tmp_table$valid_format <- validate_phones(column)
   } else if (type == 'Dates') {
     tmp_table$valid_format <- validate_dates(column)
-  } else if (type == 'Prices' || type == 'Budget') {
+  } else if (type == 'Prices' || type == 'Budget' || type == 'Quantity') {
     tmp_table$valid_format <- validate_prices(column)
   } else if (type == 'Currencies') {
     tmp_table$valid_format <- validate_currencies(column)
+  }
+  else if (type == 'payment_method') {
+    tmp_table$valid_format <- validate_payment_method(column)
+  }
+  else if (type == 'ad_clicks') {
+    tmp_table$valid_format <- validate_ad_clicks(column)
+  }
+  else if (type == 'discount') {
+    tmp_table$valid_format <- validate_discount(column)
+  }
+  else if (type == 'rating_review') {
+    tmp_table$valid_format <- validate_rating_review(column)
   }
   for (i in 1:nrow(tmp_table)){
     tmp_row <- tmp_table[i,]
@@ -77,14 +113,17 @@ validation <- function(this_file_contents,type,column) {
   return(tmp_table)
 }
 
-
 # Perform integrity check
 if (table_name == 'customers' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
   this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
-
+  this_file_contents <- validation(this_file_contents,'payment_method',this_file_contents$current_payment_method)
+  
 } else if (table_name == 'orders' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
+  this_file_contents <- validation(this_file_contents,'discount',this_file_contents$discount)
+  this_file_contents <- validation(this_file_contents,'Quantity',this_file_contents$quantity)
+  this_file_contents <- validation(this_file_contents,'rating_review',this_file_contents$rating_review)
 } else if (table_name == 'products' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Prices',this_file_contents$price)
   this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
@@ -99,8 +138,8 @@ if (table_name == 'customers' && nrow(this_file_contents) >0) {
 } else if (table_name == 'advertisements' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
   this_file_contents <- validation(this_file_contents,'Budget',this_file_contents$budget)
+  this_file_contents <- validation(this_file_contents,'ad_clicks',this_file_contents$ad_clicks)
 }
-
 
 # ------ 3. Check Foreign key ------
 if(nrow(this_file_contents) >0) {
