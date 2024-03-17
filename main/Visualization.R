@@ -145,7 +145,6 @@ ggsave(paste0("Visualisations/Top 10 Selling Products by Quantity Sold",
               this_filename_time,".png"))
 
 
-
 # Query 4: Top 10 Sellers by the Total Revenue
 
 top_sellers <- dbGetQuery(my_db,
