@@ -3,11 +3,6 @@ library(RSQLite)
 library(dplyr)
 library(ggplot2)
 library(lubridate)
-library(treemapify)
-library(maps)
-library(mapproj)
-library(gridExtra)
-library(grid)
 
 # Incremental Load
 print("Loading CSV file")
