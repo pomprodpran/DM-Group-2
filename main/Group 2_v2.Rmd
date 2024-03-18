@@ -327,11 +327,10 @@ daily_sales <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-daily_sales$order_date <- as.Date(daily_sales$order_date, format = "%Y-%m-%d")
-
+daily_sales$order_date <- as.Date(as.character(daily_sales$order_date), format = "%Y-%m-%d")
 # Aggregate by month
 monthly_sales <- daily_sales %>%
-  mutate(year_month = floor_date(order_date, "month")) %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
   group_by(year_month) %>%
   summarise(sales = sum(sales)) %>%
   arrange(desc(year_month))
@@ -351,7 +350,7 @@ monthly_sales <- head(monthly_sales, 12)
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
   scale_y_continuous(labels = scales::dollar_format(prefix = "$")) )
 ```
 

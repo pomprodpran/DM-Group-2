@@ -212,10 +212,9 @@ daily_sales <- dbGetQuery(my_db, "
 
 # Convert order_date to date format
 daily_sales$order_date <- as.Date(as.character(daily_sales$order_date), format = "%Y-%m-%d")
-
 # Aggregate by month
 monthly_sales <- daily_sales %>%
-  mutate(year_month = floor_date(order_date, "month")) %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
   group_by(year_month) %>%
   summarise(sales = sum(sales)) %>%
   arrange(desc(year_month))
@@ -224,9 +223,10 @@ monthly_sales <- daily_sales %>%
 monthly_sales <- head(monthly_sales, 12)
 
 # Plot monthly sales trend with advanced visualization
-  figure.5 <- ggplot(monthly_sales, aes(x = year_month, y = sales)) +
+ figure.5 <- ggplot(monthly_sales, aes(x = year_month, y = sales)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
     labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
@@ -234,9 +234,8 @@ monthly_sales <- head(monthly_sales, 12)
           plot.title = element_text(size = 16, color = "black", face = "bold"),
           legend.position = "none",
           axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+    #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
     scale_y_continuous(labels = scales::dollar_format(prefix = "$")) 
-
 
 ## Figure 6: Sales by Categories
 
@@ -475,6 +474,7 @@ rating_y_sum <- head(rating_y_sum,12)
   figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
     labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
@@ -518,6 +518,7 @@ rating_n_summary <- head(rating_n_summary,12)
   figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
     labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
