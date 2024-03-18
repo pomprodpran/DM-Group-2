@@ -129,8 +129,8 @@ GROUP BY p.id
 ```
 
 ```{r}
-df_products <- dbGetQuery(my_db, "SELECT *
-                              FROM df_products")
+#df_products <- dbGetQuery(my_db, "SELECT *
+#                              FROM df_products")
 ```
 
 
@@ -638,7 +638,7 @@ rating_all <- rating_all %>% mutate(year_month = floor_date(order_date, "month")
 rating_all_summary <- rating_all %>% group_by(year_month) %>% summarise (n_all = n())
 
 # Filter no rating and convert date format
-rating_n <- rating_all %>% filter(rating_review == "NA") 
+rating_n <- rating_all %>% filter(rating_review == 0) 
 
 # Calculate number of orders with no review 
 rating_n_summary <- rating_n %>% group_by(year_month) %>% summarise (n_n = n()) 
@@ -678,7 +678,6 @@ revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
   ggplot(aes(area = sales, fill = rating_review, label = paste0("Rating ", rating_review, "\n", scales::dollar(sales)))) +
   geom_treemap() +
   geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
-  scale_fill_viridis_d() +  
   labs(title = "Sales by Rating",
        fill = "Rating Review",
        caption = "Sales values are in USD") +
@@ -720,8 +719,8 @@ discount <- head(discount, 12)
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") )
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") )
 ```
 
 
