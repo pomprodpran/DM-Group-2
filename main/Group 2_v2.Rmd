@@ -339,7 +339,7 @@ monthly_sales <- daily_sales %>%
 monthly_sales <- head(monthly_sales, 12)
 
 # Plot monthly sales trend with advanced visualization
-( figure.5 <- ggplot(monthly_sales, aes(x = year_month, y = sales)) +
+( figure.5 <- ggplot(monthly_sales, aes(x = as.factor(year_month), y = sales)) +
   geom_line(color = "blue", size = 1.5) +
   geom_point(color = "red", size = 3) +
   geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
