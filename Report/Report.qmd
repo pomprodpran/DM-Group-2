@@ -15,9 +15,7 @@ This report simulates the end-to-end data management for an e-commerce platform 
 
 ![](flowchart.png)
 
-This is the entire process of our end-to-end data management project, simulating a real-world e-commerce environment.
-
-It begins with the database design phase, which includes conceptual design, logical design, and physical design. During conceptual design, we translate our understanding of the e-commerce database into an E-R. In the logical design phase, we define the structure of the database. For the physical design phase, we create the physical schema.
+This is the entire process of project, it begins with the database design phase, which includes conceptual, logical, and physical design. During conceptual design, we translate our understanding of the e-commerce database into an E-R. In the logical design phase, we define the structure of the database. For the physical design phase, we create the physical schema.
 
 After designing the database, we perform the initial load of generated synthetic data and import it into the database tables, while also conducting validation check. Subsequently, we execute queries to retrieve, manipulate, and manage the data stored in the database. Finally, we conduct data analysis on our e-commerce data.
 
@@ -250,29 +248,29 @@ In this task, we have performed data validation for entities in the database to 
 
 **2. Checking data quality and integrity:**
 
-**2.1. Consistency Checks:** Consistency checks involve ensuring that the data conforms to business rules and logic. For instance, a payment status should correspond to a limited set of values (e.g., \'Pending\', \'Completed\', \'Rejected\'), and a product category should be one that is predefined in the category table.
+**2.1. Consistency Checks:** Consistency checks involve ensuring that the data conforms to business rules and logic. For instance, a payment status should correspond to a limited set of values (e.g., 'Pending', 'Completed', 'Rejected'), and a product category should be one that is predefined in the category table.
 
 **2.2. Range & Constraint Checks:** This involves ensuring that numeric values fall within acceptable ranges (e.g., a rating field that should be between 1 and 5) and that string values meet constraints, such as a maximum length.
 
 **2.3. Email Validation:** Email addresses are validated using regular expressions that define a pattern consistent with standard email formats. The validation ensures that only correctly formatted email addresses are accepted, which is critical for communication and user identification.
 
-**2.4. Phone Numbers:** Phone numbers are validated using numeric values. The first digit for all phone numbers starts with \"1\" for country code, followed by 10 numeric values. However, we do not cover the international format and only consider phone numbers from the USA. This is checked in both \"customers\" and \"shippers\" entities.
+**2.4. Phone Numbers:** Phone numbers are validated using numeric values. The first digit for all phone numbers starts with "1" for country code, followed by 10 numeric values. However, we do not cover the international format and only consider phone numbers from the USA. This is checked in both "customers" and "shippers" entities.
 
-**2.5. Date:** Order dates, present in the \"order\" entity, are validated using the YYYY-MM-DD format. The parser interprets the characters in the date according to this format and checks if they follow it. If the dates are valid, the system would indicate **\'TRUE\'**. If the dates are invalid, the system would indicate **\'FALSE\'**.
+**2.5. Date:** Order dates, present in the "order" entity, are validated using the YYYY-MM-DD format. The parser interprets the characters in the date according to this format and checks if they follow it. If the dates are valid, the system would indicate **'TRUE'**. If the dates are invalid, the system would indicate **'FALSE'**.
 
 **2.6. Currency Code:** For the currency code, we assume that only USD is used. By standardising on a single currency code, the database is less complex and more consistent. This would also make sure the fluctuations in currency would not affect the change in prices.
 
-**2.7. Price, Quantity, Budget & Ad Clicks:** Price from the \"products\" entity, quantity from the \"orders\" entity, budget and ad clicks from the \"advertisements\" entity are validated using an inequality, which states that these 3 attributes must be greater than 0 for their respective entities.
+**2.7. Price, Quantity, Budget & Ad Clicks:** Price from the "products" entity, quantity from the "orders" entity, budget and ad clicks from the "advertisements" entity are validated using an inequality, which states that these 3 attributes must be greater than 0 for their respective entities.
 
-**2.8. Payment Method:** Payment method, present in the \"customers\" entity, is validated by checking whether an appropriate payment method is provided by the customer. This column cannot have null values.
+**2.8. Payment Method:** Payment method, present in the "customers" entity, is validated by checking whether an appropriate payment method is provided by the customer. This column cannot have null values.
 
-**2.9. Discount:** Discount, present in the \"orders\" entity, is validated by checking whether each value in the column is between 0 to 100.
+**2.9. Discount:** Discount, present in the "orders" entity, is validated by checking whether each value in the column is between 0 to 100.
 
-**2.10. Rating Review:** Rating review, present in the \"orders\" entity, is validated by checking whether each value in the column is either NA or a value from 1 to 5.
+**2.10. Rating Review:** Rating review, present in the "orders" entity, is validated by checking whether each value in the column is either NA or a value from 1 to 5.
 
 If any of the values present in the above attributes go against the set rules, a warning statement would pop up, indicating that specific row should be excluded.
 
-**3. Checking Foreign Key**: After performing the integrity check, we check the foreign key. First, we check if there is/are foreign key(s) present in the file. If there are no foreign keys, the validation is skipped. If they are present in the file, the foreign key columns are extracted to a table for temporary processing. In this manner, all the csv files are checked. The foreign key values from the destination columns are, then, checked to see if they exist in the original columns. In a separate column, if the foreign key is present, the validation is set to **\'TRUE\'** and if the foreign key is missing, the validation is set to **'FALSE\'**. The rows indicating \'FALSE\' would be removed and the file would be updated.
+**3. Checking Foreign Key**: After performing the integrity check, we check the foreign key. First, we check if there is/are foreign key(s) present in the file. If there are no foreign keys, the validation is skipped. If they are present in the file, the foreign key columns are extracted to a table for temporary processing. In this manner, all the csv files are checked. The foreign key values from the destination columns are, then, checked to see if they exist in the original columns. In a separate column, if the foreign key is present, the validation is set to **'TRUE'** and if the foreign key is missing, the validation is set to **'FALSE'**. The rows indicating 'FALSE' would be removed and the file would be updated.
 
 The validation is, thus, completed.
 
