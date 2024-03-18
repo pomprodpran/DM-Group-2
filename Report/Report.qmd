@@ -27,7 +27,7 @@ In the incremental load process, new synthetic data is generated and subjected t
 
 **Conceptual Design**
 
-![ER Diagram](ER%20Diagram.jpg)
+![ER Diagram](ER Diagram.png)
 
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
 
