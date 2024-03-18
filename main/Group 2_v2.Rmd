@@ -108,13 +108,12 @@ for (variable in all_files) {
 
 ### View linked product, categories, sellers and advertisements
 
-```{sql connection=my_db}
---Create a view for products linked to categories, sellers and advertisements
-DROP VIEW IF EXISTS df_products;
+```{r}
+dbExecute(my_db, "DROP VIEW IF EXISTS df_products;")
 ```
 
-```{sql connection=my_db}
-CREATE VIEW IF NOT EXISTS df_products AS
+```{r create_view}
+view_product_query <-paste("CREATE VIEW IF NOT EXISTS df_products AS
 SELECT p.id, p.seller_id, p.category_id, p.price, p.inventory,
 s.name AS seller_name,
 CONCAT(p.name, ' ID ', p.id) AS product_name,
@@ -125,8 +124,10 @@ FROM products as p
 LEFT JOIN sellers s ON p.seller_id = s.id
 LEFT JOIN categories cat On p.category_id = cat.id
 LEFT JOIN advertisements a on p.id= a.product_id
-GROUP BY p.id
+GROUP BY p.id;")
+dbExecute(my_db, view_product_query)
 ```
+
 
 ```{r}
 #df_products <- dbGetQuery(my_db, "SELECT *
@@ -136,12 +137,12 @@ GROUP BY p.id
 
 ### View linked orders, customers and products (including ads and sellers details)
 
-```{sql connection=my_db}
-DROP VIEW IF EXISTS df_sales;
+```{r}
+dbExecute(my_db, "DROP VIEW IF EXISTS df_sales;")
 ```
 
-```{sql connection=my_db}
-CREATE VIEW IF NOT EXISTS df_sales AS
+```{r}
+view_sales_query <-paste("CREATE VIEW IF NOT EXISTS df_sales AS
 SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
 round(o.quantity*(1-o.discount/100.00)*dfp.price,2) AS sales,
 round(o.quantity*(o.discount/100.00)*dfp.price,2) AS discount_value,
@@ -150,11 +151,8 @@ dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_
 CONCAT(first_name, ' ', last_name) AS customer_name
 FROM orders AS o
 LEFT JOIN df_products dfp ON o.product_id = dfp.id
-LEFT JOIN customers c ON o.customer_id = c.id
-```
-
-```{r}
-
+LEFT JOIN customers c ON o.customer_id = c.id;")
+dbExecute(my_db,view_sales_query)
 ```
 
 

@@ -134,7 +134,7 @@ if (table_name == 'customers' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
   
 } else if (table_name == 'shippers' && nrow(this_file_contents) >0) {
-  #this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
 } else if (table_name == 'advertisements' && nrow(this_file_contents) >0) {
   this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
   this_file_contents <- validation(this_file_contents,'Budget',this_file_contents$budget)
