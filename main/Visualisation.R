@@ -1,38 +1,73 @@
 
-# Define SQL queries for each table
-sql_queries <- list(
-  orders = "SELECT * FROM orders",
-  customers = "SELECT * FROM customers",
-  categories = "SELECT * FROM categories",
-  advertisements = "SELECT * FROM advertisements",
-  shippers = "SELECT * FROM shippers",
-  products = "SELECT * FROM products",
-  sellers = "SELECT * FROM sellers"
-)
-
-
-# Read data from each table using SQL queries
-
-orders <- dbGetQuery(my_db, 
-                     sql_queries$orders)
-customers <- dbGetQuery(my_db, 
-                        sql_queries$customers)
-categories <- dbGetQuery(my_db, 
-                         sql_queries$categories)
-advertisements <- dbGetQuery(my_db, 
-                             sql_queries$advertisements)
-shippers <- dbGetQuery(my_db, 
-                       sql_queries$shippers)
-products <- dbGetQuery(my_db, 
-                       sql_queries$products)
-sellers <- dbGetQuery(my_db, 
-                      sql_queries$sellers)
-
+# set up the connection
+my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerce.db")
 
 # Data Analysis 
 
-# Query 1:  Number of Products in Each Category
+## Create views for analysis
 
+### View linked product, categories, sellers and advertisements
+dbExecute(my_db, "DROP VIEW IF EXISTS df_products;")
+
+
+view_product_query <-paste("CREATE VIEW IF NOT EXISTS df_products AS
+SELECT p.id, p.seller_id, p.category_id, p.price, p.inventory,
+s.name AS seller_name,
+CONCAT(p.name, ' ID ', p.id) AS product_name,
+SUM(a.ad_clicks) AS total_ad_clicks,
+SUM(a.budget) AS total_budget,
+cat.name AS category_name
+FROM products as p
+LEFT JOIN sellers s ON p.seller_id = s.id
+LEFT JOIN categories cat On p.category_id = cat.id
+LEFT JOIN advertisements a on p.id= a.product_id
+GROUP BY p.id;")
+dbExecute(my_db, view_product_query)
+
+
+#df_products <- dbGetQuery(my_db, "SELECT *
+#                              FROM df_products")
+
+
+### View linked orders, customers and products (including ads and sellers details)
+dbExecute(my_db, "DROP VIEW IF EXISTS df_sales;")
+
+view_sales_query <-paste("CREATE VIEW IF NOT EXISTS df_sales AS
+SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
+round(o.quantity*(1-o.discount/100.00)*dfp.price,2) AS sales,
+round(o.quantity*(o.discount/100.00)*dfp.price,2) AS discount_value,
+round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
+dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
+CONCAT(first_name, ' ', last_name) AS customer_name
+FROM orders AS o
+LEFT JOIN df_products dfp ON o.product_id = dfp.id
+LEFT JOIN customers c ON o.customer_id = c.id;")
+dbExecute(my_db,view_sales_query)
+
+
+
+df_sales <- dbGetQuery(my_db, "SELECT *
+                              FROM df_sales")
+
+
+df_sales <- dbGetQuery(my_db, "SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
+round(o.quantity*(1-o.discount/100)*dfp.price,2) AS sales,
+round(o.quantity*(o.discount/100)*dfp.price,2) AS discount_value,
+round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
+dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
+CONCAT(first_name, ' ', last_name) AS customer_name
+FROM orders AS o
+LEFT JOIN df_products dfp ON o.product_id = dfp.id
+LEFT JOIN customers c ON o.customer_id = c.id")
+
+
+
+
+
+## Figure 1:  Number of Products by Categories
+
+
+## Categories with number of products in each category
 
 category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.id) AS num_products
                               FROM products AS p
@@ -41,38 +76,136 @@ category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.
                               ORDER BY num_products DESC
                               LIMIT 10")
 
-category_products %>%
-  ggplot(aes(x = reorder(category_name, -num_products), y = num_products)) +
-  geom_bar(stat = "identity", fill = "maroon", color = "black") +
-  labs(title = "Number of Products in Each Category",
-       x = "Category Name",
-       y = "Number of Products") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
-        axis.title.y = element_text(size = 12),
-        axis.title.x = element_text(size = 12),
-        plot.title = element_text(size = 14, hjust = 0.5),
-        panel.border = element_rect(color = "black", fill = NA, size = 1),
-        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
-  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black")  # Add labels for each bar
+  figure.1 <- category_products %>%
+    ggplot(aes(x = reorder(category_name, -num_products), y = num_products)) +
+    geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+    labs(title = "Number of Products by Categories",
+         x = "Category Name",
+         y = "Number of Products") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+          axis.title.y = element_text(size = 12),
+          axis.title.x = element_text(size = 12),
+          plot.title = element_text(size = 14, hjust = 0.5),
+          panel.border = element_rect(color = "black", fill = NA, size = 1),
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  
+    geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black") 
 
 
-# Saving the image for the plot
+## Figure 2: Number of Ad clicks by Categories
+
+
+## Categories with number of ad clicks in each category
+
+category_adclicks <- dbGetQuery(my_db, "
+  SELECT p.id, p.category_id, c.name AS category_name,
+  SUM(a.ad_clicks) AS total_ad_clicks
+  FROM products AS p
+  INNER JOIN advertisements a ON p.id = a.product_id
+  INNER JOIN categories c ON p.category_id = c.id 
+  GROUP BY p.category_id, c.name
+  ORDER BY total_ad_clicks DESC
+")
+
+  figure.2 <- category_adclicks %>%
+    ggplot(aes(x = reorder(category_name, -total_ad_clicks), y = total_ad_clicks/1000000)) +
+    geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+    labs(title = "Total Ad clicks (millions) by Categories",
+         x = "Category Name",
+         y = "Total Ad clicks") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+          axis.title.y = element_text(size = 12),
+          axis.title.x = element_text(size = 12),
+          plot.title = element_text(size = 14, hjust = 0.5),
+          panel.border = element_rect(color = "black", fill = NA, size = 1),
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
+    geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, size = 3, color = "black")   # Add labels for each bar
+
+
+## Figure 3: Number of Customers by States
+
+
+# read customers table from sql
+customers <- dbGetQuery(my_db, "
+  SELECT *
+  FROM customers
+")
+
+cust_geo <- customers %>% group_by(billing_address_state) %>% summarise(n = n())
+
+if (require("maps")) {
+  states <- map_data("state")
+  cust_geo$region <- tolower(cust_geo$billing_address_state)
+  choro <- merge(states, cust_geo, sort = FALSE, by = "region")
+  choro <- choro[order(choro$order), ]
+   figure.3 <- ggplot(choro, aes(long, lat)) +
+      geom_polygon(aes(group = group, fill = n)) +
+      coord_map("albers",  lat0 = 45.5, lat1 = 29.5) +
+      scale_fill_continuous(trans = "reverse") +
+      labs(title = "Number of Customers by States") +
+      theme_minimal() +
+      theme(legend.position = "left",
+            axis.title = element_blank(),
+            axis.ticks = element_blank(),
+            axis.text = element_blank(),
+            plot.title = element_text(size = 14, hjust = 0.5),
+            panel.border = element_rect(color = "black", fill = NA, size = 1),
+            plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
+  
+
+
+## Figure 4: Number of Sellers by States
+
+# read sellers table from sql
+sellers <- dbGetQuery(my_db, "
+  SELECT *
+  FROM sellers
+")
+
+seller_geo <- sellers %>% group_by(address_state) %>% summarise(n = n())
+
+if (require("maps")) {
+  states <- map_data("state")
+  seller_geo$region <- tolower(seller_geo$address_state)
+  choro <- merge(states, seller_geo, sort = FALSE, by = "region")
+  choro <- choro[order(choro$order), ]
+    figure.4 <- ggplot(choro, aes(long, lat)) +
+      geom_polygon(aes(group = group, fill = n)) +
+      coord_map("albers",  lat0 = 45.5, lat1 = 29.5) +
+      scale_fill_continuous(trans = "reverse") +
+      labs(title = "Number of Sellers by States") +
+      theme_minimal() +
+      theme(legend.position = "left",
+            axis.title = element_blank(),
+            axis.ticks = element_blank(),
+            axis.text = element_blank(),
+            plot.title = element_text(size = 14, hjust = 0.5),
+            panel.border = element_rect(color = "black", fill = NA, size = 1),
+            plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
+  
+}
+
+
+## Dashboard 1: Platform Overview
+
+# Extract the date and time
 this_filename_date <- as.character(Sys.Date())
 this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
 
-ggsave(paste0("Visualisations/number_of_products_in_each_category",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Combine charts and save as image
+png(paste0("Visualisations/platform_overview",
+           this_filename_date,"_",
+           this_filename_time,".png"), width = 1200, height = 800)  
+grid.arrange(figure.1, figure.2, figure.3, figure.4, nrow = 2,
+             top = textGrob("Platform Overview",gp=gpar(fontsize=24,font=2)))
 
 
-# Query 2: Monthly Sales Analysis
+## Figure 5: Monthly Sales Analysis
 
 daily_sales <- dbGetQuery(my_db, "
-  SELECT order_date,
-  price * quantity * (1 - (discount / 100)) AS revenue
-  FROM orders
-  JOIN products ON orders.product_id = products.id
+  SELECT order_date, sales
+  FROM df_sales
 ")
 
 # Convert order_date to date format
@@ -82,414 +215,399 @@ daily_sales$order_date <- as.Date(daily_sales$order_date, format = "%Y-%m-%d")
 monthly_sales <- daily_sales %>%
   mutate(year_month = floor_date(order_date, "month")) %>%
   group_by(year_month) %>%
-  summarise(revenue = sum(revenue))
+  summarise(sales = sum(sales)) %>%
+  arrange(desc(year_month))
+
+# Take last 12 months
+monthly_sales <- head(monthly_sales, 12)
 
 # Plot monthly sales trend with advanced visualization
-ggplot(monthly_sales, aes(x = year_month, y = revenue)) +
-  geom_line(color = "blue", size = 1.5) +
-  geom_point(color = "red", size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
-  labs(title = "Monthly Sales Trend", x = "Date", y = "Revenue") +
-  theme_bw() + 
-  theme(plot.title = element_text(size = 20, face = "bold"),
-        axis.title = element_text(size = 14),
-        axis.text = element_text(size = 12),
-        legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) + # Rotate x-axis labels vertically
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "$"))
+  figure.5 <- ggplot(monthly_sales, aes(x = year_month, y = sales)) +
+    geom_line(color = "blue", size = 1.5) +
+    geom_point(color = "red", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
+    labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+    scale_y_continuous(labels = scales::dollar_format(prefix = "$")) 
 
-# Saving the image file for the plot
+
+## Figure 6: Sales by Categories
+
+
+sales_by_category <- dbGetQuery(my_db, "
+  SELECT category_name, SUM(sales) AS total_sales
+  FROM df_sales
+  GROUP BY category_name
+")
+
+  figure.6 <- sales_by_category %>%
+    ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
+    geom_treemap() +
+    geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
+    scale_fill_viridis_d() +  
+    labs(title = "Sales by Categories",
+         fill = "Category",
+         caption = "Sales values are in USD") +
+    theme_minimal() +
+    theme(legend.position = "none",
+          plot.caption = element_text(size = 10, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold")) 
+
+
+## Figure 7: Top 10 Customers by Amount Spent
+
+top_customers <- dbGetQuery(my_db,
+                            "SELECT CONCAT(customer_name, ' ID ', customer_id) AS customer_name, sales 
+  FROM df_sales
+  GROUP BY customer_name
+  ORDER BY sales DESC
+  LIMIT 10"
+)
+
+  figure.7 <- top_customers %>%
+    arrange(desc(sales)) %>%
+    ggplot(aes(x = reorder(customer_name, sales), y = sales, fill = customer_name)) +
+    geom_bar(stat = "identity") +
+    labs(title = "Top 10 Customers by Total Sales",
+         x = "Customer",
+         y = "Total Sales") +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette = "Set3") +
+    geom_text(aes(label = sales), size = 4, color = "black") +
+    coord_flip() 
+
+
+## Figure 8. Top 10 Sellers by Total Sales
+
+
+top_sellers <- dbGetQuery(my_db,
+                          "SELECT CONCAT(seller_name, ' ID ', seller_id) AS seller_name, sales 
+  FROM df_sales
+  GROUP BY seller_name
+  ORDER BY sales DESC
+  LIMIT 10")
+
+  figure.8 <- top_sellers %>%
+    arrange(desc(sales)) %>%
+    ggplot(aes(x = reorder(seller_name, sales), y = sales, fill = seller_name)) +
+    geom_bar(stat = "identity") +
+    labs(title = "Top 10 Sellers by Total Sales",
+         x = "Seller",
+         y = "Total Sales") +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette = "Set3") +
+    geom_text(aes(label = sales), size = 4, color = "black") +
+    coord_flip() 
+
+
+## Dashboard 2: Sales Performance
+
+
+# Extract the date and time
 this_filename_date <- as.character(Sys.Date())
 this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
 
-ggsave(paste0("Visualisations/monthly_sales_analysis",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Combine charts and save as image
+png(paste0("Visualisations/sales_performance",
+           this_filename_date,"_",
+           this_filename_time,".png"), width = 1200, height = 800)  
+grid.arrange(figure.5, figure.6, figure.7, figure.8, nrow = 2,
+             top = textGrob("Sales Performance",gp=gpar(fontsize=24,font=2)))
 
 
-# Query 3: Top 10 Selling Products by Quantity Sold
+## Figure 9: Top 10 Selling Products by Value
+
 
 top_products <- dbGetQuery(my_db,
-                           "SELECT p.name AS product_name, SUM(o.quantity) AS total_sold
-  FROM products AS p
-  INNER JOIN orders AS o ON p.id = o.product_id
-  GROUP BY p.name
-  ORDER BY total_sold DESC
+                           "SELECT product_name, SUM(sales) AS total_sales
+  FROM df_sales
+  GROUP BY product_name
+  ORDER BY total_sales DESC
   LIMIT 10")
 
 
-top_products %>%
-  ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, fill = product_name)) +
-  geom_bar(stat = "identity", color = "black") +
-  scale_fill_brewer(palette = "Paired") +  # Using a built-in palette
-  labs(title = "Top 10 Selling Products",
-       x = "Product",
-       y = "Total Quantity Sold") +
-  theme_minimal(base_size = 14) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
-        axis.text.y = element_text(size = 12, color = "black"),
-        axis.title = element_text(size = 16, color = "black", face = "bold"),
-        plot.title = element_text(size = 20, color = "black", face = "bold"),
-        legend.position = "none") +
-  scale_y_continuous(labels = scales::comma_format()) +
-  coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold")
+  figure.9 <- top_products %>%
+    ggplot(aes(x = reorder(product_name, total_sales), y = total_sales, fill = product_name)) +
+    geom_bar(stat = "identity", color = "black") +
+    labs(title = "Top 10 Selling Products by Value",
+         x = "Product",
+         y = "Total Sales") +
+    theme_minimal(base_size = 14) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette = "Set3") +
+    coord_flip() +  # Flip the coordinates to make horizontal bars
+    geom_text(aes(label = total_sales), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
 
-# Saving the image for the plot
+
+## Figure 10: Top 10 Selling Products by Quantity
+
+top_products_q <- dbGetQuery(my_db,
+                             "SELECT product_name, SUM(quantity) AS total_sold
+  FROM df_sales
+  GROUP BY product_name
+  ORDER BY total_sold DESC
+  LIMIT 10")
+
+  figure.10 <- top_products_q %>%
+    ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, fill = product_name)) +
+    geom_bar(stat = "identity", color = "black") +
+    scale_fill_brewer(palette = "Paired") +  # Using a built-in palette
+    labs(title = "Top 10 Selling Products by Quantity",
+         x = "Product",
+         y = "Total Quantity Sold") +
+    theme_minimal(base_size = 14) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette = "Set3") +
+    coord_flip() +  # Flip the coordinates to make horizontal bars
+    geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Figure 11: Top & Bottom 5 Rating Products
+
+
+top_products_r <- dbGetQuery(my_db,
+                             "SELECT product_name, rating_review
+  FROM df_sales
+  WHERE rating_review BETWEEN 1 AND 5")
+
+top_products_r <- top_products_r %>% group_by(product_name) %>% summarise (average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(average_rating))  
+top_5_rating <- head(top_products_r,5)
+bottom_5_rating <- tail(top_products_r,5)
+top_bottom_5_rating <-rbind(top_5_rating,bottom_5_rating)
+
+  figure.11 <- top_bottom_5_rating %>%
+    ggplot(aes(x = reorder(product_name, average_rating), y = average_rating, fill = product_name)) +
+    geom_bar(stat = "identity", color = "black") +
+    labs(title = "Top & Bottom 5 Rating Products",
+         x = "Product",
+         y = "Average Rating") +
+    theme_minimal(base_size = 14) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette = "Set3") +
+    coord_flip() +  # Flip the coordinates to make horizontal bars
+    geom_text(aes(label = average_rating), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Figure 12: Top 10 Products by Ad clicks to Sales Conversion
+
+top_products_c <- dbGetQuery(my_db,
+                             "SELECT product_name, SUM(conversion_rate) as total_conversion_rate
+  FROM df_sales
+  WHERE conversion_rate IS NOT NULL
+  GROUP BY product_name
+  ORDER BY total_conversion_rate DESC
+  LIMIT 10")
+
+
+  figure.12 <- top_products_c %>%
+    ggplot(aes(x = reorder(product_name, total_conversion_rate), y = total_conversion_rate, fill = product_name)) +
+    geom_bar(stat = "identity", color = "black") +
+    labs(title = "Total Conversion Rate",
+         x = "Product",
+         y = "Conversion Rate (sales quality/million ad clicks)") +
+    theme_minimal(base_size = 14) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette = "Set3") +
+    coord_flip() +  # Flip the coordinates to make horizontal bars
+    geom_text(aes(label = total_conversion_rate), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Dashboard 3: Top Products
+
+# Extract the date and time
 this_filename_date <- as.character(Sys.Date())
 this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
 
-ggsave(paste0("Visualisations/Top 10 Selling Products by Quantity Sold",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Combine charts and save as image
+png(paste0("Visualisations/top_products",
+           this_filename_date,"_",
+           this_filename_time,".png"), width = 1200, height = 800)  
+grid.arrange(figure.9, figure.10, figure.11, figure.12, nrow = 2,
+             top = textGrob("Top Products",gp=gpar(fontsize=24,font=2)))
 
 
-# Query 4: Top 10 Sellers by the Total Revenue
+## Figure 13: Average Rating by Months
 
-top_sellers <- dbGetQuery(my_db,
-                          "SELECT s.name AS seller_name, ROUND(SUM(p.price * o.quantity * (1 - (o.discount / 100)))) AS total_revenue
-                FROM sellers AS s
-                INNER JOIN products AS p ON s.id = p.seller_id
-                INNER JOIN orders AS o ON p.id = o.product_id
-                GROUP BY s.name
-                ORDER BY total_revenue DESC
-                LIMIT 10")
+rating_y <- dbGetQuery(my_db,
+                       "SELECT id, product_name, order_date, rating_review, sales
+  FROM df_sales
+  WHERE rating_review BETWEEN 1 AND 5")
 
-top_sellers %>%
-  ggplot(aes(x = total_revenue, y = reorder(seller_name, total_revenue), fill = seller_name)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Top 10 Sellers by Total Revenue",
-       subtitle = "Total Revenue for the Top 10 Sellers",
-       x = "Total Revenue (in USD)",
-       y = "Sellers", 
-       fill = "Seller Name") +  
-  scale_fill_brewer(palette = "Paired") +
-  theme_bw() +
-  theme(plot.title = element_text(size = 20, face = "bold"),
-        plot.subtitle = element_text(size = 14),
-        axis.title = element_text(size = 14),
-        axis.text.y = element_text(size = 12),
-        axis.text.x = element_text(size = 10, angle = 45, hjust = 1, vjust = 1),  
-        panel.grid = element_blank()) +
-  geom_text(aes(label = total_revenue), # Remove scales::dollar()
-            position = position_stack(vjust = 1.1), 
-            hjust = 0.6, color = "black", size = 3) +  
-  coord_flip()
+# Convert order_date to date format
+rating_y$order_date <- as.Date(rating_y$order_date, format = "%Y-%m-%d")
+rating_y <- rating_y %>% mutate(year_month = floor_date(order_date, "month"))
 
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+# Calculate the average   
+rating_y_sum <- rating_y %>% group_by(year_month) %>% summarise (n_y = n(), average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(year_month)) 
 
-ggsave(paste0("Visualisations/Top_10_Sellers_by_total_revenue",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+test <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+# Take last 12 months
+rating_y_sum <- head(rating_y_sum,12)
 
 
-# Query 5: Top 10 Customers by the Amount Spent
-
-top_customers <- dbGetQuery(my_db,
-                            "SELECT c.id AS customer_id, CONCAT(c.first_name, ' ', c.last_name) AS customer_name, 
-       ROUND(SUM(p.price * o.quantity * (1 - (o.discount / 100)))) AS total_spent
-        FROM customers AS c
-        INNER JOIN orders AS o ON c.id = o.customer_id
-        INNER JOIN products AS p ON o.product_id = p.id
-        GROUP BY c.id, customer_name
-        ORDER BY total_spent DESC
-        LIMIT 10"
-)
-
-# Prepare data for stacked bar chart
-
-top_customers %>%
-  arrange(desc(total_spent)) %>%
-  ggplot(aes(x = reorder(customer_name, total_spent), y = total_spent, fill = customer_name)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Top Customers' Share of Total Spent",
-       x = "Customer",
-       y = "Total Spent") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        legend.position = "none") +
-  scale_fill_brewer(palette = "Set3") +
-  geom_text(aes(label = total_spent), size = 4, color = "black") +
-  coord_flip()
-
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
-ggsave(paste0("Visualisations/Top_10_customers_by_amount_spent",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Plot monthly sales trend with advanced visualization
+  figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
+    geom_line(color = "blue", size = 1.5) +
+    geom_point(color = "red", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
+    labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
 
 
-# Query 6: Top Rating Products (Need to re-check)
 
-top_rating_products <- dbGetQuery(my_db, "
-SELECT categories.name AS category, AVG(orders.rating_review) AS avg_rating, SUM(orders.quantity) AS total_sales
-FROM products
-INNER JOIN orders ON products.id = orders.product_id
-INNER JOIN categories ON products.category_id = categories.id
-WHERE orders.rating_review IS NOT NULL
-GROUP BY categories.name"
-)
+## Figure 14: Percentage of Nil Rating
 
-# Create the visualization
-ggplot(top_rating_products, aes(x = total_sales, y = avg_rating, size = total_sales, fill = category)) +
-  geom_point(shape = 21, color = "black", alpha = 0.6) + # Adding transparency for better visibility
-  scale_size_continuous(range = c(5, 20)) + # Adjusting size range for better differentiation
-  labs(title = "Product Ratings vs Total Sales by Category",
-       x = "Total Sales",
-       y = "Average Rating",
-       size = "Total Sales",
-       fill = "Category") +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), # Adjusting title size and alignment
-    axis.title = element_text(size = 12), # Adjusting axis label size
-    axis.text = element_text(size = 10), # Adjusting axis text size
-    legend.title = element_text(size = 12), # Adjusting legend title size
-    legend.text = element_text(size = 10), # Adjusting legend text size
-    legend.position = "bottom", # Positioning the legend at the bottom
-    legend.box = "horizontal" # Setting legend layout to horizontal
-  ) +
-  geom_text(aes(label = category), vjust = -1, hjust = 0, size = 3) + # Adding category labels
-  annotate("text", x = 500, y = 4.5, label = "Bubble size represents total sales", 
-           size = 3, color = "black", fontface = "italic", hjust = 0) # Adding annotation for bubble size explanation
+rating_all <- dbGetQuery(my_db,
+                         "SELECT id, product_name, order_date, rating_review, sales
+  FROM df_sales")
 
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+# Convert order_date to date format
+rating_all$order_date <- as.Date(rating_all$order_date, format = "%Y-%m-%d")
+rating_all <- rating_all %>% mutate(year_month = floor_date(order_date, "month"))
 
-ggsave(paste0("Visualisations/Product_ratings_vs_total_sales_by_category",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Calculate total number of orders per months
+rating_all_summary <- rating_all %>% group_by(year_month) %>% summarise (n_all = n())
+
+# Filter no rating and convert date format
+rating_n <- rating_all %>% filter(rating_review == 0) 
+
+# Calculate number of orders with no review 
+rating_n_summary <- rating_n %>% group_by(year_month) %>% summarise (n_n = n()) 
+
+# Combine data
+rating_n_summary <- merge(rating_all_summary, rating_n_summary)
+
+# Calculate nil review rate
+rating_n_summary <- rating_n_summary %>% mutate(nil_review_rate = n_n *100/n_all) %>% arrange(desc(year_month))
+
+# Take last 12 months
+rating_n_summary <- head(rating_n_summary,12)
+
+# Plot monthly sales trend with advanced visualization
+  figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
+    geom_line(color = "blue", size = 1.5) +
+    geom_point(color = "red", size = 3) +
+    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
+    labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
 
 
-## Query 7: Sales by Categories
+## Figure 15: Revenues by Rating Review
 
-sales_by_category <- dbGetQuery(my_db, "
-  SELECT c.name AS category_name, SUM(p.price * o.quantity * (1 - (o.discount / 100))) AS total_sales
-  FROM categories AS c
-  LEFT JOIN products AS p ON c.id = p.category_id
-  LEFT JOIN orders AS o ON p.id = o.product_id
-  GROUP BY c.name
+revenue_by_rating_y <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+revenue_by_rating_n <- rating_n %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
+
+  figure.15 <- revenue_by_rating %>% 
+    ggplot(aes(area = sales, fill = rating_review, label = paste0("Rating ", rating_review, "\n", scales::dollar(sales)))) +
+    geom_treemap() +
+    geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
+    labs(title = "Sales by Rating",
+         fill = "Rating Review",
+         caption = "Sales values are in USD") +
+    theme_minimal() +
+    theme(legend.position = "none",
+          plot.caption = element_text(size = 10, color = "black"),
+          axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold")) 
+
+
+## Figure 16: Average Discount by Month
+
+discount <- dbGetQuery(my_db, "
+  SELECT order_date, discount_value, sales
+  FROM df_sales
 ")
 
-sales_by_category %>%
-  ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
-  geom_treemap() +
-  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + # Change text color to light grey
-  scale_fill_viridis_d() +  # You can use any other color palette as per your preference
-  labs(title = "Sales by Categories (Tree Map)",
-       fill = "Category",
-       caption = "Sales values are in USD") +
-  theme_minimal() +
-  theme(legend.position = "none",
-        plot.title = element_text(size = 14, face = "bold"),
-        plot.caption = element_text(size = 10, color = "gray"))
-
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
-ggsave(paste0("Visualisations/Treemap_for_sales_by_categories",
-              this_filename_date,"_",
-              this_filename_time,".png"))
-
-# Query 8: Sales vs Ad Clicks Analysis
-
-sales_ad_clicks_data <- dbGetQuery(my_db, "
-  SELECT order_date,
-  IFNULL(SUM(p.price * o.quantity * (1 - (o.discount / 100))), 0) AS total_sales,
-  IFNULL(SUM(a.ad_clicks), 0) AS total_ad_clicks
-  FROM orders AS o
-  LEFT JOIN advertisements AS a ON o.product_id = a.product_id
-  LEFT JOIN products AS p ON o.product_id = p.id
-  GROUP BY order_date
-")
-
-# Convert order_date to Date format
-sales_ad_clicks_data$order_date <- as.Date(sales_ad_clicks_data$order_date)
-
-# Aggregate data by month
-sales_ad_clicks_monthly <- sales_ad_clicks_data %>%
-  mutate(order_month = floor_date(order_date, "month")) %>%
-  group_by(order_month) %>%
-  summarise(total_sales = sum(total_sales),
-            total_ad_clicks = sum(total_ad_clicks))
-
-# Apply log transformation to sales and ad clicks
-sales_ad_clicks_monthly <- sales_ad_clicks_monthly %>%
-  mutate(log_total_sales = log(total_sales + 1),  # Add 1 to avoid log(0)
-         log_total_ad_clicks = log(total_ad_clicks + 1))  # Add 1 to avoid log(0)
-
-sales_ad_clicks_monthly %>%
-  ggplot( aes(x = order_month)) +
-  geom_line(aes(y = log_total_sales, color = "Total Sales"), size = 1.5) +
-  geom_line(aes(y = log_total_ad_clicks, color = "Total Ad Clicks"), linetype = "dashed", size = 1.5) +
-  scale_color_manual(values = c("Total Sales" = "#E41A1C", "Total Ad Clicks" = "#377EB8")) +  # Unique colors
-  labs(title = "Trend of Sales and Ad Clicks Over Time",
-       x = "Month",
-       y = "Log Count") +
-  theme_bw() +
-  theme(legend.position = "top") +
-  scale_x_date(date_labels = "%b %Y", date_breaks = "1 month") +
-  ylim(0, max(c(max(sales_ad_clicks_monthly$log_total_sales), max(sales_ad_clicks_monthly$log_total_ad_clicks))))
-
-
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
-ggsave(paste0("Visualisations/sales_vs_ad_clicks_analysis",
-              this_filename_date,"_",
-              this_filename_time,".png"))
-
-
-# Query 9: Top 5 Sellers Time Series Analysis
-
-xyz <- dbGetQuery(my_db, "SELECT order_date, seller_id,
-  price * quantity * (1 - (discount / 100)) AS revenue
-  FROM orders
-  JOIN products ON orders.product_id = products.id"
-)
-
-top_5_sellers <- dbGetQuery(my_db,
-                            "SELECT s.id AS seller_id,
-                              s.name AS seller_name,
-                              SUM(o.quantity) AS total_quantity_sold
-                              FROM sellers AS s
-                              INNER JOIN products AS p ON s.id = p.seller_id
-                              INNER JOIN orders AS o ON p.id = o.product_id
-                              GROUP BY s.id, s.name
-                              ORDER BY total_quantity_sold DESC
-                              LIMIT 5"
-)
-
-
-# Convert order_date to Date format
-xyz$order_date <- as.Date(xyz$order_date, format = "%Y-%m-%d" )
-
+# Convert order_date to date format
+discount$order_date <- as.Date(discount$order_date, format = "%Y-%m-%d")
 
 # Aggregate by month
-xyz <- xyz %>%
+discount <- discount %>%
   mutate(year_month = floor_date(order_date, "month")) %>%
-  group_by(seller_id, year_month) %>%
-  filter(seller_id %in% top_5_sellers$seller_id)
+  group_by(year_month) %>%
+  summarise(sales = sum(sales), discount_value = sum(discount_value), average_discount = discount_value/sales) %>%
+  arrange(desc(year_month))
 
-ggplot(xyz, aes(x = factor(format(year_month, "%b %Y"), 
-                           levels = unique(format(year_month, "%b %Y"))), 
-                y = revenue, 
-                size = revenue)) +  # Set constant size for bubbles
-  geom_point(aes(fill = seller_id), shape = 21, color = "black", alpha = 0.7) +  # Use fill aesthetic for seller names
-  scale_size_continuous(range = c(5, 20)) +
-  labs(title = "Top 5 Sellers Sales Over Time",
-       x = "Order Month",
-       y = "Total Sales",
-       size = NULL,  # Remove legend for size aesthetic
-       fill = "Seller Name") +  # Set legend title
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, margin = margin(t = 5, r = 5, b = 5, l = 5)),
-        axis.title.x = element_blank(),
-        plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Center and style title
-        axis.text = element_text(size = 10),  # Adjust text size
-        axis.title = element_text(size = 12, face = "bold"))  # Adjust title size and style
+# Take last 12 months
+discount <- head(discount, 12)
 
-# Saving the image for the plot
+# Plot monthly sales trend with advanced visualization
+  figure.16 <- ggplot(discount, aes(x = year_month, y = average_discount)) +
+    geom_bar(stat = "identity", color = "black") + 
+    labs(title = "Monthly Average Discount (last 12 months)", x = "Month", y = "Average Rating") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+
+
+
+
+## Dashboard 4: Customer Satisfaction
+
+# Extract the date and time
 this_filename_date <- as.character(Sys.Date())
 this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
 
-ggsave(paste0("Visualisations/Top_5_sellers_time_series",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Combine charts and save as image
+png(paste0("Visualisations/customer_satisfaction",
+           this_filename_date,"_",
+           this_filename_time,".png"), width = 1200, height = 800)  
+grid.arrange(figure.13, figure.14, figure.15, figure.16, ncol = 2,
+             top = textGrob("Customer Statisfaction",gp=gpar(fontsize=24,font=2)))
 
 
-
-# Query 10: Average Ratings of Products in each Category 
-
-
-rating_category <- dbGetQuery(my_db,
-                              "SELECT categories.name AS category, AVG(orders.rating_review) AS avg_rating
-                              FROM products
-                              INNER JOIN orders ON products.id = orders.product_id
-                              INNER JOIN categories ON products.category_id = categories.id
-                              WHERE orders.rating_review IS NOT NULL
-                              GROUP BY categories.name"
-)
-
-# Create a bar chart for analyzing average ratings by category
-ggplot(rating_category, aes(x = category, y = avg_rating, fill = category)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Average Ratings of Products by Category",
-       x = "Category",
-       y = "Average Rating") +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 10, color = "#333333"), # Adjust text size and color
-    axis.text.y = element_text(size = 10, color = "#333333"), # Adjust text size and color
-    axis.title = element_text(size = 12, color = "#333333"), # Adjust axis title size and color
-    plot.title = element_text(hjust = 0.5, size = 16, color = "#333333", face = "bold"), # Adjust title size and color, make it bold
-    panel.background = element_rect(fill = "#f2f2f2"), # Change background color
-    panel.grid.major = element_blank(), # Remove major gridlines
-    panel.grid.minor = element_blank(), # Remove minor gridlines
-    legend.position = "none" # Remove legend
-  ) +
-  geom_text(aes(label = round(avg_rating, 2)), vjust = -0.5, size = 3, fontface = "bold", color = "black") + # Add data labels with bold font and black color
-  scale_fill_brewer(palette = "Set3") + # Apply a qualitative color palette
-  coord_flip() # Flip the coordinates for better readability
-
-
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
-ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
-              this_filename_date,"_",
-              this_filename_time,".png"))
-
-# Query 11: Conversion Rate of Top 10 Products
-
-conversion_rate <- dbGetQuery(my_db,
-                              "SELECT 
-  o.product_id AS product_id,
-  p.name AS product_name,
-  SUM(o.quantity) AS total_quantity,
-  SUM(a.ad_clicks) AS total_ad_clicks,
-  SUM(o.quantity) / NULLIF(SUM(a.ad_clicks / 100000), 0) AS conversion_rate
-FROM orders o
-LEFT JOIN advertisements a ON o.product_id = a.product_id
-LEFT JOIN products p ON o.product_id = p.id
-GROUP BY o.product_id, p.name
-ORDER BY conversion_rate DESC
-LIMIT 10;"
-)
-
-# Converting the id column to factors 
-conversion_rate$product_id <- factor(conversion_rate$product_id, levels = conversion_rate$product_id[order(-conversion_rate$conversion_rate)])
-
-# Create a bar plot
-ggplot(data = conversion_rate, aes(x = product_id, y = conversion_rate)) +
-  geom_bar(stat = "identity", fill = "#5DA5DA", width = 0.6) +
-  geom_text(aes(label = sprintf("%.2f", conversion_rate)), vjust = -0.5, size = 3, color = "black") +
-  labs(x = "Product ID", y = "Conversion Rate", title = "Top 10 Products by Conversion Rate") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1, size = 10, color = "#333333"), 
-        axis.title = element_text(size = 12, face = "bold", color = "#333333"), 
-        plot.title = element_text(size = 14, face = "bold", color = "#333333"),
-        axis.text.y = element_text(size = 10, color = "#333333"),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        panel.border = element_blank(),
-        plot.background = element_rect(fill = "white"),
-        panel.background = element_rect(fill = "white"),
-        legend.position = "none")
-
-# Saving the image for the plot
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
-ggsave(paste0("Visualisations/average_ratings_of_products_in_each_category",
-              this_filename_date,"_",
-              this_filename_time,".png"))
+# Disconnect from the database using the connection variable that we setup 
+# before
+RSQLite::dbDisconnect(my_db)
