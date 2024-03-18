@@ -25,6 +25,7 @@ jobs:
       - name: Install packages
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
+          sudo apt-get install libcurl4-openssl-dev
           Rscript -e 'install.packages(c("ggplot2", "readr", "RSQLite", "dplyr", "lubridate", "curl", "gridtext", "ggfittext", "maps", "mapproj", "gridExtra", "reshape2", "plyr", "devtools","treemapify"))'
       - name: Execute R script
         run: |
