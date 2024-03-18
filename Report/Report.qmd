@@ -9,8 +9,6 @@ author: "Group 2"
 
 This report simulates the end-to-end data management for an e-commerce platform in US from database design, workflow management to data analysis that provides insights into the platform's key performance metrics.
 
-[**any key highlight from the analysis**]{.underline}
-
 ### Overview
 
 ![](flowchart.png)
@@ -27,7 +25,7 @@ In the incremental load process, new synthetic data is generated and subjected t
 
 **Conceptual Design**
 
-![ER Diagram](ER Diagram.png)
+![ER Diagram](ER%20Diagram.png)
 
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
 
