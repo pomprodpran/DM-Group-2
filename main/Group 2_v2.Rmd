@@ -593,8 +593,9 @@ rating_y <- dbGetQuery(my_db,
   WHERE rating_review BETWEEN 1 AND 5")
 
 # Convert order_date to date format
-rating_y$order_date <- as.Date(rating_y$order_date, format = "%Y-%m-%d")
-rating_y <- rating_y %>% mutate(year_month = floor_date(order_date, "month"))
+rating_y$order_date <- as.Date(as.character(rating_y$order_date), format = "%Y-%m-%d")
+rating_y <- rating_y %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
+
 
 # Calculate the average   
 rating_y_sum <- rating_y %>% group_by(year_month) %>% summarise (n_y = n(), average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(year_month)) 
@@ -615,8 +616,9 @@ rating_y_sum <- head(rating_y_sum,12)
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") )
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10))  # Rotate x-axis labels vertically
+  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+  )
 ```
 
 
@@ -628,8 +630,8 @@ rating_all <- dbGetQuery(my_db,
   FROM df_sales")
 
 # Convert order_date to date format
-rating_all$order_date <- as.Date(rating_all$order_date, format = "%Y-%m-%d")
-rating_all <- rating_all %>% mutate(year_month = floor_date(order_date, "month"))
+rating_all$order_date <- as.Date(as.character(rating_all$order_date), format = "%Y-%m-%d")
+rating_all <- rating_all %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
 
 # Calculate total number of orders per months
 rating_all_summary <- rating_all %>% group_by(year_month) %>% summarise (n_all = n())
@@ -660,8 +662,9 @@ rating_n_summary <- head(rating_n_summary,12)
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") )
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) # Rotate x-axis labels vertically
+  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+    )
 ```
 
 ## Figure 15: Revenues by Rating Review
@@ -695,11 +698,11 @@ discount <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-discount$order_date <- as.Date(discount$order_date, format = "%Y-%m-%d")
+discount$order_date <- as.Date(as.character(discount$order_date), format = "%Y-%m-%d")
 
 # Aggregate by month
 discount <- discount %>%
-  mutate(year_month = floor_date(order_date, "month")) %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
   group_by(year_month) %>%
   summarise(sales = sum(sales), discount_value = sum(discount_value), average_discount = discount_value/sales) %>%
   arrange(desc(year_month))
@@ -716,8 +719,9 @@ discount <- head(discount, 12)
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
-    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") )
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) 
+    #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+  )
 ```
 
 

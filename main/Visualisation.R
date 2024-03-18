@@ -460,7 +460,8 @@ rating_y <- dbGetQuery(my_db,
 
 # Convert order_date to date format
 rating_y$order_date <- as.Date(as.character(rating_y$order_date), format = "%Y-%m-%d")
-rating_y <- rating_y %>% mutate(year_month = floor_date(order_date, "month"))
+rating_y <- rating_y %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
+
 
 # Calculate the average   
 rating_y_sum <- rating_y %>% group_by(year_month) %>% summarise (n_y = n(), average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(year_month)) 
@@ -471,7 +472,7 @@ rating_y_sum <- head(rating_y_sum,12)
 
 
 # Plot monthly sales trend with advanced visualization
-  figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
+figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
     geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
@@ -481,9 +482,8 @@ rating_y_sum <- head(rating_y_sum,12)
           axis.title = element_text(size = 12, color = "black", face = "bold"),
           plot.title = element_text(size = 16, color = "black", face = "bold"),
           legend.position = "none",
-          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
-
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10))  # Rotate x-axis labels vertically
+  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
 
 
 ## Figure 14: Percentage of Nil Rating
@@ -494,7 +494,7 @@ rating_all <- dbGetQuery(my_db,
 
 # Convert order_date to date format
 rating_all$order_date <- as.Date(as.character(rating_all$order_date), format = "%Y-%m-%d")
-rating_all <- rating_all %>% mutate(year_month = floor_date(order_date, "month"))
+rating_all <- rating_all %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
 
 # Calculate total number of orders per months
 rating_all_summary <- rating_all %>% group_by(year_month) %>% summarise (n_all = n())
@@ -515,7 +515,7 @@ rating_n_summary <- rating_n_summary %>% mutate(nil_review_rate = n_n *100/n_all
 rating_n_summary <- head(rating_n_summary,12)
 
 # Plot monthly sales trend with advanced visualization
-  figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
+figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
     geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
@@ -525,9 +525,8 @@ rating_n_summary <- head(rating_n_summary,12)
           axis.title = element_text(size = 12, color = "black", face = "bold"),
           plot.title = element_text(size = 16, color = "black", face = "bold"),
           legend.position = "none",
-          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
-
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) # Rotate x-axis labels vertically
+  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
 
 ## Figure 15: Revenues by Rating Review
 
@@ -552,36 +551,36 @@ revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
 
 ## Figure 16: Average Discount by Month
 
-discount <- dbGetQuery(my_db, "
+  discount <- dbGetQuery(my_db, "
   SELECT order_date, discount_value, sales
   FROM df_sales
 ")
-
-# Convert order_date to date format
-discount$order_date <- as.Date(as.character(discount$order_date), format = "%Y-%m-%d")
-
-# Aggregate by month
-discount <- discount %>%
-  mutate(year_month = floor_date(order_date, "month")) %>%
-  group_by(year_month) %>%
-  summarise(sales = sum(sales), discount_value = sum(discount_value), average_discount = discount_value/sales) %>%
-  arrange(desc(year_month))
-
-# Take last 12 months
-discount <- head(discount, 12)
-
-# Plot monthly sales trend with advanced visualization
-  figure.16 <- ggplot(discount, aes(x = year_month, y = average_discount)) +
-    geom_bar(stat = "identity", color = "black") + 
-    labs(title = "Monthly Average Discount (last 12 months)", x = "Month", y = "Average Rating") +
-    theme_bw() + 
-    theme(axis.text.y = element_text(size = 10, color = "black"),
-          axis.title = element_text(size = 12, color = "black", face = "bold"),
-          plot.title = element_text(size = 16, color = "black", face = "bold"),
-          legend.position = "none",
-          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
-    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
-
+  
+  # Convert order_date to date format
+  discount$order_date <- as.Date(as.character(discount$order_date), format = "%Y-%m-%d")
+  
+  # Aggregate by month
+  discount <- discount %>%
+    mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
+    group_by(year_month) %>%
+    summarise(sales = sum(sales), discount_value = sum(discount_value), average_discount = discount_value/sales) %>%
+    arrange(desc(year_month))
+  
+  # Take last 12 months
+  discount <- head(discount, 12)
+  
+  # Plot monthly sales trend with advanced visualization
+  ( figure.16 <- ggplot(discount, aes(x = year_month, y = average_discount)) +
+      geom_bar(stat = "identity", color = "black") + 
+      labs(title = "Monthly Average Discount (last 12 months)", x = "Month", y = "Average Rating") +
+      theme_bw() + 
+      theme(axis.text.y = element_text(size = 10, color = "black"),
+            axis.title = element_text(size = 12, color = "black", face = "bold"),
+            plot.title = element_text(size = 16, color = "black", face = "bold"),
+            legend.position = "none",
+            axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) 
+    #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+  )
 
 ## Dashboard 4: Customer Satisfaction
 
