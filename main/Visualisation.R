@@ -6,7 +6,6 @@ library(grid)
 
 
 # Data Analysis 
-
 ## Create views for analysis
 
 ### View linked product, categories, sellers and advertisements
