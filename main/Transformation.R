@@ -1,6 +1,7 @@
 library(RSQLite)
 library(readr)
 library(lubridate)
+library(dplyr)
 
 
 # Incremental Load
