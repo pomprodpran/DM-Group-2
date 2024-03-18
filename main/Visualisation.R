@@ -1,7 +1,4 @@
 
-# set up the connection
-my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"../database/ecommerce.db")
-
 # Data Analysis 
 
 ## Create views for analysis
@@ -153,7 +150,7 @@ if (require("maps")) {
             panel.border = element_rect(color = "black", fill = NA, size = 1),
             plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
   
-
+}
 
 ## Figure 4: Number of Sellers by States
 
@@ -194,12 +191,11 @@ this_filename_date <- as.character(Sys.Date())
 this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
 
 # Combine charts and save as image
-png(paste0("Visualisations/platform_overview",
-           this_filename_date,"_",
-           this_filename_time,".png"), width = 1200, height = 800)  
-grid.arrange(figure.1, figure.2, figure.3, figure.4, nrow = 2,
+g <- grid.arrange(figure.1, figure.2, figure.3, figure.4, nrow = 2,
              top = textGrob("Platform Overview",gp=gpar(fontsize=24,font=2)))
-
+ggsave(file=paste0("../Visualisations/platform_overview",
+              this_filename_date,"_",
+              this_filename_time,".png"), g)
 
 ## Figure 5: Monthly Sales Analysis
 
@@ -320,17 +316,12 @@ top_sellers <- dbGetQuery(my_db,
 
 ## Dashboard 2: Sales Performance
 
-
-# Extract the date and time
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
 # Combine charts and save as image
-png(paste0("Visualisations/sales_performance",
-           this_filename_date,"_",
-           this_filename_time,".png"), width = 1200, height = 800)  
-grid.arrange(figure.5, figure.6, figure.7, figure.8, nrow = 2,
+g2 <- grid.arrange(figure.5, figure.6, figure.7, figure.8, nrow = 2,
              top = textGrob("Sales Performance",gp=gpar(fontsize=24,font=2)))
+ggsave(file=paste0("../Visualisations/sales_performance",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), g2)
 
 
 ## Figure 9: Top 10 Selling Products by Value
@@ -448,16 +439,12 @@ top_products_c <- dbGetQuery(my_db,
 
 ## Dashboard 3: Top Products
 
-# Extract the date and time
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
 # Combine charts and save as image
-png(paste0("Visualisations/top_products",
-           this_filename_date,"_",
-           this_filename_time,".png"), width = 1200, height = 800)  
-grid.arrange(figure.9, figure.10, figure.11, figure.12, nrow = 2,
+g3 <- grid.arrange(figure.9, figure.10, figure.11, figure.12, nrow = 2,
              top = textGrob("Top Products",gp=gpar(fontsize=24,font=2)))
+ggsave(file=paste0("../Visualisations/top_products",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), g3)
 
 
 ## Figure 13: Average Rating by Months
@@ -592,22 +579,13 @@ discount <- head(discount, 12)
     scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
 
 
-
-
 ## Dashboard 4: Customer Satisfaction
 
-# Extract the date and time
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
 # Combine charts and save as image
-png(paste0("Visualisations/customer_satisfaction",
-           this_filename_date,"_",
-           this_filename_time,".png"), width = 1200, height = 800)  
-grid.arrange(figure.13, figure.14, figure.15, figure.16, ncol = 2,
+g4 <- grid.arrange(figure.13, figure.14, figure.15, figure.16, ncol = 2,
              top = textGrob("Customer Statisfaction",gp=gpar(fontsize=24,font=2)))
+ggsave(file=paste0("../Visualisations/customer_satisfaction",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), g4)
 
 
-# Disconnect from the database using the connection variable that we setup 
-# before
-RSQLite::dbDisconnect(my_db)

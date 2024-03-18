@@ -63,6 +63,8 @@ for (variable in all_files) {
           dbExecute(my_db, update_query)
         }
       }
+      # Perform Visualisation
+      source("./main/Visualisation.R")
     }
     else {
       print("Nothing to update in database since all rows are not pass the validations")
