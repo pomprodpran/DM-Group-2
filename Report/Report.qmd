@@ -296,8 +296,6 @@ When performing incremental loading, the new loaded CSV file format for automati
 
 Only the newly added files within the past two days will be processed, and we will obtain the primary key to check for duplicate primary keys first. Then, we will validate the quality and integrity of the new data, such as validating email and phone number formats. If errors occur, the uploaded error data will be removed while providing warnings for each invalid entry.
 
-For data integrity checks, we execute different types of data integrity checks based on different tables. Each check calls the previously defined validation function to ensure the correct format of the data. Next, we check foreign key constraints to see if the foreign key is defined in the database.
-
 After data validation, we use the primary key to check if the row is unique. If it is, the row will be appended to the table. If the row already exists, we will update the existing row.
 
 ### Part 4: Data Analysis and Reporting with Quarto in R
