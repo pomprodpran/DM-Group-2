@@ -227,7 +227,6 @@ monthly_sales <- head(monthly_sales, 12)
   figure.5 <- ggplot(monthly_sales, aes(x = year_month, y = sales)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
-    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
     labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
@@ -476,7 +475,6 @@ rating_y_sum <- head(rating_y_sum,12)
   figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
-    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
     labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
@@ -520,7 +518,6 @@ rating_n_summary <- head(rating_n_summary,12)
   figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
     geom_line(color = "blue", size = 1.5) +
     geom_point(color = "red", size = 3) +
-    geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
     labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
