@@ -3,6 +3,7 @@ library(maps)
 library(mapproj)
 library(gridExtra)
 library(grid)
+library(lubridate)
 
 
 # Data Analysis 
@@ -210,7 +211,7 @@ daily_sales <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-daily_sales$order_date <- as.Date(daily_sales$order_date, format = "%Y-%m-%d")
+daily_sales$order_date <- as.Date(as.character(daily_sales$order_date), format = "%Y-%m-%d")
 
 # Aggregate by month
 monthly_sales <- daily_sales %>%
@@ -460,7 +461,7 @@ rating_y <- dbGetQuery(my_db,
   WHERE rating_review BETWEEN 1 AND 5")
 
 # Convert order_date to date format
-rating_y$order_date <- as.Date(rating_y$order_date, format = "%Y-%m-%d")
+rating_y$order_date <- as.Date(as.character(rating_y$order_date), format = "%Y-%m-%d")
 rating_y <- rating_y %>% mutate(year_month = floor_date(order_date, "month"))
 
 # Calculate the average   
@@ -494,7 +495,7 @@ rating_all <- dbGetQuery(my_db,
   FROM df_sales")
 
 # Convert order_date to date format
-rating_all$order_date <- as.Date(rating_all$order_date, format = "%Y-%m-%d")
+rating_all$order_date <- as.Date(as.character(rating_all$order_date), format = "%Y-%m-%d")
 rating_all <- rating_all %>% mutate(year_month = floor_date(order_date, "month"))
 
 # Calculate total number of orders per months
@@ -559,7 +560,7 @@ discount <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-discount$order_date <- as.Date(discount$order_date, format = "%Y-%m-%d")
+discount$order_date <- as.Date(as.character(discount$order_date), format = "%Y-%m-%d")
 
 # Aggregate by month
 discount <- discount %>%
