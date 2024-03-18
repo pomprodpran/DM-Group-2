@@ -25,7 +25,8 @@ jobs:
       - name: Install packages
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          Rscript -e 'install.packages(c("ggplot2", "readr", "RSQLite", "dplyr", "lubridate", "curl", "gridtext", "ggfittext", "treemapify", "maps", "mapproj", "gridExtra", "grid"))'
+          Rscript -e 'install.packages(c("ggplot2", "readr", "RSQLite", "dplyr", "lubridate", "curl", "gridtext", "ggfittext", "maps", "mapproj", "gridExtra"))'
+          Rscript -e 'install.packages("treemapify", repos = "https://cloud.r-project.org/")"
       - name: Execute R script
         run: |
           Rscript main/Transformation.R
