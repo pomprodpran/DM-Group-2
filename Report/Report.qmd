@@ -5,19 +5,19 @@ editor: visual
 author: "Group 2"
 ---
 
-### Introduction
+### **Executive Summary** 
 
-This report simulates the end-to-end data management for an e-commerce platform in US from database design, workflow management to data analysis that provides insights into the platform's key performance metrics.
-
-### Overview
+This report simulates the end-to-end data management for an e-commerce platform in the US from database design, workflow management to data analysis that provides insights into the platform's key performance metrics. 
 
 ![](flowchart.png)
 
-This is the entire process of project, it begins with the database design phase, which includes conceptual, logical, and physical design. During conceptual design, we translate our understanding of the e-commerce database into an E-R. In the logical design phase, we define the structure of the database. For the physical design phase, we create the physical schema.
+During the design phase, we started with analysing business objectives to identity key participants (customers, sellers, products, shippers) and types of data that is crucial for insights and the platform\'s operations. Those elements are conceptually mapped out in an Entity-Relationship (E-R) diagram that is subsequently converted into database schema via logical and physical design steps. 
 
-After designing the database, we perform the initial load of generated synthetic data and import it into the database tables, while also conducting validation check. Subsequently, we execute queries to retrieve, manipulate, and manage the data stored in the database. Finally, we conduct data analysis on our e-commerce data.
+The workflow management automates the process of data validation and importation incorporated rigorous rules and checks to ensure data integrity. If critical checks are failed, the process is stopped for human intervention. For less severe checks, warnings are given, and errors are captured in error logs while the process resumes.  
 
-In the incremental load process, new synthetic data is generated and subjected to validation checks. If valid, the corresponding database tables and analysis graphs are updated accordingly.
+For the data analysis, we execute queries to retrieve, manipulate, and mine the data stored in the database to extract insights in four aspects of the business: Platform Overview, Sales Performance, Top Products, and Customer Satisfaction.  
+
+New data upload will automatically trigger the end-to-end process of validation, importation to analysis with corresponding database and dashboards updated accordingly. 
 
 ### Part 1: Database Design and Implementation
 
@@ -29,16 +29,23 @@ In the incremental load process, new synthetic data is generated and subjected t
 
 ![Entity Relationship Sets](Entity%20Relationship%20Sets.png)
 
-Our database conceptual design is based on the following assumptions & justification:
+Our database conceptual design is based on the following assumptions & justification: 
 
--   Customers are unique and identified by their ID. Each customer must have their first name, last name and email address whereas can opt to provide phone number or date of birth. For simplification we assume no multivalued attributes; thus, only one billing address, current shipping address and current payment method are captured in the database.
--   Products are organised into unique categories, which are identified by category ID. Each product belongs to only one category whilst one category can include multiple products, forming the 1:N relationship between Categories and Products entity.
--   Identical items sold by different sellers are considered different products and have unique product ID. Thus, one product can have only one seller but one seller may distribute multiple products, forming the 1:N relationship between Sellers and Products entity. This conceptual design is important to track price and inventory for each product sold by each seller. Additionally, each product can also have name, color, size and brand.
--   Sellers are unique and identified by their ID. We capture sellers' email, name and address.
--   Advertisements (unique and identified by ID) are specific for each product but one product can have multiple advertisements, forming the 1:N relationship between Products and Advertisements entity. Each advertisement must specify budget and captures content and the number of ad clicks.
--   Multiple customers can order multiple products that will be delivered to them by a selection of shippers (e.g., depending on the warehouse location), forming the ternary M:N relationship among the three entities. Each time a customer commits an order of a specific product which will be delivered by an assigned shipper, a unique order ID will be generated.
--   Each order captures quantity, date and time, and discount rate applicable specifically to the order. A customer can only leave a review on a product if he/she has ordered it. Thus, rating_reviews must be specific to an order, forming an attribute of the Orders relationship.
--   None of derived attributes are included to ensure physical schema comprise of only atomic values thus in normalized form.
+-   Customers are unique and identified by their ID. Each customer must have their first name, last name and email address whereas it is optional to provide phone number or date of birth. For simplification, we assume no multivalued attributes; thus, only one billing address, current shipping address and current payment method are captured in the database. 
+
+-   Products are organised into unique categories, which are identified by category ID. Each product belongs to only one category whilst one category can include multiple products, forming the 1:N relationship between Categories and Products entities. 
+
+-   Identical items sold by different sellers are considered different products and have unique product ID. Thus, one product can have only one seller, but one seller may distribute multiple products, forming the 1:N relationship between Sellers and Products entities. This conceptual design is important to track price and inventory for each product sold by each seller. Additionally, each product can also have name, colour, size and brand. 
+
+-   Sellers are unique and identified by their ID. We capture sellers' email, name and address. 
+
+-   Advertisements (unique and identified by ID) are specific for each product, but one product can have multiple advertisements, forming the 1:N relationship between Products and Advertisements entities. Each advertisement must specify budget and captures content and the number of ad clicks. 
+
+-   Multiple customers can order multiple products that will be delivered to them by a selection of shippers (e.g., depending on the warehouse location), forming the ternary M:N relationship among the three entities. Each time a customer commits an order of a specific product, which will be delivered by an assigned shipper, a unique order ID will be generated. 
+
+-   Each order captures quantity, date and time, and discount rate applicable specifically to the order. A customer can only leave a review on a product if he/she has ordered it. Thus, rating review must be specific to an order, forming an attribute of the Orders relationship. 
+
+-   None of derived attributes are included to ensure physical schema comprise of only atomic values thus in normalised form. 
 
 **Logical Design**
 
@@ -50,29 +57,20 @@ Our database conceptual design is based on the following assumptions & justifica
 -   **Advertisements** ($\underline{id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
 -   **Categories** ($\underline{id}$[,]{.underline} name, description)
 
-Our logical design of the database is converted from the conceptual ER diagram on the following principles:
+The logical design of the database is converted from the conceptual ER diagram on the following methodologies: 
 
--   Primary keys are underlined whereas foreign keys are double underlined.
+-   Composite attributes (customer name, customer and seller address, product price and advertisement budget) are registered in individual fields using outer layer of the attribute to ensure that physical database only capture atomic value. 
 
--   The primary key of the weak side become the foreign key on the strong side of the cardinality.
+```{=html}
+<!-- -->
+```
+-   Each entity is converted into one table. Except for the Orders relationship, all other cardinality relationships are 1:N, thus not converted into table. 
 
--   Composite attributes (customer name, customer and seller address, product price and advertisement budget ) are registered in individual fields using outer layer of the attribute to ensure that physical database only capture atomic value.
-
--   Each entity is converted into one table. Except for the Orders relationship, all other cardinality relationship are 1:N thus not converted into table.
-
--   The ternary M:N relationship among Customers, Products and Shippers is converted into the Orders table. Primary key (ID) of Customers, Entities and Shippers entity, together with order date and time forming a composite key for the Orders relationship table. Each record of the Orders relationship is also unique by an order ID.
+-   The ternary M:N relationship among Customers, Products and Shippers is converted into the Orders table. Primary key (ID) of Customers, Products and Shippers entities, together with order date and time forming a composite key for the Orders relationship table. Each record of the Orders relationship is also unique by an order ID. 
 
 #### Task 1.2: SQL Database Schema Creation
 
-The physical schema is in First Normal Form (1NF) as:
-
--   Each column of a table is a unique variable and contains only atomic values (due to no composite or multivalued attribute in the logical schema).
-
--   Each row of a table is a unique record and identified by value in its ID attribute.
-
--   The order of rows and columns is not significant.
-
-The physical schema is in Second Normal Form (2NF) and Third Normal Form (3NF) as each table are in 1NF and there are no undesirable functional dependency among the tables i.e., there is no non-prime attribute is directly or transitively partially dependent on a candidate key.
+Our logical scheme is in Third Normal Form as a result of meticulously abiding to the described principles in the conceptual and logical design phases. 
 
 ```{r setup, include=FALSE}
 
@@ -224,53 +222,33 @@ CREATE TABLE IF NOT EXISTS `advertisements` (
 
 #### Task 2.1: Synthetic Data Generation
 
-The entire synthetic data is generated using Mockaroo using advanced field settings or Mockaroo specified coding language.
+Synthetic data is generated using Mockaroo leveraging advanced field settings or Mockaroo specified coding language. 
 
-Foreign key is imported from other datasets by using field type as 'Dataset Column' then connecting to the other datasets where the foreign key comes from.
+Foreign key is imported from other datasets by using field type as 'Dataset Column' then connecting to the other datasets where the foreign key comes from. 
 
-Field type as 'Formula' or 'Custom List' with dynamic distribution are utilised to set specific rules and conditions for the synthetic data generation as realistic as possible, for example:
+Field type as 'Formula' or 'Custom List' with dynamic distribution are utilised to set specific rules and conditions for the synthetic data generation as realistic as possible, for example: 
 
--   Product names are conditional to category ID
+-   Product names are conditional to category ID; and 
 
--   Product size and price ranges are conditional to product name
+-   Product size and price ranges are conditional to product name. 
 
--   Advertisement contents are conditional to product name
-
-The data generation is a part of the dynamic process from data generation to data validation then data analysis. Data generation is revised whenever challenges incur during validation and analysis to ensure that the synthetic data simulates the real-world as much as possible.
+The data generation is a part of the dynamic process from data generation to data validation, then data analysis. Data generation is revised if challenges incur during validation and analysis to ensure that the synthetic data simulates the real-world as much as possible. 
 
 #### Task 2.2: Data Import and Quality Assurance
 
-In this task, we have performed data validation for entities in the database to maintain data quality and integrity. The validation process involves several key activities:
+Prior to importing into database, data is validated for both the initial load and additional loads to safeguard data integrity. The validation process is first undertaken on tables representing entities on the weaker side of the cardinality relationship, then tables representing the strong side and ending with tables representing the M:N relationship. Key assurance aspects are as follows: 
 
-**1. Checking Duplicate Primary Key:** First, we check whether any of the primary keys present in the csv files have duplicates or not. If the number of unique values for a specific primary key column is equal to the total number of rows in the file, then there would be no duplicate primary key values. If there are duplicate entries, then an error message would pop up and the whole process would stop.
+**1. Unique Primary Key:** An error message would pop up and the data loading would stop if the number of distinct primary key values is lesser than the number of rows, indicating potential of duplicate primary key values.  
 
-**2. Checking data quality and integrity:**
+**2. Foreign Key exists as Primary Key in the associated table**: Only records that pass the examination can be uploaded into the database. Otherwise, records are not uploaded and will be captured in error logs.  
 
-**2.1. Consistency Checks:** Consistency checks involve ensuring that the data conforms to business rules and logic. For instance, a payment status should correspond to a limited set of values (e.g., 'Pending', 'Completed', 'Rejected'), and a product category should be one that is predefined in the category table.
+**3. Not Null constraints:** Fields including Customer Email, Payment Method, Price and Quantity are crucial for the functioning of the platform, thus cannot have Null values.  
 
-**2.2. Range & Constraint Checks:** This involves ensuring that numeric values fall within acceptable ranges (e.g., a rating field that should be between 1 and 5) and that string values meet constraints, such as a maximum length.
+**4. Other value constraint checks:** This involves assuring numeric values fall within acceptable ranges, e.g., Rating Review must be Null or integer ranging from 1-5; Discount ranges between 0-100; Price, Quantity and Budget are positive numerical, and Ad Clicks are non-negative numerical. 
 
-**2.3. Email Validation:** Email addresses are validated using regular expressions that define a pattern consistent with standard email formats. The validation ensures that only correctly formatted email addresses are accepted, which is critical for communication and user identification.
+**5. Format constraint check:** This covers various variables with pre-defined format, such as email addresses (\*\@\*), phone numbers (1##########), date (YYYY-MM-DD), and currency (USD). As the e-commerce platform currently concentrates only in the US, currency and phone number are restricted to only being from there. 
 
-**2.4. Phone Numbers:** Phone numbers are validated using numeric values. The first digit for all phone numbers starts with "1" for country code, followed by 10 numeric values. However, we do not cover the international format and only consider phone numbers from the USA. This is checked in both "customers" and "shippers" entities.
-
-**2.5. Date:** Order dates, present in the "order" entity, are validated using the YYYY-MM-DD format. The parser interprets the characters in the date according to this format and checks if they follow it. If the dates are valid, the system would indicate **'TRUE'**. If the dates are invalid, the system would indicate **'FALSE'**.
-
-**2.6. Currency Code:** For the currency code, we assume that only USD is used. By standardising on a single currency code, the database is less complex and more consistent. This would also make sure the fluctuations in currency would not affect the change in prices.
-
-**2.7. Price, Quantity, Budget & Ad Clicks:** Price from the "products" entity, quantity from the "orders" entity, budget and ad clicks from the "advertisements" entity are validated using an inequality, which states that these 3 attributes must be greater than 0 for their respective entities.
-
-**2.8. Payment Method:** Payment method, present in the "customers" entity, is validated by checking whether an appropriate payment method is provided by the customer. This column cannot have null values.
-
-**2.9. Discount:** Discount, present in the "orders" entity, is validated by checking whether each value in the column is between 0 to 100.
-
-**2.10. Rating Review:** Rating review, present in the "orders" entity, is validated by checking whether each value in the column is either NA or a value from 1 to 5.
-
-If any of the values present in the above attributes go against the set rules, a warning statement would pop up, indicating that specific row should be excluded.
-
-**3. Checking Foreign Key**: After performing the integrity check, we check the foreign key. First, we check if there is/are foreign key(s) present in the file. If there are no foreign keys, the validation is skipped. If they are present in the file, the foreign key columns are extracted to a table for temporary processing. In this manner, all the csv files are checked. The foreign key values from the destination columns are, then, checked to see if they exist in the original columns. In a separate column, if the foreign key is present, the validation is set to **'TRUE'** and if the foreign key is missing, the validation is set to **'FALSE'**. The rows indicating 'FALSE' would be removed and the file would be updated.
-
-The validation is, thus, completed.
+If any of the values present in the above attributes go against the validation rules, a warning statement would pop up, indicating that specific row should be excluded. 
 
 The validations are stored in **Validation.R** file are shown below:
 
@@ -515,20 +493,20 @@ for (variable in all_files) {
 
 #### Task 3.1: GitHub Repository and Workflow Setup
 
-For setting up the GitHub repository and workflow, we first create a new repository for our project on GitHub, and then clone it to our local machine using Git. This enables collaboration within our group, allowing everyone to work together and make changes to the project through GitHub. After cloning the repository locally, we add our database file, e-commerce data file, report file, as well as scripts for data validation, transformation, data analysis, and data visualization to the repository.
+We first create a new repository for our project on GitHub (<https://github.com/pomprodpran/DM-Group-2>) This enables collaboration within our group, allowing everyone to work together and make changes to the project through GitHub. After cloning the repository locally, we added our database file, e-commerce data file, report file, and scripts for data validation, transformation, data analysis, and data visualisation to the repository. 
 
-Within the 'database' file, an e-commerce database is created, and in the 'data upload' file, we upload all the generated data, including tables: advertisements, categories, customers, products, sellers, shippers. Within the 'main' file, we have data analysis visualizations file, and transformation, validation scripts.
+Within the '**database**' file, an e-commerce database would be created, and in the '**data upload**' file, we upload all the generated data including advertisements, categories, customers, products, sellers, and shippers table. Within the '**main**' file, we have schema creation, data analysis **visualisations** file, **transformation** and **validation** scripts. 
 
 #### Task 3.2: GitHub Actions for Continuous Integration
 
-To set up the workflow, we use the "actions" part to create a new workflow file, then define the workflow as **etl.yaml**. 
+To set up the workflow, we use the GitHub Actions part to create a new workflow file, then define the workflow as **etl.yaml**. 
 
 ---
 name: ETL Workflow for Group 2
 
 on:
   schedule:
-    - cron: '0 */2 * * *' # Run every 3 hours
+    - cron: '0 */2 * * *' # Run every 2 hours
   push:
     branches: [ main ]
 jobs:
@@ -572,19 +550,19 @@ jobs:
             branch: main
 ---
 
-For the workflow, we specify the actions as follows:
+For the workflow, we specify the actions as follows:  
 
-1\. Specify that the workflow should run every 2 hours or when changes are pushed to the main branch.
+1\. Specify that the workflow should run every 2 hours or when changes are pushed to the main branch. 
 
-2\. Define and build the job (sequence of tasks) to be executed.
+2\. Define and build the job (sequence of tasks) to be executed.  
 
-3\. Check out the code repository into the GitHub Actions runner.
+3\. Check out the code repository into the GitHub Actions runner.  
 
-4\. Set up the R environment and cache R packages.
+4\. Set up the R environment and cache R packages.  
 
-5\. Install all the packages that we will use.
+5\. Install all the packages that we will use.  
 
-6\. Execute the **Transformation.R** script from the main directory, checking for data quality and integrity of the new data that we update. (After data transformation and validation, it will trigger the running of the data analysis script, and the new analysis charts will be saved by month in the folder.)
+6\. Execute the data **transformation** script from the main directory, checking for data quality and integrity of the new data that we update. (After data transformation and validation, it will trigger the running of the data analysis script, and the new analysis charts will be saved in the folder.)  
 
 ```{r incremental_load, eval=FALSE}
 # Transformation.R
@@ -672,19 +650,19 @@ if (exists("my_db") && RSQLite::dbIsValid(my_db)) {
 
 ```
 
-When performing incremental loading, the new loaded CSV file format for automation needs to be '
+When performing incremental loading, the new loaded CSV file format for automation needs to be '\[table name\]\_YYYY-MM-DDTHHMMSS.csv' to read in the data. 
 
-'\[table name\]\_YYYY-MM-DDTHHMMSS.csv' to read in the data.
+Only the newly added files within the past two days will be processed, following the thorough validation process described in Part 2.2.
 
-Only the newly added files within the past two days will be processed, and we will obtain the primary key to check for duplicate primary keys first. Then, we will validate the quality and integrity of the new data, such as validating email and phone number formats. If errors occur, the uploaded error data will be removed while providing warnings for each invalid entry.
-
-After data validation, we use the primary key to check if the row is unique. If it is, the row will be appended to the table. If the row already exists, we will update the existing row.
-
-7\. Configure the Git user email and name, adding all files in the database directory to the Git staging area.
+7\. Configure the Git user email and name, adding all files in the database directory to the Git staging area.  
 
 8\. Finally, commit and push the changes to the main branch. 
 
 ### Part 4: Data Analysis and Reporting with Quarto in R
+
+In accordance with the CRISP-DM, data analysis is designed to assist management with their data-driven decision making on multi-dimensional facets of the business. An effective data analysis should allow management to direct their investments and resources into the areas with most growth and profitability, whilst mitigating potential risks. With that objective in mind, our data analysis is organised into the following key elements of the business: 
+
+**Platform Overview**:Designed to provide the management with an overview of the platform participants (customers, sellers, and products), this dashboard addresses fundamental questions on the top selling product categories, customer traffics via ad clicks, and customers\' and sellers\' geographical location. This aids management in optimising the distribution network, merchandising strategy (i.e., which product to sells) and network expansion. We observe that the Health & Wellness product is the most popular category reflecting the shift in consumers attention towards self-care and wellbeing post the COVID-19 pandemic. Low participants in the Central region may result from the company\'s deliberate strategy or flash an opportunity for expansion.  
 
 ```{r analysis}
 # Perform Visualisation
@@ -693,13 +671,618 @@ source("../main/Visualisation.R")
 ggsave(file=paste0("../Visualisations/platform_overview",
               this_filename_date,"_",
               this_filename_time,".png"), plot = g1 ,width = 12, height = 8)
+```
+
+```{r dashboard1, eval=FALSE}
+library(treemapify)
+library(maps)
+library(mapproj)
+library(gridExtra)
+library(grid)
+library(lubridate)
+
+
+# Data Analysis 
+## Create views for analysis
+
+### View linked product, categories, sellers and advertisements
+dbExecute(my_db, "DROP VIEW IF EXISTS df_products;")
+
+
+view_product_query <-paste("CREATE VIEW IF NOT EXISTS df_products AS
+SELECT p.id, p.seller_id, p.category_id, p.price, p.inventory,
+s.name AS seller_name,
+CONCAT(p.name, ' ID ', p.id) AS product_name,
+SUM(a.ad_clicks) AS total_ad_clicks,
+SUM(a.budget) AS total_budget,
+cat.name AS category_name
+FROM products as p
+LEFT JOIN sellers s ON p.seller_id = s.id
+LEFT JOIN categories cat On p.category_id = cat.id
+LEFT JOIN advertisements a on p.id= a.product_id
+GROUP BY p.id;")
+dbExecute(my_db, view_product_query)
+
+
+#df_products <- dbGetQuery(my_db, "SELECT *
+#                              FROM df_products")
+
+
+### View linked orders, customers and products (including ads and sellers details)
+dbExecute(my_db, "DROP VIEW IF EXISTS df_sales;")
+
+view_sales_query <-paste("CREATE VIEW IF NOT EXISTS df_sales AS
+SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, COALESCE(o.rating_review,0) as rating_review, dfp.price,
+round(o.quantity*(1-o.discount/100.00)*dfp.price,2) AS sales,
+round(o.quantity*(o.discount/100.00)*dfp.price,2) AS discount_value,
+round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
+dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
+CONCAT(first_name, ' ', last_name) AS customer_name
+FROM orders AS o
+LEFT JOIN df_products dfp ON o.product_id = dfp.id
+LEFT JOIN customers c ON o.customer_id = c.id;")
+dbExecute(my_db,view_sales_query)
+
+
+
+df_sales <- dbGetQuery(my_db, "SELECT *
+                              FROM df_sales")
+
+
+df_sales <- dbGetQuery(my_db, "SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
+round(o.quantity*(1-o.discount/100)*dfp.price,2) AS sales,
+round(o.quantity*(o.discount/100)*dfp.price,2) AS discount_value,
+round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
+dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
+CONCAT(first_name, ' ', last_name) AS customer_name
+FROM orders AS o
+LEFT JOIN df_products dfp ON o.product_id = dfp.id
+LEFT JOIN customers c ON o.customer_id = c.id")
+
+
+
+
+
+## Figure 1:  Number of Products by Categories
+
+
+## Categories with number of products in each category
+
+category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.id) AS num_products
+                              FROM products AS p
+                              INNER JOIN categories AS c ON p.category_id = c.id
+                              GROUP BY p.category_id, c.name
+                              ORDER BY num_products DESC
+                              LIMIT 10")
+
+figure.1 <- category_products %>%
+  ggplot(aes(x = reorder(category_name, -num_products), y = num_products)) +
+  geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+  labs(title = "Number of Products by Categories",
+       x = "Category Name",
+       y = "Number of Products") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        axis.title.y = element_text(size = 12),
+        axis.title.x = element_text(size = 12),
+        plot.title = element_text(size = 14, hjust = 0.5),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  
+  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black") 
+
+
+## Figure 2: Number of Ad clicks by Categories
+
+
+## Categories with number of ad clicks in each category
+
+category_adclicks <- dbGetQuery(my_db, "
+  SELECT p.id, p.category_id, c.name AS category_name,
+  SUM(a.ad_clicks) AS total_ad_clicks
+  FROM products AS p
+  INNER JOIN advertisements a ON p.id = a.product_id
+  INNER JOIN categories c ON p.category_id = c.id 
+  GROUP BY p.category_id, c.name
+  ORDER BY total_ad_clicks DESC
+")
+
+figure.2 <- category_adclicks %>%
+  ggplot(aes(x = reorder(category_name, -total_ad_clicks), y = total_ad_clicks/1000000)) +
+  geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+  labs(title = "Total Ad clicks (millions) by Categories",
+       x = "Category Name",
+       y = "Total Ad clicks") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        axis.title.y = element_text(size = 12),
+        axis.title.x = element_text(size = 12),
+        plot.title = element_text(size = 14, hjust = 0.5),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
+  geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, size = 3, color = "black")   # Add labels for each bar
+
+
+## Figure 3: Number of Customers by States
+
+
+# read customers table from sql
+customers <- dbGetQuery(my_db, "
+  SELECT *
+  FROM customers
+")
+
+cust_geo <- customers %>% group_by(billing_address_state) %>% summarise(n = n())
+
+if (require("maps")) {
+  states <- map_data("state")
+  cust_geo$region <- tolower(cust_geo$billing_address_state)
+  choro <- merge(states, cust_geo, sort = FALSE, by = "region")
+  choro <- choro[order(choro$order), ]
+  figure.3 <- ggplot(choro, aes(long, lat)) +
+    geom_polygon(aes(group = group, fill = n)) +
+    coord_map("albers",  lat0 = 45.5, lat1 = 29.5) +
+    scale_fill_continuous(trans = "reverse") +
+    labs(title = "Number of Customers by States") +
+    theme_minimal() +
+    theme(legend.position = "left",
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          axis.text = element_blank(),
+          plot.title = element_text(size = 14, hjust = 0.5),
+          panel.border = element_rect(color = "black", fill = NA, size = 1),
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
+  
+}
+
+## Figure 4: Number of Sellers by States
+
+# read sellers table from sql
+sellers <- dbGetQuery(my_db, "
+  SELECT *
+  FROM sellers
+")
+
+seller_geo <- sellers %>% group_by(address_state) %>% summarise(n = n())
+
+if (require("maps")) {
+  states <- map_data("state")
+  seller_geo$region <- tolower(seller_geo$address_state)
+  choro <- merge(states, seller_geo, sort = FALSE, by = "region")
+  choro <- choro[order(choro$order), ]
+  figure.4 <- ggplot(choro, aes(long, lat)) +
+    geom_polygon(aes(group = group, fill = n)) +
+    coord_map("albers",  lat0 = 45.5, lat1 = 29.5) +
+    scale_fill_continuous(trans = "reverse") +
+    labs(title = "Number of Sellers by States") +
+    theme_minimal() +
+    theme(legend.position = "left",
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          axis.text = element_blank(),
+          plot.title = element_text(size = 14, hjust = 0.5),
+          panel.border = element_rect(color = "black", fill = NA, size = 1),
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
+  
+}
+
+
+## Dashboard 1: Platform Overview
+
+# Extract the date and time
+this_filename_date <- as.character(Sys.Date())
+this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
+
+# Combine charts and save as image
+g1 <- grid.arrange(figure.1, figure.2, figure.3, figure.4, nrow = 2,
+                   top = textGrob("Platform Overview",gp=gpar(fontsize=24,font=2)))
+```
+
+**Sales Performance:** The dashboard provides key metrics into sales performance and growth potential of the platform. Monthly Sales Trend tracks the live results in the last 12 months, timely highlighting the effectiveness of management\'s strategies and day-to-day operations. In contrast, the remaining charts capture a snapshot of the overall performance to date, drawing management\'s attention to the most profitable customers, sellers, and product category. The concentration risk presenting in the top customer and seller of this platform, whilst should be mindful of, indicates growth opportunities on the remaining customers and seller groups. 
+
+```{r}
 ggsave(file=paste0("../Visualisations/sales_performance",
                    this_filename_date,"_",
                    this_filename_time,".png"), plot= g2,width = 12, height = 8)
+```
+
+```{r dashboard2 ,eval=FALSE}
+## Figure 5: Monthly Sales Analysis
+
+daily_sales <- dbGetQuery(my_db, "
+  SELECT order_date, sales
+  FROM df_sales
+")
+
+# Convert order_date to date format
+daily_sales$order_date <- as.Date(as.character(daily_sales$order_date), format = "%Y-%m-%d")
+# Aggregate by month
+monthly_sales <- daily_sales %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
+  group_by(year_month) %>%
+  summarise(sales = sum(sales)) %>%
+  arrange(desc(year_month))
+
+# Take last 12 months
+monthly_sales <- head(monthly_sales, 12)
+
+# Plot monthly sales trend with advanced visualization
+figure.5 <- ggplot(monthly_sales, aes(x = as.factor(year_month), y = sales)) +
+    geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+    labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          panel.border = element_rect(color = "black", fill = NA, size = 1),
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
+    scale_y_continuous(labels = scales::dollar_format(prefix = "$")) +
+    geom_text(aes(label = sales), vjust = -0.3, size = 3, color = "black")
+
+## Figure 6: Sales by Categories
+
+
+sales_by_category <- dbGetQuery(my_db, "
+  SELECT category_name, SUM(sales) AS total_sales
+  FROM df_sales
+  GROUP BY category_name
+")
+
+figure.6 <- sales_by_category %>%
+  ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
+  geom_treemap() +
+  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
+  scale_fill_viridis_d() +  
+  labs(title = "Sales by Categories",
+       fill = "Category",
+       caption = "Sales values are in USD") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 10, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold")) 
+
+
+## Figure 7: Top 10 Customers by Amount Spent
+
+top_customers <- dbGetQuery(my_db,
+                            "SELECT CONCAT(customer_name, ' ID ', customer_id) AS customer_name, sales 
+  FROM df_sales
+  GROUP BY customer_name
+  ORDER BY sales DESC
+  LIMIT 10"
+)
+
+figure.7 <- top_customers %>%
+  arrange(desc(sales)) %>%
+  ggplot(aes(x = reorder(customer_name, sales), y = sales, fill = customer_name)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Customers by Total Sales",
+       x = "Customer",
+       y = "Total Sales") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  geom_text(aes(label = sales), size = 4, color = "black") +
+  coord_flip() 
+
+
+## Figure 8. Top 10 Sellers by Total Sales
+
+
+top_sellers <- dbGetQuery(my_db,
+                          "SELECT CONCAT(seller_name, ' ID ', seller_id) AS seller_name, sales 
+  FROM df_sales
+  GROUP BY seller_name
+  ORDER BY sales DESC
+  LIMIT 10")
+
+figure.8 <- top_sellers %>%
+  arrange(desc(sales)) %>%
+  ggplot(aes(x = reorder(seller_name, sales), y = sales, fill = seller_name)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Sellers by Total Sales",
+       x = "Seller",
+       y = "Total Sales") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  geom_text(aes(label = sales), size = 4, color = "black") +
+  coord_flip() 
+
+
+## Dashboard 2: Sales Performance
+
+# Combine charts and save as image
+g2 <- grid.arrange(figure.5, figure.6, figure.7, figure.8, nrow = 2,
+                   top = textGrob("Sales Performance",gp=gpar(fontsize=24,font=2)))
+
+```
+
+**Top Products**: Drilling down into the product level, this showcases the top performing products by various metrics: sales value, sales quantum, customer rating and conversion rate (measured by sales quantum per a million of ad clicks), spearheading the platform\'s marketing, merchandising, and acquisition strategy. Whilst not being the top selling products by quantity, bicycle and laptop generates the most revenue due to its high value propositions. 
+
+```{r}
 ggsave(file=paste0("../Visualisations/top_products",
                    this_filename_date,"_",
                    this_filename_time,".png"), plot= g3,width = 12, height = 8)
+```
+
+```{r dashboard3, eval=FALSE}
+## Figure 9: Top 10 Selling Products by Value
+
+
+top_products <- dbGetQuery(my_db,
+                           "SELECT product_name, SUM(sales) AS total_sales
+  FROM df_sales
+  GROUP BY product_name
+  ORDER BY total_sales DESC
+  LIMIT 10")
+
+
+figure.9 <- top_products %>%
+  ggplot(aes(x = reorder(product_name, total_sales), y = total_sales, fill = product_name)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Top 10 Selling Products by Value",
+       x = "Product",
+       y = "Total Sales") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  coord_flip() +  # Flip the coordinates to make horizontal bars
+  geom_text(aes(label = total_sales), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Figure 10: Top 10 Selling Products by Quantity
+
+top_products_q <- dbGetQuery(my_db,
+                             "SELECT product_name, SUM(quantity) AS total_sold
+  FROM df_sales
+  GROUP BY product_name
+  ORDER BY total_sold DESC
+  LIMIT 10")
+
+figure.10 <- top_products_q %>%
+  ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, fill = product_name)) +
+  geom_bar(stat = "identity", color = "black") +
+  scale_fill_brewer(palette = "Paired") +  # Using a built-in palette
+  labs(title = "Top 10 Selling Products by Quantity",
+       x = "Product",
+       y = "Total Quantity Sold") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  coord_flip() +  # Flip the coordinates to make horizontal bars
+  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Figure 11: Top & Bottom 5 Rating Products
+
+
+top_products_r <- dbGetQuery(my_db,
+                             "SELECT product_name, rating_review
+  FROM df_sales
+  WHERE rating_review BETWEEN 1 AND 5")
+
+top_products_r <- top_products_r %>% group_by(product_name) %>% summarise (average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(average_rating))  
+top_5_rating <- head(top_products_r,5)
+bottom_5_rating <- tail(top_products_r,5)
+top_bottom_5_rating <-rbind(top_5_rating,bottom_5_rating)
+
+figure.11 <- top_bottom_5_rating %>%
+  ggplot(aes(x = reorder(product_name, average_rating), y = average_rating, fill = product_name)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Top & Bottom 5 Rating Products",
+       x = "Product",
+       y = "Average Rating") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  coord_flip() +  # Flip the coordinates to make horizontal bars
+  geom_text(aes(label = average_rating), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Figure 12: Top 10 Products by Ad clicks to Sales Conversion
+
+top_products_c <- dbGetQuery(my_db,
+                             "SELECT product_name, SUM(conversion_rate) as total_conversion_rate
+  FROM df_sales
+  WHERE conversion_rate IS NOT NULL
+  GROUP BY product_name
+  ORDER BY total_conversion_rate DESC
+  LIMIT 10")
+
+
+figure.12 <- top_products_c %>%
+  ggplot(aes(x = reorder(product_name, total_conversion_rate), y = total_conversion_rate, fill = product_name)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Total Conversion Rate",
+       x = "Product",
+       y = "Conversion Rate (sales quality/million ad clicks)") +
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none") +
+  scale_fill_brewer(palette = "Set3") +
+  coord_flip() +  # Flip the coordinates to make horizontal bars
+  geom_text(aes(label = total_conversion_rate), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+
+
+## Dashboard 3: Top Products
+
+# Combine charts and save as image
+g3 <- grid.arrange(figure.9, figure.10, figure.11, figure.12, nrow = 2,
+                   top = textGrob("Top Products",gp=gpar(fontsize=24,font=2)))
+
+```
+
+**Customer Satisfaction**: While average rating reflects customer satisfaction, the percentage of orders left without review indicates customer engagement level. With a high-fixed-cost and low-variable-cost business model, an e-commerce platform depends profoundly on the ability to sustainability grow and expand their customer base. Therefore, these metrics are considered pivotal to their success. Downward trending average rating and increasing percentage of nil review, as in this case, is alarming and requires management\'s immediate attention.  
+
+```{r}
 ggsave(file=paste0("../Visualisations/customer_satisfaction",
                    this_filename_date,"_",
                    this_filename_time,".png"), plot=g4, width = 12, height = 8)
+```
+
+```{r dashboard4, eval=FALSE}
+## Figure 13: Average Rating by Months
+
+rating_y <- dbGetQuery(my_db,
+                       "SELECT id, product_name, order_date, rating_review, sales
+  FROM df_sales
+  WHERE rating_review BETWEEN 1 AND 5")
+
+# Convert order_date to date format
+rating_y$order_date <- as.Date(as.character(rating_y$order_date), format = "%Y-%m-%d")
+rating_y <- rating_y %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
+
+
+# Calculate the average   
+rating_y_sum <- rating_y %>% group_by(year_month) %>% summarise (n_y = n(), average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(year_month)) 
+
+test <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+# Take last 12 months
+rating_y_sum <- head(rating_y_sum,12)
+
+
+# Plot monthly average rating with advanced visualization
+figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
+  labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
+  geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+  theme_bw() + 
+  theme(axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none",
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) +
+  geom_text(aes(label = average_rating), vjust = -0.3, size = 3, color = "black") 
+
+
+## Figure 14: Percentage of Nil Rating
+
+rating_all <- dbGetQuery(my_db,
+                         "SELECT id, product_name, order_date, rating_review, sales
+  FROM df_sales")
+
+# Convert order_date to date format
+rating_all$order_date <- as.Date(as.character(rating_all$order_date), format = "%Y-%m-%d")
+rating_all <- rating_all %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
+
+# Calculate total number of orders per months
+rating_all_summary <- rating_all %>% group_by(year_month) %>% summarise (n_all = n())
+
+# Filter no rating and convert date format
+rating_n <- rating_all %>% filter(rating_review == 0) 
+
+# Calculate number of orders with no review 
+rating_n_summary <- rating_n %>% group_by(year_month) %>% summarise (n_n = n()) 
+
+# Combine data
+rating_n_summary <- merge(rating_all_summary, rating_n_summary)
+
+# Calculate nil review rate
+rating_n_summary <- rating_n_summary %>% mutate(nil_review_rate = n_n *100/n_all) %>% arrange(desc(year_month))
+
+# Take last 12 months
+rating_n_summary <- head(rating_n_summary,12)
+
+# Plot monthly sales trend with advanced visualization
+figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
+  geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+  labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
+  theme_bw() + 
+  theme(axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold"),
+        legend.position = "none",
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) +
+  geom_text(aes(label = nil_review_rate), vjust = -0.3, size = 3, color = "black")
+
+## Figure 15: Revenues by Rating Review
+
+revenue_by_rating_y <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+revenue_by_rating_n <- rating_n %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
+
+figure.15 <- revenue_by_rating %>% 
+  ggplot(aes(area = sales, fill = rating_review, label = paste0("Rating ", rating_review, "\n", scales::dollar(sales)))) +
+  geom_treemap() +
+  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
+  labs(title = "Sales by Rating",
+       fill = "Rating Review",
+       caption = "Sales values are in USD") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 10, color = "black"),
+        axis.text.y = element_text(size = 10, color = "black"),
+        axis.title = element_text(size = 12, color = "black", face = "bold"),
+        plot.title = element_text(size = 16, color = "black", face = "bold")) 
+
+
+## Figure 16: Average Discount by Month
+
+discount <- dbGetQuery(my_db, "
+  SELECT order_date, discount_value, sales
+  FROM df_sales
+")
+
+# Convert order_date to date format
+discount$order_date <- as.Date(as.character(discount$order_date), format = "%Y-%m-%d")
+
+# Aggregate by month
+discount <- discount %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
+  group_by(year_month) %>%
+  summarise(sales = sum(sales), discount_value = sum(discount_value), average_discount = discount_value/sales) %>%
+  arrange(desc(year_month))
+
+# Take last 12 months
+discount <- head(discount, 12)
+
+# Plot monthly sales trend with advanced visualization
+( figure.16 <- ggplot(discount, aes(x = year_month, y = average_discount)) +
+    geom_bar(stat = "identity", fill = "#4393C3", color = "black") + 
+    labs(title = "Monthly Average Discount (last 12 months)", x = "Month", y = "Average Rating") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) 
+  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+)
+
+## Dashboard 4: Customer Satisfaction
+
+# Combine charts and save as image
+g4 <- grid.arrange(figure.13, figure.14, figure.15, figure.16, ncol = 2,
+                   top = textGrob("Customer Statisfaction",gp=gpar(fontsize=24,font=2)))
+
 ```

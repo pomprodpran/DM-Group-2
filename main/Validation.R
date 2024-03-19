@@ -82,7 +82,6 @@ validate_rating_review <- function(rating_review) {
 # Function error handling
 validation <- function(this_file_contents,type,column) {
   tmp_table <- this_file_contents
-  print('test')
   if (type == 'Email') {
     tmp_table$valid_format <- validate_emails(column)
   } else if (type == 'Phone_numbers') {
