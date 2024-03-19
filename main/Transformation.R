@@ -29,16 +29,13 @@ for (variable in all_files) {
     print(paste("Writing table to database:", table_name))
     my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"./database/ecommerce.db")
     
-    # Get the primary key column names from the database
-    query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
-    primary_key_columns <- dbGetQuery(my_db, query)
-    
-    # Get Foreign Key
-    query <- paste("PRAGMA foreign_key_list('",table_name,"');",sep="")
-    foreign_key_columns <- dbGetQuery(my_db, query)
-    
     # Perform Validation
     source("./main/Validation.R")
+    
+    # convert column date format
+    if (table_name == 'orders') {
+      this_file_contents['order_date'] <- lapply(this_file_contents['order_date'], as.character)
+    }
     
     # Validation and Writing on each row to DB
     if (nrow(this_file_contents)>0 ){
@@ -64,14 +61,15 @@ for (variable in all_files) {
           dbExecute(my_db, update_query)
         }
       }
-      # Perform Visualisation
-      source("./main/Visualisation.R")
     }
     else {
       print("Nothing to update in database since all rows are not pass the validations")
     }
   }
 }
+
+# Perform Visualisation
+source("./main/Visualisation.R")
 print("Done!")
 
 # Check if the connection object exists and is valid

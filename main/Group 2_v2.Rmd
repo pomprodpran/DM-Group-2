@@ -53,14 +53,6 @@ for (variable in all_files) {
 
   table_name <- gsub(".csv","",variable)
   
-  # Get the primary key column names from the database
-  query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
-  primary_key_columns <- dbGetQuery(my_db, query)
-  
-  # Get Foreign Key
-  query <- paste("PRAGMA foreign_key_list('",table_name,"');",sep="")
-  foreign_key_columns <- dbGetQuery(my_db, query)
-  
   # Perform Validation
   source("Validation.R")
   
@@ -95,12 +87,27 @@ for (variable in all_files) {
     else {
       print("Nothing to update in database since all rows are not pass the validations")
     }
-  
-  #RSQLite::dbWriteTable(my_db,table_name,this_file_contents,append=TRUE)
 }
+
+# Perform Visualisation
+source("./Visualisation.R")
+
+ggsave(file=paste0("../Visualisations/platform_overview",
+              this_filename_date,"_",
+              this_filename_time,".png"), plot = g1 ,width = 12, height = 8)
+ggsave(file=paste0("../Visualisations/sales_performance",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), plot= g2,width = 12, height = 8)
+ggsave(file=paste0("../Visualisations/top_products",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), plot= g3,width = 12, height = 8)
+ggsave(file=paste0("../Visualisations/customer_satisfaction",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), plot=g4, width = 12, height = 8)
 
 ```
 
+# ------- NOT USE --------
 
 # Data Analysis 
 

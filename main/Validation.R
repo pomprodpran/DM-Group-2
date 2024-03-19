@@ -1,5 +1,13 @@
 print("Performing Validation")
 
+# Get the primary key column names from the database
+query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
+primary_key_columns <- dbGetQuery(my_db, query)
+
+# Get Foreign Key
+query <- paste("PRAGMA foreign_key_list('",table_name,"');",sep="")
+foreign_key_columns <- dbGetQuery(my_db, query)
+
 # ------ 1. Check duplicate primary key within CSV file ------
 print(paste0("Checking duplicate primary key for: ",variable))
 
