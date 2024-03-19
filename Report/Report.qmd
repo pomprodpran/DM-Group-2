@@ -12,7 +12,7 @@ editor: visual
 author: "Group 2"
 ---
 
-### **Executive Summary** 
+# **Executive Summary** 
 
 This report simulates the end-to-end data management for an e-commerce platform in the US from database design, workflow management to data analysis that provides insights into the platform's key performance metrics. 
 
@@ -26,9 +26,9 @@ For the data analysis, we execute queries to retrieve, manipulate, and mine the 
 
 New data upload will automatically trigger the end-to-end process of validation, importation to analysis with corresponding database and dashboards updated accordingly. 
 
-### Part 1: Database Design and Implementation
+# Part 1: Database Design and Implementation
 
-#### Task 1.1: E-R Diagram Design
+## Task 1.1: E-R Diagram Design
 
 **Conceptual Design**
 
@@ -66,7 +66,7 @@ The logical design of the database is converted from the conceptual ER diagram o
 
 -   The ternary M:N relationship among Customers, Products and Shippers is converted into the Orders table. Primary key (ID) of Customers, Products and Shippers entities, together with order date and time forming a composite key for the Orders relationship table. Each record of the Orders relationship is also unique by an order ID. 
 
-#### Task 1.2: SQL Database Schema Creation
+## Task 1.2: SQL Database Schema Creation
 
 Our logical scheme is in Third Normal Form as a result of meticulously abiding to the described principles in the conceptual and logical design phases. 
 
@@ -216,9 +216,9 @@ CREATE TABLE IF NOT EXISTS `advertisements` (
 );
 ```
 
-#### Part 2: Data Generation and Management
+# Part 2: Data Generation and Management
 
-#### Task 2.1: Synthetic Data Generation
+## Task 2.1: Synthetic Data Generation
 
 Synthetic data is generated using Mockaroo leveraging advanced field settings or Mockaroo specified coding language. 
 
@@ -232,7 +232,7 @@ Field type as 'Formula' or 'Custom List' with dynamic distribution are utilised 
 
 The data generation is a part of the dynamic process from data generation to data validation, then data analysis. Data generation is revised if challenges incur during validation and analysis to ensure that the synthetic data simulates the real-world as much as possible. 
 
-#### Task 2.2: Data Import and Quality Assurance
+## Task 2.2: Data Import and Quality Assurance
 
 Prior to importing into database, data is validated for both the initial load and additional loads to safeguard data integrity. The validation process is first undertaken on tables representing entities on the weaker side of the cardinality relationship, then tables representing the strong side and ending with tables representing the M:N relationship. Key assurance aspects are as follows: 
 
@@ -524,15 +524,15 @@ for (variable in all_files) {
 }
 ```
 
-### Part 3: Data Pipeline Generation
+# Part 3: Data Pipeline Generation
 
-#### Task 3.1: GitHub Repository and Workflow Setup
+## Task 3.1: GitHub Repository and Workflow Setup
 
 We first create a new repository for our project on GitHub (<https://github.com/pomprodpran/DM-Group-2>) This enables collaboration within our group, allowing everyone to work together and make changes to the project through GitHub. After cloning the repository locally, we added our database file, e-commerce data file, report file, and scripts for data validation, transformation, data analysis, and data visualisation to the repository. 
 
 Within the '**database**' file, an e-commerce database would be created, and in the '**data upload**' file, we upload all the generated data including advertisements, categories, customers, products, sellers, and shippers table. Within the '**main**' file, we have schema creation, data analysis **visualisations** file, **transformation** and **validation** scripts. 
 
-#### Task 3.2: GitHub Actions for Continuous Integration
+## Task 3.2: GitHub Actions for Continuous Integration
 
 To set up the workflow, we use the GitHub Actions part to create a new workflow file, then define the workflow as **etl.yaml**. 
 
@@ -707,7 +707,7 @@ Only the newly added files within the past two days will be processed, following
 
 8\. Finally, commit and push the changes to the main branch. 
 
-### Part 4: Data Analysis and Reporting with Quarto in R
+# Part 4: Data Analysis and Reporting with Quarto in R
 
 In accordance with the CRISP-DM, data analysis is designed to assist management with their data-driven decision making on multi-dimensional facets of the business. An effective data analysis should allow management to direct their investments and resources into the areas with most growth and profitability, whilst mitigating potential risks. With that objective in mind, our data analysis is organised into the following key elements of the business: 
 
@@ -1354,3 +1354,7 @@ discount <- head(discount, 12)
 )
 
 ```
+
+# **Conclusion**  
+
+Simulating a real-world problem allows us to familiarise with challenges we may confront during an end-to-end process of database design, workflow management and data analysis. We recognise the importance of a dynamic approach incorporating feedback loops and incremental improvements built on foundational understanding of the business objectives. We have evolved through this iterative journey embraced with collaborative teamwork to deliver this end-product, further advancing ourselves for tackling the real-word challenges in future.
