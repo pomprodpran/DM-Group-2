@@ -49,13 +49,7 @@ Our database conceptual design is based on the following assumptions & justifica
 
 **Logical Design**
 
--   **Customers** ($\underline{id}$, date_of_birth, first_name, last_name, phone_number, email, billing_address_street_number, billing_address_street_name, billing_address_street_suffix, billing_address_city, billing_address_state, billing_address_country, billing_address_postcode, current_shipping_address_street_number, current_shipping_address_street_name, current_shipping_address_street_suffix, current_shipping_address_city, current_shipping_address_state, current_shipping_address_country, current_shipping_address_postcode, current_payment_method)
--   **Shippers** ($\underline{id}$, name, phone_number)
--   **Products** ($\underline{id}$, $\underline{\underline{seller\_id}}$, $\underline{\underline{category\_id}}$, name, color, size, brand, price, currency, inventory)
--   **Order** ($\underline{id}$, $\underline{\underline{customer\_id}}$ , $\underline{\underline{product\_id}}$ , $\underline{\underline{shipper\_id}}$[,]{.underline} order_date, order_time, quantity, discount, rating_review)
--   **Seller** ($\underline{id}$, name, email, address_street_number, address_street_name, address_street_suffix, address_city, address_state, address_country, address_postcode)
--   **Advertisements** ($\underline{id}$, $\underline{\underline{product\_id}}$[,]{.underline} content, ad_clicks, budget, currency)
--   **Categories** ($\underline{id}$[,]{.underline} name, description)
+![Logical Design](Logical Design.png)
 
 The logical design of the database is converted from the conceptual ER diagram on the following methodologies: 
 
