@@ -272,6 +272,245 @@ If any of the values present in the above attributes go against the set rules, a
 
 The validation is, thus, completed.
 
+The validations are stored in **Validation.R** file are shown below:
+
+```{r validation, eval=FALSE}
+print("Performing Validation")
+
+# Get the primary key column names from the database
+query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
+primary_key_columns <- dbGetQuery(my_db, query)
+
+# Get Foreign Key
+query <- paste("PRAGMA foreign_key_list('",table_name,"');",sep="")
+foreign_key_columns <- dbGetQuery(my_db, query)
+
+# ------ 1. Check duplicate primary key within CSV file ------
+print(paste0("Checking duplicate primary key for: ",variable))
+
+number_of_rows <- nrow(this_file_contents)
+
+for (i in primary_key_columns) {
+  if (nrow(unique(this_file_contents[,i]))==number_of_rows) {
+    print(paste("Primary key =",i,": Passed"))
+  }
+  else {
+    stop(paste("Found duplicate record in ", variable,": STOP process!"))
+  }
+}
+
+
+# ------ 2. Check data quality and integrity ------
+print(paste0("Checking integrity for: ",variable))
+
+# Function to validate email addresses
+validate_emails <- function(emails) {
+  pattern <- "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+  grepl(pattern, emails)
+}
+
+# Function to validate phone numbers
+validate_phones <- function(phones) {
+  # This is a simple example and might not cover all international formats
+  pattern <- "^1[0-9]{10}$$"
+  grepl(pattern, phones)
+}
+
+# Function to validate dates
+validate_dates <- function(dates) {
+  date_format <- "%Y-%m-%d"
+  dates_parsed <- parse_date_time(dates, orders = date_format)
+  !is.na(dates_parsed)
+}
+
+# Function to validate prices
+validate_prices <- function(prices) {
+  prices > 0
+}
+
+# Function to validate currency codes
+validate_currencies <- function(currencies) {
+  pattern <- "^USD$"
+  grepl(pattern, currencies)
+}
+
+# Function to validate payment method
+validate_payment_method <- function(payment_method){
+  valid_method <- c("Apple Pay", "Google Pay", "Credit Card", "Cash", "Debit Card", "Bank Transfer", "Cheque")
+  payment_method %in% valid_method
+}
+
+# Function to validate ad clicks
+validate_ad_clicks <- function(ad_clicks) {
+  ad_clicks >= 0
+}
+
+# Function to validate discount
+validate_discount <- function(discount) {
+  (discount >= 0 & discount <= 100)
+}
+
+# Function to validate rating_review
+validate_rating_review <- function(rating_review) {
+  valid_rating <- c(1, 2, 3, 4, 5)
+  is.na(rating_review) | rating_review %in% valid_rating
+}
+
+# Function error handling
+validation <- function(this_file_contents,type,column) {
+  tmp_table <- this_file_contents
+  if (type == 'Email') {
+    tmp_table$valid_format <- validate_emails(column)
+  } else if (type == 'Phone_numbers') {
+    tmp_table$valid_format <- validate_phones(column)
+  } else if (type == 'Dates') {
+    tmp_table$valid_format <- validate_dates(column)
+  } else if (type == 'Prices' || type == 'Budget' || type == 'Quantity') {
+    tmp_table$valid_format <- validate_prices(column)
+  } else if (type == 'Currencies') {
+    tmp_table$valid_format <- validate_currencies(column)
+  }
+  else if (type == 'payment_method') {
+    tmp_table$valid_format <- validate_payment_method(column)
+  }
+  else if (type == 'ad_clicks') {
+    tmp_table$valid_format <- validate_ad_clicks(column)
+  }
+  else if (type == 'discount') {
+    tmp_table$valid_format <- validate_discount(column)
+  }
+  else if (type == 'rating_review') {
+    tmp_table$valid_format <- validate_rating_review(column)
+  }
+  if (nrow(tmp_table) >0) {
+    for (i in 1:nrow(tmp_table)){
+      tmp_row <- tmp_table[i,]
+      if (!tmp_row$valid_format) {
+        warning(type," Format of ID: ",tmp_row$id, " in ", variable," is incorrect. Please check." )
+      }
+    }
+  }
+  if (all(tmp_table$valid_format) == TRUE){
+    print(paste(type," Format: Passed!"))
+  }
+  tmp_table <- tmp_table[tmp_table$valid_format,] # remove row
+  tmp_table <- tmp_table[, !names(tmp_table) %in% "valid_format"] # remove check column
+  return(tmp_table)
+}
+
+# Perform integrity check
+if (table_name == 'customers' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
+  this_file_contents <- validation(this_file_contents,'payment_method',this_file_contents$current_payment_method)
+  
+} else if (table_name == 'orders' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
+  this_file_contents <- validation(this_file_contents,'discount',this_file_contents$discount)
+  this_file_contents <- validation(this_file_contents,'Quantity',this_file_contents$quantity)
+  this_file_contents <- validation(this_file_contents,'rating_review',this_file_contents$rating_review)
+} else if (table_name == 'products' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Prices',this_file_contents$price)
+  this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
+  
+} else if (table_name == 'categories' && nrow(this_file_contents) >0) {
+  
+} else if (table_name == 'sellers' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
+  
+} else if (table_name == 'shippers' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
+} else if (table_name == 'advertisements' && nrow(this_file_contents) >0) {
+  this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
+  this_file_contents <- validation(this_file_contents,'Budget',this_file_contents$budget)
+  this_file_contents <- validation(this_file_contents,'ad_clicks',this_file_contents$ad_clicks)
+}
+
+# ------ 3. Check Foreign key ------
+if(nrow(this_file_contents) >0) {
+  foreign_table <- foreign_key_columns[,'table']
+  tmp_table <- this_file_contents
+  for (i in foreign_table) {
+    foreign_key_ori_column <- foreign_key_columns[foreign_key_columns[,'table'] == i,'from']
+    foreign_key_dest_column <- foreign_key_columns[foreign_key_columns[,'table'] == i,'to']
+    print(paste("Checking Foreign key in table",i, "column:",foreign_key_ori_column))
+    for (j in 1:nrow(this_file_contents)) {
+      foreign_key_value <- this_file_contents[j,foreign_key_ori_column]
+      query <- paste("SELECT", foreign_key_dest_column," FROM",i," WHERE", foreign_key_dest_column,"=", foreign_key_value, ";")
+      result <- dbGetQuery(my_db, query)
+      col <- paste("check_",i,sep="")
+      if (nrow(result) == 0) {
+        warning("Foreign key is missing in row ID =  ", this_file_contents[j,primary_key_columns[1,]], " Please check.")
+        tmp_table[[col]] <- FALSE
+      } else {
+        tmp_table[[col]] <- TRUE
+      }
+    }
+  }
+  rows_to_remove <- apply(tmp_table[, grepl("^check", names(tmp_table))], 1, function(row) any(!row))
+  tmp_table <- tmp_table[, !grepl("^check", names(tmp_table))] # remove column
+  tmp_table <- tmp_table[!rows_to_remove, ] # remove failed row
+  this_file_contents <- tmp_table
+} else{
+  print("No validation check in this table since there's no foreign key")
+}
+
+print("Validation Completed")
+
+```
+
+The initial load has been performed.
+
+```{r initial_load}
+# Get only Initial file which has the format [table_name].csv
+all_files <- setdiff(list.files("../data_upload/"), list.files("../data_upload/", pattern = "_"))
+# Order the files to load to database, to avoid error from foreign key
+custom_order <- list("customers.csv","sellers.csv","categories.csv","products.csv","shippers.csv","orders.csv","advertisements.csv")
+all_files <- all_files[order(match(all_files, custom_order))]
+
+for (variable in all_files) {
+  this_filepath <- paste0("../data_upload/",variable)
+  this_file_contents <- readr::read_csv(this_filepath)
+
+  table_name <- gsub(".csv","",variable)
+  
+  # Perform Validation
+  source("../main/Validation.R")
+  
+  # convert column date format
+  if (table_name == 'orders') {
+    this_file_contents['order_date'] <- lapply(this_file_contents['order_date'], as.character)
+  }
+  
+  if (nrow(this_file_contents)>0 ){
+      for (i in 1:nrow(this_file_contents)) {
+        row <- this_file_contents[i, ]
+        
+        # Extract primary key values from the row
+        primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
+        
+        # Find if the primary key exists
+        query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
+        existing_row <- dbGetQuery(my_db, query)
+        
+        if (nrow(existing_row) == 0) {
+          # Row is unique, append to the table
+          #print(paste("Append:",primary_key_values))
+          dbWriteTable(my_db, table_name, row, append = TRUE)
+        } else {
+          # Row already exists, update the existing row
+          #print(paste("Update:",primary_key_values))
+          update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
+          dbExecute(my_db, update_query)
+        }
+      }
+    }
+    else {
+      print("Nothing to update in database since all rows are not pass the validations")
+    }
+}
+```
+
 ### Part 3: Data Pipeline Generation
 
 #### Task 3.1: GitHub Repository and Workflow Setup
@@ -282,11 +521,157 @@ Within the 'database' file, an e-commerce database is created, and in the 'data 
 
 #### Task 3.2: GitHub Actions for Continuous Integration
 
-In order to set up the workflow, we use the "actions" part to create a new workflow file, then define the workflow "etl.yaml".
+To set up the workflow, we use the "actions" part to create a new workflow file, then define the workflow as **etl.yaml**. 
 
-[**Will add workflow code**]{.underline}
+---
+name: ETL Workflow for Group 2
 
-For the workflow, we specify the actions as follows: 1. Specify that the workflow should run every 3 hours (pending) when changes are pushed to the main branch. 2. Define and build the job (sequence of tasks) to be executed. 3. Check out the code repository into the GitHub Actions runner. 4. Set up the R environment and cache R packages. 5. Install all the packages that we will use. 6. Execute the data transformation script from the main directory, checking for data quality and integrity of the new data that we update. (After data transformation and validation, it will trigger the running of the data analysis script, and the new analysis charts will be saved by month in the folder.) 7. Configure the git user email and name, adding all files in the database directory to the git staging area. 8. Finally, commit and push the changes to the main branch.
+on:
+  schedule:
+    - cron: '0 */2 * * *' # Run every 3 hours
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup R environment
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2.0'
+      - name: Cache R packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('**/lockfile') }}
+          restore-keys: |
+            ${{ runner.os }}-r-
+      - name: Install packages
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get install libcurl4-openssl-dev
+          Rscript -e 'install.packages(c("ggplot2", "readr", "RSQLite", "dplyr", "lubridate", "curl", "gridtext", "ggfittext", "maps", "mapproj", "gridExtra", "treemapify"))'
+      - name: Execute R script
+        run: |
+          Rscript main/Transformation.R
+      - name: Add files
+        run: |
+          git config --global user.email "pomprodpran@hotmail.com"
+          git config --global user.name "pomprodpran"
+          git add --all database/
+          git add --all Visualisations/
+      - name: Commit files
+        run: |
+          git diff --quiet && git diff --staged --quiet || git commit -m "Updated Database and Visualisation"
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: main
+---
+
+For the workflow, we specify the actions as follows:
+
+1\. Specify that the workflow should run every 2 hours or when changes are pushed to the main branch.
+
+2\. Define and build the job (sequence of tasks) to be executed.
+
+3\. Check out the code repository into the GitHub Actions runner.
+
+4\. Set up the R environment and cache R packages.
+
+5\. Install all the packages that we will use.
+
+6\. Execute the **Transformation.R** script from the main directory, checking for data quality and integrity of the new data that we update. (After data transformation and validation, it will trigger the running of the data analysis script, and the new analysis charts will be saved by month in the folder.)
+
+```{r incremental_load, eval=FALSE}
+# Transformation.R
+library(readr)
+library(RSQLite)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+# Incremental Load
+print("Loading CSV file")
+
+# File format for automation: <table name>_YYYY-MM-DDTHHMMSS.csv
+current_date <- Sys.Date()
+print(paste("current date:", current_date))
+# Get only Incremental file
+all_files <- list.files("./data_upload", full.names = FALSE, pattern = "_")
+for (variable in all_files) {
+  file_name <- unlist(strsplit(gsub(".csv","",variable), "_")) # split file name using _ separator
+  table_name <- file_name[1]
+  date_time_parts <- unlist(strsplit(file_name[2], "T"))  # Splitting file name using 'T' separator
+  date_str <- date_time_parts[1]  # Date string
+  time_str <- date_time_parts[2]  # Time string
+  date_value <- lubridate::ymd(date_str) # Parsing date strings into datetime objects using lubridate
+  
+  # Get only NEW file that has been loaded into the folder (and run historical back 2 days)
+  if (date_value>= current_date-1 && date_value<= current_date ) {
+    print(paste("Reading file:",variable))
+    this_filepath <- paste0("./data_upload/",variable)
+    this_file_contents <- readr::read_csv(this_filepath)
+    
+    print(paste("Writing table to database:", table_name))
+    my_db <- RSQLite::dbConnect(RSQLite::SQLite(),"./database/ecommerce.db")
+    
+    # Perform Validation
+    source("./main/Validation.R")
+    
+    # convert column date format
+    if (table_name == 'orders') {
+      this_file_contents['order_date'] <- lapply(this_file_contents['order_date'], as.character)
+    }
+    
+    # Validation and Writing on each row to DB
+    if (nrow(this_file_contents)>0 ){
+      for (i in 1:nrow(this_file_contents)) {
+        
+        row <- this_file_contents[i, ]
+        
+        # Extract primary key values from the row
+        primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
+        
+        # Find if the primary key exists
+        query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
+        existing_row <- dbGetQuery(my_db, query)
+        
+        if (nrow(existing_row) == 0) {
+          # Row is unique, append to the table
+          print(paste("Append:",primary_key_values))
+          dbWriteTable(my_db, table_name, row, append = TRUE)
+        } else {
+          # Row already exists, update the existing row
+          print(paste("Update:",primary_key_values))
+          update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
+          dbExecute(my_db, update_query)
+        }
+      }
+    }
+    else {
+      print("Nothing to update in database since all rows are not pass the validations")
+    }
+  }
+}
+
+# Perform Visualisation
+source("./main/Visualisation.R")
+print("Done!")
+
+# Check if the connection object exists and is valid
+if (exists("my_db") && RSQLite::dbIsValid(my_db)) {
+  # Disconnect from the database
+  RSQLite::dbDisconnect(my_db)
+} else {
+  # Print a message or handle the case where the connection object is not found or invalid
+  print("Connection object not found or is invalid.")
+}
+
+```
 
 When performing incremental loading, the new loaded CSV file format for automation needs to be '
 
@@ -296,29 +681,8 @@ Only the newly added files within the past two days will be processed, and we wi
 
 After data validation, we use the primary key to check if the row is unique. If it is, the row will be appended to the table. If the row already exists, we will update the existing row.
 
+7\. Configure the Git user email and name, adding all files in the database directory to the Git staging area.
+
+8\. Finally, commit and push the changes to the main branch. 
+
 ### Part 4: Data Analysis and Reporting with Quarto in R
-
-#### Task 4.1: Advanced Data analysis in R
-
-#### Task 4.2: Comprehensive Reporting with Quarto
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-```{r}
-
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
