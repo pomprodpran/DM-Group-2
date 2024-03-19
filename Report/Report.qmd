@@ -253,7 +253,8 @@ The validations are stored in **Validation.R** file are shown below:
 print("Performing Validation")
 
 # Get the primary key column names from the database
-query <- paste("SELECT name FROM pragma_table_info('",table_name,"') WHERE pk = 1;",sep="")
+query <- paste("SELECT name FROM pragma_table_info('",table_name,"') 
+               WHERE pk = 1;",sep="")
 primary_key_columns <- dbGetQuery(my_db, query)
 
 # Get Foreign Key
@@ -311,7 +312,8 @@ validate_currencies <- function(currencies) {
 
 # Function to validate payment method
 validate_payment_method <- function(payment_method){
-  valid_method <- c("Apple Pay", "Google Pay", "Credit Card", "Cash", "Debit Card", "Bank Transfer", "Cheque")
+  valid_method <- c("Apple Pay", "Google Pay", "Credit Card", "Cash", 
+                    "Debit Card", "Bank Transfer", "Cheque")
   payment_method %in% valid_method
 }
 
@@ -361,7 +363,8 @@ validation <- function(this_file_contents,type,column) {
     for (i in 1:nrow(tmp_table)){
       tmp_row <- tmp_table[i,]
       if (!tmp_row$valid_format) {
-        warning(type," Format of ID: ",tmp_row$id, " in ", variable," is incorrect. Please check." )
+        warning(type," Format of ID: ",tmp_row$id, " in ", variable,
+                " is incorrect. Please check." )
       }
     }
   }
@@ -369,36 +372,50 @@ validation <- function(this_file_contents,type,column) {
     print(paste(type," Format: Passed!"))
   }
   tmp_table <- tmp_table[tmp_table$valid_format,] # remove row
-  tmp_table <- tmp_table[, !names(tmp_table) %in% "valid_format"] # remove check column
+  tmp_table <- tmp_table[, !names(tmp_table) %in% "valid_format"] 
   return(tmp_table)
 }
 
 # Perform integrity check
 if (table_name == 'customers' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
-  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
-  this_file_contents <- validation(this_file_contents,'payment_method',this_file_contents$current_payment_method)
+  this_file_contents <- validation(this_file_contents,'Email',
+                                   this_file_contents$email)
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',
+                                   this_file_contents$phone_number)
+  this_file_contents <- validation(this_file_contents,'payment_method',
+                                   this_file_contents$current_payment_method)
   
 } else if (table_name == 'orders' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Dates',this_file_contents$order_date)
-  this_file_contents <- validation(this_file_contents,'discount',this_file_contents$discount)
-  this_file_contents <- validation(this_file_contents,'Quantity',this_file_contents$quantity)
-  this_file_contents <- validation(this_file_contents,'rating_review',this_file_contents$rating_review)
+  this_file_contents <- validation(this_file_contents,'Dates',
+                                   this_file_contents$order_date)
+  this_file_contents <- validation(this_file_contents,'discount',
+                                   this_file_contents$discount)
+  this_file_contents <- validation(this_file_contents,'Quantity',
+                                   this_file_contents$quantity)
+  this_file_contents <- validation(this_file_contents,'rating_review',
+                                   this_file_contents$rating_review)
 } else if (table_name == 'products' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Prices',this_file_contents$price)
-  this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
+  this_file_contents <- validation(this_file_contents,'Prices',
+                                   this_file_contents$price)
+  this_file_contents <- validation(this_file_contents,'Currencies',
+                                   this_file_contents$currency)
   
 } else if (table_name == 'categories' && nrow(this_file_contents) >0) {
   
 } else if (table_name == 'sellers' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Email',this_file_contents$email)
+  this_file_contents <- validation(this_file_contents,'Email',
+                                   this_file_contents$email)
   
 } else if (table_name == 'shippers' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Phone_numbers',this_file_contents$phone_number)
+  this_file_contents <- validation(this_file_contents,'Phone_numbers',
+                                   this_file_contents$phone_number)
 } else if (table_name == 'advertisements' && nrow(this_file_contents) >0) {
-  this_file_contents <- validation(this_file_contents,'Currencies',this_file_contents$currency)
-  this_file_contents <- validation(this_file_contents,'Budget',this_file_contents$budget)
-  this_file_contents <- validation(this_file_contents,'ad_clicks',this_file_contents$ad_clicks)
+  this_file_contents <- validation(this_file_contents,'Currencies',
+                                   this_file_contents$currency)
+  this_file_contents <- validation(this_file_contents,'Budget',
+                                   this_file_contents$budget)
+  this_file_contents <- validation(this_file_contents,'ad_clicks',
+                                   this_file_contents$ad_clicks)
 }
 
 # ------ 3. Check Foreign key ------
@@ -406,23 +423,29 @@ if(nrow(this_file_contents) >0) {
   foreign_table <- foreign_key_columns[,'table']
   tmp_table <- this_file_contents
   for (i in foreign_table) {
-    foreign_key_ori_column <- foreign_key_columns[foreign_key_columns[,'table'] == i,'from']
-    foreign_key_dest_column <- foreign_key_columns[foreign_key_columns[,'table'] == i,'to']
-    print(paste("Checking Foreign key in table",i, "column:",foreign_key_ori_column))
+    foreign_key_ori_column <- foreign_key_columns[
+      foreign_key_columns[,'table'] == i,'from']
+    foreign_key_dest_column <- foreign_key_columns[
+      foreign_key_columns[,'table'] == i,'to']
+    print(paste("Checking Foreign key in table",i, 
+                "column:",foreign_key_ori_column))
     for (j in 1:nrow(this_file_contents)) {
       foreign_key_value <- this_file_contents[j,foreign_key_ori_column]
-      query <- paste("SELECT", foreign_key_dest_column," FROM",i," WHERE", foreign_key_dest_column,"=", foreign_key_value, ";")
+      query <- paste("SELECT", foreign_key_dest_column," FROM",i," WHERE", 
+                     foreign_key_dest_column,"=", foreign_key_value, ";")
       result <- dbGetQuery(my_db, query)
       col <- paste("check_",i,sep="")
       if (nrow(result) == 0) {
-        warning("Foreign key is missing in row ID =  ", this_file_contents[j,primary_key_columns[1,]], " Please check.")
+        warning("Foreign key is missing in row ID =  ", 
+                this_file_contents[j,primary_key_columns[1,]], " Please check.")
         tmp_table[[col]] <- FALSE
       } else {
         tmp_table[[col]] <- TRUE
       }
     }
   }
-  rows_to_remove <- apply(tmp_table[, grepl("^check", names(tmp_table))], 1, function(row) any(!row))
+  rows_to_remove <- apply(tmp_table[, grepl("^check", names(tmp_table))], 1, 
+                          function(row) any(!row))
   tmp_table <- tmp_table[, !grepl("^check", names(tmp_table))] # remove column
   tmp_table <- tmp_table[!rows_to_remove, ] # remove failed row
   this_file_contents <- tmp_table
@@ -438,9 +461,12 @@ The initial load has been performed.
 
 ```{r initial_load}
 # Get only Initial file which has the format [table_name].csv
-all_files <- setdiff(list.files("../data_upload/"), list.files("../data_upload/", pattern = "_"))
+all_files <- setdiff(list.files("../data_upload/"), 
+                     list.files("../data_upload/", pattern = "_"))
 # Order the files to load to database, to avoid error from foreign key
-custom_order <- list("customers.csv","sellers.csv","categories.csv","products.csv","shippers.csv","orders.csv","advertisements.csv")
+custom_order <- list("customers.csv","sellers.csv","categories.csv",
+                     "products.csv","shippers.csv","orders.csv",
+                     "advertisements.csv")
 all_files <- all_files[order(match(all_files, custom_order))]
 
 for (variable in all_files) {
@@ -454,7 +480,8 @@ for (variable in all_files) {
   
   # convert column date format
   if (table_name == 'orders') {
-    this_file_contents['order_date'] <- lapply(this_file_contents['order_date'], as.character)
+    this_file_contents['order_date'] <- lapply(this_file_contents['order_date'],
+                                               as.character)
   }
   
   if (nrow(this_file_contents)>0 ){
@@ -462,10 +489,15 @@ for (variable in all_files) {
         row <- this_file_contents[i, ]
         
         # Extract primary key values from the row
-        primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
+        primary_key_values <- paste(names(row)[names(row) %in% 
+                                                 primary_key_columns], 
+                                    row[names(row) %in% 
+                                          primary_key_columns], 
+                                    sep = "=", collapse = " AND ")
         
         # Find if the primary key exists
-        query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
+        query <- paste("SELECT * FROM", table_name, paste("WHERE", 
+                                                          primary_key_values))
         existing_row <- dbGetQuery(my_db, query)
         
         if (nrow(existing_row) == 0) {
@@ -475,13 +507,18 @@ for (variable in all_files) {
         } else {
           # Row already exists, update the existing row
           #print(paste("Update:",primary_key_values))
-          update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
+          update_query <- paste("UPDATE", table_name, 
+                                paste("SET", paste(names(row), "=", 
+                                                   paste0("'", row, "'"), 
+                                                   collapse = ", "), 
+                                      "WHERE", primary_key_values))
           dbExecute(my_db, update_query)
         }
       }
     }
     else {
-      print("Nothing to update in database since all rows are not pass the validations")
+      print("Nothing to update in database since all 
+            rows are not pass the validations")
     }
 }
 ```
@@ -578,14 +615,18 @@ print(paste("current date:", current_date))
 # Get only Incremental file
 all_files <- list.files("./data_upload", full.names = FALSE, pattern = "_")
 for (variable in all_files) {
-  file_name <- unlist(strsplit(gsub(".csv","",variable), "_")) # split file name using _ separator
+  # split file name using _ separator
+  file_name <- unlist(strsplit(gsub(".csv","",variable), "_")) 
   table_name <- file_name[1]
-  date_time_parts <- unlist(strsplit(file_name[2], "T"))  # Splitting file name using 'T' separator
+  # Splitting file name using 'T' separator
+  date_time_parts <- unlist(strsplit(file_name[2], "T"))  
   date_str <- date_time_parts[1]  # Date string
   time_str <- date_time_parts[2]  # Time string
-  date_value <- lubridate::ymd(date_str) # Parsing date strings into datetime objects using lubridate
+  # Parsing date strings into datetime objects using lubridate
+  date_value <- lubridate::ymd(date_str) 
   
-  # Get only NEW file that has been loaded into the folder (and run historical back 2 days)
+  # Get only NEW file that has been loaded into the folder 
+  # (and run historical back 2 days)
   if (date_value>= current_date-1 && date_value<= current_date ) {
     print(paste("Reading file:",variable))
     this_filepath <- paste0("./data_upload/",variable)
@@ -599,7 +640,8 @@ for (variable in all_files) {
     
     # convert column date format
     if (table_name == 'orders') {
-      this_file_contents['order_date'] <- lapply(this_file_contents['order_date'], as.character)
+      this_file_contents['order_date'] <- lapply(
+        this_file_contents['order_date'], as.character)
     }
     
     # Validation and Writing on each row to DB
@@ -609,10 +651,14 @@ for (variable in all_files) {
         row <- this_file_contents[i, ]
         
         # Extract primary key values from the row
-        primary_key_values <- paste(names(row)[names(row) %in% primary_key_columns], row[names(row) %in% primary_key_columns], sep = "=", collapse = " AND ")
+        primary_key_values <- paste(names(row)[names(row) %in% 
+                                                 primary_key_columns], 
+                                    row[names(row) %in% primary_key_columns], 
+                                    sep = "=", collapse = " AND ")
         
         # Find if the primary key exists
-        query <- paste("SELECT * FROM", table_name, paste("WHERE", primary_key_values))
+        query <- paste("SELECT * FROM", table_name, 
+                       paste("WHERE", primary_key_values))
         existing_row <- dbGetQuery(my_db, query)
         
         if (nrow(existing_row) == 0) {
@@ -622,18 +668,23 @@ for (variable in all_files) {
         } else {
           # Row already exists, update the existing row
           print(paste("Update:",primary_key_values))
-          update_query <- paste("UPDATE", table_name, paste("SET", paste(names(row), "=", paste0("'", row, "'"), collapse = ", "), "WHERE", primary_key_values))
+          update_query <- paste("UPDATE", table_name, 
+                                paste("SET", paste(names(row), "=", 
+                                                   paste0("'", row, "'"), 
+                                                   collapse = ", "), 
+                                      "WHERE", primary_key_values))
           dbExecute(my_db, update_query)
         }
       }
     }
     else {
-      print("Nothing to update in database since all rows are not pass the validations")
+      print("Nothing to update in database since all rows 
+            are not pass the validations")
     }
   }
 }
 
-# Check if the connection object exists and is valid - if yes, mean there's updated data
+# Check if the connection object exists and is valid
 if (exists("my_db") && RSQLite::dbIsValid(my_db)) {
   # Perform Visualisation
   source("./main/Visualisation.R")
@@ -641,7 +692,7 @@ if (exists("my_db") && RSQLite::dbIsValid(my_db)) {
   # Disconnect from the database
   RSQLite::dbDisconnect(my_db)
 } else {
-  # Print a message or handle the case where the connection object is not found or invalid
+  # Print a message where the connection object is not found or invalid
   print("Connection object not found or is invalid.")
 }
 
@@ -699,12 +750,13 @@ dbExecute(my_db, view_product_query)
 dbExecute(my_db, "DROP VIEW IF EXISTS df_sales;")
 
 view_sales_query <-paste("CREATE VIEW IF NOT EXISTS df_sales AS
-SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, COALESCE(o.rating_review,0) as rating_review, dfp.price,
+SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, 
+COALESCE(o.rating_review,0) as rating_review, dfp.price,
 round(o.quantity*(1-o.discount/100.00)*dfp.price,2) AS sales,
 round(o.quantity*(o.discount/100.00)*dfp.price,2) AS discount_value,
 round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
-dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
-CONCAT(first_name, ' ', last_name) AS customer_name
+dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,
+dfp.category_name, CONCAT(first_name, ' ', last_name) AS customer_name
 FROM orders AS o
 LEFT JOIN df_products dfp ON o.product_id = dfp.id
 LEFT JOIN customers c ON o.customer_id = c.id;")
@@ -716,11 +768,13 @@ df_sales <- dbGetQuery(my_db, "SELECT *
                               FROM df_sales")
 
 
-df_sales <- dbGetQuery(my_db, "SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
+df_sales <- dbGetQuery(my_db, "SELECT o.id, o.customer_id, o.product_id, 
+o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
 round(o.quantity*(1-o.discount/100)*dfp.price,2) AS sales,
 round(o.quantity*(o.discount/100)*dfp.price,2) AS discount_value,
 round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
-dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
+dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,
+dfp.category_name, 
 CONCAT(first_name, ' ', last_name) AS customer_name
 FROM orders AS o
 LEFT JOIN df_products dfp ON o.product_id = dfp.id
@@ -732,7 +786,8 @@ LEFT JOIN customers c ON o.customer_id = c.id")
 
 ## Categories with number of products in each category
 
-category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.id) AS num_products
+category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, 
+COUNT(p.id) AS num_products
                               FROM products AS p
                               INNER JOIN categories AS c ON p.category_id = c.id
                               GROUP BY p.category_id, c.name
@@ -772,7 +827,8 @@ category_adclicks <- dbGetQuery(my_db, "
 ")
 
 (figure.2 <- category_adclicks %>%
-  ggplot(aes(x = reorder(category_name, -total_ad_clicks), y = total_ad_clicks/1000000)) +
+  ggplot(aes(x = reorder(category_name, -total_ad_clicks), 
+             y = total_ad_clicks/1000000)) +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   labs(title = "Total Ad clicks (millions) by Categories",
        x = "Category Name",
@@ -784,7 +840,8 @@ category_adclicks <- dbGetQuery(my_db, "
         plot.title = element_text(size = 14, hjust = 0.5),
         panel.border = element_rect(color = "black", fill = NA, size = 1),
         plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
-  geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, size = 3, color = "black"))   # Add labels for each bar
+  geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, 
+            size = 3, color = "black"))   # Add labels for each bar
 
 ```
 
@@ -868,10 +925,12 @@ daily_sales <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-daily_sales$order_date <- as.Date(as.character(daily_sales$order_date), format = "%Y-%m-%d")
+daily_sales$order_date <- as.Date(as.character(daily_sales$order_date), 
+                                  format = "%Y-%m-%d")
 # Aggregate by month
 monthly_sales <- daily_sales %>%
-  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), 
+                                                      "%Y-%m")))) %>%
   group_by(year_month) %>%
   summarise(sales = sum(sales)) %>%
   arrange(desc(year_month))
@@ -907,9 +966,11 @@ sales_by_category <- dbGetQuery(my_db, "
 ")
 
 (figure.6 <- sales_by_category %>%
-  ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
+  ggplot(aes(area = total_sales, fill = category_name, label = 
+               paste0(category_name, "\n", scales::dollar(total_sales)))) +
   geom_treemap() +
-  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
+  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, 
+                    reflow = TRUE, color = "lightgrey") + 
   scale_fill_viridis_d() +  
   labs(title = "Sales by Categories",
        fill = "Category",
@@ -927,7 +988,8 @@ sales_by_category <- dbGetQuery(my_db, "
 ## Figure 7: Top 10 Customers by Amount Spent
 
 top_customers <- dbGetQuery(my_db,
-                            "SELECT CONCAT(customer_name, ' ID ', customer_id) AS customer_name, sales 
+                            "SELECT CONCAT(customer_name, ' ID ', customer_id) 
+                            AS customer_name, sales 
   FROM df_sales
   GROUP BY customer_name
   ORDER BY sales DESC
@@ -958,7 +1020,8 @@ top_customers <- dbGetQuery(my_db,
 
 
 top_sellers <- dbGetQuery(my_db,
-                          "SELECT CONCAT(seller_name, ' ID ', seller_id) AS seller_name, sales 
+                          "SELECT CONCAT(seller_name, ' ID ', seller_id) 
+                          AS seller_name, sales 
   FROM df_sales
   GROUP BY seller_name
   ORDER BY sales DESC
@@ -998,20 +1061,23 @@ top_products <- dbGetQuery(my_db,
 
 
 (figure.9 <- top_products %>%
-  ggplot(aes(x = reorder(product_name, total_sales), y = total_sales, fill = product_name)) +
+  ggplot(aes(x = reorder(product_name, total_sales), y = total_sales, 
+             fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Top 10 Selling Products by Value",
        x = "Product",
        y = "Total Sales") +
   theme_minimal(base_size = 14) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12,
+                                   color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_sales), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
+  geom_text(aes(label = total_sales), vjust = -0.3, size = 4, color = "black", 
+            fontface = "bold") )
 
 ```
 
@@ -1026,21 +1092,24 @@ top_products_q <- dbGetQuery(my_db,
   LIMIT 10")
 
 (figure.10 <- top_products_q %>%
-  ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, fill = product_name)) +
+  ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, 
+             fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   scale_fill_brewer(palette = "Paired") +  # Using a built-in palette
   labs(title = "Top 10 Selling Products by Quantity",
        x = "Product",
        y = "Total Quantity Sold") +
   theme_minimal(base_size = 14) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12,
+                                   color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
+  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", 
+            fontface = "bold") )
 
 ```
 
@@ -1053,26 +1122,31 @@ top_products_r <- dbGetQuery(my_db,
   FROM df_sales
   WHERE rating_review BETWEEN 1 AND 5")
 
-top_products_r <- top_products_r %>% group_by(product_name) %>% summarise (average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(average_rating))  
+top_products_r <- top_products_r %>% group_by(product_name) %>% 
+  summarise (average_rating = round(sum(rating_review)/n(),2)) %>% 
+  arrange(desc(average_rating))  
 top_5_rating <- head(top_products_r,5)
 bottom_5_rating <- tail(top_products_r,5)
 top_bottom_5_rating <-rbind(top_5_rating,bottom_5_rating)
 
 (figure.11 <- top_bottom_5_rating %>%
-  ggplot(aes(x = reorder(product_name, average_rating), y = average_rating, fill = product_name)) +
+  ggplot(aes(x = reorder(product_name, average_rating), y = average_rating, 
+             fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Top & Bottom 5 Rating Products",
        x = "Product",
        y = "Average Rating") +
   theme_minimal(base_size = 14) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, 
+                                   color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = average_rating), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
+  geom_text(aes(label = average_rating), vjust = -0.3, size = 4, 
+            color = "black", fontface = "bold") )
 
 ```
 
@@ -1080,7 +1154,8 @@ top_bottom_5_rating <-rbind(top_5_rating,bottom_5_rating)
 ## Figure 12: Top 10 Products by Ad clicks to Sales Conversion
 
 top_products_c <- dbGetQuery(my_db,
-                             "SELECT product_name, SUM(conversion_rate) as total_conversion_rate
+                             "SELECT product_name, 
+                             SUM(conversion_rate) as total_conversion_rate
   FROM df_sales
   WHERE conversion_rate IS NOT NULL
   GROUP BY product_name
@@ -1089,20 +1164,23 @@ top_products_c <- dbGetQuery(my_db,
 
 
 (figure.12 <- top_products_c %>%
-  ggplot(aes(x = reorder(product_name, total_conversion_rate), y = total_conversion_rate, fill = product_name)) +
+  ggplot(aes(x = reorder(product_name, total_conversion_rate), 
+             y = total_conversion_rate, fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Total Conversion Rate",
        x = "Product",
        y = "Conversion Rate (sales quality/million ad clicks)") +
   theme_minimal(base_size = 14) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 12, color = "black"),
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, 
+                                   size = 12, color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_conversion_rate), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
+  geom_text(aes(label = total_conversion_rate), vjust = -0.3, size = 4, 
+            color = "black", fontface = "bold") )
 
 
 
@@ -1119,12 +1197,17 @@ rating_y <- dbGetQuery(my_db,
   WHERE rating_review BETWEEN 1 AND 5")
 
 # Convert order_date to date format
-rating_y$order_date <- as.Date(as.character(rating_y$order_date), format = "%Y-%m-%d")
-rating_y <- rating_y %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
+rating_y$order_date <- as.Date(as.character(rating_y$order_date), 
+                               format = "%Y-%m-%d")
+rating_y <- rating_y %>% 
+  mutate(year_month = gsub('-','',
+                           as.character(format(as.Date(order_date), "%Y-%m"))))
 
 
 # Calculate the average   
-rating_y_sum <- rating_y %>% group_by(year_month) %>% summarise (n_y = n(), average_rating = round(sum(rating_review)/n(),2)) %>% arrange(desc(year_month)) 
+rating_y_sum <- rating_y %>% group_by(year_month) %>% 
+  summarise (n_y = n(), average_rating = round(sum(rating_review)/n(),2)) %>% 
+  arrange(desc(year_month)) 
 
 test <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
 # Take last 12 months
@@ -1133,7 +1216,8 @@ rating_y_sum <- head(rating_y_sum,12)
 
 # Plot monthly average rating with advanced visualization
 (figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
-  labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
+  labs(title = "Monthly Average Rating (last 12 months)", x = "Month", 
+       y = "Average Rating") +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   theme_bw() + 
   theme(axis.text.y = element_text(size = 10, color = "black"),
@@ -1155,8 +1239,11 @@ rating_all <- dbGetQuery(my_db,
   FROM df_sales")
 
 # Convert order_date to date format
-rating_all$order_date <- as.Date(as.character(rating_all$order_date), format = "%Y-%m-%d")
-rating_all <- rating_all %>% mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m"))))
+rating_all$order_date <- as.Date(as.character(rating_all$order_date), 
+                                 format = "%Y-%m-%d")
+rating_all <- rating_all %>% 
+  mutate(year_month = gsub('-','',
+                           as.character(format(as.Date(order_date), "%Y-%m"))))
 
 # Calculate total number of orders per months
 rating_all_summary <- rating_all %>% group_by(year_month) %>% summarise (n_all = n())
@@ -1171,7 +1258,9 @@ rating_n_summary <- rating_n %>% group_by(year_month) %>% summarise (n_n = n())
 rating_n_summary <- merge(rating_all_summary, rating_n_summary)
 
 # Calculate nil review rate
-rating_n_summary <- rating_n_summary %>% mutate(nil_review_rate = n_n *100/n_all) %>% arrange(desc(year_month))
+rating_n_summary <- rating_n_summary %>% 
+  mutate(nil_review_rate = n_n *100/n_all) %>% 
+  arrange(desc(year_month))
 
 # Take last 12 months
 rating_n_summary <- head(rating_n_summary,12)
@@ -1179,7 +1268,8 @@ rating_n_summary <- head(rating_n_summary,12)
 # Plot monthly sales trend with advanced visualization
 (figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
-  labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
+  labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", 
+       y = "% of Nil Review") +
   theme_bw() + 
   theme(axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
@@ -1195,14 +1285,21 @@ rating_n_summary <- head(rating_n_summary,12)
 ```{r fig15, echo=FALSE}
 ## Figure 15: Revenues by Rating Review
 
-revenue_by_rating_y <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
-revenue_by_rating_n <- rating_n %>% group_by(rating_review) %>% summarise(sales = sum(sales))
+revenue_by_rating_y <- rating_y %>% 
+  group_by(rating_review) %>% 
+  summarise(sales = sum(sales))
+revenue_by_rating_n <- rating_n %>% 
+  group_by(rating_review) %>% 
+  summarise(sales = sum(sales))
 revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
 
 (figure.15 <- revenue_by_rating %>% 
-  ggplot(aes(area = sales, fill = rating_review, label = paste0("Rating ", rating_review, "\n", scales::dollar(sales)))) +
+  ggplot(aes(area = sales, fill = rating_review, 
+             label = paste0("Rating ", rating_review, "\n", 
+                            scales::dollar(sales)))) +
   geom_treemap() +
-  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
+  geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, 
+                    reflow = TRUE, color = "lightgrey") + 
   labs(title = "Sales by Rating",
        fill = "Rating Review",
        caption = "Sales values are in USD") +
@@ -1225,13 +1322,16 @@ discount <- dbGetQuery(my_db, "
 ")
 
 # Convert order_date to date format
-discount$order_date <- as.Date(as.character(discount$order_date), format = "%Y-%m-%d")
+discount$order_date <- as.Date(as.character(discount$order_date), 
+                               format = "%Y-%m-%d")
 
 # Aggregate by month
 discount <- discount %>%
-  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), "%Y-%m")))) %>%
+  mutate(year_month = gsub('-','',as.character(format(as.Date(order_date), 
+                                                      "%Y-%m")))) %>%
   group_by(year_month) %>%
-  summarise(sales = sum(sales), discount_value = sum(discount_value), average_discount = discount_value/sales) %>%
+  summarise(sales = sum(sales), discount_value = sum(discount_value), 
+            average_discount = discount_value/sales) %>%
   arrange(desc(year_month))
 
 # Take last 12 months
@@ -1240,7 +1340,8 @@ discount <- head(discount, 12)
 # Plot monthly sales trend with advanced visualization
 ( figure.16 <- ggplot(discount, aes(x = year_month, y = average_discount)) +
     geom_bar(stat = "identity", fill = "#4393C3", color = "black") + 
-    labs(title = "Monthly Average Discount (last 12 months)", x = "Month", y = "Average Rating") +
+    labs(title = "Monthly Average Discount (last 12 months)", x = "Month", 
+         y = "Average Rating") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
           axis.title = element_text(size = 12, color = "black", face = "bold"),
