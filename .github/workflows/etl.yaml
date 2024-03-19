@@ -2,7 +2,7 @@ name: ETL Workflow for Group 2
 
 on:
   schedule:
-    - cron: '0 */2 * * *' # Run every 3 hours
+    - cron: '0 */2 * * *' # Run every 2 hours
   push:
     branches: [ main ]
 jobs:
