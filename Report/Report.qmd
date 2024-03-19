@@ -658,12 +658,11 @@ for (variable in all_files) {
   }
 }
 
-# Perform Visualisation
-source("./main/Visualisation.R")
-print("Done!")
-
-# Check if the connection object exists and is valid
+# Check if the connection object exists and is valid - if yes, mean there's updated data
 if (exists("my_db") && RSQLite::dbIsValid(my_db)) {
+  # Perform Visualisation
+  source("./main/Visualisation.R")
+  print("Done!")
   # Disconnect from the database
   RSQLite::dbDisconnect(my_db)
 } else {
