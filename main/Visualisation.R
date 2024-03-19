@@ -221,18 +221,18 @@ monthly_sales <- head(monthly_sales, 12)
 
 # Plot monthly sales trend with advanced visualization
 figure.5 <- ggplot(monthly_sales, aes(x = as.factor(year_month), y = sales)) +
-  geom_line(color = "blue", size = 1.5) +
-  geom_point(color = "red", size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
-  labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
-  theme_bw() + 
-  theme(axis.text.y = element_text(size = 10, color = "black"),
-        axis.title = element_text(size = 12, color = "black", face = "bold"),
-        plot.title = element_text(size = 16, color = "black", face = "bold"),
-        legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + # Rotate x-axis labels vertically
-  #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "$")) 
+    geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
+    labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
+    theme_bw() + 
+    theme(axis.text.y = element_text(size = 10, color = "black"),
+          axis.title = element_text(size = 12, color = "black", face = "bold"),
+          plot.title = element_text(size = 16, color = "black", face = "bold"),
+          legend.position = "none",
+          panel.border = element_rect(color = "black", fill = NA, size = 1),
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
+          axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
+    scale_y_continuous(labels = scales::dollar_format(prefix = "$")) +
+    geom_text(aes(label = sales), vjust = -0.3, size = 3, color = "black")
 
 ## Figure 6: Sales by Categories
 
@@ -462,19 +462,19 @@ test <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
 rating_y_sum <- head(rating_y_sum,12)
 
 
-# Plot monthly sales trend with advanced visualization
+# Plot monthly average rating with advanced visualization
 figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
-  geom_line(color = "blue", size = 1.5) +
-  geom_point(color = "red", size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
   labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
+  geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   theme_bw() + 
   theme(axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10))  # Rotate x-axis labels vertically
-#scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) +
+  geom_text(aes(label = average_rating), vjust = -0.3, size = 3, color = "black") 
 
 
 ## Figure 14: Percentage of Nil Rating
@@ -507,17 +507,17 @@ rating_n_summary <- head(rating_n_summary,12)
 
 # Plot monthly sales trend with advanced visualization
 figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
-  geom_line(color = "blue", size = 1.5) +
-  geom_point(color = "red", size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linetype = "dashed") +
+  geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
   theme_bw() + 
   theme(axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
         plot.title = element_text(size = 16, color = "black", face = "bold"),
         legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) # Rotate x-axis labels vertically
-#scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) +
+  geom_text(aes(label = nil_review_rate), vjust = -0.3, size = 3, color = "black")
 
 ## Figure 15: Revenues by Rating Review
 
@@ -562,7 +562,7 @@ discount <- head(discount, 12)
 
 # Plot monthly sales trend with advanced visualization
 ( figure.16 <- ggplot(discount, aes(x = year_month, y = average_discount)) +
-    geom_bar(stat = "identity", color = "black") + 
+    geom_bar(stat = "identity", fill = "#4393C3", color = "black") + 
     labs(title = "Monthly Average Discount (last 12 months)", x = "Month", y = "Average Rating") +
     theme_bw() + 
     theme(axis.text.y = element_text(size = 10, color = "black"),
