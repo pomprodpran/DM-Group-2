@@ -11,7 +11,7 @@ This report simulates the end-to-end data management for an e-commerce platform 
 
 ![](flowchart.png)
 
-During the design phase, we started with analysing business objectives to identity key participants (customers, sellers, products, shippers) and types of data that is crucial for insights and the platform\'s operations. Those elements are conceptually mapped out in an Entity-Relationship (E-R) diagram that is subsequently converted into database schema via logical and physical design steps. 
+During the design phase, we started with analysing business objectives to identity key participants (customers, sellers, products, shippers) and types of data that is crucial for insights and the platform's operations. Those elements are conceptually mapped out in an Entity-Relationship (E-R) diagram that is subsequently converted into database schema via logical and physical design steps. 
 
 The workflow management automates the process of data validation and importation incorporated rigorous rules and checks to ensure data integrity. If critical checks are failed, the process is stopped for human intervention. For less severe checks, warnings are given, and errors are captured in error logs while the process resumes.  
 
@@ -59,11 +59,8 @@ Our database conceptual design is based on the following assumptions & justifica
 
 The logical design of the database is converted from the conceptual ER diagram on the following methodologies: 
 
--   Composite attributes (customer name, customer and seller address, product price and advertisement budget) are registered in individual fields using outer layer of the attribute to ensure that physical database only capture atomic value. 
+-   Composite attributes (customer name, customer and seller address, product price and advertisement budget) are registered in individual fields using outer layer of the attribute to ensure that physical database only capture atomic value.
 
-```{=html}
-<!-- -->
-```
 -   Each entity is converted into one table. Except for the Orders relationship, all other cardinality relationships are 1:N, thus not converted into table. 
 
 -   The ternary M:N relationship among Customers, Products and Shippers is converted into the Orders table. Primary key (ID) of Customers, Products and Shippers entities, together with order date and time forming a composite key for the Orders relationship table. Each record of the Orders relationship is also unique by an order ID. 
@@ -662,25 +659,15 @@ Only the newly added files within the past two days will be processed, following
 
 In accordance with the CRISP-DM, data analysis is designed to assist management with their data-driven decision making on multi-dimensional facets of the business. An effective data analysis should allow management to direct their investments and resources into the areas with most growth and profitability, whilst mitigating potential risks. With that objective in mind, our data analysis is organised into the following key elements of the business: 
 
-**Platform Overview**:Designed to provide the management with an overview of the platform participants (customers, sellers, and products), this dashboard addresses fundamental questions on the top selling product categories, customer traffics via ad clicks, and customers\' and sellers\' geographical location. This aids management in optimising the distribution network, merchandising strategy (i.e., which product to sells) and network expansion. We observe that the Health & Wellness product is the most popular category reflecting the shift in consumers attention towards self-care and wellbeing post the COVID-19 pandemic. Low participants in the Central region may result from the company\'s deliberate strategy or flash an opportunity for expansion.  
+**Platform Overview**:Designed to provide the management with an overview of the platform participants (customers, sellers, and products), this dashboard addresses fundamental questions on the top selling product categories, customer traffics via ad clicks, and customers' and sellers' geographical location. This aids management in optimising the distribution network, merchandising strategy (i.e., which product to sells) and network expansion. We observe that the Health & Wellness product is the most popular category reflecting the shift in consumers attention towards self-care and wellbeing post the COVID-19 pandemic. Low participants in the Central region may result from the company's deliberate strategy or flash an opportunity for expansion.
 
-```{r analysis}
-# Perform Visualisation
-source("../main/Visualisation.R")
-
-ggsave(file=paste0("../Visualisations/platform_overview",
-              this_filename_date,"_",
-              this_filename_time,".png"), plot = g1 ,width = 12, height = 8)
-```
-
-```{r dashboard1, eval=FALSE}
+```{r fig1, echo=FALSE, warning=FALSE, message = FALSE}
 library(treemapify)
 library(maps)
 library(mapproj)
 library(gridExtra)
 library(grid)
 library(lubridate)
-
 
 # Data Analysis 
 ## Create views for analysis
@@ -740,9 +727,6 @@ LEFT JOIN df_products dfp ON o.product_id = dfp.id
 LEFT JOIN customers c ON o.customer_id = c.id")
 
 
-
-
-
 ## Figure 1:  Number of Products by Categories
 
 
@@ -755,7 +739,7 @@ category_products <- dbGetQuery(my_db, "SELECT c.name AS category_name, COUNT(p.
                               ORDER BY num_products DESC
                               LIMIT 10")
 
-figure.1 <- category_products %>%
+(figure.1 <- category_products %>%
   ggplot(aes(x = reorder(category_name, -num_products), y = num_products)) +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   labs(title = "Number of Products by Categories",
@@ -768,11 +752,12 @@ figure.1 <- category_products %>%
         plot.title = element_text(size = 14, hjust = 0.5),
         panel.border = element_rect(color = "black", fill = NA, size = 1),
         plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  
-  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black") 
+  geom_text(aes(label = num_products), vjust = -0.3, size = 3, color = "black") )
 
+```
 
+```{r fig2, echo=FALSE}
 ## Figure 2: Number of Ad clicks by Categories
-
 
 ## Categories with number of ad clicks in each category
 
@@ -786,7 +771,7 @@ category_adclicks <- dbGetQuery(my_db, "
   ORDER BY total_ad_clicks DESC
 ")
 
-figure.2 <- category_adclicks %>%
+(figure.2 <- category_adclicks %>%
   ggplot(aes(x = reorder(category_name, -total_ad_clicks), y = total_ad_clicks/1000000)) +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   labs(title = "Total Ad clicks (millions) by Categories",
@@ -799,9 +784,11 @@ figure.2 <- category_adclicks %>%
         plot.title = element_text(size = 14, hjust = 0.5),
         panel.border = element_rect(color = "black", fill = NA, size = 1),
         plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
-  geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, size = 3, color = "black")   # Add labels for each bar
+  geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, size = 3, color = "black"))   # Add labels for each bar
 
+```
 
+```{r fig3, echo=FALSE}
 ## Figure 3: Number of Customers by States
 
 
@@ -818,7 +805,7 @@ if (require("maps")) {
   cust_geo$region <- tolower(cust_geo$billing_address_state)
   choro <- merge(states, cust_geo, sort = FALSE, by = "region")
   choro <- choro[order(choro$order), ]
-  figure.3 <- ggplot(choro, aes(long, lat)) +
+  (figure.3 <- ggplot(choro, aes(long, lat)) +
     geom_polygon(aes(group = group, fill = n)) +
     coord_map("albers",  lat0 = 45.5, lat1 = 29.5) +
     scale_fill_continuous(trans = "reverse") +
@@ -830,10 +817,13 @@ if (require("maps")) {
           axis.text = element_blank(),
           plot.title = element_text(size = 14, hjust = 0.5),
           panel.border = element_rect(color = "black", fill = NA, size = 1),
-          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")))
   
 }
 
+```
+
+```{r fig4, echo=FALSE}
 ## Figure 4: Number of Sellers by States
 
 # read sellers table from sql
@@ -849,7 +839,7 @@ if (require("maps")) {
   seller_geo$region <- tolower(seller_geo$address_state)
   choro <- merge(states, seller_geo, sort = FALSE, by = "region")
   choro <- choro[order(choro$order), ]
-  figure.4 <- ggplot(choro, aes(long, lat)) +
+  (figure.4 <- ggplot(choro, aes(long, lat)) +
     geom_polygon(aes(group = group, fill = n)) +
     coord_map("albers",  lat0 = 45.5, lat1 = 29.5) +
     scale_fill_continuous(trans = "reverse") +
@@ -861,31 +851,15 @@ if (require("maps")) {
           axis.text = element_blank(),
           plot.title = element_text(size = 14, hjust = 0.5),
           panel.border = element_rect(color = "black", fill = NA, size = 1),
-          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"))
+          plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")))
   
 }
 
-
-## Dashboard 1: Platform Overview
-
-# Extract the date and time
-this_filename_date <- as.character(Sys.Date())
-this_filename_time <- as.character(format(Sys.time(), format = "%H_%M"))
-
-# Combine charts and save as image
-g1 <- grid.arrange(figure.1, figure.2, figure.3, figure.4, nrow = 2,
-                   top = textGrob("Platform Overview",gp=gpar(fontsize=24,font=2)))
 ```
 
-**Sales Performance:** The dashboard provides key metrics into sales performance and growth potential of the platform. Monthly Sales Trend tracks the live results in the last 12 months, timely highlighting the effectiveness of management\'s strategies and day-to-day operations. In contrast, the remaining charts capture a snapshot of the overall performance to date, drawing management\'s attention to the most profitable customers, sellers, and product category. The concentration risk presenting in the top customer and seller of this platform, whilst should be mindful of, indicates growth opportunities on the remaining customers and seller groups. 
+**Sales Performance:** The dashboard provides key metrics into sales performance and growth potential of the platform. Monthly Sales Trend tracks the live results in the last 12 months, timely highlighting the effectiveness of management's strategies and day-to-day operations. In contrast, the remaining charts capture a snapshot of the overall performance to date, drawing management's attention to the most profitable customers, sellers, and product category. The concentration risk presenting in the top customer and seller of this platform, whilst should be mindful of, indicates growth opportunities on the remaining customers and seller groups. 
 
-```{r}
-ggsave(file=paste0("../Visualisations/sales_performance",
-                   this_filename_date,"_",
-                   this_filename_time,".png"), plot= g2,width = 12, height = 8)
-```
-
-```{r dashboard2 ,eval=FALSE}
+```{r fig5, echo=FALSE}
 ## Figure 5: Monthly Sales Analysis
 
 daily_sales <- dbGetQuery(my_db, "
@@ -906,7 +880,7 @@ monthly_sales <- daily_sales %>%
 monthly_sales <- head(monthly_sales, 12)
 
 # Plot monthly sales trend with advanced visualization
-figure.5 <- ggplot(monthly_sales, aes(x = as.factor(year_month), y = sales)) +
+(figure.5 <- ggplot(monthly_sales, aes(x = as.factor(year_month), y = sales)) +
     geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
     labs(title = "Monthly Sales Trend (last 12 months)", x = "Month", y = "Sales") +
     theme_bw() + 
@@ -918,8 +892,11 @@ figure.5 <- ggplot(monthly_sales, aes(x = as.factor(year_month), y = sales)) +
           plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
           axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) + 
     scale_y_continuous(labels = scales::dollar_format(prefix = "$")) +
-    geom_text(aes(label = sales), vjust = -0.3, size = 3, color = "black")
+    geom_text(aes(label = sales), vjust = -0.3, size = 3, color = "black"))
 
+```
+
+```{r fig6, echo=FALSE}
 ## Figure 6: Sales by Categories
 
 
@@ -929,7 +906,7 @@ sales_by_category <- dbGetQuery(my_db, "
   GROUP BY category_name
 ")
 
-figure.6 <- sales_by_category %>%
+(figure.6 <- sales_by_category %>%
   ggplot(aes(area = total_sales, fill = category_name, label = paste0(category_name, "\n", scales::dollar(total_sales)))) +
   geom_treemap() +
   geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
@@ -942,9 +919,11 @@ figure.6 <- sales_by_category %>%
         plot.caption = element_text(size = 10, color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
-        plot.title = element_text(size = 16, color = "black", face = "bold")) 
+        plot.title = element_text(size = 16, color = "black", face = "bold")) )
 
+```
 
+```{r fig7, echo=FALSE}
 ## Figure 7: Top 10 Customers by Amount Spent
 
 top_customers <- dbGetQuery(my_db,
@@ -955,7 +934,7 @@ top_customers <- dbGetQuery(my_db,
   LIMIT 10"
 )
 
-figure.7 <- top_customers %>%
+(figure.7 <- top_customers %>%
   arrange(desc(sales)) %>%
   ggplot(aes(x = reorder(customer_name, sales), y = sales, fill = customer_name)) +
   geom_bar(stat = "identity") +
@@ -970,9 +949,11 @@ figure.7 <- top_customers %>%
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   geom_text(aes(label = sales), size = 4, color = "black") +
-  coord_flip() 
+  coord_flip() )
 
+```
 
+```{r fig8, echo=FALSE}
 ## Figure 8. Top 10 Sellers by Total Sales
 
 
@@ -983,7 +964,7 @@ top_sellers <- dbGetQuery(my_db,
   ORDER BY sales DESC
   LIMIT 10")
 
-figure.8 <- top_sellers %>%
+(figure.8 <- top_sellers %>%
   arrange(desc(sales)) %>%
   ggplot(aes(x = reorder(seller_name, sales), y = sales, fill = seller_name)) +
   geom_bar(stat = "identity") +
@@ -998,26 +979,13 @@ figure.8 <- top_sellers %>%
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   geom_text(aes(label = sales), size = 4, color = "black") +
-  coord_flip() 
-
-
-## Dashboard 2: Sales Performance
-
-# Combine charts and save as image
-g2 <- grid.arrange(figure.5, figure.6, figure.7, figure.8, nrow = 2,
-                   top = textGrob("Sales Performance",gp=gpar(fontsize=24,font=2)))
+  coord_flip() )
 
 ```
 
-**Top Products**: Drilling down into the product level, this showcases the top performing products by various metrics: sales value, sales quantum, customer rating and conversion rate (measured by sales quantum per a million of ad clicks), spearheading the platform\'s marketing, merchandising, and acquisition strategy. Whilst not being the top selling products by quantity, bicycle and laptop generates the most revenue due to its high value propositions. 
+**Top Products**: Drilling down into the product level, this showcases the top performing products by various metrics: sales value, sales quantum, customer rating and conversion rate (measured by sales quantum per a million of ad clicks), spearheading the platform's marketing, merchandising, and acquisition strategy. Whilst not being the top selling products by quantity, bicycle and laptop generates the most revenue due to its high value propositions. 
 
-```{r}
-ggsave(file=paste0("../Visualisations/top_products",
-                   this_filename_date,"_",
-                   this_filename_time,".png"), plot= g3,width = 12, height = 8)
-```
-
-```{r dashboard3, eval=FALSE}
+```{r fig9, echo=FALSE}
 ## Figure 9: Top 10 Selling Products by Value
 
 
@@ -1029,7 +997,7 @@ top_products <- dbGetQuery(my_db,
   LIMIT 10")
 
 
-figure.9 <- top_products %>%
+(figure.9 <- top_products %>%
   ggplot(aes(x = reorder(product_name, total_sales), y = total_sales, fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Top 10 Selling Products by Value",
@@ -1043,9 +1011,11 @@ figure.9 <- top_products %>%
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_sales), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+  geom_text(aes(label = total_sales), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
 
+```
 
+```{r fig10, echo=FALSE}
 ## Figure 10: Top 10 Selling Products by Quantity
 
 top_products_q <- dbGetQuery(my_db,
@@ -1055,7 +1025,7 @@ top_products_q <- dbGetQuery(my_db,
   ORDER BY total_sold DESC
   LIMIT 10")
 
-figure.10 <- top_products_q %>%
+(figure.10 <- top_products_q %>%
   ggplot(aes(x = reorder(product_name, total_sold), y = total_sold, fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   scale_fill_brewer(palette = "Paired") +  # Using a built-in palette
@@ -1070,9 +1040,11 @@ figure.10 <- top_products_q %>%
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+  geom_text(aes(label = total_sold), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
 
+```
 
+```{r fig11, echo=FALSE}
 ## Figure 11: Top & Bottom 5 Rating Products
 
 
@@ -1086,7 +1058,7 @@ top_5_rating <- head(top_products_r,5)
 bottom_5_rating <- tail(top_products_r,5)
 top_bottom_5_rating <-rbind(top_5_rating,bottom_5_rating)
 
-figure.11 <- top_bottom_5_rating %>%
+(figure.11 <- top_bottom_5_rating %>%
   ggplot(aes(x = reorder(product_name, average_rating), y = average_rating, fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Top & Bottom 5 Rating Products",
@@ -1100,9 +1072,11 @@ figure.11 <- top_bottom_5_rating %>%
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = average_rating), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+  geom_text(aes(label = average_rating), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
 
+```
 
+```{r fig12, echo=FALSE}
 ## Figure 12: Top 10 Products by Ad clicks to Sales Conversion
 
 top_products_c <- dbGetQuery(my_db,
@@ -1114,7 +1088,7 @@ top_products_c <- dbGetQuery(my_db,
   LIMIT 10")
 
 
-figure.12 <- top_products_c %>%
+(figure.12 <- top_products_c %>%
   ggplot(aes(x = reorder(product_name, total_conversion_rate), y = total_conversion_rate, fill = product_name)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Total Conversion Rate",
@@ -1128,26 +1102,15 @@ figure.12 <- top_products_c %>%
         legend.position = "none") +
   scale_fill_brewer(palette = "Set3") +
   coord_flip() +  # Flip the coordinates to make horizontal bars
-  geom_text(aes(label = total_conversion_rate), vjust = -0.3, size = 4, color = "black", fontface = "bold") 
+  geom_text(aes(label = total_conversion_rate), vjust = -0.3, size = 4, color = "black", fontface = "bold") )
 
 
-## Dashboard 3: Top Products
-
-# Combine charts and save as image
-g3 <- grid.arrange(figure.9, figure.10, figure.11, figure.12, nrow = 2,
-                   top = textGrob("Top Products",gp=gpar(fontsize=24,font=2)))
 
 ```
 
-**Customer Satisfaction**: While average rating reflects customer satisfaction, the percentage of orders left without review indicates customer engagement level. With a high-fixed-cost and low-variable-cost business model, an e-commerce platform depends profoundly on the ability to sustainability grow and expand their customer base. Therefore, these metrics are considered pivotal to their success. Downward trending average rating and increasing percentage of nil review, as in this case, is alarming and requires management\'s immediate attention.  
+**Customer Satisfaction**: While average rating reflects customer satisfaction, the percentage of orders left without review indicates customer engagement level. With a high-fixed-cost and low-variable-cost business model, an e-commerce platform depends profoundly on the ability to sustainability grow and expand their customer base. Therefore, these metrics are considered pivotal to their success. Downward trending average rating and increasing percentage of nil review, as in this case, is alarming and requires management's immediate attention.  
 
-```{r}
-ggsave(file=paste0("../Visualisations/customer_satisfaction",
-                   this_filename_date,"_",
-                   this_filename_time,".png"), plot=g4, width = 12, height = 8)
-```
-
-```{r dashboard4, eval=FALSE}
+```{r fig13, echo=FALSE}
 ## Figure 13: Average Rating by Months
 
 rating_y <- dbGetQuery(my_db,
@@ -1169,7 +1132,7 @@ rating_y_sum <- head(rating_y_sum,12)
 
 
 # Plot monthly average rating with advanced visualization
-figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
+(figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
   labs(title = "Monthly Average Rating (last 12 months)", x = "Month", y = "Average Rating") +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   theme_bw() + 
@@ -1180,9 +1143,11 @@ figure.13 <- ggplot(rating_y_sum, aes(x = year_month, y = average_rating)) +
         panel.border = element_rect(color = "black", fill = NA, size = 1),
         plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) +
-  geom_text(aes(label = average_rating), vjust = -0.3, size = 3, color = "black") 
+  geom_text(aes(label = average_rating), vjust = -0.3, size = 3, color = "black") )
 
+```
 
+```{r}
 ## Figure 14: Percentage of Nil Rating
 
 rating_all <- dbGetQuery(my_db,
@@ -1212,7 +1177,7 @@ rating_n_summary <- rating_n_summary %>% mutate(nil_review_rate = n_n *100/n_all
 rating_n_summary <- head(rating_n_summary,12)
 
 # Plot monthly sales trend with advanced visualization
-figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
+(figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) +
   geom_bar(stat = "identity", fill = "#4393C3", color = "black") +
   labs(title = "Percentage of Nil Review (last 12 months)", x = "Month", y = "% of Nil Review") +
   theme_bw() + 
@@ -1223,15 +1188,18 @@ figure.14 <- ggplot(rating_n_summary, aes(x = year_month, y = nil_review_rate)) 
         panel.border = element_rect(color = "black", fill = NA, size = 1),
         plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm"),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) +
-  geom_text(aes(label = nil_review_rate), vjust = -0.3, size = 3, color = "black")
+  geom_text(aes(label = nil_review_rate), vjust = -0.3, size = 3, color = "black"))
 
+```
+
+```{r fig15, echo=FALSE}
 ## Figure 15: Revenues by Rating Review
 
 revenue_by_rating_y <- rating_y %>% group_by(rating_review) %>% summarise(sales = sum(sales))
 revenue_by_rating_n <- rating_n %>% group_by(rating_review) %>% summarise(sales = sum(sales))
 revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
 
-figure.15 <- revenue_by_rating %>% 
+(figure.15 <- revenue_by_rating %>% 
   ggplot(aes(area = sales, fill = rating_review, label = paste0("Rating ", rating_review, "\n", scales::dollar(sales)))) +
   geom_treemap() +
   geom_treemap_text(fontface = "bold", place = "centre", grow = TRUE, reflow = TRUE, color = "lightgrey") + 
@@ -1243,8 +1211,11 @@ figure.15 <- revenue_by_rating %>%
         plot.caption = element_text(size = 10, color = "black"),
         axis.text.y = element_text(size = 10, color = "black"),
         axis.title = element_text(size = 12, color = "black", face = "bold"),
-        plot.title = element_text(size = 16, color = "black", face = "bold")) 
+        plot.title = element_text(size = 16, color = "black", face = "bold")) )
 
+```
+
+```{r fig16, echo=FALSE}
 
 ## Figure 16: Average Discount by Month
 
@@ -1278,11 +1249,5 @@ discount <- head(discount, 12)
           axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 10)) 
   #scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") 
 )
-
-## Dashboard 4: Customer Satisfaction
-
-# Combine charts and save as image
-g4 <- grid.arrange(figure.13, figure.14, figure.15, figure.16, ncol = 2,
-                   top = textGrob("Customer Statisfaction",gp=gpar(fontsize=24,font=2)))
 
 ```
