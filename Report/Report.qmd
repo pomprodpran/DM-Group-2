@@ -4,10 +4,6 @@ format:
   pdf:
     documentclass: scrartcl
     papersize: A4
-    toc: true
-    toc-depth: 2
-    toc-title: Contents
-    number-sections: true
 editor: visual
 author: "Group 2"
 ---
