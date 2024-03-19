@@ -82,6 +82,7 @@ validate_rating_review <- function(rating_review) {
 # Function error handling
 validation <- function(this_file_contents,type,column) {
   tmp_table <- this_file_contents
+  print('test')
   if (type == 'Email') {
     tmp_table$valid_format <- validate_emails(column)
   } else if (type == 'Phone_numbers') {
@@ -92,17 +93,13 @@ validation <- function(this_file_contents,type,column) {
     tmp_table$valid_format <- validate_prices(column)
   } else if (type == 'Currencies') {
     tmp_table$valid_format <- validate_currencies(column)
-  }
-  else if (type == 'payment_method') {
+  } else if (type == 'payment_method') {
     tmp_table$valid_format <- validate_payment_method(column)
-  }
-  else if (type == 'ad_clicks') {
+  } else if (type == 'ad_clicks') {
     tmp_table$valid_format <- validate_ad_clicks(column)
-  }
-  else if (type == 'discount') {
+  } else if (type == 'discount') {
     tmp_table$valid_format <- validate_discount(column)
-  }
-  else if (type == 'rating_review') {
+  } else if (type == 'rating_review') {
     tmp_table$valid_format <- validate_rating_review(column)
   }
   if (nrow(tmp_table) >0) {

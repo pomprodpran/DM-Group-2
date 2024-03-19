@@ -107,6 +107,12 @@ ggsave(file=paste0("../Visualisations/customer_satisfaction",
 
 ```
 
+```{sql connection=my_db}
+
+select *
+from orders
+```
+
 # ------- NOT USE --------
 
 # Data Analysis 

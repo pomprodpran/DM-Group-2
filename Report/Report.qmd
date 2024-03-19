@@ -685,3 +685,21 @@ After data validation, we use the primary key to check if the row is unique. If 
 8\. Finally, commit and push the changes to the main branch. 
 
 ### Part 4: Data Analysis and Reporting with Quarto in R
+
+```{r analysis}
+# Perform Visualisation
+source("../main/Visualisation.R")
+
+ggsave(file=paste0("../Visualisations/platform_overview",
+              this_filename_date,"_",
+              this_filename_time,".png"), plot = g1 ,width = 12, height = 8)
+ggsave(file=paste0("../Visualisations/sales_performance",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), plot= g2,width = 12, height = 8)
+ggsave(file=paste0("../Visualisations/top_products",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), plot= g3,width = 12, height = 8)
+ggsave(file=paste0("../Visualisations/customer_satisfaction",
+                   this_filename_date,"_",
+                   this_filename_time,".png"), plot=g4, width = 12, height = 8)
+```
