@@ -713,11 +713,11 @@ Only the newly added files within the past two days will be processed, following
 
 In accordance with the CRISP-DM, data analysis is designed to assist management with their data-driven decision making on multi-dimensional facets of the business. An effective data analysis should allow management to direct their investments and resources into the areas with most growth and profitability, whilst mitigating potential risks. With that objective in mind, our data analysis is organised into the following key elements of the business: 
 
-## **Task 4.1: Platform Overview** Dashboard
+## Task 4.1: Platform Overview Dashboard
 
 Designed to provide the management with an overview of the platform participants (customers, sellers, and products), this dashboard addresses fundamental questions on the top selling product categories, customer traffics via ad clicks, and customers' and sellers' geographical location. This aids management in optimising the distribution network, merchandising strategy (i.e., which product to sells) and network expansion. We observe that the Health & Wellness product is the most popular category reflecting the shift in consumers attention towards self-care and wellbeing post the COVID-19 pandemic. Low participants in the Central region may result from the company's deliberate strategy or flash an opportunity for expansion.
 
-```{r fig1, echo=FALSE, warning=FALSE, message = FALSE}
+```{r fig1, warning=FALSE, message = FALSE}
 library(treemapify)
 library(maps)
 library(mapproj)
@@ -747,9 +747,6 @@ GROUP BY p.id;")
 dbExecute(my_db, view_product_query)
 
 
-#df_products <- dbGetQuery(my_db, "SELECT *
-#                              FROM df_products")
-
 
 ### View linked orders, customers and products (including ads and sellers details)
 dbExecute(my_db, "DROP VIEW IF EXISTS df_sales;")
@@ -767,23 +764,6 @@ LEFT JOIN df_products dfp ON o.product_id = dfp.id
 LEFT JOIN customers c ON o.customer_id = c.id;")
 dbExecute(my_db,view_sales_query)
 
-
-
-df_sales <- dbGetQuery(my_db, "SELECT *
-                              FROM df_sales")
-
-
-df_sales <- dbGetQuery(my_db, "SELECT o.id, o.customer_id, o.product_id, 
-o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
-round(o.quantity*(1-o.discount/100)*dfp.price,2) AS sales,
-round(o.quantity*(o.discount/100)*dfp.price,2) AS discount_value,
-round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
-dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,
-dfp.category_name, 
-CONCAT(first_name, ' ', last_name) AS customer_name
-FROM orders AS o
-LEFT JOIN df_products dfp ON o.product_id = dfp.id
-LEFT JOIN customers c ON o.customer_id = c.id")
 
 
 ## Figure 1:  Number of Products by Categories
@@ -816,7 +796,7 @@ COUNT(p.id) AS num_products
 
 ```
 
-```{r fig2, echo=FALSE}
+```{r fig2}
 ## Figure 2: Number of Ad clicks by Categories
 
 ## Categories with number of ad clicks in each category
@@ -844,13 +824,13 @@ category_adclicks <- dbGetQuery(my_db, "
         axis.title.x = element_text(size = 12),
         plot.title = element_text(size = 14, hjust = 0.5),
         panel.border = element_rect(color = "black", fill = NA, size = 1),
-        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +  # Specify margins
+        plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")) +
   geom_text(aes(label = round(total_ad_clicks/1000000,2)), vjust = -0.3, 
-            size = 3, color = "black"))   # Add labels for each bar
+            size = 3, color = "black"))
 
 ```
 
-```{r fig3, echo=FALSE}
+```{r fig3}
 ## Figure 3: Number of Customers by States
 
 
@@ -880,12 +860,11 @@ if (require("maps")) {
           plot.title = element_text(size = 14, hjust = 0.5),
           panel.border = element_rect(color = "black", fill = NA, size = 1),
           plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")))
-  
 }
 
 ```
 
-```{r fig4, echo=FALSE}
+```{r fig4}
 ## Figure 4: Number of Sellers by States
 
 # read sellers table from sql
@@ -914,16 +893,15 @@ if (require("maps")) {
           plot.title = element_text(size = 14, hjust = 0.5),
           panel.border = element_rect(color = "black", fill = NA, size = 1),
           plot.margin = margin(t = 0.5, r = 0.5, b = 1, l = 1, unit = "cm")))
-  
 }
 
 ```
 
-## **Task 4.2: Sales Performance Dashboard** 
+## Task 4.2: Sales Performance Dashboard
 
 The dashboard provides key metrics into sales performance and growth potential of the platform. Monthly Sales Trend tracks the live results in the last 12 months, timely highlighting the effectiveness of management's strategies and day-to-day operations. In contrast, the remaining charts capture a snapshot of the overall performance to date, drawing management's attention to the most profitable customers, sellers, and product category. The concentration risk presenting in the top customer and seller of this platform, whilst should be mindful of, indicates growth opportunities on the remaining customers and seller groups. 
 
-```{r fig5, echo=FALSE}
+```{r fig5}
 ## Figure 5: Monthly Sales Analysis
 
 daily_sales <- dbGetQuery(my_db, "
@@ -962,7 +940,7 @@ monthly_sales <- head(monthly_sales, 12)
 
 ```
 
-```{r fig6, echo=FALSE}
+```{r fig6}
 ## Figure 6: Sales by Categories
 
 
@@ -991,7 +969,7 @@ sales_by_category <- dbGetQuery(my_db, "
 
 ```
 
-```{r fig7, echo=FALSE}
+```{r fig7}
 ## Figure 7: Top 10 Customers by Amount Spent
 
 top_customers <- dbGetQuery(my_db,
@@ -1022,7 +1000,7 @@ top_customers <- dbGetQuery(my_db,
 
 ```
 
-```{r fig8, echo=FALSE}
+```{r fig8}
 ## Figure 8. Top 10 Sellers by Total Sales
 
 
@@ -1053,11 +1031,11 @@ top_sellers <- dbGetQuery(my_db,
 
 ```
 
-## **Task 4.3: Top Products** Dashboard
+## Task 4.3: Top Products Dashboard
 
 Drilling down into the product level, this showcases the top performing products by various metrics: sales value, sales quantum, customer rating and conversion rate (measured by sales quantum per a million of ad clicks), spearheading the platform's marketing, merchandising, and acquisition strategy. Whilst not being the top selling products by quantity, bicycle and laptop generates the most revenue due to its high value propositions. 
 
-```{r fig9, echo=FALSE}
+```{r fig9}
 ## Figure 9: Top 10 Selling Products by Value
 
 
@@ -1090,7 +1068,7 @@ top_products <- dbGetQuery(my_db,
 
 ```
 
-```{r fig10, echo=FALSE}
+```{r fig10}
 ## Figure 10: Top 10 Selling Products by Quantity
 
 top_products_q <- dbGetQuery(my_db,
@@ -1122,7 +1100,7 @@ top_products_q <- dbGetQuery(my_db,
 
 ```
 
-```{r fig11, echo=FALSE}
+```{r fig11}
 ## Figure 11: Top & Bottom 5 Rating Products
 
 
@@ -1159,7 +1137,7 @@ top_bottom_5_rating <-rbind(top_5_rating,bottom_5_rating)
 
 ```
 
-```{r fig12, echo=FALSE}
+```{r fig12}
 ## Figure 12: Top 10 Products by Ad clicks to Sales Conversion
 
 top_products_c <- dbGetQuery(my_db,
@@ -1195,11 +1173,11 @@ top_products_c <- dbGetQuery(my_db,
 
 ```
 
-**Task 4.4: Customer Satisfaction Dashboard**
+## Task 4.4: Customer Satisfaction Dashboard
 
 While average rating reflects customer satisfaction, the percentage of orders left without review indicates customer engagement level. With a high-fixed-cost and low-variable-cost business model, an e-commerce platform depends profoundly on the ability to sustainability grow and expand their customer base. Therefore, these metrics are considered pivotal to their success. Downward trending average rating and increasing percentage of nil review, as in this case, is alarming and requires management's immediate attention.  
 
-```{r fig13, echo=FALSE}
+```{r fig13}
 ## Figure 13: Average Rating by Months
 
 rating_y <- dbGetQuery(my_db,
@@ -1242,7 +1220,7 @@ rating_y_sum <- head(rating_y_sum,12)
 
 ```
 
-```{r}
+```{r fig14}
 ## Figure 14: Percentage of Nil Rating
 
 rating_all <- dbGetQuery(my_db,
@@ -1293,7 +1271,7 @@ rating_n_summary <- head(rating_n_summary,12)
 
 ```
 
-```{r fig15, echo=FALSE}
+```{r fig15}
 ## Figure 15: Revenues by Rating Review
 
 revenue_by_rating_y <- rating_y %>% 
@@ -1323,7 +1301,7 @@ revenue_by_rating <- rbind(revenue_by_rating_y, revenue_by_rating_n)
 
 ```
 
-```{r fig16, echo=FALSE}
+```{r fig16}
 
 ## Figure 16: Average Discount by Month
 
