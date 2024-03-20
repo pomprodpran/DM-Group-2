@@ -2,8 +2,14 @@
 title: "Data Management Group Assignment (IB9HP0)"
 format: 
   pdf:
-    documentclass: scrartcl
-    papersize: A4
+    documentclass: report
+    papersize: a4
+    margin-right: 2cm
+    margin-top: 2cm
+    margin-bottom: 2cm
+    toc: true
+    toc-depth: 2
+    toc-title: Table of Contents
 editor: visual
 author: "Group 2"
 ---
@@ -707,7 +713,9 @@ Only the newly added files within the past two days will be processed, following
 
 In accordance with the CRISP-DM, data analysis is designed to assist management with their data-driven decision making on multi-dimensional facets of the business. An effective data analysis should allow management to direct their investments and resources into the areas with most growth and profitability, whilst mitigating potential risks. With that objective in mind, our data analysis is organised into the following key elements of the business: 
 
-**Platform Overview**:Designed to provide the management with an overview of the platform participants (customers, sellers, and products), this dashboard addresses fundamental questions on the top selling product categories, customer traffics via ad clicks, and customers' and sellers' geographical location. This aids management in optimising the distribution network, merchandising strategy (i.e., which product to sells) and network expansion. We observe that the Health & Wellness product is the most popular category reflecting the shift in consumers attention towards self-care and wellbeing post the COVID-19 pandemic. Low participants in the Central region may result from the company's deliberate strategy or flash an opportunity for expansion.
+## **Task 4.1: Platform Overview** Dashboard
+
+Designed to provide the management with an overview of the platform participants (customers, sellers, and products), this dashboard addresses fundamental questions on the top selling product categories, customer traffics via ad clicks, and customers' and sellers' geographical location. This aids management in optimising the distribution network, merchandising strategy (i.e., which product to sells) and network expansion. We observe that the Health & Wellness product is the most popular category reflecting the shift in consumers attention towards self-care and wellbeing post the COVID-19 pandemic. Low participants in the Central region may result from the company's deliberate strategy or flash an opportunity for expansion.
 
 ```{r fig1, echo=FALSE, warning=FALSE, message = FALSE}
 library(treemapify)
@@ -911,7 +919,9 @@ if (require("maps")) {
 
 ```
 
-**Sales Performance:** The dashboard provides key metrics into sales performance and growth potential of the platform. Monthly Sales Trend tracks the live results in the last 12 months, timely highlighting the effectiveness of management's strategies and day-to-day operations. In contrast, the remaining charts capture a snapshot of the overall performance to date, drawing management's attention to the most profitable customers, sellers, and product category. The concentration risk presenting in the top customer and seller of this platform, whilst should be mindful of, indicates growth opportunities on the remaining customers and seller groups. 
+## **Task 4.2: Sales Performance Dashboard** 
+
+The dashboard provides key metrics into sales performance and growth potential of the platform. Monthly Sales Trend tracks the live results in the last 12 months, timely highlighting the effectiveness of management's strategies and day-to-day operations. In contrast, the remaining charts capture a snapshot of the overall performance to date, drawing management's attention to the most profitable customers, sellers, and product category. The concentration risk presenting in the top customer and seller of this platform, whilst should be mindful of, indicates growth opportunities on the remaining customers and seller groups. 
 
 ```{r fig5, echo=FALSE}
 ## Figure 5: Monthly Sales Analysis
@@ -1043,7 +1053,9 @@ top_sellers <- dbGetQuery(my_db,
 
 ```
 
-**Top Products**: Drilling down into the product level, this showcases the top performing products by various metrics: sales value, sales quantum, customer rating and conversion rate (measured by sales quantum per a million of ad clicks), spearheading the platform's marketing, merchandising, and acquisition strategy. Whilst not being the top selling products by quantity, bicycle and laptop generates the most revenue due to its high value propositions. 
+## **Task 4.3: Top Products** Dashboard
+
+Drilling down into the product level, this showcases the top performing products by various metrics: sales value, sales quantum, customer rating and conversion rate (measured by sales quantum per a million of ad clicks), spearheading the platform's marketing, merchandising, and acquisition strategy. Whilst not being the top selling products by quantity, bicycle and laptop generates the most revenue due to its high value propositions. 
 
 ```{r fig9, echo=FALSE}
 ## Figure 9: Top 10 Selling Products by Value
@@ -1183,7 +1195,9 @@ top_products_c <- dbGetQuery(my_db,
 
 ```
 
-**Customer Satisfaction**: While average rating reflects customer satisfaction, the percentage of orders left without review indicates customer engagement level. With a high-fixed-cost and low-variable-cost business model, an e-commerce platform depends profoundly on the ability to sustainability grow and expand their customer base. Therefore, these metrics are considered pivotal to their success. Downward trending average rating and increasing percentage of nil review, as in this case, is alarming and requires management's immediate attention.  
+**Task 4.4: Customer Satisfaction Dashboard**
+
+While average rating reflects customer satisfaction, the percentage of orders left without review indicates customer engagement level. With a high-fixed-cost and low-variable-cost business model, an e-commerce platform depends profoundly on the ability to sustainability grow and expand their customer base. Therefore, these metrics are considered pivotal to their success. Downward trending average rating and increasing percentage of nil review, as in this case, is alarming and requires management's immediate attention.  
 
 ```{r fig13, echo=FALSE}
 ## Figure 13: Average Rating by Months

@@ -49,23 +49,6 @@ dbExecute(my_db,view_sales_query)
 
 
 
-df_sales <- dbGetQuery(my_db, "SELECT *
-                              FROM df_sales")
-
-
-df_sales <- dbGetQuery(my_db, "SELECT o.id, o.customer_id, o.product_id, o.quantity, o.discount, o.order_date, o.rating_review, dfp.price,
-round(o.quantity*(1-o.discount/100)*dfp.price,2) AS sales,
-round(o.quantity*(o.discount/100)*dfp.price,2) AS discount_value,
-round(o.quantity*1000000/dfp.total_ad_clicks,2) AS conversion_rate,
-dfp.seller_id, dfp.seller_name, dfp.total_budget, dfp.product_name,dfp.category_name, 
-CONCAT(first_name, ' ', last_name) AS customer_name
-FROM orders AS o
-LEFT JOIN df_products dfp ON o.product_id = dfp.id
-LEFT JOIN customers c ON o.customer_id = c.id")
-
-
-
-
 
 ## Figure 1:  Number of Products by Categories
 
